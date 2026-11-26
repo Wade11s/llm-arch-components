@@ -1,0 +1,2190 @@
+[
+  {
+    "file": "qwen3-235b-a22b.webp",
+    "model": "Qwen3 (235B-A22B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA with QK-Norm and RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (128 experts, 8 active)"
+    ],
+    "panels": [
+      "94× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "azure blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout (bold black + blue numbers)",
+      "inline colored emphasis in bullets",
+      "small dark inset headers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "GQA and FFN/MoE zoomed into separate dotted insets",
+      "128 experts with 8 active",
+      "94× brace repeat marker beside block panel",
+      "expert index badges 1 and 128 with ellipsis between"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Canonical template: tapered stack of pills inside two nested rounded containers, with two dotted-border insets to the right linked by dotted zoom leaders. Expert row needs two labelled ends plus an ellipsis gap."
+  },
+  {
+    "file": "qwen3-30b-a3b.webp",
+    "model": "Qwen3 (30B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA with QK-Norm and RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (128 experts, 8 active)"
+    ],
+    "panels": [
+      "48× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "azure blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "inline colored emphasis in bullets",
+      "small dark inset headers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "identical layout to the 235B sibling, only counts differ (48×, 3B active, hidden 768)",
+      "128 experts with 8 active"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Same geometry as the 235B-A22B figure; a renderer should parameterise repeat count and the three numeric callouts rather than hard-code them."
+  },
+  {
+    "file": "qwen3-32b.webp",
+    "model": "Qwen3 (32B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA with QK-Norm and RoPE",
+      "dense gated FFN (SwiGLU)"
+    ],
+    "panels": [
+      "64× decoder block panel",
+      "Feed forward (SwiGLU) module inset"
+    ],
+    "theme": {
+      "accent": "bright sky blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "sky blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "inline math in callout (5×5,120 = 25,600)"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to inset"
+    ],
+    "specialStructures": [
+      "Pre-RMSNorm labels instead of RMSNorm",
+      "two side boxes (QK-Norm, RoPE) feeding the attention block with arrows",
+      "64× brace repeat marker"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Flat version of the Qwen3 skeleton: no MoE inset, single zoomed FFN inset, and the attention inputs are wired from the left margin."
+  },
+  {
+    "file": "qwen3-4b.webp",
+    "model": "Qwen3 (4B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "masked grouped-query attention with QK-Norm and RoPE",
+      "dense gated FFN (SwiGLU)"
+    ],
+    "panels": [
+      "36× decoder block panel",
+      "Feed forward (SwiGLU) module inset"
+    ],
+    "theme": {
+      "accent": "bright sky blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "sky blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "one-line head-count label"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to inset"
+    ],
+    "specialStructures": [
+      "attention labelled 'Masked grouped-query attention'",
+      "32 heads with no KV split stated",
+      "36× brace repeat marker"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Same skeleton as Qwen3-32B with fewer annotations; dashboard-style callouts sit in the right margin at four different heights."
+  },
+  {
+    "file": "qwen3-5-397b.webp",
+    "model": "Qwen3.5 (397B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated GQA",
+      "gated DeltaNet linear attention",
+      "MoE (512 experts, 17B active)"
+    ],
+    "panels": [
+      "60-layer decoder block panel",
+      "Gated grouped-query attention inset",
+      "Gated DeltaNet inset",
+      "3:1 Ratio layer schedule table"
+    ],
+    "theme": {
+      "accent": "steel blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "slate blue",
+        "dark charcoal",
+        "pale yellow",
+        "salmon",
+        "gold"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "monospaced schedule table",
+      "small inset subheads"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "sigmoid-gate side branch into ⊗"
+    ],
+    "specialStructures": [
+      "two large mixing insets sharing identical bottom-row skeleton",
+      "gate path drawn right of the attention core into a ⊗",
+      "QK-Norm label bound to the Q/K branches",
+      "3:1 schedule table with trailing ellipsis row"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Renderer must support two stacked detail insets with a shared grammar, highlighted sub-blocks (L2 Norm, Conv) inside one inset, and a monospace appended schedule table."
+  },
+  {
+    "file": "qwen3-6-27b.webp",
+    "model": "Qwen3.6 (27B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated GQA",
+      "gated DeltaNet linear attention",
+      "dense FFN"
+    ],
+    "panels": [
+      "64-layer decoder block panel",
+      "Gated grouped-query attention inset",
+      "Gated DeltaNet (linear attention) inset",
+      "3:1 Ratio layer schedule table"
+    ],
+    "theme": {
+      "accent": "steel blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "slate blue",
+        "dark charcoal",
+        "pale yellow",
+        "salmon",
+        "gold"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "monospaced schedule table",
+      "small inset subheads"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "gate branch into ⊗"
+    ],
+    "specialStructures": [
+      "dense FFN variant of the Qwen3.6 skeleton",
+      "two mixing insets with identical bottom-row skeleton",
+      "3:1 schedule table with trailing ellipsis"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Same as the 35B-A3B sibling except the second residual stage is FFN; the schedule table text changes accordingly."
+  },
+  {
+    "file": "qwen3-6-35b-a3b.webp",
+    "model": "Qwen3.6 (35B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated GQA",
+      "gated DeltaNet linear attention",
+      "MoE (256 experts, 3B active)"
+    ],
+    "panels": [
+      "40-layer decoder block panel",
+      "Gated grouped-query attention inset",
+      "Gated DeltaNet inset",
+      "3:1 Ratio layer schedule table"
+    ],
+    "theme": {
+      "accent": "steel blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "slate blue",
+        "dark charcoal",
+        "pale yellow",
+        "salmon",
+        "gold"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "monospaced schedule table",
+      "small inset subheads"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "gate branch into ⊗"
+    ],
+    "specialStructures": [
+      "MoE block with no expert-level inset, only a left-margin 256 experts / 3B active callout",
+      "3:1 schedule table with trailing ellipsis"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Shows MoE as a single grey block; expert fan-out lives only in the loose callout, so no T05 inset is required."
+  },
+  {
+    "file": "qwen3-8-27b.webp",
+    "model": "Qwen3.8 (27B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated GQA",
+      "gated DeltaNet linear attention",
+      "dense FFN"
+    ],
+    "panels": [
+      "64-layer decoder block panel",
+      "Gated grouped-query attention inset",
+      "Gated DeltaNet inset",
+      "3:1 Ratio layer schedule table"
+    ],
+    "theme": {
+      "accent": "violet to lavender gradient",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "blue-violet gradient",
+        "dark charcoal",
+        "pale yellow",
+        "salmon",
+        "gold"
+      ]
+    },
+    "typography": [
+      "bold two-tone title (blue then violet)",
+      "mixed-weight callout",
+      "monospaced schedule table"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "gate branch into ⊗"
+    ],
+    "specialStructures": [
+      "block panel fill is a top-down blue→purple gradient",
+      "top annotation '(Vision encoder and MTP head omitted)'"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Only difference from the Qwen3.6 family is the gradient fill on the decoder-block container and the blue/violet split title."
+  },
+  {
+    "file": "qwen3-8-flash-next-125b-a6b.webp",
+    "model": "Qwen3.8-Flash-Next (125B-A6B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P12"
+    ],
+    "blockKinds": [
+      "Qwen Sparse Attention (QSA) + gated GQA",
+      "gated DeltaNet",
+      "MoE (512 experts, 10 routed + 1 shared)",
+      "gated residual (GR Read / GR Write)"
+    ],
+    "panels": [
+      "48× decoder block panel",
+      "Qwen Sparse Attention (QSA) mask matrix inset",
+      "GR (Gated Residual) inset",
+      "left-margin stacked callout list"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "steel blue",
+        "dark maroon",
+        "pale blue",
+        "pale orange"
+      ]
+    },
+    "typography": [
+      "bold colored title spanning two lines",
+      "mixed-weight callout blocks stacked left",
+      "small matrix row/column labels",
+      "inline math R_i = R_i + s_i y_i",
+      "blue high-emphasis subheads (GR)"
+    ],
+    "edges": [
+      "vertical flow",
+      "4-way parallel residual bus with junction dots",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "curved arc arrows inside the mask matrix"
+    ],
+    "specialStructures": [
+      "token-by-token 0/1 attention mask matrix in three block columns",
+      "blue rounded outline highlighting repeated mask rows",
+      "4× residual branches annotated in the block column",
+      "GR Read / GR Write pills interleaved between MoE and attention",
+      "N-gram (bigram/trigram) embedding callout at layer 2"
+    ],
+    "customPrimitives": [
+      "attention-mask-matrix",
+      "parallel-branch-bundle"
+    ],
+    "customTemplates": [],
+    "confidence": "medium",
+    "notes": "Landscape figure; the hardest element is the labelled 12×12 sparse-attention matrix with vertical column headers and rounded highlight boxes, which has no candidate primitive of its own."
+  },
+  {
+    "file": "qwen3-8b.webp",
+    "model": "Qwen3 (8B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA with QK-Norm and RoPE",
+      "dense gated FFN (SwiGLU)"
+    ],
+    "panels": [
+      "36× decoder block panel",
+      "Feed forward (SwiGLU) module inset"
+    ],
+    "theme": {
+      "accent": "bright sky blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "sky blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "inline math in callout (3×4,096 = 12,288)"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to inset"
+    ],
+    "specialStructures": [
+      "Pre-RMSNorm labels",
+      "QK-Norm and RoPE side boxes wired into the attention block",
+      "36× brace repeat marker"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Dense Qwen3 variant; same rail geometry as 32B with smaller counts and a computed intermediate-size callout."
+  },
+  {
+    "file": "qwen3-coder-flash-30b-a3b.webp",
+    "model": "Qwen3-Coder-Flash (30B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA with QK-Norm and RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (128 experts, 8 active)"
+    ],
+    "panels": [
+      "48× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "steel blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "MoE inset border and Router outline use the blue accent while the FFN inset uses black dots",
+      "expert badges 1 (dark) and 128 (blue) with ellipsis",
+      "single shared zoom assembly feeding both insets"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Hybrid of the Qwen3 dense rail and the MoE inset stack; note the two different dotted-border colors (black for FFN, accent blue for MoE)."
+  },
+  {
+    "file": "qwen3-next-80b-a3b.webp",
+    "model": "Qwen3-Next (80B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated GQA",
+      "gated DeltaNet linear attention",
+      "MoE"
+    ],
+    "panels": [
+      "48-layer decoder block panel",
+      "Gated grouped-query attention inset",
+      "Gated DeltaNet inset",
+      "3:1 Ratio layer schedule table"
+    ],
+    "theme": {
+      "accent": "teal cyan",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "teal",
+        "dark charcoal",
+        "pale yellow",
+        "salmon",
+        "gold"
+      ]
+    },
+    "typography": [
+      "bold teal two-line title",
+      "mixed-weight callout",
+      "monospaced schedule table"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "gate branch into ⊗"
+    ],
+    "specialStructures": [
+      "no tokenizer/embedding callouts, so the left margin has a single context-length note",
+      "3:1 schedule table with trailing ellipsis",
+      "MoE block without an expert inset"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Qwen3.6-style geometry recoloured teal; useful as the minimal-callout variant of the family."
+  },
+  {
+    "file": "recursive-flint-40b-a2-5b.webp",
+    "model": "Recursive Flint (40B-A2.5B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA with sliding-window attention, RoPE+NoPE and learned attention sinks",
+      "gated FFN (SwiGLU)",
+      "MoE (256 routed, 6 routed + 1 shared active)"
+    ],
+    "panels": [
+      "49× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "Routed experts inset",
+      "left and right numbered caption stacks"
+    ],
+    "theme": {
+      "accent": "charcoal gray",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "mid gray",
+        "dark charcoal",
+        "near-white"
+      ]
+    },
+    "typography": [
+      "bold black title",
+      "monochrome mixed-weight callouts",
+      "plain-language multi-line captions at the corners"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in expert routes"
+    ],
+    "specialStructures": [
+      "single combined 'FFN / MoE' block",
+      "two Pre-RMSNorm nodes (no RMSNorm 2 label)",
+      "expert index badges 1 and 256 in dark gray",
+      "callout stacks at all four corners of the canvas"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Fully monochrome variant: accent color disappears from the diagram, so blocks and containers are distinguished only by gray values and outlines."
+  },
+  {
+    "file": "reflection-beam-501b.webp",
+    "model": "Reflection Beam (501B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated GQA with 5:1 local:global sliding window, RoPE+NoPE, gated attention",
+      "gated FFN (SwiGLU)",
+      "MoE without shared expert (256 experts, 8 active)"
+    ],
+    "panels": [
+      "52× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer (no shared) inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "violet",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "lavender",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "three side boxes feeding the attention block",
+      "fan-out/fan-in expert routes"
+    ],
+    "specialStructures": [
+      "sandwich norm: Pre-RMSNorm and Post-RMSNorm on both sublayers",
+      "three annotation boxes (QK-Norm, RoPE + NoPE, Gated attention) stacked at the left",
+      "MoE inset titled 'no shared'"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Distinctive because every mixing/FFN stage is preceded and followed by a norm pill; the renderer needs a 4-norm block variant rather than 2."
+  },
+  {
+    "file": "sarvam-105b.webp",
+    "model": "Sarvam (105B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11"
+    ],
+    "blockKinds": [
+      "multi-head latent attention (MLA) with KV LayerNorm and Partial RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (128 experts, 8 active + 1 shared)"
+    ],
+    "panels": [
+      "32× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "left-margin head-dimension callout stack"
+    ],
+    "theme": {
+      "accent": "burnt orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange to lavender gradient",
+        "orange",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "dotted sub-bullets with arithmetic (64 × (128 + 192) = 20,480)",
+      "orange inline emphasis"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "decoder-block fill is an orange→periwinkle vertical gradient",
+      "attention block itself filled saturated orange with bold white label",
+      "three separate left annotations for head dims, uncompressed dim and latent dim",
+      "expert badges 1 (gray) and 128 (orange)"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Gradient-block variant; the emphasis colour is used both for the container gradient and for a single highlighted attention block, so a renderer needs an accent-block style."
+  },
+  {
+    "file": "sarvam-30b.webp",
+    "model": "Sarvam (30B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11"
+    ],
+    "blockKinds": [
+      "GQA with QK-Norm and RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (128 experts, 6 active + 1 shared)"
+    ],
+    "panels": [
+      "19× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "left-margin head-count callout"
+    ],
+    "theme": {
+      "accent": "burnt orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange to lavender gradient",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "orange inline emphasis",
+      "bold highlighted spans inside module labels"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "same pair of insets as Sarvam 105B but with GQA instead of MLA",
+      "expert badges 1 and 128 in gray/orange",
+      "dense first block noted at bottom-left"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Sibling of Sarvam 105B: identical inset assembly, only the attention block and the callout numbers change."
+  },
+  {
+    "file": "smollm3-3b.webp",
+    "model": "SmolLM3 (3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "masked grouped-query attention with NoPE + RoPE",
+      "dense gated FFN (SwiGLU)"
+    ],
+    "panels": [
+      "36× decoder block panel",
+      "Feed forward (SwiGLU) module inset"
+    ],
+    "theme": {
+      "accent": "amber",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "amber",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "italic-ish annotation text for 'NoPE every 4th layer'"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to inset",
+      "two positional blocks joined by a plus into the attention block"
+    ],
+    "specialStructures": [
+      "separate NoPE and RoPE boxes joined with '+' before the attention block",
+      "dense model with a single FFN inset",
+      "36× brace repeat marker"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Illustrates a positional-encoding composition node feeding attention; the plus sign is typographic rather than an operator junction."
+  },
+  {
+    "file": "solar-open-2.webp",
+    "model": "Solar Open (250B-A15B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "Kimi Delta Attention (KDA) / gated GQA",
+      "MoE (320 experts, 1 shared + 8 routed)"
+    ],
+    "panels": [
+      "48-layer decoder block panel",
+      "MoE layer inset",
+      "Kimi Delta Attention (linear attention) inset",
+      "3:1 Ratio layer schedule table",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "sky blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "blue",
+        "dark charcoal",
+        "pale yellow",
+        "salmon"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "monospaced schedule table",
+      "quoted module label ('linear attention')"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "gate branch into ⊗"
+    ],
+    "specialStructures": [
+      "landscape canvas with insets stacked in a right column",
+      "schedule table ends with 'Repeat ×12' instead of an ellipsis",
+      "single NoPE box feeding attention",
+      "no FFN/embedding callouts at all"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Wide two-column layout: rail on the left, MoE inset and KDA inset stacked on the right with the schedule table underneath."
+  },
+  {
+    "file": "soofi-s-30b-a3b.webp",
+    "model": "Soofi S (30B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11"
+    ],
+    "blockKinds": [
+      "Mamba-2 SSM with Conv1D and SSM state update",
+      "GQA with 2 KV heads and NoPE",
+      "MoE (128 experts, 1 shared + 6 routed)"
+    ],
+    "panels": [
+      "52× layers outer container",
+      "macro-block column with repeat groups",
+      "Mamba-2 inset",
+      "Grouped-query attention (GQA) head inset",
+      "MoE layer inset"
+    ],
+    "theme": {
+      "accent": "teal",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "teal",
+        "yellow",
+        "salmon",
+        "pale green",
+        "pink",
+        "sky blue"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "small per-head letters (q/k/v)",
+      "tiny head index labels"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dashed zoom leader to the macro-block column",
+      "dotted zoom leader to insets",
+      "gate branch into ⊗"
+    ],
+    "specialStructures": [
+      "hybrid stack built from a repeating MoE+Mamba-2 macro block with 5×, 3×, 1×, 4× groups",
+      "dashed second container for the macro-block group",
+      "GQA head diagram with V, K and Q columns and bracket joins",
+      "dotted brace repeat marker for 52 layers"
+    ],
+    "customPrimitives": [
+      "head-group-diagram"
+    ],
+    "customTemplates": [],
+    "confidence": "medium",
+    "notes": "Most structurally unusual figure in the batch: a two-level repeat hierarchy (52 layers × 7-layer macro blocks) plus a per-head Q/K/V lattice that no candidate primitive covers."
+  },
+  {
+    "file": "step-3-5-flash-196b.webp",
+    "model": "Step 3.5 Flash (196B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA + sliding window attention (SWA) with QK-Norm, partial/full RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (288 experts, 1 shared + 8 active)"
+    ],
+    "panels": [
+      "45× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "steel blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "steel blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "three-line attention label with '+' separator",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "attention label stacks GQA and SWA with a plus sign",
+      "two-line RoPE annotation box (Partial RoPE global / Full RoPE local)",
+      "expert badges 1 (dark) and 288 (blue)"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Standard rail plus two insets; the only twist is the two-line left annotation box and the compound attention label."
+  },
+  {
+    "file": "step-5-preview-600b.webp",
+    "model": "Step-5-Preview (~600B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated GQA with partial/full RoPE, NoPE and SWA 3:1 ratio",
+      "gated FFN (SwiGLU)",
+      "MoE (352 experts, 1 shared + 8 routed)"
+    ],
+    "panels": [
+      "92× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "layer schedule table (A / B rows)",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "sky blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "three-line attention label",
+      "row labels A/B in the schedule table",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "separate NoPE box plus 'Partial RoPE (global) / Full RoPE (local)' box feeding attention",
+      "schedule table with two lettered row variants (3× SWA+MoE vs full attention+MoE)",
+      "expert badges 1 and 352"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Largest single-rail figure in the batch; the schedule table is a two-row lettered block rather than the 3:1 strip used by the Qwen family."
+  },
+  {
+    "file": "tencent-hy3-preview-295b-a21b.webp",
+    "model": "Tencent Hy3-preview (295B-A21B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA with QK-Norm and RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (192 experts, 1 shared + 8 routed)"
+    ],
+    "panels": [
+      "80× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "bright blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "inline colored emphasis in bullets",
+      "top-left multi-line omission note"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "top-left note about one extra MTP layer with 3.8B parameters",
+      "bright blue block fill with an inner black outline",
+      "expert badges 1 (dark) and 192 (blue)"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Standard assembly; only noteworthy for the double outline on the decoder-block panel and the MTP annotation dangling from the top."
+  },
+  {
+    "file": "tencent-hy4-770b-a49b.webp",
+    "model": "Tencent Hy4 (770B-A49B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated DeepSeek Sparse Attention (DSA)",
+      "gated FFN (SwiGLU)",
+      "MoE (384 experts, 1 shared + 8 routed)",
+      "iHC (residual stream) Read/Write"
+    ],
+    "panels": [
+      "60-layer decoder block panel",
+      "Gated DSA mask matrix inset",
+      "iHC (Read/Write) inset",
+      "Feed forward (SwiGLU) module inset",
+      "left-margin caption stack"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "steel blue",
+        "dark charcoal",
+        "salmon",
+        "pale blue"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "small matrix row labels (a/b/c) and column dots",
+      "inline blue emphasis"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "curved red/orange annotation arrows at the matrix",
+      "terminal stubs on the iHC pipeline"
+    ],
+    "specialStructures": [
+      "landscape canvas",
+      "three-token mask matrix with 'The model attends to past tokens' captions",
+      "iHC inset drawn as a 4-stage pipeline with bracket terminals",
+      "separate 5-layer DFly2 drafter note at top-left"
+    ],
+    "customPrimitives": [
+      "attention-mask-matrix",
+      "branch-terminal"
+    ],
+    "customTemplates": [],
+    "confidence": "medium",
+    "notes": "Dense composite: the mask-matrix inset with curved annotation arrows and the pipeline inset with terminal stubs both need custom handling; small matrix labels are hard to read at thumbnail size."
+  },
+  {
+    "file": "tencent-hy4-preview-770b-a49b.webp",
+    "model": "Tencent Hy4-preview (770B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P12"
+    ],
+    "blockKinds": [
+      "gated DeepSeek Sparse Attention (DSA)",
+      "gated FFN (SwiGLU)",
+      "MoE (384 experts, 1 shared + 8 routed)",
+      "iHC (residual stream) Read/Write"
+    ],
+    "panels": [
+      "78-layer decoder block panel",
+      "Gated DSA mask matrix inset",
+      "iHC (Read/Write) inset",
+      "Feed forward (SwiGLU) module inset",
+      "left-margin caption stack"
+    ],
+    "theme": {
+      "accent": "azure blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "steel blue",
+        "dark charcoal",
+        "salmon",
+        "pale blue"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "small matrix labels",
+      "inline blue emphasis"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "curved annotation arrows at the matrix",
+      "terminal stubs on the iHC pipeline"
+    ],
+    "specialStructures": [
+      "same composition as the Hy4 sibling with 78× instead of 60×",
+      "'(MTP prediction layer omitted)' note replaces the drafter caption",
+      "iHC inset drawn as a 4-stage pipeline"
+    ],
+    "customPrimitives": [
+      "attention-mask-matrix",
+      "branch-terminal"
+    ],
+    "customTemplates": [],
+    "confidence": "medium",
+    "notes": "Near-duplicate of tencent-hy4-770b-a49b; only the repeat count and the top-left omission note differ, so a renderer should parameterise both."
+  },
+  {
+    "file": "tiny-aya-3-35b.webp",
+    "model": "Tiny Aya (3.35B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA + sliding window attention (SWA) in 3:1 ratio",
+      "dense gated FFN (SwiGLU)"
+    ],
+    "panels": [
+      "36× decoder block panel",
+      "Feed forward (SwiGLU) module inset"
+    ],
+    "theme": {
+      "accent": "green",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "green",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "two-line attention label",
+      "stacked head-count note in green"
+    ],
+    "edges": [
+      "vertical flow",
+      "single LayerNorm with two parallel sublayer branches into one ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to inset",
+      "three-input merge into the ⊕"
+    ],
+    "specialStructures": [
+      "post-LayerNorm position (norm sits before the split, not before each sublayer)",
+      "attention and FFN drawn side by side as parallel branches",
+      "RoPE + NoPE combined in one input box",
+      "36× brace repeat marker"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Only figure in the batch with genuinely parallel attention/FFN branches; the residual is a single merge with three incoming edges, not a sequential pair of merges."
+  },
+  {
+    "file": "vibethinker-3b.webp",
+    "model": "VibeThinker-3B",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA with RoPE",
+      "dense gated FFN (SwiGLU)"
+    ],
+    "panels": [
+      "36× decoder block panel",
+      "Feed forward (SwiGLU) module inset"
+    ],
+    "theme": {
+      "accent": "bright blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "bright blue",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "two-line head-count note",
+      "two-line context-length note"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to inset"
+    ],
+    "specialStructures": [
+      "single RoPE box feeding attention",
+      "36× brace repeat marker",
+      "the callouts are scattered to five separate corners"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Minimal dense rail: one inset, six dotted callouts, no MoE and no schedule table."
+  },
+  {
+    "file": "xiaomi-mimo-v2-5-310b.webp",
+    "model": "Xiaomi MiMo-V2.5 (310B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA + SWA with partial RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (256 experts, 8 routed)"
+    ],
+    "panels": [
+      "48× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "mixed-weight callout with orange numbers",
+      "three-line attention label with colored keywords",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "top subtitle listing omitted encoders and 3 MTP layers",
+      "attention block uses inline orange emphasis for (GQA) and (SWA)",
+      "dotted MoE inset border follows the orange accent",
+      "expert badges 1 (dark) and 256 (orange)"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Colour variant of the house style: accent orange recolours title numbers, the block fill, the inset dots, the Router outline and the expert badge."
+  },
+  {
+    "file": "xiaomi-mimo-v2-5-pro-1-02t.webp",
+    "model": "Xiaomi MiMo-V2.5-Pro (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA + SWA in 6:1 ratio with partial RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (384 experts, 8 routed)"
+    ],
+    "panels": [
+      "70× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "mixed-weight callout with orange numbers",
+      "three-line attention label",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "dense first block with hidden size 16,384 called out in orange",
+      "expert badges 1 and 384",
+      "70× brace repeat marker"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Wider sibling of MiMo-V2.5; the only structural change is the 6:1 SWA ratio text and the larger expert count."
+  },
+  {
+    "file": "xiaomi-mimo-v2-6-flash-rl-309b.webp",
+    "model": "Xiaomi MiMo-V2.6-Flash (309B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA + SWA in 6:1 ratio with partial RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (256 experts, 8 routed)"
+    ],
+    "panels": [
+      "48× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "mixed-weight callout",
+      "three-line attention label",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "top subtitle noting omitted encoders and the 5-layer DFlash speculative decoder",
+      "native context 1M tokens in the left margin",
+      "expert badges 1 and 256"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Same grid as the V2.5 series with a longer omission subtitle and 48× rather than 70×."
+  },
+  {
+    "file": "xiaomi-mimo-v2-6-pro-rl-1-02t.webp",
+    "model": "Xiaomi MiMo-V2.6-Pro (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA + SWA in 6:1 ratio with partial RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (384 experts, 8 routed)"
+    ],
+    "panels": [
+      "70× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "mixed-weight callout",
+      "three-line attention label",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "identical frame to V2.6-Flash but 70× and 384 experts",
+      "embedding dimension 6,144 instead of 4,096",
+      "expert badges 1 and 384"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Almost a clone of xiaomi-mimo-v2-6-flash-rl-309b; only the repeat count, expert count, embedding dim and headline numbers differ."
+  },
+  {
+    "file": "xiaomi-mimo-v2-flash-309b.webp",
+    "model": "Xiaomi MiMo-V2-Flash (309B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "GQA + SWA with partial RoPE",
+      "gated FFN (SwiGLU)",
+      "MoE (256 experts, 8 routed)"
+    ],
+    "panels": [
+      "48× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "mixed-weight callout",
+      "three-line attention label",
+      "two-line context note",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes"
+    ],
+    "specialStructures": [
+      "context noted as 32k pretraining / 256k trained",
+      "no 6:1 ratio text, plain GQA + SWA label",
+      "expert badges 1 and 256"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Earliest of the MiMo series in this batch; same orange grid, slightly shorter attention label and a two-line context callout."
+  },
+  {
+    "file": "xlstm-7b.webp",
+    "model": "xLSTM (7B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P12"
+    ],
+    "blockKinds": [
+      "xLSTM with matrix memory (mLSTM)",
+      "dense gated FFN (SiLU)"
+    ],
+    "panels": [
+      "32× decoder block panel",
+      "Feed forward (gated) module inset",
+      "mLSTM layer inset"
+    ],
+    "theme": {
+      "accent": "dark gold / olive",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "gold",
+        "dark charcoal",
+        "pale yellow"
+      ]
+    },
+    "typography": [
+      "bold colored title",
+      "mixed-weight callout",
+      "two-line dimension callout",
+      "small secondary note text inside the inset"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to both insets",
+      "sigmoid-gate side branch into ⊗",
+      "vertical gate stubs (Q, K, V, f, i) into the mLSTM band"
+    ],
+    "specialStructures": [
+      "wide horizontal mLSTM band with five labelled input stubs",
+      "inner σ and exp operator pills on the gate path",
+      "RMSNorm inside the mLSTM inset above a ⊗",
+      "context described as '8k training / No fixed limit'",
+      "inset carries a short secondary note in small type"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "The mLSTM inset is the most operator-dense panel in the batch: σ, ⊗, exp pills and stack-typed Linear boxes with visible offsets."
+  },
+  {
+    "file": "zaya1-8b.webp",
+    "model": "ZAYA1 (8B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "compressed convolutional attention (CCA) + GQA in 4:1 ratio",
+      "gated FFN (SwiGLU)",
+      "MoE (16 experts, 1 active)"
+    ],
+    "panels": [
+      "40× decoder block panel",
+      "Feed forward (SwiGLU) module inset",
+      "MoE layer inset",
+      "Resource savings bullet list"
+    ],
+    "theme": {
+      "accent": "orange to yellow-green gradient",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange-yellow gradient",
+        "dark charcoal",
+        "pale tan"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "mixed-weight callout",
+      "three-line attention label with colored parentheticals",
+      "inline colored emphasis in bullets"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual with ⊕",
+      "dotted callout leader",
+      "dotted zoom leader to insets",
+      "fan-out/fan-in MoE routes",
+      "two side boxes (QK-Norm, Partial RoPE) into the attention block"
+    ],
+    "specialStructures": [
+      "decoder-block fill is a vertical orange→yellow→green gradient",
+      "title says 8B while the bullet says 8.4B model size",
+      "expert badges 1 (dark) and 16 (orange)",
+      "only one routed expert active per token"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Gradient-filled container plus a five-colour palette; small inconsistency between title size (8B) and bullet size (8.4B) is in the source."
+  }
+]

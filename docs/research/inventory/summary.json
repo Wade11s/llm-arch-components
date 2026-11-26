@@ -1,0 +1,41 @@
+{
+  "total": 132,
+  "coveredByCandidateVocabulary": 132,
+  "coveragePercent": 100,
+  "thresholdPass": true,
+  "primitiveCounts": {
+    "P01": 132,
+    "P02": 132,
+    "P03": 132,
+    "P04": 132,
+    "P06": 132,
+    "P07": 132,
+    "P08": 131,
+    "P05": 126,
+    "P11": 87,
+    "P10": 78,
+    "P09": 69,
+    "P12": 68,
+    "P16": 27,
+    "P13": 14,
+    "P17": 13,
+    "P14": 7,
+    "P15": 3
+  },
+  "templateCounts": {
+    "T01": 132,
+    "T02": 126,
+    "T03": 112,
+    "T05": 90,
+    "T04": 39,
+    "T06": 34,
+    "T07": 9,
+    "T09": 3,
+    "T08": 1
+  },
+  "confidenceCounts": {
+    "high": 121,
+    "medium": 11
+  },
+  "customRequired": []
+}

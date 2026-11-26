@@ -1,0 +1,2194 @@
+[
+  {
+    "file": "granite-4-1-30b.webp",
+    "model": "Granite 4.1 (30B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA",
+      "Dense FFN",
+      "Pre-RMSNorm"
+    ],
+    "panels": [
+      "Repeated decoder block (64x)",
+      "Feed forward (SwiGLU) module"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "cornflower blue",
+        "dark slate gray"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader"
+    ],
+    "specialStructures": [
+      "QK-Norm and RoPE pills mounted on the left face of the attention node",
+      "two pre-RMSNorm stages inside the block",
+      "heads, embedding and FFN dimensions only given as margin callouts"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Canonical single-panel backbone: one blue repeated block, a dotted-frame SwiGLU inset at top right, and every dimension arriving as a dotted-leader callout."
+  },
+  {
+    "file": "grok-2-5-270b.webp",
+    "model": "Grok 2.5 (270B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "SwiGLU",
+      "RoPE attention"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module (dense)",
+      "Feed forward (SwiGLU) module (expert)",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "black",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "near black",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold black title",
+      "mixed-weight bullet callout",
+      "inline colored emphasis"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "dense FFN pill stacked directly above the MoE pill inside the block",
+      "numbered expert slots 1 and 8 with an ellipsis between them",
+      "resource-savings bullet list as a structured note block"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "medium",
+    "notes": "Two stacked SwiGLU insets sit beside the numbered MoE inset; the attention node label is partly illegible, so treat the mixing block as RoPE-style attention."
+  },
+  {
+    "file": "inkling-2-mini.webp",
+    "model": "Inkling 2 Mini (26.4B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05",
+      "custom:recurrent-pass-stack"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "SwiGLU",
+      "AttnRes depth-source attention",
+      "GQA"
+    ],
+    "panels": [
+      "One token through the decoder",
+      "AttnRes depth sources",
+      "Layers after the loop",
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Parameters",
+      "Routing"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "salmon",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "monospace pass labels",
+      "mixed-weight bullet list"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom",
+      "feedback edge into merge"
+    ],
+    "specialStructures": [
+      "three-pass loop drawn as a top-left strip of offset pass rows (6 + 12 + 6 layers)",
+      "12x per-pass brace and a 19-24 layer card offset behind the block",
+      "W and alpha gate badges on depth-source skip edges",
+      "128 expert slots with ellipsis"
+    ],
+    "customPrimitives": [
+      "custom:pass-row-card"
+    ],
+    "customTemplates": [
+      "custom:recurrent-pass-stack"
+    ],
+    "confidence": "high",
+    "notes": "Not a plain stack: the pass strip, the 12x-per-pass brace and the offset 'Layers after the loop' card encode a three-pass recurrent decoder, so a renderer must keep those labels tied to one repeated block."
+  },
+  {
+    "file": "inkling-2-small.webp",
+    "model": "Inkling 2 Small (594B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05",
+      "custom:recurrent-pass-stack"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "SwiGLU",
+      "AttnRes depth-source attention",
+      "GQA with short conv"
+    ],
+    "panels": [
+      "One token through the decoder",
+      "Block attention residuals",
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Parameters",
+      "Routing"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "salmon",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "monospace pass labels",
+      "mixed-weight bullet list"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom",
+      "feedback edge into merge"
+    ],
+    "specialStructures": [
+      "AttnRes panel lists token embeddings, earlier block sums and current group sum feeding a sum",
+      "short conv (kernel 3) node inside the attention block",
+      "48 layer applications from 24 distinct blocks",
+      "384 expert slots with ellipsis"
+    ],
+    "customPrimitives": [
+      "custom:depth-source-sum"
+    ],
+    "customTemplates": [
+      "custom:recurrent-pass-stack"
+    ],
+    "confidence": "high",
+    "notes": "Same family grammar as Inkling 2 Mini but the block also carries a short-conv branch and a wider AttnRes depth-source panel; margin bullet lists carry all routing numbers."
+  },
+  {
+    "file": "inkling.webp",
+    "model": "Inkling (975B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "SwiGLU",
+      "Hybrid short-conv linear attention",
+      "GQA"
+    ],
+    "panels": [
+      "Short conv (kernel 4)",
+      "MoE",
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Parameters",
+      "Context",
+      "Routing"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "salmon",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "monospace inline notes",
+      "mixed-weight bullet list"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "two short-conv sub-blocks (kernel 4 and kernel 3) inside one repeating unit",
+      "K/V head callouts on the left edge",
+      "dense FFN used in the first layers while the rest of the block is MoE",
+      "256 expert slots with ellipsis"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Hybrid block where attention is preceded by an explicit short-conv node; MoE inset and SwiGLU inset both hang off the right side by dotted zoom lines."
+  },
+  {
+    "file": "instella-moe-16b-a3b.webp",
+    "model": "Instella-MoE (16B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05",
+      "custom:far-skip"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE with shared expert",
+      "Gated MLA",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Shared MoE",
+      "Routed experts",
+      "Feed forward (SwiGLU) module",
+      "Training context",
+      "Context"
+    ],
+    "theme": {
+      "accent": "coral",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "salmon",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold coral title",
+      "small caption labels",
+      "inline colored emphasis"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted zoom",
+      "side feedback edge"
+    ],
+    "specialStructures": [
+      "FarSkip-Collective arrow leaves the block and rejoins as 'To next attention'",
+      "extra dense decoder layer node between embedding and the repeated block",
+      "shared expert and routed experts merged separately with two plus nodes",
+      "sigmoid gate before the output projection, partial RoPE on 32/128 dims"
+    ],
+    "customPrimitives": [
+      "custom:far-skip-loop"
+    ],
+    "customTemplates": [
+      "custom:far-skip"
+    ],
+    "confidence": "high",
+    "notes": "The FarSkip return path is a signature feature: a long edge running outside the block outline and re-entering as a second attention input, alongside a hard-linked dense decoder layer."
+  },
+  {
+    "file": "intellect-3.webp",
+    "model": "INTELLECT-3 (106B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "GQA",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "black",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "dark gray",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold black title",
+      "mixed-weight margin callout",
+      "inline colored emphasis"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "first block uses a dense FFN instead of MoE",
+      "single shared plus 8 routed experts active",
+      "128 expert slots with ellipsis under the MoE inset"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Grayscale variant of the house template: only the title and the small attention node carry weight, everything else is white pills on light gray."
+  },
+  {
+    "file": "jetbrains-mellum2-thinking-12b-a2-5b.webp",
+    "model": "JetBrains Mellum2 (12B-A2.5B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "GQA with sliding window",
+      "SwiGLU",
+      "QK-Norm"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer"
+    ],
+    "theme": {
+      "accent": "magenta",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "magenta-to-orange gradient",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold black title",
+      "gradient title text",
+      "mixed-weight margin callout"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "3:1 sliding-window to global attention ratio noted inside the attention node",
+      "RoPE/YaRN pill and QK-Norm pill stacked on the left",
+      "64 expert slots with ellipsis"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "The repeated block uses a vertical magenta-to-orange gradient while every node stays pale; the sliding-window ratio is a three-line side annotation rather than an inset."
+  },
+  {
+    "file": "kimi-k2-5.webp",
+    "model": "Kimi K2.5 (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "MLA",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "steel blue",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "first block uses a dense FFN with hidden size 18,432 instead of MoE",
+      "1 shared plus 8 experts active per token",
+      "384 expert slots with ellipsis",
+      "single 61x badge under the block with no brace"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Same grammar as the other Kimi K2 cards: two norms per sublayer, dark MLA node, pale MoE node, and dimensions confined to the dotted-leader margin."
+  },
+  {
+    "file": "kimi-k2-6.webp",
+    "model": "Kimi K2.6 (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "MLA with partial RoPE",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "pink-to-lavender gradient",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "pink-to-lavender gradient fill on the repeated block",
+      "partial RoPE called out inside the MLA node",
+      "384 expert slots with ellipsis",
+      "dense first block with 18,432 hidden size"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Identical layout to Kimi K2.5 with a two-tone gradient block; the only structural change is the partial-RoPE note inside the attention node."
+  },
+  {
+    "file": "kimi-k2-7-code.webp",
+    "model": "Kimi K2.7 Code (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "MLA with partial RoPE",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "lavender-to-pink gradient",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "lavender-to-pink gradient block",
+      "dense first block with 18,432 hidden size",
+      "384 expert slots with ellipsis",
+      "1 shared plus 8 active experts"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Code-tuned sibling of K2.6 with the same gradient block and identical inset placement; only the title and small numeric callouts differ."
+  },
+  {
+    "file": "kimi-k2.webp",
+    "model": "Kimi K2 (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "MLA with partial RoPE",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "green",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "green",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold green title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "flat green block with a single 61x badge",
+      "dense first block with hidden size 18,432",
+      "384 expert slots with ellipsis",
+      "YaRN context 128k with 4k RoPE base"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Plain-fill green predecessor of the K2.x gradient cards: identical structure, with the layer count written under the block instead of inside a brace."
+  },
+  {
+    "file": "kimi-k3-1-pro.webp",
+    "model": "Kimi K3.1 Pro (2.8T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P12"
+    ],
+    "blockKinds": [
+      "LatentMoE",
+      "Block AttnRes",
+      "Gated DSA",
+      "KDA",
+      "Sparse MLA"
+    ],
+    "panels": [
+      "Gated DeepSeek Sparse Attention (DSA)",
+      "Kimi Delta Attention (KDA)",
+      "Depth sources",
+      "FFN / MoE sublayer",
+      "Attn sublayer"
+    ],
+    "theme": {
+      "accent": "teal",
+      "background": "white",
+      "fills": [
+        "mint green",
+        "pink",
+        "cream",
+        "white"
+      ]
+    },
+    "typography": [
+      "teal title",
+      "rotated panel labels",
+      "monospace inset labels",
+      "mixed-weight margin callout"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted zoom",
+      "dotted leader",
+      "gated skip into merge"
+    ],
+    "specialStructures": [
+      "two dashed pink sublayer frames with rotated names inside the block",
+      "AttnRes depth-source panel with W and alpha gate badges plus a grouped sum",
+      "two tall dotted insets for DSA and KDA with Q/K/V lane columns",
+      "bottom layer schedule: 1 dense, 2-93 LatentMoE, 69 KDA + 24 DSA"
+    ],
+    "customPrimitives": [
+      "custom:gate-badge",
+      "custom:lane-column-inset"
+    ],
+    "customTemplates": [
+      "custom:sublayer-frame-schedule"
+    ],
+    "confidence": "medium",
+    "notes": "The densest card in the batch: dashed sublayer frames, gate badges on skip edges, two vertical lane-style insets and a monospaced layer schedule all coexist, and the small schedule text is only partly legible."
+  },
+  {
+    "file": "kimi-k3.webp",
+    "model": "Kimi K3 (2.8T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P12"
+    ],
+    "blockKinds": [
+      "LatentMoE",
+      "Block AttnRes",
+      "Gated MLA",
+      "KDA"
+    ],
+    "panels": [
+      "Gated multi-head latent attention (MLA)",
+      "Kimi Delta Attention (KDA)",
+      "Depth sources",
+      "FFN / MoE sublayer",
+      "Attn sublayer"
+    ],
+    "theme": {
+      "accent": "teal",
+      "background": "white",
+      "fills": [
+        "mint green",
+        "pink",
+        "cream",
+        "white"
+      ]
+    },
+    "typography": [
+      "teal title",
+      "rotated panel labels",
+      "monospace inset labels"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted zoom",
+      "dotted leader",
+      "gated skip into merge"
+    ],
+    "specialStructures": [
+      "KDA or gated MLA branching inside the attention node",
+      "AttnRes depth sources with W and alpha badges",
+      "3:1 ratio note with a per-layer schedule list",
+      "93x badge with brace at block bottom"
+    ],
+    "customPrimitives": [
+      "custom:gate-badge",
+      "custom:lane-column-inset"
+    ],
+    "customTemplates": [
+      "custom:sublayer-frame-schedule"
+    ],
+    "confidence": "medium",
+    "notes": "Predecessor of K3.1 Pro with the same mint/pink two-tone grammar; the layer schedule is shorter and the second inset is KDA rather than sparse attention."
+  },
+  {
+    "file": "kimi-linear-48b-a3b.webp",
+    "model": "Kimi Linear (48B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09"
+    ],
+    "blockKinds": [
+      "KDA",
+      "MLA",
+      "MoE"
+    ],
+    "panels": [
+      "Multi-head latent attention",
+      "Kimi Delta Attention"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "blue",
+        "pink",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "monospace footnote",
+      "mixed-weight margin callout"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "two stacked dotted insets (MLA above, KDA below) both zoomed from one attention node",
+      "MoE node drawn without any detail inset",
+      "monospace split note: 20 KDA layers and 7 MLA layers with the MLA layer indices"
+    ],
+    "customPrimitives": [
+      "custom:lane-column-inset"
+    ],
+    "customTemplates": [],
+    "confidence": "medium",
+    "notes": "Two mixing insets share the right column and both use tall Q/K/V lane columns; the layer split is a single monospace line under the insets rather than a table."
+  },
+  {
+    "file": "kolibri-1-78b.webp",
+    "model": "Kolibri-1 (78B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "GQA with sliding window",
+      "SwiGLU",
+      "Pre+Post-RMSNorm"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "black",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "gray",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold black title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "four separate norm nodes (pre and post around both sublayers) with four merge points",
+      "QK-Norm and RoPE+NoPE pills beside the attention node",
+      "384 expert slots with ellipsis",
+      "48 Q heads vs 4 KV heads"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Post-norm variant: each sublayer is bracketed by two norms, so the residual chain has two more merges than the standard block while the insets stay conventional."
+  },
+  {
+    "file": "laguna-s-2-1.webp",
+    "model": "Laguna S 2.1 (118B-A8B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "GQA with sliding window",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "green",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "lime gradient",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold green title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "dotted green MoE inset with numbered slots 1 and 256",
+      "QK-Norm pill plus a two-line RoPE pill on the attention node",
+      "gradient block fill (lighter at top)",
+      "first layer uses a dense FFN with hidden size 8,192"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Green gradient block with a dotted-border MoE inset; both margins carry the same bullet list structure, so text wrapping must be templated."
+  },
+  {
+    "file": "laguna-xs-2-1.webp",
+    "model": "Laguna XS 2.1 (33B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "GQA with sliding window",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "green",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "green",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold green title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "flat green block with 40x badge",
+      "numbered MoE slots 1 and 256 with ellipsis",
+      "first layer uses a dense FFN with hidden size 8,192",
+      "8 routed plus 1 shared expert"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Smaller sibling of Laguna S with the same inset pair and bullet margins; the only difference is the flat fill, 40x badge and context numbers."
+  },
+  {
+    "file": "laguna-xs-2.webp",
+    "model": "Laguna XS.2 (33B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "GQA with sliding window",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "green",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "green",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold green title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "visually identical to XS 2.1 apart from the 4k RoPE base and title",
+      "flat green block with 40x badge",
+      "numbered MoE slots 1 and 256",
+      "first layer dense FFN with hidden size 8,192"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Near-duplicate of Laguna XS 2.1: same geometry, same fills, only the RoPE base value and the version suffix in the title change."
+  },
+  {
+    "file": "lfm2-5-1-2b.webp",
+    "model": "LFM2.5 (1.2B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "custom:layer-group-stack"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09"
+    ],
+    "blockKinds": [
+      "LIV convolution",
+      "GQA",
+      "SwiGLU"
+    ],
+    "panels": [
+      "FFN (SwiGLU) module",
+      "GQA + QK-Norm head grid"
+    ],
+    "theme": {
+      "accent": "slate gray",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "slate",
+        "lime green",
+        "salmon",
+        "white"
+      ]
+    },
+    "typography": [
+      "heavy slate title",
+      "left-edge repeat labels",
+      "small head captions"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "three nested group frames labelled 1x, 3x and 3x down the left edge",
+      "16x Layers brace under the innermost group",
+      "colored pill nodes: green convolution, salmon attention",
+      "q/k/v cell head grid (blue q, red k, orange v)"
+    ],
+    "customPrimitives": [
+      "custom:repeat-label-gutter",
+      "custom:head-grid"
+    ],
+    "customTemplates": [
+      "custom:layer-group-stack"
+    ],
+    "confidence": "high",
+    "notes": "Structured by nested rounded frames with repeat counts in a left gutter rather than a single repeated block; the head grid is a small q/k/v rectangle diagram, not a schematic."
+  },
+  {
+    "file": "lfm2-5-350m.webp",
+    "model": "LFM2.5 (350M)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "custom:layer-group-stack"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09"
+    ],
+    "blockKinds": [
+      "LIV convolution",
+      "GQA",
+      "SwiGLU"
+    ],
+    "panels": [
+      "FFN (SwiGLU) module",
+      "GQA + QK-Norm head grid"
+    ],
+    "theme": {
+      "accent": "slate gray",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "slate",
+        "lime green",
+        "salmon",
+        "white"
+      ]
+    },
+    "typography": [
+      "heavy slate title",
+      "left-edge repeat labels",
+      "small head captions"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "1x / 3x / 3x nested group frames plus a 16x Layers brace",
+      "16 Q and 8 K/V heads with the same q/k/v cell grid",
+      "solid black FFN inset frame with a multiply junction"
+    ],
+    "customPrimitives": [
+      "custom:repeat-label-gutter",
+      "custom:head-grid"
+    ],
+    "customTemplates": [
+      "custom:layer-group-stack"
+    ],
+    "confidence": "high",
+    "notes": "Same shell as LFM2.5 1.2B with smaller dimensions; the only visible change is the head count in the grid caption and the input/intermediate sizes."
+  },
+  {
+    "file": "lfm2-5-8b-a1b.webp",
+    "model": "LFM2.5 (8B-A1B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05",
+      "custom:layer-group-stack"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11"
+    ],
+    "blockKinds": [
+      "LIV convolution",
+      "GQA",
+      "MoE"
+    ],
+    "panels": [
+      "MoE layer",
+      "GQA + QK-Norm head grid"
+    ],
+    "theme": {
+      "accent": "slate gray",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "slate",
+        "lime green",
+        "salmon",
+        "white"
+      ]
+    },
+    "typography": [
+      "heavy slate title",
+      "left-edge repeat labels",
+      "mixed-weight caption"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "2x, 4x and 1x groups inside a 24x Layers brace",
+      "no SwiGLU inset; the block only gets a MoE inset",
+      "32 expert slots with 1 and 32 badges and an ellipsis",
+      "4 experts active per token as a wrapped side note"
+    ],
+    "customPrimitives": [
+      "custom:repeat-label-gutter",
+      "custom:head-grid"
+    ],
+    "customTemplates": [
+      "custom:layer-group-stack"
+    ],
+    "confidence": "high",
+    "notes": "MoE variant of the LFM2.5 family: the second group has three convolution-plus-MoE pills above one attention pill, and the FFN inset is dropped in favour of the MoE inset."
+  },
+  {
+    "file": "lfm3-1-7b.webp",
+    "model": "LFM3 (1.7B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "custom:layer-group-stack"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09"
+    ],
+    "blockKinds": [
+      "ShortConv",
+      "Global GQA",
+      "SWA GQA",
+      "SwiGLU"
+    ],
+    "panels": [
+      "FFN (SwiGLU) module",
+      "GQA + QK-Norm head grid"
+    ],
+    "theme": {
+      "accent": "slate gray",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "slate",
+        "lime green",
+        "salmon",
+        "sky blue",
+        "white"
+      ]
+    },
+    "typography": [
+      "heavy slate title",
+      "left-edge repeat labels",
+      "small head captions"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "three pill colors: green ShortConv, salmon global GQA, blue SWA GQA",
+      "1x / 5x / 1x groups inside a 24x Layers brace",
+      "partial RoPE (global) with 16 Q and 4 K/V heads in the grid caption"
+    ],
+    "customPrimitives": [
+      "custom:repeat-label-gutter",
+      "custom:head-grid"
+    ],
+    "customTemplates": [
+      "custom:layer-group-stack"
+    ],
+    "confidence": "high",
+    "notes": "Adds a third fill colour so global and sliding-window attention alternate inside the middle 5x group; otherwise identical to the LFM2.5 shell."
+  },
+  {
+    "file": "ling-2-5-1t.webp",
+    "model": "Ling-2.5 (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "Lightning Attention-2",
+      "MLA",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Layer schedule (7:1 attention ratio)",
+      "Footnote legend"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "tan",
+        "dark gray",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "monospace layer schedule",
+      "superscript footnote markers",
+      "mixed-weight margin callout"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader"
+    ],
+    "specialStructures": [
+      "tall monospace layer table on the right with layers 1-16 plus ellipsis",
+      "superscript 1 and 2 footnote legend beneath the table",
+      "MoE node has no detail inset",
+      "expert counts given only in the top-left callout"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [
+      "custom:layer-schedule-sidebar"
+    ],
+    "confidence": "high",
+    "notes": "The schedule sidebar replaces both detail insets: a monospace two-column list with footnote markers, which a renderer must treat as first-class content rather than a caption."
+  },
+  {
+    "file": "ling-2-6-1t.webp",
+    "model": "Ling-2.6 (1T)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "Lightning Attention-2",
+      "MLA",
+      "Dense FFN",
+      "MTP"
+    ],
+    "panels": [
+      "Layer schedule (7:1 attention ratio)",
+      "Footnote legend",
+      "MTP layer"
+    ],
+    "theme": {
+      "accent": "orange",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "orange",
+        "dark gray",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold orange title",
+      "monospace layer schedule",
+      "superscript footnote markers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "side branch into output path"
+    ],
+    "specialStructures": [
+      "MTP layer pill above the block feeding the output path",
+      "saturated orange block instead of tan",
+      "monospace layer table with footnote legend",
+      "MoE without inset"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [
+      "custom:layer-schedule-sidebar"
+    ],
+    "confidence": "high",
+    "notes": "Ling-2.5 plus a side-mounted MTP node connected by a short right-to-left arrow, and a warmer fill; the schedule sidebar is unchanged."
+  },
+  {
+    "file": "ling-3-0-flash.webp",
+    "model": "Ling-3.0-flash (124B-A5.1B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P12"
+    ],
+    "blockKinds": [
+      "Gated MLA",
+      "Kimi Delta Attention",
+      "MoE",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Gated multi-head latent attention (full attention)",
+      "Kimi Delta Attention (linear attention)",
+      "Layer schedule"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "dodger blue",
+        "pink",
+        "cream",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "monospace schedule block",
+      "small inset titles"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted zoom",
+      "dotted leader"
+    ],
+    "specialStructures": [
+      "two stacked dotted insets with pink MLA bar and cream Gated Delta Rule bar",
+      "sigmoid gate circles at the top-right of each inset",
+      "5:1 KDA to gated MLA schedule as monospace lines",
+      "dense FFNs only in layers 1-2"
+    ],
+    "customPrimitives": [
+      "custom:lane-column-inset"
+    ],
+    "customTemplates": [
+      "custom:layer-schedule-sidebar"
+    ],
+    "confidence": "high",
+    "notes": "Both mixing insets use the same vertical Q/K/V lane grammar with a gate circle; the schedule below them is a six-line monospace block, not a table."
+  },
+  {
+    "file": "ling-3-1-flash.webp",
+    "model": "Ling-3.1-flash (560B-A25B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P12"
+    ],
+    "blockKinds": [
+      "Gated MLA",
+      "Kimi Delta Attention",
+      "MoE",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Gated multi-head latent attention (full attention)",
+      "Kimi Delta Attention (linear attention)",
+      "Layer schedule"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "dodger blue",
+        "pink",
+        "cream",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "monospace schedule block",
+      "small inset titles"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted zoom",
+      "dotted leader"
+    ],
+    "specialStructures": [
+      "7:1 KDA to gated MLA schedule with repeat-9-times note",
+      "dense FFNs in the first four layers",
+      "72x badge with brace",
+      "extra per-layer size lines (expert intermediate, MLA ranks)"
+    ],
+    "customPrimitives": [
+      "custom:lane-column-inset"
+    ],
+    "customTemplates": [
+      "custom:layer-schedule-sidebar"
+    ],
+    "confidence": "high",
+    "notes": "Larger sibling of Ling-3.0-flash: same two insets and same lane grammar, but the schedule block grows to eight lines and the block badge moves to 72x."
+  },
+  {
+    "file": "llama-3-2-1b.webp",
+    "model": "Llama 3.2 (1B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA",
+      "SwiGLU"
+    ],
+    "panels": [
+      "SwiGLU feed forward inset"
+    ],
+    "theme": {
+      "accent": "crimson",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "pink",
+        "dark gray",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold crimson title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "one dotted FFN inset only, no attention inset",
+      "RoPE pill attached to the attention node",
+      "16x badge with brace",
+      "all dimensions in the right margin"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Minimal three-element card: single pink block, one dotted SwiGLU inset, and margin callouts on dotted leaders; the multiply junction sits on the inset's right branch."
+  },
+  {
+    "file": "llama-3-2-3b.webp",
+    "model": "Llama 3.2 (3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA",
+      "SwiGLU"
+    ],
+    "panels": [
+      "SwiGLU feed forward inset"
+    ],
+    "theme": {
+      "accent": "crimson",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "pink",
+        "dark gray",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold crimson title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "28x badge with brace",
+      "24 heads vs 32 heads in the 1B sibling",
+      "embedding dimension 3,072 while hidden stays 8,192"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Pixel-for-pixel the 1B layout with only the layer count, head count and embedding dimension changed, which makes the pair a good regression fixture."
+  },
+  {
+    "file": "llama-3-8b.webp",
+    "model": "Llama 3 (8B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08"
+    ],
+    "blockKinds": [
+      "GQA",
+      "SwiGLU"
+    ],
+    "panels": [
+      "SwiGLU feed forward inset"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "dark gray",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "dark gray block fill with blue inline emphasis on 'grouped-query'",
+      "32x badge with brace",
+      "hidden 14,336 and embedding 4,096 in the margin"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Same two-inset-free skeleton as Llama 3.2 but with a heavier dark block, so text contrast inside the block has to be inverted relative to the pink variant."
+  },
+  {
+    "file": "llama-4-maverick.webp",
+    "model": "Llama 4 Maverick (400B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T05"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE",
+      "GQA with RoPE/NoPE",
+      "SwiGLU",
+      "Dense FFN"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Resource savings"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "sky blue",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "mixed-weight margin callout",
+      "inline colored numbers"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom"
+    ],
+    "specialStructures": [
+      "RoPE/NoPE pill on the attention node with a NoPE-every-4th-layer margin note",
+      "128 expert slots with 1 and 128 badges and an ellipsis",
+      "dense and MoE blocks alternate every second block",
+      "48x badge with brace"
+    ],
+    "customPrimitives": [],
+    "customTemplates": [],
+    "confidence": "high",
+    "notes": "Two dotted insets plus a resource-savings bullet block; the alternation between dense and MoE blocks is described only in the bottom-left callout, not drawn."
+  },
+  {
+    "file": "longcat-2-5-1-6t-a48b.webp",
+    "model": "LongCat-2.5 (1.6T-A48B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05",
+      "custom:dual-attention-block"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE with identity experts",
+      "MLA + LSA",
+      "Dense FFN",
+      "N-gram embedding"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Expert/parameter note"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "indigo",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "two-line subtitle",
+      "colored prose block"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom",
+      "shortcut edge into second merge"
+    ],
+    "specialStructures": [
+      "two attention sublayers with four RMSNorms and four merges in one block",
+      "Shortcut MoE node on the right whose arrow joins the second merge",
+      "768 FFN plus 128 identity experts, 12 selected per token",
+      "token + N-gram embedding node at the block base"
+    ],
+    "customPrimitives": [
+      "custom:shortcut-moe-node"
+    ],
+    "customTemplates": [
+      "custom:dual-attention-block"
+    ],
+    "confidence": "high",
+    "notes": "The only card here with a fourth side node: Shortcut MoE bypasses the second sublayer and merges at the top, which needs an extra orthogonal lane outside the block outline."
+  },
+  {
+    "file": "longcat-flash-lite-68-5b-a3b.webp",
+    "model": "Meituan LongCat-Flash-Lite (68.5B-A3B)",
+    "compositeTemplates": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05",
+      "custom:dual-attention-block"
+    ],
+    "primitives": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P11",
+      "P12"
+    ],
+    "blockKinds": [
+      "MoE with identity experts",
+      "MLA",
+      "Dense FFN",
+      "N-gram embedding"
+    ],
+    "panels": [
+      "Feed forward (SwiGLU) module",
+      "MoE layer",
+      "Expert/parameter note",
+      "N-gram embedding expansion"
+    ],
+    "theme": {
+      "accent": "blue",
+      "background": "white",
+      "fills": [
+        "light gray",
+        "indigo",
+        "white"
+      ]
+    },
+    "typography": [
+      "bold blue title",
+      "two-line subtitle",
+      "colored prose block"
+    ],
+    "edges": [
+      "vertical flow",
+      "orthogonal residual",
+      "dotted leader",
+      "dotted zoom",
+      "shortcut edge into second merge"
+    ],
+    "specialStructures": [
+      "14x badge with brace",
+      "Shortcut MoE side node joining the second merge",
+      "256 FFN plus 128 identity experts, 12 selected per token",
+      "N-gram table adds 31.4B parameters (46% of total) as a callout"
+    ],
+    "customPrimitives": [
+      "custom:shortcut-moe-node"
+    ],
+    "customTemplates": [
+      "custom:dual-attention-block"
+    ],
+    "confidence": "high",
+    "notes": "Younger sibling of LongCat-2.5 with the same four-merge block and shortcut node; the N-gram callout gains a percentage line, so the left margin runs three lines deeper."
+  }
+]

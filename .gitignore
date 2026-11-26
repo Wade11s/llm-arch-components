@@ -1,0 +1,13 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Bun / Vite
+node_modules/
+dist/
+artifacts/
+*.tsbuildinfo
+.DS_Store

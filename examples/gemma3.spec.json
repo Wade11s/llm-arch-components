@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "id": "gemma-3-27b",
+  "title": "Gemma 3 (27B)",
+  "description": "Gemma 3 architecture with 62 repeated residual blocks, grouped-query attention, pre- and post-RMSNorm pairs, and a GELU feed-forward inset.",
+  "canvas": {
+    "width": 2593,
+    "height": 2686
+  },
+  "theme": {
+    "accent": "#F27200",
+    "surface": "#D5D5D5",
+    "ink": "#000000",
+    "muted": "#666666",
+    "background": "#FFFFFF",
+    "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+  },
+  "groups": [
+    {
+      "id": "model",
+      "kind": "model",
+      "children": [
+        "backbone",
+        "ffn-inset"
+      ]
+    },
+    {
+      "id": "backbone",
+      "kind": "repeat-block",
+      "parent": "model",
+      "repeat": {
+        "count": 62
+      },
+      "children": [
+        "attention",
+        "ffn"
+      ],
+      "style": {
+        "fill": {
+          "kind": "solid",
+          "color": "#DECBA3"
+        }
+      }
+    },
+    {
+      "id": "ffn-inset",
+      "kind": "inset",
+      "parent": "model",
+      "title": {
+        "spans": [
+          {
+            "text": "Feed forward (GELU) module"
+          }
+        ]
+      },
+      "children": [
+        "ffn"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "attention",
+      "kind": "composite",
+      "data": {
+        "family": "gqa",
+        "heads": 32,
+        "kvHeads": 16,
+        "ratio": "5:1"
+      }
+    },
+    {
+      "id": "ffn",
+      "kind": "composite",
+      "data": {
+        "family": "ffn",
+        "hidden": 21504,
+        "activation": "GELU"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "residual-attention",
+      "kind": "residual",
+      "from": {
+        "node": "attention"
+      },
+      "to": {
+        "node": "attention",
+        "side": "top"
+      },
+      "junction": "plus"
+    },
+    {
+      "id": "residual-ffn",
+      "kind": "residual",
+      "from": {
+        "node": "ffn"
+      },
+      "to": {
+        "node": "ffn",
+        "side": "top"
+      },
+      "junction": "plus"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "vocabulary",
+      "target": "model",
+      "placement": "top",
+      "content": {
+        "spans": [
+          {
+            "text": "Vocabulary size of "
+          },
+          {
+            "text": "262k",
+            "color": "accent"
+          },
+          {
+            "text": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "context",
+      "target": "backbone",
+      "placement": "left",
+      "content": {
+        "bullets": [
+          {
+            "spans": [
+              {
+                "text": "Context length"
+              }
+            ]
+          },
+          {
+            "spans": [
+              {
+                "text": ""
+              },
+              {
+                "text": "32k",
+                "color": "accent"
+              },
+              {
+                "text": " pretraining"
+              }
+            ]
+          },
+          {
+            "spans": [
+              {
+                "text": ""
+              },
+              {
+                "text": "128k",
+                "color": "accent"
+              },
+              {
+                "text": " linear RoPE"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "heads",
+      "target": "attention",
+      "placement": "right",
+      "content": {
+        "bullets": [
+          {
+            "spans": [
+              {
+                "text": ""
+              },
+              {
+                "text": "32",
+                "color": "accent"
+              },
+              {
+                "text": " attention heads"
+              }
+            ]
+          },
+          {
+            "spans": [
+              {
+                "text": ""
+              },
+              {
+                "text": "16",
+                "color": "accent"
+              },
+              {
+                "text": " key & value heads"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "embedding-dimension",
+      "target": "model",
+      "placement": "bottom",
+      "content": {
+        "bullets": [
+          {
+            "spans": [
+              {
+                "text": "Embedding"
+              }
+            ]
+          },
+          {
+            "spans": [
+              {
+                "text": "dimension of "
+              },
+              {
+                "text": "5,376",
+                "color": "accent"
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "hidden-dimension",
+      "target": "ffn",
+      "placement": "right",
+      "content": {
+        "bullets": [
+          {
+            "spans": [
+              {
+                "text": "Hidden layer"
+              }
+            ]
+          },
+          {
+            "spans": [
+              {
+                "text": "dimension of "
+              },
+              {
+                "text": "21,504",
+                "color": "accent"
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "layout": {
+    "mode": "template",
+    "template": "backbone",
+    "slots": {
+      "block": "backbone",
+      "inset": "ffn-inset"
+    }
+  }
+}
