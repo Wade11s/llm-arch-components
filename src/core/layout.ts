@@ -123,6 +123,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   if (!gqaData || !ffnData || gqaData.family !== 'gqa' || ffnData.family !== 'ffn') {
     throw new FigureLayoutError([{ severity: 'error', code: 'missing-operation', message: 'backbone layout requires GQA and FFN nodes' }]);
   }
+  const layoutOptions = spec.layout.options;
+  const normLabels = layoutOptions?.normLabels;
+  const showPostNorms = normLabels === undefined || normLabels === 'pre-post';
+  const showQKNorm = layoutOptions?.showQKNorm !== false;
 
   const builder = new SceneBuilder(spec.theme, context.metrics);
   const cx = 1022;
@@ -157,19 +161,27 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     radius: 30,
     sourceId: 'attention',
   });
-  builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, `${gqaData.ratio ?? '5:1'} (local:global)`, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
-  builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: [{ text: 'sliding window', color: 'accent' }, { text: ' and', color: 'inverse' }] }, { size: 42, align: 'center', sourceId: 'attention' });
-  builder.text('attention-line-3', 'attention-label', { x: cx, y: 1642 }, 'GQA', { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  if (gqaData.ratio) {
+    builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, `${gqaData.ratio} (local:global)`, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: [{ text: 'sliding window', color: 'accent' }, { text: ' and', color: 'inverse' }] }, { size: 42, align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-3', 'attention-label', { x: cx, y: 1642 }, 'GQA', { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  } else {
+    const labelSpans = gqa?.label?.spans ?? [{ text: 'Grouped-query' }, { text: 'attention' }];
+    const split = labelSpans.length > 2 ? labelSpans.length - 1 : 1;
+    builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, { spans: labelSpans.slice(0, split) }, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: labelSpans.slice(split) }, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  }
   addPill(builder, spec, 'ffn', 'feed-forward', { x: 848, y: 969, width: 350, height: 84 }, { spans: [{ text: 'Feed forward' }] }, { fill: spec.theme.surface, stroke: '#3A3A3A', radius: 26 });
-  addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: 'Pre-RMSNorm 1' }] }, { stroke: spec.theme.accent, radius: 26 });
-  addPill(builder, spec, 'post-rmsnorm-1', 'norm', { x: 848, y: 1376, width: 348, height: 82 }, { spans: [{ text: 'Post-RMSNorm 1' }] }, { stroke: spec.theme.accent, radius: 26 });
-  addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: 'Pre-RMSNorm 2' }] }, { stroke: spec.theme.accent, radius: 26 });
-  addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: spec.theme.accent, radius: 26 });
+  const normPrefix = normLabels === 'rmsnorm' ? 'RMSNorm' : 'Pre-RMSNorm';
+  addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: `${normPrefix} 1` }] }, { stroke: spec.theme.ink, radius: 26 });
+  if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-1', 'norm', { x: 848, y: 1376, width: 348, height: 82 }, { spans: [{ text: 'Post-RMSNorm 1' }] }, { stroke: spec.theme.ink, radius: 26 });
+  addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: `${normPrefix} 2` }] }, { stroke: spec.theme.ink, radius: 26 });
+  if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: spec.theme.ink, radius: 26 });
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
-  addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, { size: 38 });
+  if (showQKNorm) addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, { size: 38 });
   addPill(builder, spec, 'rope', 'side-pill', { x: 420, y: 1535, width: 293, height: 84 }, { spans: [{ text: 'RoPE' }] }, { size: 38 });
-  addFlow(builder, 'qk-norm-flow', [{ x: 756, y: 1428 }, { x: 829, y: 1488 }]);
+  if (showQKNorm) addFlow(builder, 'qk-norm-flow', [{ x: 756, y: 1428 }, { x: 829, y: 1488 }]);
   addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
   addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
   addPill(builder, spec, 'tokenized-text', 'input', { x: 847, y: 2417, width: 350, height: 86 }, { spans: [{ text: 'Tokenized text' }] });
@@ -210,19 +222,9 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
 
   addAnnotation(builder, spec, 'vocabulary', { x: 1352, y: 254 });
   addAnnotation(builder, spec, 'context', { x: 20, y: 1893 });
-  addAnnotation(builder, spec, 'heads', { x: 1938, y: 1905 }, {
-    content: [
-      { spans: [{ text: `${gqaData.heads}`, color: 'accent' }, { text: ' attention heads' }] },
-      { spans: [{ text: `${gqaData.kvHeads}`, color: 'accent' }, { text: ' key & value heads' }] },
-    ],
-  });
+  addAnnotation(builder, spec, 'heads', { x: 1938, y: 1905 });
   addAnnotation(builder, spec, 'embedding-dimension', { x: 1608, y: 2242 });
-  addAnnotation(builder, spec, 'hidden-dimension', { x: 1926, y: 1482 }, {
-    content: [
-      { spans: [{ text: 'Hidden layer' }] },
-      { spans: [{ text: 'dimension of ' }, { text: formatNumber(ffnData.hidden), color: 'accent' }] },
-    ],
-  });
+  addAnnotation(builder, spec, 'hidden-dimension', { x: 1926, y: 1482 });
 
   return builder.scene(spec);
 }

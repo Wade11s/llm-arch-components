@@ -27,3 +27,7 @@ _Avoid_: browser measurement, automatic graph editor
 **Manual Placement**:
 An explicit **Layout Template** alternative in which a **FigureSpec** supplies positions and routes directly for structures not yet covered by a template.
 _Avoid_: default authoring mode, arbitrary coordinate dump
+
+**Verified Rendering**:
+A **Figure** whose valid **FigureSpec** produces a deterministic, self-contained SVG and passes a side-by-side visual review against its reference image.
+_Avoid_: structural coverage, Spec coverage, pixel parity

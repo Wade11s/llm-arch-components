@@ -4,6 +4,8 @@ import { gemma3Spec } from './gemma3';
 import { gptOss120bSpec } from './gptOss120b';
 import { qwen38FlashNextSpec } from './qwen38FlashNext';
 import { glm54Spec } from './glm54';
+import { llama3Spec } from './llama3';
+import { qwen3Spec } from './qwen3';
 
 export type FigureSpecEntry = {
   slug: string;
@@ -20,6 +22,8 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'gpt-oss-120b', name: 'gpt-oss (120B)', reference: '../images/gpt-oss-120b.webp', width: 2904, height: 2699, spec: gptOss120bSpec },
   { slug: 'qwen3-8-flash-next-125b-a6b', name: 'Qwen3.8-Flash-Next (125B-A6B)', reference: '../images/qwen3-8-flash-next-125b-a6b.webp', width: 4078, height: 3391, spec: qwen38FlashNextSpec },
   { slug: 'glm-5-4', name: 'GLM-5.4 (~750B)', reference: '../images/glm-5-4.webp', width: 3354, height: 2862, spec: glm54Spec },
+  { slug: 'llama-3-8b', name: 'Llama 3 (8B)', reference: '../images/llama-3-8b.webp', width: 2554, height: 2670, spec: llama3Spec },
+  { slug: 'qwen3-8b', name: 'Qwen3 (8B)', reference: '../images/qwen3-8b.webp', width: 2533, height: 2642, spec: qwen3Spec },
 ];
 
-export { deepSeekV3Spec, gemma3Spec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec };
+export { deepSeekV3Spec, gemma3Spec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, qwen3Spec };

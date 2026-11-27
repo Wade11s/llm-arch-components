@@ -20,7 +20,8 @@
     "export:spec": "bun scripts/export-spec-figures.tsx",
     "render:spec": "bun scripts/render-spec.tsx",
     "review": "bun scripts/build-review.tsx",
-    "verify": "bun scripts/verify-exports.tsx"
+    "verify": "bun scripts/verify-exports.tsx",
+    "coverage": "bun scripts/build-rendering-coverage.ts"
   },
   "dependencies": {
     "react": "^19.3.1",

@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { Resvg } from '@resvg/resvg-js';
 import sharp from 'sharp';
+import { figureSpecs } from '../src/specs';
 
 type ReviewFigure = {
   slug: string;
@@ -10,15 +11,21 @@ type ReviewFigure = {
   height: number;
 };
 
-const figures: ReviewFigure[] = [
+const goldenFigures: ReviewFigure[] = [
   { slug: 'deepseek-v3', title: 'DeepSeek-V3 (671B)', reference: 'images/deepseek-v3.webp', width: 2786, height: 2725 },
-  { slug: 'deepseek-v3-spec', title: 'DeepSeek-V3 (671B) · Spec-driven', reference: 'images/deepseek-v3.webp', width: 2786, height: 2725 },
   { slug: 'gemma-3-27b', title: 'Gemma 3 (27B)', reference: 'images/gemma-3-27b.webp', width: 2593, height: 2686 },
-  { slug: 'gemma-3-27b-spec', title: 'Gemma 3 (27B) · Spec-driven', reference: 'images/gemma-3-27b.webp', width: 2593, height: 2686 },
   { slug: 'gpt-oss-120b', title: 'gpt-oss (120B)', reference: 'images/gpt-oss-120b.webp', width: 2904, height: 2699 },
-  { slug: 'gpt-oss-120b-spec', title: 'gpt-oss (120B) · Spec-driven', reference: 'images/gpt-oss-120b.webp', width: 2904, height: 2699 },
-  { slug: 'qwen3-8-flash-next-125b-a6b-spec', title: 'Qwen3.8-Flash-Next · Spec-driven', reference: 'images/qwen3-8-flash-next-125b-a6b.webp', width: 4078, height: 3391 },
-  { slug: 'glm-5-4-spec', title: 'GLM-5.4 · Spec-driven', reference: 'images/glm-5-4.webp', width: 3354, height: 2862 },
+];
+
+const figures: ReviewFigure[] = [
+  ...goldenFigures,
+  ...figureSpecs.map((entry) => ({
+    slug: `${entry.slug}-spec`,
+    title: `${entry.name} · Spec-driven`,
+    reference: `images/${entry.slug}.webp`,
+    width: entry.width,
+    height: entry.height,
+  })),
 ];
 
 function renderPng(svg: string, width: number): Buffer {
