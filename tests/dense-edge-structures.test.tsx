@@ -15,6 +15,15 @@ function expectNoTextOverflow(result: RenderedFigure) {
   expect(result.diagnostics.filter((diagnostic) => diagnostic.code === 'text-overflow')).toEqual([]);
 }
 
+function expectInsetWithinCanvas(result: RenderedFigure) {
+  const inset = result.scene.elements.find((element) => element.id === 'ffn-inset');
+  if (!inset || inset.kind !== 'box') throw new Error('ffn-inset missing');
+  expect(inset.box.x + inset.box.width).toBeLessThanOrEqual(result.scene.canvas.width);
+  const sidePill = result.scene.elements.find((element) => element.id === 'ffn-linear-side-box');
+  if (!sidePill || sidePill.kind !== 'box') throw new Error('side pill missing');
+  expect(sidePill.box.x + sidePill.box.width).toBeLessThanOrEqual(result.scene.canvas.width);
+}
+
 describe('dense edge structures', () => {
   test('renders Domyn Edge (3.93B) with Pre/Post norms and Local RoPE / Global NoPE', () => {
     const result = renderFigure(domynEdgeSpec);
@@ -32,6 +41,8 @@ describe('dense edge structures', () => {
     expect(result.svg).toContain('Tied input/output weights');
     expect(result.svg).toContain('SiLU activation');
     expect(result.svg).not.toContain('GELU activation');
+    expect(result.scene.elements.some((element) => element.id === 'leader-attention')).toBe(false);
+    expectInsetWithinCanvas(result);
     expectNoTextOverflow(result);
   });
 
@@ -80,6 +91,9 @@ describe('dense edge structures', () => {
     });
     expect(result.svg).not.toContain('QK-Norm');
     expect(result.svg).not.toContain('RoPE');
+    expect(result.scene.elements.some((element) => element.id === 'positions-0')).toBe(true);
+    expect(result.scene.elements.some((element) => element.id === 'leader-positions')).toBe(true);
+    expectInsetWithinCanvas(result);
     expectNoTextOverflow(result);
   });
 

@@ -42072,7 +42072,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 608,
         "width": 790,
-        "x": 1777,
+        "x": 1657,
         "y": 575,
       },
       "fill": {
@@ -42099,11 +42099,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1874,
           "y": 1020,
         },
         {
-          "x": 1994,
+          "x": 1874,
           "y": 937,
         },
       ],
@@ -42123,11 +42123,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1874,
           "y": 826,
         },
         {
-          "x": 1994,
+          "x": 1874,
           "y": 736,
         },
       ],
@@ -42147,11 +42147,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1874,
           "y": 780,
         },
         {
-          "x": 2157,
+          "x": 2037,
           "y": 780,
         },
       ],
@@ -42171,15 +42171,15 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 2209,
+          "x": 2089,
           "y": 780,
         },
         {
-          "x": 2245,
+          "x": 2125,
           "y": 780,
         },
         {
-          "x": 2245,
+          "x": 2125,
           "y": 827,
         },
       ],
@@ -42195,7 +42195,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 104,
         "width": 333,
-        "x": 1828,
+        "x": 1708,
         "y": 1024,
       },
       "fill": {
@@ -42217,7 +42217,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1874.5,
         "y": 1090,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -42234,7 +42234,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 1879.7,
+              "x": 1759.7,
             },
           ],
         },
@@ -42246,7 +42246,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 103,
         "width": 333,
-        "x": 1828,
+        "x": 1708,
         "y": 830,
       },
       "fill": {
@@ -42268,7 +42268,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1874.5,
         "y": 895.5,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -42285,7 +42285,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "SiLU activation",
               "weight": 500,
               "width": 293.6000000000001,
-              "x": 1847.7,
+              "x": 1727.7,
             },
           ],
         },
@@ -42297,7 +42297,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 104,
         "width": 333,
-        "x": 1828,
+        "x": 1708,
         "y": 628,
       },
       "fill": {
@@ -42319,7 +42319,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1874.5,
         "y": 694,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -42336,7 +42336,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 1879.7,
+              "x": 1759.7,
             },
           ],
         },
@@ -42348,7 +42348,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 98,
         "width": 343,
-        "x": 2180,
+        "x": 2060,
         "y": 831,
       },
       "fill": {
@@ -42370,7 +42370,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2351.5,
+        "x": 2231.5,
         "y": 894,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -42387,7 +42387,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 2236.7,
+              "x": 2116.7,
             },
           ],
         },
@@ -42397,7 +42397,7 @@ exports[`spec-driven integration surface all validated figures render through th
     },
     {
       "at": {
-        "x": 2183,
+        "x": 2063,
         "y": 780,
       },
       "glyph": "multiply",
@@ -42422,30 +42422,6 @@ exports[`spec-driven integration surface all validated figures render through th
         {
           "x": 1350,
           "y": 258,
-        },
-      ],
-      "role": "leader",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": "dotted",
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "none",
-      "id": "leader-attention",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1237,
-          "y": 1639,
-        },
-        {
-          "x": 1882,
-          "y": 1889,
         },
       ],
       "role": "leader",
@@ -44015,7 +43991,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 608,
         "width": 790,
-        "x": 1777,
+        "x": 1697,
         "y": 575,
       },
       "fill": {
@@ -44042,11 +44018,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1914,
           "y": 1020,
         },
         {
-          "x": 1994,
+          "x": 1914,
           "y": 937,
         },
       ],
@@ -44066,11 +44042,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1914,
           "y": 826,
         },
         {
-          "x": 1994,
+          "x": 1914,
           "y": 736,
         },
       ],
@@ -44090,11 +44066,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1914,
           "y": 780,
         },
         {
-          "x": 2157,
+          "x": 2077,
           "y": 780,
         },
       ],
@@ -44114,15 +44090,15 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 2209,
+          "x": 2129,
           "y": 780,
         },
         {
-          "x": 2245,
+          "x": 2165,
           "y": 780,
         },
         {
-          "x": 2245,
+          "x": 2165,
           "y": 827,
         },
       ],
@@ -44138,7 +44114,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 104,
         "width": 333,
-        "x": 1828,
+        "x": 1748,
         "y": 1024,
       },
       "fill": {
@@ -44160,7 +44136,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1914.5,
         "y": 1090,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -44177,7 +44153,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 1879.7,
+              "x": 1799.7,
             },
           ],
         },
@@ -44189,7 +44165,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 103,
         "width": 333,
-        "x": 1828,
+        "x": 1748,
         "y": 830,
       },
       "fill": {
@@ -44211,7 +44187,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1914.5,
         "y": 895.5,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -44228,7 +44204,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "SiLU activation",
               "weight": 500,
               "width": 293.6000000000001,
-              "x": 1847.7,
+              "x": 1767.7,
             },
           ],
         },
@@ -44240,7 +44216,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 104,
         "width": 333,
-        "x": 1828,
+        "x": 1748,
         "y": 628,
       },
       "fill": {
@@ -44262,7 +44238,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1914.5,
         "y": 694,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -44279,7 +44255,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 1879.7,
+              "x": 1799.7,
             },
           ],
         },
@@ -44291,7 +44267,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 98,
         "width": 343,
-        "x": 2180,
+        "x": 2100,
         "y": 831,
       },
       "fill": {
@@ -44313,7 +44289,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2351.5,
+        "x": 2271.5,
         "y": 894,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -44330,7 +44306,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 2236.7,
+              "x": 2156.7,
             },
           ],
         },
@@ -44340,7 +44316,7 @@ exports[`spec-driven integration surface all validated figures render through th
     },
     {
       "at": {
-        "x": 2183,
+        "x": 2103,
         "y": 780,
       },
       "glyph": "multiply",
@@ -46094,7 +46070,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 608,
         "width": 790,
-        "x": 1777,
+        "x": 1657,
         "y": 575,
       },
       "fill": {
@@ -46121,11 +46097,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1874,
           "y": 1020,
         },
         {
-          "x": 1994,
+          "x": 1874,
           "y": 937,
         },
       ],
@@ -46145,11 +46121,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1874,
           "y": 826,
         },
         {
-          "x": 1994,
+          "x": 1874,
           "y": 736,
         },
       ],
@@ -46169,11 +46145,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1994,
+          "x": 1874,
           "y": 780,
         },
         {
-          "x": 2157,
+          "x": 2037,
           "y": 780,
         },
       ],
@@ -46193,15 +46169,15 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 2209,
+          "x": 2089,
           "y": 780,
         },
         {
-          "x": 2245,
+          "x": 2125,
           "y": 780,
         },
         {
-          "x": 2245,
+          "x": 2125,
           "y": 827,
         },
       ],
@@ -46217,7 +46193,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 104,
         "width": 333,
-        "x": 1828,
+        "x": 1708,
         "y": 1024,
       },
       "fill": {
@@ -46239,7 +46215,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1874.5,
         "y": 1090,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -46256,7 +46232,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 1879.7,
+              "x": 1759.7,
             },
           ],
         },
@@ -46268,7 +46244,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 103,
         "width": 333,
-        "x": 1828,
+        "x": 1708,
         "y": 830,
       },
       "fill": {
@@ -46290,7 +46266,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1874.5,
         "y": 895.5,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -46307,7 +46283,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "GELU activation",
               "weight": 500,
               "width": 308.80000000000007,
-              "x": 1840.1,
+              "x": 1720.1,
             },
           ],
         },
@@ -46319,7 +46295,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 104,
         "width": 333,
-        "x": 1828,
+        "x": 1708,
         "y": 628,
       },
       "fill": {
@@ -46341,7 +46317,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1994.5,
+        "x": 1874.5,
         "y": 694,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -46358,7 +46334,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 1879.7,
+              "x": 1759.7,
             },
           ],
         },
@@ -46370,7 +46346,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 98,
         "width": 343,
-        "x": 2180,
+        "x": 2060,
         "y": 831,
       },
       "fill": {
@@ -46392,7 +46368,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2351.5,
+        "x": 2231.5,
         "y": 894,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -46409,7 +46385,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Linear layer",
               "weight": 500,
               "width": 229.60000000000008,
-              "x": 2236.7,
+              "x": 2116.7,
             },
           ],
         },
@@ -46419,7 +46395,7 @@ exports[`spec-driven integration surface all validated figures render through th
     },
     {
       "at": {
-        "x": 2183,
+        "x": 2063,
         "y": 780,
       },
       "glyph": "multiply",
@@ -46429,6 +46405,30 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "operator",
       "size": 54,
       "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "leader-positions",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1237,
+          "y": 1639,
+        },
+        {
+          "x": 1600,
+          "y": 1970,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
     },
     {
       "arrow": "none",
@@ -46534,7 +46534,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 320,
+          "x": 160,
           "y": 1845,
         },
         {
@@ -46744,7 +46744,7 @@ exports[`spec-driven integration surface all validated figures render through th
         "y": 1970,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      "id": "heads-1",
+      "id": "positions-0",
       "kind": "text",
       "label": undefined,
       "lines": [
@@ -46762,8 +46762,8 @@ exports[`spec-driven integration surface all validated figures render through th
           ],
         },
       ],
-      "role": "annotation-heads",
-      "sourceId": "heads",
+      "role": "annotation-positions",
+      "sourceId": "positions",
     },
     {
       "align": "start",
@@ -46772,7 +46772,7 @@ exports[`spec-driven integration surface all validated figures render through th
         "y": 2035,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      "id": "heads-2",
+      "id": "positions-1",
       "kind": "text",
       "label": undefined,
       "lines": [
@@ -46807,8 +46807,8 @@ exports[`spec-driven integration surface all validated figures render through th
           ],
         },
       ],
-      "role": "annotation-heads",
-      "sourceId": "heads",
+      "role": "annotation-positions",
+      "sourceId": "positions",
     },
     {
       "align": "start",

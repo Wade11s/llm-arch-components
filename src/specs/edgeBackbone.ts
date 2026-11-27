@@ -18,6 +18,7 @@ function edgeBackboneSpec(input: {
   embeddingAnnotation?: AnnotationContent;
   contextAnnotation: AnnotationContent;
   headsAnnotation?: AnnotationContent;
+  positionsAnnotation?: AnnotationContent;
   attention: { heads: number; kvHeads: number; label?: TextSpec };
   vocabulary: string;
   canvas: FigureSpec['canvas'];
@@ -30,6 +31,8 @@ function edgeBackboneSpec(input: {
   hiddenAnnotationX?: number;
   headsAnnotationX?: number;
   headsLeaderEndX?: number;
+  insetOffsetX?: number;
+  contextLeaderStartX?: number;
   sampleInputY?: number;
   positionalEmbedding?: boolean;
   dropout?: boolean;
@@ -71,6 +74,7 @@ function edgeBackboneSpec(input: {
       { id: 'vocabulary', target: 'model', placement: 'top', content: emphasized('Vocabulary size of ', input.vocabulary) },
       { id: 'context', target: 'backbone', placement: 'left', content: input.contextAnnotation },
       ...(input.headsAnnotation ? [{ id: 'heads', target: 'attention', placement: 'right' as const, content: input.headsAnnotation }] : []),
+      ...(input.positionsAnnotation ? [{ id: 'positions', target: input.positionalEmbedding ? 'positional-embedding' : 'attention', placement: 'right' as const, content: input.positionsAnnotation }] : []),
       { id: 'embedding-dimension', target: 'model', placement: 'bottom', content: input.embeddingAnnotation ?? { bullets: [text('Embedding'), emphasized('dimension of ', input.embedding)] } },
       { id: 'hidden-dimension', target: 'ffn', placement: 'right', content: input.hiddenAnnotation },
     ],
@@ -92,6 +96,8 @@ function edgeBackboneSpec(input: {
         ...(input.hiddenAnnotationX !== undefined ? { hiddenAnnotationX: input.hiddenAnnotationX } : {}),
         ...(input.headsAnnotationX !== undefined ? { headsAnnotationX: input.headsAnnotationX } : {}),
         ...(input.headsLeaderEndX !== undefined ? { headsLeaderEndX: input.headsLeaderEndX } : {}),
+        ...(input.insetOffsetX !== undefined ? { insetOffsetX: input.insetOffsetX } : {}),
+        ...(input.contextLeaderStartX !== undefined ? { contextLeaderStartX: input.contextLeaderStartX } : {}),
         ...(input.sampleInputY !== undefined ? { sampleInputY: input.sampleInputY } : {}),
         ...(input.titleColor !== undefined ? { titleColor: input.titleColor } : {}),
         ...(input.sampleInputText !== undefined ? { sampleInputText: input.sampleInputText } : {}),
@@ -117,6 +123,7 @@ export const domynEdgeSpec = edgeBackboneSpec({
   blockFill: '#8FAE7E',
   showQKNorm: true,
   ropeLabels: { primary: 'Local RoPE', secondary: 'Global NoPE' },
+  insetOffsetX: -120,
 });
 
 export const granite41Spec = edgeBackboneSpec({
@@ -141,6 +148,7 @@ export const granite41Spec = edgeBackboneSpec({
   normLabels: 'pre',
   showQKNorm: true,
   hiddenAnnotationX: 1820,
+  insetOffsetX: -80,
   sampleInputY: 2626,
 });
 
@@ -153,7 +161,8 @@ export const gpt2xlSpec = edgeBackboneSpec({
   hiddenAnnotation: { bullets: [text('Hidden layer'), emphasized('dimension of ', '6,400')] },
   embedding: '1,600',
   contextAnnotation: { bullets: [text('Native context'), emphasized('', '1,024', ' tokens')] },
-  headsAnnotation: { bullets: [emphasized('', '25', ' heads'), text('Learned absolute positions for'), emphasized('', '1,024', ' tokens')] },
+  headsAnnotation: { bullets: [emphasized('', '25', ' heads')] },
+  positionsAnnotation: { bullets: [text('Learned absolute positions for'), emphasized('', '1,024', ' tokens')] },
   attention: { heads: 25, kvHeads: 25, label: { spans: [{ text: 'Masked multi-head' }, { text: 'attention' }] } },
   vocabulary: '50k',
   canvas: { width: 2488, height: 2698 },
@@ -168,4 +177,6 @@ export const gpt2xlSpec = edgeBackboneSpec({
   sampleInputText: 'Every effort moves you',
   headsAnnotationX: 1600,
   headsLeaderEndX: 1580,
+  insetOffsetX: -120,
+  contextLeaderStartX: 160,
 });

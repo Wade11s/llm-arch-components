@@ -270,22 +270,28 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   builder.glyph('repeat-brace', 'repeat-marker', { x: 665, y: 1870 }, 'brace', 150);
 
   if (inset) {
-    builder.box('ffn-inset', 'ffn-inset', { x: 1777, y: 575, width: 790, height: 608 }, {
+    const insetOffsetX = typeof layoutOptions?.insetOffsetX === 'number' ? layoutOptions.insetOffsetX : 0;
+    const ix = (x: number): number => x + insetOffsetX;
+    builder.box('ffn-inset', 'ffn-inset', { x: ix(1777), y: 575, width: 790, height: 608 }, {
       fill: builder.solid(spec.theme.surface),
       stroke: builder.stroke(spec.theme.ink, 10, 'dashed'),
       radius: 54,
       sourceId: inset.id,
     });
-    if (inset.title) builder.text('ffn-inset-title', 'ffn-inset-title', { x: 2172, y: 550 }, inset.title, { size: 54, weight: 700, align: 'center', sourceId: inset.id });
-    addFlow(builder, 'ffn-up-1', [{ x: 1994, y: 1020 }, { x: 1994, y: 937 }], { role: 'inset-flow' });
-    addFlow(builder, 'ffn-up-2', [{ x: 1994, y: 826 }, { x: 1994, y: 736 }], { role: 'inset-flow' });
-    addFlow(builder, 'ffn-side-a', [{ x: 1994, y: 780 }, { x: 2157, y: 780 }], { role: 'inset-flow', arrow: 'none' });
-    addFlow(builder, 'ffn-side-b', [{ x: 2209, y: 780 }, { x: 2245, y: 780 }, { x: 2245, y: 827 }], { role: 'inset-flow', arrow: 'none' });
-    addPill(builder, spec, 'ffn-linear-bottom', 'inset-operation', { x: 1828, y: 1024, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
-    addPill(builder, spec, 'ffn-activation', 'inset-operation', { x: 1828, y: 830, width: 333, height: 103 }, { spans: [{ text: `${ffnData.activation} activation` }] }, { radius: 28 });
-    addPill(builder, spec, 'ffn-linear-top', 'inset-operation', { x: 1828, y: 628, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
-    addPill(builder, spec, 'ffn-linear-side', 'inset-operation', { x: 2180, y: 831, width: 343, height: 98 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
-    builder.glyph('ffn-multiply', 'operator', { x: 2183, y: 780 }, 'multiply', 54);
+    if (inset.title) builder.text('ffn-inset-title', 'ffn-inset-title', { x: ix(2172), y: 550 }, inset.title, { size: 54, weight: 700, align: 'center', sourceId: inset.id });
+    addFlow(builder, 'ffn-up-1', [{ x: ix(1994), y: 1020 }, { x: ix(1994), y: 937 }], { role: 'inset-flow' });
+    addFlow(builder, 'ffn-up-2', [{ x: ix(1994), y: 826 }, { x: ix(1994), y: 736 }], { role: 'inset-flow' });
+    addFlow(builder, 'ffn-side-a', [{ x: ix(1994), y: 780 }, { x: ix(2157), y: 780 }], { role: 'inset-flow', arrow: 'none' });
+    addFlow(builder, 'ffn-side-b', [{ x: ix(2209), y: 780 }, { x: ix(2245), y: 780 }, { x: ix(2245), y: 827 }], { role: 'inset-flow', arrow: 'none' });
+    addPill(builder, spec, 'ffn-linear-bottom', 'inset-operation', { x: ix(1828), y: 1024, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
+    addPill(builder, spec, 'ffn-activation', 'inset-operation', { x: ix(1828), y: 830, width: 333, height: 103 }, { spans: [{ text: `${ffnData.activation} activation` }] }, { radius: 28 });
+    addPill(builder, spec, 'ffn-linear-top', 'inset-operation', { x: ix(1828), y: 628, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
+    addPill(builder, spec, 'ffn-linear-side', 'inset-operation', { x: ix(2180), y: 831, width: 343, height: 98 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
+    builder.glyph('ffn-multiply', 'operator', { x: ix(2183), y: 780 }, 'multiply', 54);
+  }
+
+  if (annotationOf(spec, 'positions')) {
+    addFlow(builder, 'leader-positions', [{ x: 1237, y: 1639 }, { x: 1600, y: 1970 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
   }
 
   const leaders: Array<[string, Point[]]> = [
@@ -296,10 +302,19 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     }]],
     ['leader-ffn', [{ x: 1200, y: 1006 }, { x: 1772, y: 876 }]],
     ['leader-embedding', [{ x: 1290, y: 2132 }, { x: 1598, y: 2244 }]],
-    ['leader-context', [{ x: 320, y: 1845 }, { x: 420, y: 1624 }]],
+    ['leader-context', [{
+      x: typeof layoutOptions?.contextLeaderStartX === 'number' ? layoutOptions.contextLeaderStartX : 320,
+      y: typeof layoutOptions?.contextLeaderStartY === 'number' ? layoutOptions.contextLeaderStartY : 1845,
+    }, {
+      x: typeof layoutOptions?.contextLeaderEndX === 'number' ? layoutOptions.contextLeaderEndX : 420,
+      y: typeof layoutOptions?.contextLeaderEndY === 'number' ? layoutOptions.contextLeaderEndY : 1624,
+    }]],
     ['leader-hidden', [{ x: 2010, y: 1184 }, { x: 2010, y: 1388 }]],
   ];
-  leaders.forEach(([id, points]) => addFlow(builder, id, points, { role: 'leader', dash: 'dotted', arrow: 'none' }));
+  leaders
+    .filter(([id]) => (id === 'leader-attention' ? Boolean(annotationOf(spec, 'heads')) : true))
+    .filter(([id]) => (id === 'leader-context' ? Boolean(annotationOf(spec, 'context')) : true))
+    .forEach(([id, points]) => addFlow(builder, id, points, { role: 'leader', dash: 'dotted', arrow: 'none' }));
 
   addAnnotation(builder, spec, 'vocabulary', { x: 1352, y: 254 });
   addAnnotation(builder, spec, 'context', { x: 20, y: 1893 });
@@ -309,6 +324,15 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     x: typeof headsAnnotationX === 'number' ? headsAnnotationX : 1938,
     y: typeof headsAnnotationY === 'number' ? headsAnnotationY : 1905,
   });
+  const positionsAnnotation = annotationOf(spec, 'positions');
+  if (positionsAnnotation) {
+    const positionsX = layoutOptions?.positionsAnnotationX;
+    const positionsY = layoutOptions?.positionsAnnotationY;
+    addAnnotation(builder, spec, 'positions', {
+      x: typeof positionsX === 'number' ? positionsX : 1600,
+      y: typeof positionsY === 'number' ? positionsY : 1970,
+    });
+  }
   addAnnotation(builder, spec, 'embedding-dimension', { x: 1608, y: 2242 });
   const hiddenAnnotationX = layoutOptions?.hiddenAnnotationX;
   addAnnotation(builder, spec, 'hidden-dimension', { x: typeof hiddenAnnotationX === 'number' ? hiddenAnnotationX : 1926, y: 1482 });
