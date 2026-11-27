@@ -8,7 +8,7 @@ import { glm54Spec } from './glm54';
 import { llama3Spec } from './llama3';
 import { llama321bSpec, llama323bSpec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec } from './denseBackbone';
 import { domynEdgeSpec, granite41Spec, gpt2xlSpec } from './edgeBackbone';
-import { glm45355bSpec, glm45AirSpec, glm5744bSpec, gptOss20bSpec, intellect3Spec, qwen3235bSpec } from './moeFamily';
+import { deepSeekR1Spec, glm45355bSpec, glm45AirSpec, glm47Spec, glm51Spec, glm5744bSpec, gptOss20bSpec, intellect3Spec, minimaxM25Spec, mistralLarge3Spec, qwen3235bSpec, qwen3CoderFlashSpec } from './moeFamily';
 import { qwen3Spec } from './qwen3';
 import { qwen3MoeSpec } from './qwen3Moe';
 import { minimaxM2Spec } from './minimaxM2';
@@ -31,6 +31,7 @@ export type FigureSpecEntry = {
 };
 
 export const figureSpecs: FigureSpecEntry[] = [
+  { slug: 'deepseek-r1', name: 'DeepSeek-R1 (671B)', reference: '../images/deepseek-r1.webp', width: 2786, height: 2725, spec: deepSeekR1Spec },
   { slug: 'deepseek-v3', name: 'DeepSeek-V3 (671B)', reference: '../images/deepseek-v3.webp', width: 2786, height: 2725, spec: deepSeekV3Spec },
   { slug: 'gemma-3-270m', name: 'Gemma 3 (270M)', reference: '../images/gemma-3-270m.webp', width: 2678, height: 2652, spec: gemma3SmallSpec },
   { slug: 'gemma-3-27b', name: 'Gemma 3 (27B)', reference: '../images/gemma-3-27b.webp', width: 2593, height: 2686, spec: gemma3Spec },
@@ -53,10 +54,15 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'gpt-2-xl-1-5b', name: 'GPT-2 XL (1.5B)', reference: '../images/gpt-2-xl-1-5b.webp', width: 2488, height: 2698, spec: gpt2xlSpec },
   { slug: 'qwen3-30b-a3b', name: 'Qwen3 (30B-A3B)', reference: '../images/qwen3-30b-a3b.webp', width: 2829, height: 2715, spec: qwen3MoeSpec },
   { slug: 'qwen3-235b-a22b', name: 'Qwen3 (235B-A22B)', reference: '../images/qwen3-235b-a22b.webp', width: 2766, height: 2715, spec: qwen3235bSpec },
+  { slug: 'qwen3-coder-flash-30b-a3b', name: 'Qwen3-Coder-Flash (30B-A3B)', reference: '../images/qwen3-coder-flash-30b-a3b.webp', width: 2830, height: 2739, spec: qwen3CoderFlashSpec },
   { slug: 'minimax-m2-230b', name: 'MiniMax-M2 (230B)', reference: '../images/minimax-m2-230b.webp', width: 2751, height: 2709, spec: minimaxM2Spec },
+  { slug: 'minimax-m2-5-230b', name: 'MiniMax-M2.5 (230B)', reference: '../images/minimax-m2-5-230b.webp', width: 2747, height: 2727, spec: minimaxM25Spec },
+  { slug: 'mistral-large-3', name: 'Mistral Large 3 (673B)', reference: '../images/mistral-large-3.webp', width: 2786, height: 2735, spec: mistralLarge3Spec },
   { slug: 'intellect-3', name: 'INTELLECT-3 (106B)', reference: '../images/intellect-3.webp', width: 2778, height: 2709, spec: intellect3Spec },
   { slug: 'glm-4-5-air', name: 'GLM-4.5-Air (106B)', reference: '../images/glm-4-5-air.webp', width: 2778, height: 2709, spec: glm45AirSpec },
   { slug: 'glm-4-5-355b', name: 'GLM-4.5 (355B)', reference: '../images/glm-4-5-355b.webp', width: 2778, height: 2709, spec: glm45355bSpec },
+  { slug: 'glm-4-7-355b', name: 'GLM-4.7 (355B)', reference: '../images/glm-4-7-355b.webp', width: 2799, height: 2701, spec: glm47Spec },
+  { slug: 'glm-5-1', name: 'GLM-5.1 (744B)', reference: '../images/glm-5-1.webp', width: 2777, height: 2703, spec: glm51Spec },
   { slug: 'glm-5-744b', name: 'GLM-5 (744B)', reference: '../images/glm-5-744b.webp', width: 2777, height: 2703, spec: glm5744bSpec },
   { slug: 'qwen3-next-80b-a3b', name: 'Qwen3-Next (80B-A3B)', reference: '../images/qwen3-next-80b-a3b.webp', width: 2946, height: 2771, spec: qwen3NextSpec },
   { slug: 'kimi-linear-48b-a3b', name: 'Kimi Linear (48B-A3B)', reference: '../images/kimi-linear-48b-a3b.webp', width: 2935, height: 2754, spec: kimiLinearSpec },
@@ -68,4 +74,4 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'tencent-hy4-770b-a49b', name: 'Tencent Hy4 (770B-A49B)', reference: '../images/tencent-hy4-770b-a49b.webp', width: 3834, height: 2949, spec: tencentHy4Spec },
 ];
 
-export { deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, minimaxM2Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm5744bSpec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };
+export { deepSeekR1Spec, deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, qwen3CoderFlashSpec, minimaxM2Spec, minimaxM25Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm47Spec, glm51Spec, glm5744bSpec, mistralLarge3Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };

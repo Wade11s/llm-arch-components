@@ -81,7 +81,7 @@ Variants are declared as typed `layout.variant` values. TypeScript checks templa
 
 ## Pilot completion and next coverage work
 
-The 12-figure pilot defined in #11–#19 is complete, the Gemma dense family from #25 is verified, the dense batches from #26–#27 are verified, and the second MoE family batch from #31 is verified: 35 figures are now verified.
+The 12-figure pilot defined in #11–#19 is complete, the Gemma dense family from #25 is verified, the dense batches from #26–#27 are verified, the second MoE family batch from #31 is verified, and the standard MoE variants from #33 are verified: 41 figures are now verified.
 
 Next steps:
 
