@@ -30,11 +30,13 @@ function denseBackboneSpec(input: {
   headsLeaderEndY?: number;
   sampleInputY?: number;
 }): FigureSpec {
+  const normDescription = input.normLabels === 'pre' ? 'Pre-RMSNorm pairs' : 'RMSNorm pairs';
+  const attentionDescription = input.showQKNorm ? 'QK-Norm grouped-query attention' : 'grouped-query attention';
   return {
     schemaVersion: 1,
     id: input.id,
     title: input.title,
-    description: `${input.title} architecture with ${input.layers} repeated residual blocks, grouped-query attention, RMSNorm pairs, and a SiLU feed-forward inset.`,
+    description: `${input.title} architecture with ${input.layers} repeated residual blocks, ${attentionDescription}, ${normDescription}, and a SiLU feed-forward inset.`,
     canvas: input.canvas,
     theme: {
       accent: input.accent,
@@ -102,8 +104,8 @@ export const llama321bSpec = denseBackboneSpec({
   normLabels: 'rmsnorm',
   showQKNorm: false,
   headsAnnotationY: 1280,
-  headsAnnotationX: 1800,
-  headsLeaderEndX: 1780,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
 });
 
@@ -124,8 +126,8 @@ export const llama323bSpec = denseBackboneSpec({
   normLabels: 'rmsnorm',
   showQKNorm: false,
   headsAnnotationY: 1280,
-  headsAnnotationX: 1800,
-  headsLeaderEndX: 1780,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
 });
 
@@ -146,8 +148,8 @@ export const qwen306bSpec = denseBackboneSpec({
   normLabels: 'rmsnorm',
   showQKNorm: true,
   headsAnnotationY: 1280,
-  headsAnnotationX: 1800,
-  headsLeaderEndX: 1780,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
   sampleInputY: 2638,
 });
@@ -169,8 +171,8 @@ export const qwen34bSpec = denseBackboneSpec({
   normLabels: 'rmsnorm',
   showQKNorm: true,
   headsAnnotationY: 1280,
-  headsAnnotationX: 1800,
-  headsLeaderEndX: 1780,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
   sampleInputY: 2638,
 });

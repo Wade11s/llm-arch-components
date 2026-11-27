@@ -26505,7 +26505,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1780,
+          "x": 1740,
           "y": 1280,
         },
       ],
@@ -26762,7 +26762,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1800,
+        "x": 1760,
         "y": 1280,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -26779,7 +26779,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "color": "accent",
@@ -26788,7 +26788,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "32",
               "weight": 700,
               "width": 61.7344,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "fill": "#000000",
@@ -26796,7 +26796,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": " heads",
               "weight": 700,
               "width": 170.64320000000004,
-              "x": 1861.7344,
+              "x": 1821.7344,
             },
           ],
         },
@@ -28410,7 +28410,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1780,
+          "x": 1740,
           "y": 1280,
         },
       ],
@@ -28667,7 +28667,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1800,
+        "x": 1760,
         "y": 1280,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -28684,7 +28684,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "color": "accent",
@@ -28693,7 +28693,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "24",
               "weight": 700,
               "width": 61.7344,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "fill": "#000000",
@@ -28701,7 +28701,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": " heads",
               "weight": 700,
               "width": 170.64320000000004,
-              "x": 1861.7344,
+              "x": 1821.7344,
             },
           ],
         },
@@ -32267,7 +32267,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1780,
+          "x": 1740,
           "y": 1280,
         },
       ],
@@ -32496,7 +32496,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1800,
+        "x": 1760,
         "y": 1280,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -32513,7 +32513,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "color": "accent",
@@ -32522,7 +32522,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "16",
               "weight": 700,
               "width": 61.7344,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "fill": "#000000",
@@ -32530,7 +32530,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": " heads",
               "weight": 700,
               "width": 170.64320000000004,
-              "x": 1861.7344,
+              "x": 1821.7344,
             },
           ],
         },
@@ -32687,7 +32687,7 @@ exports[`spec-driven integration surface all validated figures render through th
   ],
   "id": "qwen3-0-6b",
   "metadata": {
-    "description": "Qwen3 (0.6B) architecture with 28 repeated residual blocks, grouped-query attention, RMSNorm pairs, and a SiLU feed-forward inset.",
+    "description": "Qwen3 (0.6B) architecture with 28 repeated residual blocks, QK-Norm grouped-query attention, RMSNorm pairs, and a SiLU feed-forward inset.",
     "title": "Qwen3 (0.6B)",
   },
   "schemaVersion": 1,
@@ -34219,7 +34219,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1780,
+          "x": 1740,
           "y": 1280,
         },
       ],
@@ -34493,7 +34493,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1800,
+        "x": 1760,
         "y": 1280,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -34510,7 +34510,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "color": "accent",
@@ -34519,7 +34519,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "32",
               "weight": 700,
               "width": 61.7344,
-              "x": 1800,
+              "x": 1760,
             },
             {
               "fill": "#000000",
@@ -34527,7 +34527,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": " heads",
               "weight": 700,
               "width": 170.64320000000004,
-              "x": 1861.7344,
+              "x": 1821.7344,
             },
           ],
         },
@@ -34684,7 +34684,7 @@ exports[`spec-driven integration surface all validated figures render through th
   ],
   "id": "qwen3-4b",
   "metadata": {
-    "description": "Qwen3 (4B) architecture with 36 repeated residual blocks, grouped-query attention, RMSNorm pairs, and a SiLU feed-forward inset.",
+    "description": "Qwen3 (4B) architecture with 36 repeated residual blocks, QK-Norm grouped-query attention, RMSNorm pairs, and a SiLU feed-forward inset.",
     "title": "Qwen3 (4B)",
   },
   "schemaVersion": 1,
@@ -38833,7 +38833,7 @@ exports[`spec-driven integration surface all validated figures render through th
   ],
   "id": "qwen3-32b",
   "metadata": {
-    "description": "Qwen3 (32B) architecture with 64 repeated residual blocks, grouped-query attention, RMSNorm pairs, and a SiLU feed-forward inset.",
+    "description": "Qwen3 (32B) architecture with 64 repeated residual blocks, QK-Norm grouped-query attention, Pre-RMSNorm pairs, and a SiLU feed-forward inset.",
     "title": "Qwen3 (32B)",
   },
   "schemaVersion": 1,

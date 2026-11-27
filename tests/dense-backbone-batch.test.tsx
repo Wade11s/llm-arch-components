@@ -93,7 +93,7 @@ describe('Llama / Qwen / Phi dense batch', () => {
       expect(slugs).toContain(slug);
     }
     const coverage = readFileSync('docs/research/rendering-coverage.md', 'utf8');
-    expect(coverage).toContain('| Verified rendering | 26 / 132 |');
+    expect(coverage).toContain(`| Verified rendering | ${figureSpecs.length} / 132 |`);
     for (const slug of ['llama-3-2-1b', 'llama-3-2-3b', 'qwen3-0-6b', 'qwen3-4b', 'qwen3-32b', 'phi-4']) {
       expect(coverage).toContain(`| ${slug} | yes | yes | yes |`);
     }
