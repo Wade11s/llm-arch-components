@@ -71,6 +71,12 @@ describe('review regressions', () => {
     expect(() => renderFigure(spec)).toThrow(FigureValidationError);
   });
 
+  test('unsupported template variants fail during validation', () => {
+    const spec = structuredClone(figureSpecs.find((entry) => entry.slug === 'qwen3-next-80b-a3b')!.spec);
+    spec.layout = { mode: 'template', template: 'moe', slots: {}, options: { variant: 'typo-variant' } };
+    expect(() => renderFigure(spec)).toThrow(FigureValidationError);
+  });
+
   test('TextSpec maxWidth produces explicit wrapped lines', () => {
     const spec: FigureSpec = {
       schemaVersion: 1,

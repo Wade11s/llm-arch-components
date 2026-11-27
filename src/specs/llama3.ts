@@ -67,6 +67,6 @@ export const llama3Spec = {
     mode: 'template',
     template: 'backbone',
     slots: { block: 'backbone', inset: 'ffn-inset' },
-    options: { normLabels: 'rmsnorm', showQKNorm: false },
+    options: { normLabels: 'rmsnorm', showQKNorm: false, normStroke: 'ink' },
   },
 } satisfies FigureSpec;

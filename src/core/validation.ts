@@ -169,6 +169,12 @@ function issue(code: string, message: string, path?: string, sourceIds?: Id[]): 
 }
 
 const implementedTemplates = new Set(['backbone', 'moe', 'attention-mask', 'layer-schedule', 'multi-tower']);
+const implementedVariants: Record<string, Set<string>> = {
+  backbone: new Set(['recurrent-detail']),
+  moe: new Set(['mixing-detail', 'multi-stream-residual']),
+  'attention-mask': new Set(['ihc-pipeline']),
+  'layer-schedule': new Set(['layer-group', 'recurrent-pass']),
+};
 
 function semanticIssues(spec: FigureSpec): Diagnostic[] {
   const issues: Diagnostic[] = [];
@@ -225,6 +231,13 @@ function semanticIssues(spec: FigureSpec): Diagnostic[] {
   if (spec.layout.mode === 'template') {
     if (!implementedTemplates.has(spec.layout.template)) {
       issues.push(issue('unsupported-template', `Template "${spec.layout.template}" is not implemented`, 'layout.template'));
+    }
+    const variant = spec.layout.options?.variant;
+    if (variant !== undefined) {
+      const allowed = implementedVariants[spec.layout.template];
+      if (typeof variant !== 'string' || !allowed?.has(variant)) {
+        issues.push(issue('unsupported-variant', `Template "${spec.layout.template}" does not support variant "${String(variant)}"`, 'layout.options.variant'));
+      }
     }
     for (const [slot, value] of Object.entries(spec.layout.slots)) {
       const values = Array.isArray(value) ? value : [value];

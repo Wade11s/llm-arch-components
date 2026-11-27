@@ -150,7 +150,7 @@ function towers(builder: SceneBuilder, spec: FigureSpec): void {
     ['decoder-flow-1', decoderRail, 2680, 2530], ['decoder-flow-2', decoderRail, 2600, 2330], ['decoder-flow-3', decoderRail, 2250, 1830], ['decoder-flow-4', decoderRail, 1750, 1280], ['decoder-flow-5', decoderRail, 1200, 820],
   ].forEach(([id, x, from, to]) => flow(builder, id as string, [{ x: x as number, y: from as number }, { x: x as number, y: to as number }]));
 
-  pill(builder, 'ced-global-kv', 'cross-tower-link', { x: 1650, y: 1750, width: 220, height: 120 }, text('CED\nGlobal KV'), { fill: '#FFFFFF', size: 28 });
+  multilinePill(builder, 'ced-global-kv', 'cross-tower-link', { x: 1650, y: 1750, width: 220, height: 120 }, [text('CED'), text('Global KV')], { fill: '#FFFFFF', size: 28 });
   flow(builder, 'ced-left', [{ x: 1480, y: 1810 }, { x: 1650, y: 1810 }], { role: 'cross-tower-link' });
   flow(builder, 'ced-right', [{ x: 1870, y: 1810 }, { x: 2100, y: 1810 }], { role: 'cross-tower-link' });
   builder.text('indexer-label', 'hierarchical-indexer', { x: 2200, y: 2890 }, text('Hierarchical sparse indexer'), { size: 30, weight: 700 });

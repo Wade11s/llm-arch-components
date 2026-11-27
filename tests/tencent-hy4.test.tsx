@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
-import { FigureLayoutError, renderFigure } from '../src/core/renderFigure';
+import { FigureValidationError, renderFigure } from '../src/core/renderFigure';
 import { tencentHy4Layout } from '../src/core/templates/tencentHy4';
 import { tencentHy4Spec } from '../src/specs/tencentHy4';
 import type { FigureSpec, RenderedFigure, SceneElement } from '../src/core/types';
@@ -252,7 +252,7 @@ describe('Tencent Hy4 (770B-A49B) attention-mask / iHC figure', () => {
       slots: tencentHy4Spec.layout.mode === 'template' ? tencentHy4Spec.layout.slots : {},
       options: { variant: 'qsa-blocks' },
     };
-    expect(() => render(spec)).toThrow(FigureLayoutError);
+    expect(() => render(spec)).toThrow(FigureValidationError);
   });
 
   test('records the re-checked inventory confidence and the corrected layer count', () => {

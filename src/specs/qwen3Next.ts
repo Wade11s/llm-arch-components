@@ -69,6 +69,6 @@ export const qwen3NextSpec = {
     mode: 'template',
     template: 'moe',
     slots: { block: 'backbone', attention: 'attention-inset', delta: 'delta-inset' },
-    options: { variant: 'mixing-detail', titleLines: 2 },
+    options: { variant: 'mixing-detail', titleLines: 2, scheduleRule: true },
   },
 } satisfies FigureSpec;

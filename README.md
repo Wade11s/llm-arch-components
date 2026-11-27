@@ -1,6 +1,6 @@
 # LLM Architecture Components
 
-A TypeScript-first workspace for a component library that lets coding agents draw LLM architecture diagrams. The current implementation provides spec-driven rendering for five validated figures, with hand-authored prototypes preserved as golden fixtures.
+A TypeScript-first workspace for a component library that lets coding agents draw LLM architecture diagrams. The current implementation provides spec-driven rendering for 17 verified figures, with hand-authored prototypes preserved as golden fixtures.
 
 ## Environment
 
@@ -29,6 +29,7 @@ bun run export    # standalone prototype SVGs into artifacts/svg/
 bun run export:spec  # Spec-driven SVGs into artifacts/svg/
 bun run verify    # deterministic/self-contained SVG + raster validation
 bun run review    # 50% comparison images into artifacts/review/
+bun run coverage  # regenerate docs/research/rendering-coverage.md
 bun run render:spec examples/gemma3.spec.json artifacts/svg/gemma-3-27b-cli.svg
 ```
 
@@ -47,5 +48,6 @@ Validation notes: `docs/research/prototype-validation.md`.
 - Rendering research: `docs/research/react-svg-rendering.md`
 - Full 132-figure inventory: `docs/research/corpus-inventory.md`
 - Regenerate inventory: `bun scripts/build-corpus-inventory.ts`
+- Rendering coverage: `docs/research/rendering-coverage.md`
 
 The hand-authored prototype figures remain available as golden references. Gallery and CLI now use the accepted `FigureSpec → Scene → SVG` interface, with deterministic snapshots in `tests/__snapshots__/`.

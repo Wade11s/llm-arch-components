@@ -7,7 +7,26 @@ const inventoryFiles = [1, 2, 3, 4].map((batch) =>
 );
 const entries = inventoryFiles.flat();
 const rendered = new Set(figureSpecs.map((entry) => entry.slug));
-const verified = rendered;
+// Verified rendering requires a completed 50% side-by-side review, not merely a registered Spec.
+const verified = new Set([
+  'deepseek-v3',
+  'gemma-3-27b',
+  'gpt-oss-120b',
+  'qwen3-8-flash-next-125b-a6b',
+  'glm-5-4',
+  'llama-3-8b',
+  'qwen3-8b',
+  'qwen3-30b-a3b',
+  'minimax-m2-230b',
+  'qwen3-next-80b-a3b',
+  'kimi-linear-48b-a3b',
+  'xlstm-7b',
+  'lfm2-5-8b-a1b',
+  'inkling-2-mini',
+  'motif-3-beta',
+  'deepseek-v4-1-flash',
+  'tencent-hy4-770b-a49b',
+]);
 
 const rows = entries.map((entry) => {
   const slug = entry.file.replace(/\.webp$/, '');

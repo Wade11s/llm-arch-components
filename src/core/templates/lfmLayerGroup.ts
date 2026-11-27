@@ -65,6 +65,8 @@ function layerGroup(builder: SceneBuilder, id: Id, box: Box, label: string, card
     fill: builder.solid('#9A9A9A'),
     stroke: builder.stroke('#000000', 6),
     radius: 46,
+    sourceId: id,
+    label,
   });
   builder.text(`${id}-gutter`, 'repeat-gutter', { x: box.x - 110, y: box.y + box.height / 2 }, text(label), { size: 40, weight: 700 });
   const gap = 24;

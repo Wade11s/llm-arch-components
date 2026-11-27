@@ -134,6 +134,7 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const normLabels = layoutOptions?.normLabels;
   const showPostNorms = normLabels === undefined || normLabels === 'pre-post';
   const showQKNorm = layoutOptions?.showQKNorm !== false;
+  const normStroke = layoutOptions?.normStroke === 'ink' ? spec.theme.ink : spec.theme.accent;
 
   const builder = new SceneBuilder(spec.theme, context.metrics);
   const cx = 1022;
@@ -180,10 +181,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   }
   addPill(builder, spec, 'ffn', 'feed-forward', { x: 848, y: 969, width: 350, height: 84 }, { spans: [{ text: 'Feed forward' }] }, { fill: spec.theme.surface, stroke: '#3A3A3A', radius: 26 });
   const normPrefix = normLabels === 'rmsnorm' ? 'RMSNorm' : 'Pre-RMSNorm';
-  addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: `${normPrefix} 1` }] }, { stroke: spec.theme.ink, radius: 26 });
-  if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-1', 'norm', { x: 848, y: 1376, width: 348, height: 82 }, { spans: [{ text: 'Post-RMSNorm 1' }] }, { stroke: spec.theme.ink, radius: 26 });
-  addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: `${normPrefix} 2` }] }, { stroke: spec.theme.ink, radius: 26 });
-  if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: spec.theme.ink, radius: 26 });
+  addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: `${normPrefix} 1` }] }, { stroke: normStroke, radius: 26 });
+  if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-1', 'norm', { x: 848, y: 1376, width: 348, height: 82 }, { spans: [{ text: 'Post-RMSNorm 1' }] }, { stroke: normStroke, radius: 26 });
+  addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: `${normPrefix} 2` }] }, { stroke: normStroke, radius: 26 });
+  if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
   if (showQKNorm) addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, { size: 38 });

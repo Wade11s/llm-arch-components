@@ -253,7 +253,7 @@ function schedule(builder: SceneBuilder, spec: FigureSpec): void {
       family: spec.theme.monospaceFamily ?? 'monospace',
     });
   });
-  if (spec.id === 'qwen3-next-80b-a3b') {
+  if (spec.layout.mode === 'template' && spec.layout.options?.scheduleRule === true) {
     flow(builder, 'schedule-underline', [{ x, y: y + 35 }, { x: x + 800, y: y + 35 }], { role: 'layer-schedule-rule', arrow: 'none' });
   }
 }
@@ -280,7 +280,7 @@ export function layoutMixingDetail(spec: FigureSpec, context: LayoutContext): Sc
 
   if (attention.data.family === 'mla') renderMla(builder, attentionBox);
   else renderGatedGqa(builder, attentionBox);
-  renderDelta(builder, deltaBox, spec.id === 'kimi-linear-48b-a3b' ? 'Sigmoid' : 'SiLU');
+  renderDelta(builder, deltaBox, attention.data.family === 'mla' ? 'Sigmoid' : 'SiLU');
   schedule(builder, spec);
 
   flow(builder, 'attention-zoom', [{ x: 1230, y: 1550 }, { x: 1800, y: 500 }], { role: 'zoom-leader', dash: 'dotted', arrow: 'none' });

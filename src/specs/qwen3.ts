@@ -70,6 +70,6 @@ export const qwen3Spec = {
     mode: 'template',
     template: 'backbone',
     slots: { block: 'backbone', inset: 'ffn-inset' },
-    options: { normLabels: 'pre', showQKNorm: true },
+    options: { normLabels: 'pre', showQKNorm: true, normStroke: 'ink' },
   },
 } satisfies FigureSpec;

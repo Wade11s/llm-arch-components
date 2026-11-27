@@ -3799,7 +3799,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "pre-rmsnorm-1",
       "stroke": {
-        "color": "#000000",
+        "color": "#F27200",
         "dash": undefined,
         "width": 5,
       },
@@ -3850,7 +3850,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "post-rmsnorm-1",
       "stroke": {
-        "color": "#000000",
+        "color": "#F27200",
         "dash": undefined,
         "width": 5,
       },
@@ -3901,7 +3901,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "pre-rmsnorm-2",
       "stroke": {
-        "color": "#000000",
+        "color": "#F27200",
         "dash": undefined,
         "width": 5,
       },
@@ -3952,7 +3952,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "post-rmsnorm-2",
       "stroke": {
-        "color": "#000000",
+        "color": "#F27200",
         "dash": undefined,
         "width": 5,
       },
@@ -36800,10 +36800,10 @@ exports[`spec-driven integration surface all validated figures render through th
       },
       "id": "group-2x-box",
       "kind": "box",
-      "label": undefined,
+      "label": "2×",
       "radius": 46,
       "role": "layer-group-box",
-      "sourceId": undefined,
+      "sourceId": "group-2x",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -37052,10 +37052,10 @@ exports[`spec-driven integration surface all validated figures render through th
       },
       "id": "group-4x-box",
       "kind": "box",
-      "label": undefined,
+      "label": "4×",
       "radius": 46,
       "role": "layer-group-box",
-      "sourceId": undefined,
+      "sourceId": "group-4x",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -37379,10 +37379,10 @@ exports[`spec-driven integration surface all validated figures render through th
       },
       "id": "group-1x-box",
       "kind": "box",
-      "label": undefined,
+      "label": "1×",
       "radius": 46,
       "role": "layer-group-box",
-      "sourceId": undefined,
+      "sourceId": "group-1x",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -49474,26 +49474,51 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 1760,
-        "y": 1820.08,
+        "y": 1801.1799999999998,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      "id": "ced-global-kv-label",
+      "id": "ced-global-kv-label-0",
       "kind": "text",
       "label": undefined,
       "lines": [
         {
-          "baseline": 1820.08,
+          "baseline": 1801.1799999999998,
           "spans": [
             {
               "fill": "#000000",
               "size": 28,
-              "text": 
-"CED
-Global KV"
-,
+              "text": "CED",
               "weight": 500,
-              "width": 193.76000000000005,
-              "x": 1663.12,
+              "width": 55.44,
+              "x": 1732.28,
+            },
+          ],
+        },
+      ],
+      "role": "cross-tower-link-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1760,
+        "y": 1838.9799999999998,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ced-global-kv-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1838.9799999999998,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Global KV",
+              "weight": 500,
+              "width": 123.48000000000003,
+              "x": 1698.26,
             },
           ],
         },
