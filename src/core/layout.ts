@@ -146,6 +146,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   }
   const block = groupOf(spec, blockId);
   const inset = insetId ? groupOf(spec, insetId) : undefined;
+  const positionalId = Array.isArray(spec.layout.slots.positional) ? spec.layout.slots.positional[0] : spec.layout.slots.positional;
+  const dropoutId = Array.isArray(spec.layout.slots.dropout) ? spec.layout.slots.dropout[0] : spec.layout.slots.dropout;
+  const positionalNode = positionalId ? spec.nodes.find((node) => node.id === positionalId) : undefined;
+  const dropoutNode = dropoutId ? spec.nodes.find((node) => node.id === dropoutId) : undefined;
   const operations = spec.nodes.filter(isOperation);
   const gqa = operations.find((node) => node.data.family === 'gqa');
   const ffn = operations.find((node) => node.data.family === 'ffn');
@@ -158,6 +162,7 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const normLabels = layoutOptions?.normLabels;
   const showPostNorms = normLabels === undefined || normLabels === 'pre-post';
   const showQKNorm = layoutOptions?.showQKNorm !== false;
+  const showRoPE = layoutOptions?.showRoPE !== false;
   const normStroke = layoutOptions?.normStroke === 'ink'
     ? spec.theme.ink
     : typeof layoutOptions?.normStroke === 'string' && layoutOptions.normStroke.startsWith('#')
@@ -167,7 +172,14 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const builder = new SceneBuilder(spec.theme, context.metrics);
   const cx = 1022;
   const repeatCount = block.repeat?.count ?? 0;
-  builder.text('figure-title', 'title', { x: 1068, y: 114 }, spec.title, { size: 112, weight: 900, fill: spec.theme.accent, align: 'center', family: "'Arial Black', Arial, sans-serif" });
+  const titleColor = layoutOptions?.titleColor;
+  builder.text('figure-title', 'title', { x: 1068, y: 114 }, spec.title, {
+    size: 112,
+    weight: 900,
+    fill: typeof titleColor === 'string' ? titleColor : spec.theme.accent,
+    align: 'center',
+    family: "'Arial Black', Arial, sans-serif",
+  });
 
   builder.group('model', 'model-container', { x: 465, y: 328, width: 1097, height: 2053 }, [], {
     fill: builder.solid(spec.theme.surface),
@@ -208,12 +220,15 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: labelSpans.slice(split) }, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   }
   addPill(builder, spec, 'ffn', 'feed-forward', { x: 848, y: 969, width: 350, height: 84 }, { spans: [{ text: 'Feed forward' }] }, { fill: spec.theme.surface, stroke: '#3A3A3A', radius: 26 });
-  const normPrefix = normLabels === 'rmsnorm' ? 'RMSNorm' : 'Pre-RMSNorm';
+  const normPrefix = normLabels === 'rmsnorm' ? 'RMSNorm' : normLabels === 'layernorm' ? 'LayerNorm' : 'Pre-RMSNorm';
+  const dropoutLabel = dropoutNode ? textOf(dropoutNode) : { spans: [{ text: 'Dropout' }] };
   addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: `${normPrefix} 1` }] }, { stroke: normStroke, radius: 26 });
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-1', 'norm', { x: 848, y: 1376, width: 348, height: 82 }, { spans: [{ text: 'Post-RMSNorm 1' }] }, { stroke: normStroke, radius: 26 });
+  if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-attention', 'dropout', { x: 848, y: 1376, width: 348, height: 82 }, dropoutLabel, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: `${normPrefix} 2` }] }, { stroke: normStroke, radius: 26 });
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: normStroke, radius: 26 });
-  addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: 'Final RMSNorm' }] });
+  if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-ffn', 'dropout', { x: 852, y: 832, width: 348, height: 84 }, dropoutLabel, { stroke: normStroke, radius: 26 });
+  addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: normLabels === 'layernorm' ? 'Final LayerNorm' : 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
   const qkNormStroke = layoutOptions?.qkNormStroke;
   const ropeStroke = layoutOptions?.ropeStroke;
@@ -225,47 +240,66 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const ropeSecondaryLabel = layoutOptions?.ropeSecondaryLabel;
   const hasCustomRope = typeof ropeLabel === 'string';
   const hasTwoLineRope = hasCustomRope && typeof ropeSecondaryLabel === 'string';
-  addPill(
-    builder,
-    spec,
-    'rope',
-    'side-pill',
-    hasTwoLineRope ? { x: 353, y: 1527, width: 360, height: 100 } : { x: 420, y: 1535, width: 293, height: 84 },
-    { spans: [{ text: hasCustomRope ? ropeLabel : 'RoPE' }] },
-    {
-      size: hasTwoLineRope ? 32 : 38,
-      stroke: typeof ropeStroke === 'string' ? ropeStroke : undefined,
-      secondaryText: hasTwoLineRope ? { spans: [{ text: ropeSecondaryLabel }] } : undefined,
-    },
-  );
+  if (showRoPE) {
+    addPill(
+      builder,
+      spec,
+      'rope',
+      'side-pill',
+      hasTwoLineRope ? { x: 353, y: 1527, width: 360, height: 100 } : { x: 420, y: 1535, width: 293, height: 84 },
+      { spans: [{ text: hasCustomRope ? ropeLabel : 'RoPE' }] },
+      {
+        size: hasTwoLineRope ? 32 : 38,
+        stroke: typeof ropeStroke === 'string' ? ropeStroke : undefined,
+        secondaryText: hasTwoLineRope ? { spans: [{ text: ropeSecondaryLabel }] } : undefined,
+      },
+    );
+  }
   if (showQKNorm) addFlow(builder, 'qk-norm-flow', [{ x: 756, y: 1428 }, { x: 829, y: 1488 }]);
-  addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
-  addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
+  if (showRoPE) addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
+  addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: positionalNode ? 2240 : 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
+  if (positionalNode) addPill(builder, spec, 'positional-embedding', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, textOf(positionalNode), { stroke: normStroke });
+  if (dropoutNode) addPill(builder, spec, 'dropout-input', 'dropout', { x: 754, y: 1900, width: 536, height: 92 }, dropoutLabel, { stroke: normStroke });
   addPill(builder, spec, 'tokenized-text', 'input', { x: 847, y: 2417, width: 350, height: 86 }, { spans: [{ text: 'Tokenized text' }] });
   const sampleInputY = layoutOptions?.sampleInputY;
-  builder.text('sample-input', 'input-label', { x: cx, y: typeof sampleInputY === 'number' ? sampleInputY : 2646 }, 'Sample input text', { size: 54, align: 'center' });
+  const sampleInputText = layoutOptions?.sampleInputText;
+  builder.text('sample-input', 'input-label', { x: cx, y: typeof sampleInputY === 'number' ? sampleInputY : 2646 }, typeof sampleInputText === 'string' ? sampleInputText : 'Sample input text', { size: 54, align: 'center' });
 
   builder.text('repeat-count', 'repeat-marker', { x: 478, y: 1912 }, `${repeatCount}`, { size: 58, weight: 700, fill: spec.theme.accent });
   builder.text('repeat-x', 'repeat-marker', { x: 560, y: 1908 }, '×', { size: 44, weight: 700, fill: spec.theme.accent });
   builder.glyph('repeat-brace', 'repeat-marker', { x: 665, y: 1870 }, 'brace', 150);
 
   if (inset) {
-    builder.box('ffn-inset', 'ffn-inset', { x: 1777, y: 575, width: 790, height: 608 }, {
+    const insetOffsetX = typeof layoutOptions?.insetOffsetX === 'number' ? layoutOptions.insetOffsetX : 0;
+    const ix = (x: number): number => x + insetOffsetX;
+    builder.box('ffn-inset', 'ffn-inset', { x: ix(1777), y: 575, width: 790, height: 608 }, {
       fill: builder.solid(spec.theme.surface),
       stroke: builder.stroke(spec.theme.ink, 10, 'dashed'),
       radius: 54,
       sourceId: inset.id,
     });
-    if (inset.title) builder.text('ffn-inset-title', 'ffn-inset-title', { x: 2172, y: 550 }, inset.title, { size: 54, weight: 700, align: 'center', sourceId: inset.id });
-    addFlow(builder, 'ffn-up-1', [{ x: 1994, y: 1020 }, { x: 1994, y: 937 }], { role: 'inset-flow' });
-    addFlow(builder, 'ffn-up-2', [{ x: 1994, y: 826 }, { x: 1994, y: 736 }], { role: 'inset-flow' });
-    addFlow(builder, 'ffn-side-a', [{ x: 1994, y: 780 }, { x: 2157, y: 780 }], { role: 'inset-flow', arrow: 'none' });
-    addFlow(builder, 'ffn-side-b', [{ x: 2209, y: 780 }, { x: 2245, y: 780 }, { x: 2245, y: 827 }], { role: 'inset-flow', arrow: 'none' });
-    addPill(builder, spec, 'ffn-linear-bottom', 'inset-operation', { x: 1828, y: 1024, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
-    addPill(builder, spec, 'ffn-activation', 'inset-operation', { x: 1828, y: 830, width: 333, height: 103 }, { spans: [{ text: `${ffnData.activation} activation` }] }, { radius: 28 });
-    addPill(builder, spec, 'ffn-linear-top', 'inset-operation', { x: 1828, y: 628, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
-    addPill(builder, spec, 'ffn-linear-side', 'inset-operation', { x: 2180, y: 831, width: 343, height: 98 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
-    builder.glyph('ffn-multiply', 'operator', { x: 2183, y: 780 }, 'multiply', 54);
+    if (inset.title) builder.text('ffn-inset-title', 'ffn-inset-title', { x: ix(2172), y: 550 }, inset.title, { size: 54, weight: 700, align: 'center', sourceId: inset.id });
+    addFlow(builder, 'ffn-up-1', [{ x: ix(1994), y: 1020 }, { x: ix(1994), y: 937 }], { role: 'inset-flow' });
+    addFlow(builder, 'ffn-up-2', [{ x: ix(1994), y: 826 }, { x: ix(1994), y: 736 }], { role: 'inset-flow' });
+    addFlow(builder, 'ffn-side-a', [{ x: ix(1994), y: 780 }, { x: ix(2157), y: 780 }], { role: 'inset-flow', arrow: 'none' });
+    addFlow(builder, 'ffn-side-b', [{ x: ix(2209), y: 780 }, { x: ix(2245), y: 780 }, { x: ix(2245), y: 827 }], { role: 'inset-flow', arrow: 'none' });
+    addPill(builder, spec, 'ffn-linear-bottom', 'inset-operation', { x: ix(1828), y: 1024, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
+    addPill(builder, spec, 'ffn-activation', 'inset-operation', { x: ix(1828), y: 830, width: 333, height: 103 }, { spans: [{ text: `${ffnData.activation} activation` }] }, { radius: 28 });
+    addPill(builder, spec, 'ffn-linear-top', 'inset-operation', { x: ix(1828), y: 628, width: 333, height: 104 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
+    addPill(builder, spec, 'ffn-linear-side', 'inset-operation', { x: ix(2180), y: 831, width: 343, height: 98 }, { spans: [{ text: 'Linear layer' }] }, { radius: 28 });
+    builder.glyph('ffn-multiply', 'operator', { x: ix(2183), y: 780 }, 'multiply', 54);
+  }
+
+  if (annotationOf(spec, 'positions')) {
+    const positionsX = layoutOptions?.positionsAnnotationX;
+    const positionsY = layoutOptions?.positionsAnnotationY;
+    addFlow(builder, 'leader-positions', [
+      positionalNode ? { x: 1290, y: 2130 } : { x: 1237, y: 1639 },
+      {
+        x: typeof positionsX === 'number' ? positionsX : 1600,
+        y: typeof positionsY === 'number' ? positionsY : 1970,
+      },
+    ], { role: 'leader', dash: 'dotted', arrow: 'none' });
   }
 
   const leaders: Array<[string, Point[]]> = [
@@ -274,12 +308,21 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
       x: typeof layoutOptions?.headsLeaderEndX === 'number' ? layoutOptions.headsLeaderEndX : 1882,
       y: typeof layoutOptions?.headsLeaderEndY === 'number' ? layoutOptions.headsLeaderEndY : 1889,
     }]],
-    ['leader-ffn', [{ x: 1200, y: 1006 }, { x: 1772, y: 876 }]],
-    ['leader-embedding', [{ x: 1290, y: 2132 }, { x: 1598, y: 2244 }]],
-    ['leader-context', [{ x: 320, y: 1845 }, { x: 420, y: 1624 }]],
+    ['leader-ffn', [{ x: 1200, y: 1006 }, { x: typeof layoutOptions?.insetOffsetX === 'number' ? 1772 + layoutOptions.insetOffsetX : 1772, y: 876 }]],
+    ['leader-embedding', [{ x: 1290, y: positionalNode ? 2288 : 2132 }, { x: 1598, y: 2244 }]],
+    ['leader-context', [{
+      x: typeof layoutOptions?.contextLeaderStartX === 'number' ? layoutOptions.contextLeaderStartX : 320,
+      y: typeof layoutOptions?.contextLeaderStartY === 'number' ? layoutOptions.contextLeaderStartY : 1845,
+    }, {
+      x: typeof layoutOptions?.contextLeaderEndX === 'number' ? layoutOptions.contextLeaderEndX : 420,
+      y: typeof layoutOptions?.contextLeaderEndY === 'number' ? layoutOptions.contextLeaderEndY : 1624,
+    }]],
     ['leader-hidden', [{ x: 2010, y: 1184 }, { x: 2010, y: 1388 }]],
   ];
-  leaders.forEach(([id, points]) => addFlow(builder, id, points, { role: 'leader', dash: 'dotted', arrow: 'none' }));
+  leaders
+    .filter(([id]) => (id === 'leader-attention' ? Boolean(annotationOf(spec, 'heads')) : true))
+    .filter(([id]) => (id === 'leader-context' ? Boolean(annotationOf(spec, 'context')) : true))
+    .forEach(([id, points]) => addFlow(builder, id, points, { role: 'leader', dash: 'dotted', arrow: 'none' }));
 
   addAnnotation(builder, spec, 'vocabulary', { x: 1352, y: 254 });
   addAnnotation(builder, spec, 'context', { x: 20, y: 1893 });
@@ -289,6 +332,15 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     x: typeof headsAnnotationX === 'number' ? headsAnnotationX : 1938,
     y: typeof headsAnnotationY === 'number' ? headsAnnotationY : 1905,
   });
+  const positionsAnnotation = annotationOf(spec, 'positions');
+  if (positionsAnnotation) {
+    const positionsX = layoutOptions?.positionsAnnotationX;
+    const positionsY = layoutOptions?.positionsAnnotationY;
+    addAnnotation(builder, spec, 'positions', {
+      x: typeof positionsX === 'number' ? positionsX : 1600,
+      y: typeof positionsY === 'number' ? positionsY : 1970,
+    });
+  }
   addAnnotation(builder, spec, 'embedding-dimension', { x: 1608, y: 2242 });
   const hiddenAnnotationX = layoutOptions?.hiddenAnnotationX;
   addAnnotation(builder, spec, 'hidden-dimension', { x: typeof hiddenAnnotationX === 'number' ? hiddenAnnotationX : 1926, y: 1482 });

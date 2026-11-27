@@ -15,6 +15,9 @@ import qwen34bRef from '../images/qwen3-4b.webp';
 import qwen3Ref from '../images/qwen3-8b.webp';
 import qwen332bRef from '../images/qwen3-32b.webp';
 import phi4Ref from '../images/phi-4.webp';
+import domynEdgeRef from '../images/domyn-edge-3-93b.webp';
+import granite41Ref from '../images/granite-4-1-30b.webp';
+import gpt2xlRef from '../images/gpt-2-xl-1-5b.webp';
 import qwen3MoeRef from '../images/qwen3-30b-a3b.webp';
 import minimaxM2Ref from '../images/minimax-m2-230b.webp';
 import qwen3NextRef from '../images/qwen3-next-80b-a3b.webp';
@@ -45,6 +48,9 @@ const references: Record<string, string> = {
   'qwen3-8b': qwen3Ref,
   'qwen3-32b': qwen332bRef,
   'phi-4': phi4Ref,
+  'domyn-edge-3-93b': domynEdgeRef,
+  'granite-4-1-30b': granite41Ref,
+  'gpt-2-xl-1-5b': gpt2xlRef,
   'qwen3-30b-a3b': qwen3MoeRef,
   'minimax-m2-230b': minimaxM2Ref,
   'qwen3-next-80b-a3b': qwen3NextRef,

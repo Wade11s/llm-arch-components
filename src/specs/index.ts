@@ -7,6 +7,7 @@ import { qwen38FlashNextSpec } from './qwen38FlashNext';
 import { glm54Spec } from './glm54';
 import { llama3Spec } from './llama3';
 import { llama321bSpec, llama323bSpec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec } from './denseBackbone';
+import { domynEdgeSpec, granite41Spec, gpt2xlSpec } from './edgeBackbone';
 import { qwen3Spec } from './qwen3';
 import { qwen3MoeSpec } from './qwen3Moe';
 import { minimaxM2Spec } from './minimaxM2';
@@ -45,6 +46,9 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'qwen3-8b', name: 'Qwen3 (8B)', reference: '../images/qwen3-8b.webp', width: 2533, height: 2642, spec: qwen3Spec },
   { slug: 'qwen3-32b', name: 'Qwen3 (32B)', reference: '../images/qwen3-32b.webp', width: 2531, height: 2634, spec: qwen332bSpec },
   { slug: 'phi-4', name: 'Phi-4 (14B)', reference: '../images/phi-4.webp', width: 2563, height: 2671, spec: phi4Spec },
+  { slug: 'domyn-edge-3-93b', name: 'Domyn Edge (3.93B)', reference: '../images/domyn-edge-3-93b.webp', width: 2494, height: 2663, spec: domynEdgeSpec },
+  { slug: 'granite-4-1-30b', name: 'Granite 4.1 (30B)', reference: '../images/granite-4-1-30b.webp', width: 2530, height: 2634, spec: granite41Spec },
+  { slug: 'gpt-2-xl-1-5b', name: 'GPT-2 XL (1.5B)', reference: '../images/gpt-2-xl-1-5b.webp', width: 2488, height: 2698, spec: gpt2xlSpec },
   { slug: 'qwen3-30b-a3b', name: 'Qwen3 (30B-A3B)', reference: '../images/qwen3-30b-a3b.webp', width: 2829, height: 2715, spec: qwen3MoeSpec },
   { slug: 'minimax-m2-230b', name: 'MiniMax-M2 (230B)', reference: '../images/minimax-m2-230b.webp', width: 2751, height: 2709, spec: minimaxM2Spec },
   { slug: 'qwen3-next-80b-a3b', name: 'Qwen3-Next (80B-A3B)', reference: '../images/qwen3-next-80b-a3b.webp', width: 2946, height: 2771, spec: qwen3NextSpec },
@@ -57,4 +61,4 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'tencent-hy4-770b-a49b', name: 'Tencent Hy4 (770B-A49B)', reference: '../images/tencent-hy4-770b-a49b.webp', width: 3834, height: 2949, spec: tencentHy4Spec },
 ];
 
-export { deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };
+export { deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };

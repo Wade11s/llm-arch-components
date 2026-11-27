@@ -34,7 +34,7 @@ The 17 primitive and 9 composite-template categories remain internal capabilitie
 
 ## Validated structures
 
-Twenty-six figures have deterministic Scene snapshots, self-contained SVG exports, and completed 50% comparisons:
+Twenty-nine figures have deterministic Scene snapshots, self-contained SVG exports, and completed 50% comparisons:
 
 | Figure | Validated structures |
 |---|---|
@@ -54,6 +54,9 @@ Twenty-six figures have deterministic Scene snapshots, self-contained SVG export
 | Qwen3 (8B) | QK-Norm/RoPE, 36× repeat, YaRN context, SiLU FFN. |
 | Qwen3 (32B) | Pre-RMSNorm, 64× repeat, 64/8 heads, 5,120/25,600 dimensions. |
 | Phi-4 (14B) | GQA, 40× repeat, 40/10 heads, 5,120/17,920 dimensions. |
+| Domyn Edge (3.93B) | Pre/Post-RMSNorm, 36× repeat, Local RoPE/Global NoPE, tied weights, 2,560/9,728 dimensions. |
+| Granite 4.1 (30B) | Pre-RMSNorm, 64× repeat, 32/8 heads, 4,096/32,768 dimensions. |
+| GPT-2 XL (1.5B) | LayerNorm/dropout, 48× repeat, learned absolute positions, 25 heads, 1,600/6,400 dimensions. |
 | Qwen3 (30B-A3B) | MoE template, 128 experts, 8 active experts, resource notes. |
 | MiniMax-M2 (230B) | Partial RoPE, 256 experts, resource annotations, themed MoE inset. |
 | Qwen3-Next (80B-A3B) | `moe` `mixing-detail` variant: Gated GQA, Gated DeltaNet, 3:1 schedule. |
@@ -78,7 +81,7 @@ Variants are declared as typed `layout.variant` values. TypeScript checks templa
 
 ## Pilot completion and next coverage work
 
-The 12-figure pilot defined in #11–#19 is complete, the Gemma dense family from #25 is verified, and the Llama/Qwen/Phi dense batch from #26 is verified: 26 figures are now verified.
+The 12-figure pilot defined in #11–#19 is complete, the Gemma dense family from #25 is verified, and the dense batches from #26–#27 are verified: 29 figures are now verified.
 
 Next steps:
 
