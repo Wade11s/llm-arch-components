@@ -160,14 +160,14 @@ function issue(code: string, message: string, path?: string, sourceIds?: Id[]): 
   return { severity: 'error', code, message, path, sourceIds };
 }
 
-function invalidLegacyVariantIssue(input: unknown): Diagnostic | undefined {
+function legacyVariantIssue(input: unknown): Diagnostic | undefined {
   if (!input || typeof input !== 'object') return undefined;
   const layout = (input as { layout?: unknown }).layout;
   if (!layout || typeof layout !== 'object') return undefined;
-  const options = (layout as { options?: unknown }).options;
+  const templateLayout = layout as { mode?: unknown; options?: unknown };
+  if (templateLayout.mode !== 'template') return undefined;
+  const options = templateLayout.options;
   if (!options || typeof options !== 'object' || !Object.hasOwn(options, 'variant')) return undefined;
-  const value = (options as Record<string, unknown>).variant;
-  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return undefined;
   return issue('legacy-variant-location', 'Move layout.options.variant to layout.variant', 'layout.options.variant');
 }
 
@@ -232,9 +232,6 @@ function semanticIssues(spec: FigureSpec): Diagnostic[] {
     if (!implementedTemplates.has(spec.layout.template)) {
       issues.push(issue('unsupported-template', `Template "${spec.layout.template}" is not implemented`, 'layout.template'));
     }
-    if (spec.layout.options && Object.hasOwn(spec.layout.options, 'variant')) {
-      issues.push(issue('legacy-variant-location', 'Move layout.options.variant to layout.variant', 'layout.options.variant'));
-    }
     const variant = spec.layout.variant;
     if (variant !== undefined) {
       const allowed = implementedVariants[spec.layout.template];
@@ -275,19 +272,22 @@ function semanticIssues(spec: FigureSpec): Diagnostic[] {
 }
 
 export function validateFigureSpec(input: unknown): FigureSpec {
-  const legacyVariantIssue = invalidLegacyVariantIssue(input);
-  if (legacyVariantIssue) throw new FigureValidationError([legacyVariantIssue]);
+  const legacyVariant = legacyVariantIssue(input);
   const parsed = figureSpecSchema.safeParse(input);
   if (!parsed.success) {
-    const issues: Diagnostic[] = parsed.error.issues.map((zodIssue) => issue(
-      'schema',
-      zodIssue.message,
-      zodIssue.path.map((part) => String(part)).join('.'),
-    ));
+    const issues: Diagnostic[] = [
+      ...(legacyVariant ? [legacyVariant] : []),
+      ...parsed.error.issues.map((zodIssue) => issue(
+        'schema',
+        zodIssue.message,
+        zodIssue.path.map((part) => String(part)).join('.'),
+      )),
+    ];
     throw new FigureValidationError(issues);
   }
   const spec = parsed.data as FigureSpec;
   const issues = semanticIssues(spec);
+  if (legacyVariant) issues.unshift(legacyVariant);
   if (issues.length > 0) throw new FigureValidationError(issues);
   return spec;
 }

@@ -64,6 +64,34 @@ describe('typed layout.variant', () => {
     }));
   });
 
+  test('collects the legacy diagnostic alongside other schema errors', () => {
+    const legacy = structuredClone(typedVariantSpec);
+    if (legacy.layout.mode !== 'template') throw new Error('bad fixture');
+    delete legacy.layout.variant;
+    Object.assign(legacy.layout.options ?? {}, { variant: null });
+    Object.assign(legacy, { title: undefined });
+
+    const issues = validationIssues(legacy);
+    expect(issues).toContainEqual(expect.objectContaining({
+      code: 'legacy-variant-location',
+      path: 'layout.options.variant',
+    }));
+    expect(issues.some((issue) => issue.code === 'schema' && issue.path === 'title')).toBe(true);
+  });
+
+  test('does not suggest a variant migration for manual layout', () => {
+    const manual = structuredClone(typedVariantSpec);
+    manual.layout = {
+      mode: 'manual',
+      placements: {},
+      options: { variant: null },
+    } as unknown as FigureSpec['layout'];
+
+    const issues = validationIssues(manual);
+    expect(issues.some((issue) => issue.code === 'legacy-variant-location')).toBe(false);
+    expect(issues.some((issue) => issue.code === 'schema')).toBe(true);
+  });
+
   test('rejects an unsupported variant at layout.variant', () => {
     const invalid = structuredClone(typedVariantSpec);
     Object.assign(invalid.layout, { variant: 'typo-variant' });
