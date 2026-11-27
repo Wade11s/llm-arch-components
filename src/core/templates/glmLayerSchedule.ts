@@ -1,5 +1,6 @@
 import { FigureLayoutError } from '../errors';
 import { layoutLfmLayerGroup } from './lfmLayerGroup';
+import { layoutInklingRecurrentPass } from './inklingRecurrentPass';
 import { SceneBuilder } from '../sceneBuilder';
 import type {
   Box,
@@ -242,6 +243,9 @@ function annotationLayout(spec: FigureSpec, annotation: Annotation): AnnotationL
 export function layoutGlmLayerSchedule(spec: FigureSpec, context: LayoutContext): Scene {
   if (spec.layout.mode === 'template' && spec.layout.options?.variant === 'layer-group') {
     return layoutLfmLayerGroup(spec, context);
+  }
+  if (spec.layout.mode === 'template' && spec.layout.options?.variant === 'recurrent-pass') {
+    return layoutInklingRecurrentPass(spec, context);
   }
   const modelId = slot(spec, 'model');
   const middleId = slot(spec, 'middle');
