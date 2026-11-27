@@ -260,6 +260,8 @@ export const antares1bSpec = denseBackboneSpec({
   headsAnnotationX: 1760,
   headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
+  hiddenAnnotationX: 1600,
+  sampleInputY: 2630,
   insetOffsetX: -120,
   insetTitle: 'Feed forward (SwiGLU) module',
 });
@@ -285,6 +287,7 @@ export const vibeThinker3bSpec = denseBackboneSpec({
   headsAnnotationX: 1760,
   headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
+  hiddenAnnotationX: 1500,
   insetOffsetX: -120,
 });
 
@@ -309,8 +312,8 @@ export const nanbeige41Spec = denseBackboneSpec({
   showQKNorm: false,
   headsAnnotationY: 1280,
   headsLeaderEndY: 1280,
-  headsAnnotationX: 1500,
-  headsLeaderEndX: 1480,
+  headsAnnotationX: 1600,
+  headsLeaderEndX: 1580,
 });
 
 export const nanbeige43Spec = denseBackboneSpec({
@@ -334,8 +337,8 @@ export const nanbeige43Spec = denseBackboneSpec({
   showQKNorm: false,
   headsAnnotationY: 1280,
   headsLeaderEndY: 1280,
-  headsAnnotationX: 1500,
-  headsLeaderEndX: 1480,
+  headsAnnotationX: 1550,
+  headsLeaderEndX: 1530,
   insetOffsetX: -40,
 });
 
@@ -383,9 +386,11 @@ export const olmo2Spec = denseBackboneSpec({
   showPostNorms: true,
   showPreNorms: false,
   attentionLabelStyle: 'mha',
+  normStroke: '#F1539D',
   headsAnnotationY: 1280,
-  headsAnnotationX: 1760,
-  headsLeaderEndX: 1740,
+  headsAnnotationX: 1500,
+  headsLeaderEndX: 1480,
   headsLeaderEndY: 1280,
+  hiddenAnnotationX: 1500,
   insetOffsetX: -40,
 });

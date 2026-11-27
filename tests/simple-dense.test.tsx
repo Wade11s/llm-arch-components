@@ -30,6 +30,7 @@ describe('simple dense family', () => {
     expect(text).toContain('4 KV heads');
     expect(text).toContain('Pre-RMSNorm 1');
     expect(text).toContain('Pre-RMSNorm 2');
+    expect(text).toContain('Feed forward (SwiGLU) module');
     expect(text).toContain('Input size: 2,048');
     expect(text).toContain('4,096');
     expect(text).toContain('131,072 tokens');
@@ -106,12 +107,30 @@ describe('simple dense family', () => {
     expect(text).toContain('Post-RMSNorm 2');
     expect(text).toContain('QK-Norm');
     expect(text).toContain('Multi-head attention');
+    expect(text).not.toContain('Pre-RMSNorm');
     expect(text).toContain('32 attention heads');
     expect(text).toContain('32 key & value heads');
     expect(text).toContain('(regular multi-head attention)');
     expect(text).toContain('Input size: 4,096');
     expect(text).toContain('size = 11,008');
     expect(text).toContain('4,096 tokens');
+  });
+
+  test('keeps all text within canvas and produces no diagnostics', () => {
+    for (const spec of [antares1bSpec, vibeThinker3bSpec, nanbeige41Spec, nanbeige43Spec, mistralSmall31Spec, olmo2Spec]) {
+      const result = renderFigure(spec);
+      expect(result.diagnostics).toEqual([]);
+      for (const element of result.scene.elements) {
+        if (element.kind !== 'text') continue;
+        for (const line of element.lines) {
+          expect(line.baseline).toBeLessThanOrEqual(result.scene.canvas.height);
+          for (const span of line.spans) {
+            expect(span.x).toBeGreaterThanOrEqual(0);
+            expect(span.x + span.width).toBeLessThanOrEqual(result.scene.canvas.width + 1);
+          }
+        }
+      }
+    }
   });
 
   test('registers the simple dense batch and reports verified coverage', () => {
