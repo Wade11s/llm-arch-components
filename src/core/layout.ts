@@ -379,11 +379,25 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   const showQKNorm = layoutOptions?.showQKNorm === true;
   const ropeLabel = typeof layoutOptions?.ropeLabel === 'string' ? layoutOptions.ropeLabel : undefined;
   const firstBadgeFill = typeof layoutOptions?.firstBadgeFill === 'string' ? layoutOptions.firstBadgeFill : '#000000';
+  const lastBadgeFill = typeof layoutOptions?.lastBadgeFill === 'string' ? layoutOptions.lastBadgeFill : spec.theme.accent;
+  const titleColor = typeof layoutOptions?.titleColor === 'string' ? layoutOptions.titleColor : spec.theme.accent;
+  const activeExpertLabel = typeof layoutOptions?.activeExpertLabel === 'string' ? layoutOptions.activeExpertLabel : undefined;
+  const denseFirstLeader = layoutOptions?.denseFirstLeader === true;
+  const attentionLabelStyle = typeof layoutOptions?.attentionLabelStyle === 'string' ? layoutOptions.attentionLabelStyle : undefined;
+  const showHeadsAnnotation = layoutOptions?.showHeadsAnnotation !== false;
+  const attentionBoxY = typeof layoutOptions?.attentionBoxY === 'number' ? layoutOptions.attentionBoxY : 1431;
+  const attentionBoxHeight = typeof layoutOptions?.attentionBoxHeight === 'number' ? layoutOptions.attentionBoxHeight : 152;
+  const ffnInsetWidth = typeof layoutOptions?.ffnInsetWidth === 'number' ? layoutOptions.ffnInsetWidth : 791;
+  const ffnInsetHeight = typeof layoutOptions?.ffnInsetHeight === 'number' ? layoutOptions.ffnInsetHeight : 610;
+  const ffnInsetTitleX = typeof layoutOptions?.ffnInsetTitleX === 'number' ? layoutOptions.ffnInsetTitleX : 2272;
+  const moeInsetWidth = typeof layoutOptions?.moeInsetWidth === 'number' ? layoutOptions.moeInsetWidth : 968;
+  const moeInsetTitleX = typeof layoutOptions?.moeInsetTitleX === 'number' ? layoutOptions.moeInsetTitleX : 2630;
+  const lastBadgeX = typeof layoutOptions?.lastBadgeX === 'number' ? layoutOptions.lastBadgeX : 2820;
   const expertAnnotationY = typeof layoutOptions?.expertAnnotationY === 'number' ? layoutOptions.expertAnnotationY : 1054;
   const resourceMaxWidth = typeof layoutOptions?.resourceMaxWidth === 'number' ? layoutOptions.resourceMaxWidth : 780;
   const cx = 1016;
   const repeatCount = block.repeat?.count ?? 0;
-  builder.text('figure-title', 'title', { x: 590, y: 136 }, spec.title, { size: 136, weight: 700, fill: spec.theme.accent, align: 'start' });
+  builder.text('figure-title', 'title', { x: 590, y: 136 }, spec.title, { size: 136, weight: 700, fill: titleColor, align: 'start' });
   builder.group('model', 'model-container', { x: 450, y: 331, width: 1100, height: 2054 }, [], {
     fill: builder.solid(spec.theme.surface),
     stroke: builder.stroke(spec.theme.ink, 6),
@@ -399,8 +413,8 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   addFlow(builder, 'residual-attention', [{ x: cx, y: 1805 }, { x: 1250, y: 1805 }, { x: 1250, y: 1500 }, { x: 1038, y: 1500 }], { role: 'residual-path', junction: 'plus' });
   addFlow(builder, 'residual-moe', [{ x: cx, y: 1260 }, { x: 1250, y: 1260 }, { x: 1250, y: 764 }, { x: 1038, y: 764 }], { role: 'residual-path', junction: 'plus' });
   const flows: Array<[string, number, number]> = [
-    ['input', 2574, 2507], ['embedding', 2397, 2185], ['pre-attention', 2079, 1776], ['attention', 1654, 1583],
-    ['post-attention', 1428, 1356], ['pre-moe', 1276, 1199], ['moe', 1077, 995], ['post-moe', 899, 850],
+    ['input', 2574, 2507], ['embedding', 2397, 2185], ['pre-attention', 2079, 1776], ['attention', 1654, attentionBoxY + attentionBoxHeight],
+    ['post-attention', attentionBoxY - 3, 1356], ['pre-moe', 1276, 1199], ['moe', 1077, 995], ['post-moe', 899, 850],
     ['block-output', 671, 618], ['final-norm', 534, 486], ['output', 391, 237],
   ];
   flows.forEach(([id, from, to]) => addFlow(builder, `flow-${id}`, [{ x: cx, y: from }, { x: cx, y: to }]));
@@ -409,13 +423,26 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 837, y: 536, width: 344, height: 83 }, { spans: [{ text: 'Final RMSNorm' }] });
   addPill(builder, spec, 'moe', 'moe-block', { x: 834, y: 902, width: 344, height: 84 }, { spans: [{ text: 'MoE' }] }, { fill: spec.theme.surface });
   addPill(builder, spec, 'rmsnorm-2', 'norm', { x: 833, y: 1078, width: 346, height: 84 }, { spans: [{ text: 'RMSNorm 2' }] });
-  builder.box('attention-box', 'attention-block', { x: 766, y: 1431, width: 414, height: 152 }, {
+  builder.box('attention-box', 'attention-block', { x: 766, y: attentionBoxY, width: 414, height: attentionBoxHeight }, {
     fill: builder.solid('#5E5E5E'),
     stroke: builder.stroke(spec.theme.ink, 6),
     radius: 30,
     sourceId: 'attention',
   });
-  if (attentionData.family === 'mla') {
+  if (attentionData.family === 'mla' && attentionLabelStyle === 'mla-dsa') {
+    addComposedCenteredLine(builder, context, 'attention-mla-line-1', 973, attentionBoxY + 70, 32, [
+      { text: 'Multi-head ', fill: '#FFFFFF' },
+      { text: 'latent', fill: '#FF968D' },
+      { text: ' attention', fill: '#FFFFFF' },
+    ]);
+    builder.text('attention-mla-line-2', 'attention-label', { x: 973, y: attentionBoxY + 106 }, '(MLA)', { size: 32, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-mla-line-3', 'attention-label', { x: 973, y: attentionBoxY + 142 }, '+', { size: 32, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    addComposedCenteredLine(builder, context, 'attention-mla-line-4', 973, attentionBoxY + 178, 32, [
+      { text: 'DeepSeek ', fill: '#FFFFFF' },
+      { text: 'Sparse', fill: '#FF968D' },
+    ]);
+    builder.text('attention-mla-line-5', 'attention-label', { x: 973, y: attentionBoxY + 214 }, 'Attention (DSA)', { size: 32, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  } else if (attentionData.family === 'mla') {
     builder.text('attention-first-line', 'attention-label', { x: 970, y: 1510 }, { spans: [{ text: 'Multi-head ', color: 'inverse' }, { text: 'latent', color: 'accent', emphasis: 'italic' }] }, { size: 40, align: 'center', sourceId: 'attention' });
     builder.text('attention-second-line', 'attention-label', { x: 970, y: 1565 }, 'attention', { size: 40, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   } else {
@@ -438,13 +465,13 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   builder.text('repeat-x', 'repeat-marker', { x: 558, y: 1908 }, '×', { size: 60, weight: 700, fill: spec.theme.accent });
   builder.glyph('repeat-brace', 'repeat-marker', { x: 665, y: 1870 }, 'brace', 150);
 
-  builder.box('ffn-inset', 'ffn-inset', { x: 1877, y: 340, width: 791, height: 610 }, {
+  builder.box('ffn-inset', 'ffn-inset', { x: 1877, y: 340, width: ffnInsetWidth, height: ffnInsetHeight }, {
     fill: builder.solid(spec.theme.surface),
     stroke: builder.stroke(spec.theme.ink, 7, 'dotted'),
     radius: 44,
     sourceId: ffnInset.id,
   });
-  if (ffnInset.title) builder.text('ffn-inset-title', 'ffn-inset-title', { x: 2272, y: 315 }, ffnInset.title, { size: 54, weight: 700, align: 'center', sourceId: ffnInset.id });
+  if (ffnInset.title) builder.text('ffn-inset-title', 'ffn-inset-title', { x: ffnInsetTitleX, y: 315 }, ffnInset.title, { size: 54, weight: 700, align: 'center', sourceId: ffnInset.id });
   addFlow(builder, 'ffn-up-1', [{ x: 2077, y: 935 }, { x: 2077, y: 844 }], { role: 'inset-flow' });
   addFlow(builder, 'ffn-up-2', [{ x: 2077, y: 742 }, { x: 2077, y: 640 }], { role: 'inset-flow' });
   addFlow(builder, 'ffn-side-a', [{ x: 2077, y: 740 }, { x: 2227, y: 740 }], { role: 'inset-flow', arrow: 'none' });
@@ -455,13 +482,13 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   addPill(builder, spec, 'ffn-linear-side', 'inset-operation', { x: 2390, y: 835, width: 343, height: 98 }, { spans: [{ text: 'Linear layer' }] });
   builder.glyph('ffn-multiply', 'operator', { x: 2240, y: 740 }, 'multiply', 54);
 
-  builder.box('moe-inset', 'moe-inset', { x: 1729, y: 1213, width: 968, height: 935 }, {
+  builder.box('moe-inset', 'moe-inset', { x: 1729, y: 1213, width: moeInsetWidth, height: 935 }, {
     fill: builder.solid('#FFFFFF'),
     stroke: builder.stroke(spec.theme.accent, 8, 'dotted'),
     radius: 58,
     sourceId: moeInset.id,
   });
-  if (moeInset.title) builder.text('moe-inset-title', 'moe-inset-title', { x: 2630, y: 1302 }, moeInset.title, { size: 54, weight: 700, align: 'end', sourceId: moeInset.id });
+  if (moeInset.title) builder.text('moe-inset-title', 'moe-inset-title', { x: moeInsetTitleX, y: 1302 }, moeInset.title, { size: 54, weight: 700, align: 'end', sourceId: moeInset.id });
   addPill(builder, spec, 'router', 'router', { x: 2113, y: 1935, width: 200, height: 84 }, { spans: [{ text: 'Router' }] }, { stroke: spec.theme.accent, size: 40 });
   addPill(builder, spec, 'expert-left', 'expert', { x: 1790, y: 1640, width: 390, height: 88 }, { spans: [{ text: 'Feed forward' }] }, { size: 36 });
   addPill(builder, spec, 'expert-right', 'expert', { x: 2500, y: 1640, width: 390, height: 88 }, { spans: [{ text: 'Feed forward' }] }, { size: 36 });
@@ -474,7 +501,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   builder.glyph('moe-plus', 'operator', { x: 2213, y: 1410 }, 'plus', 60);
   builder.glyph('expert-ellipsis', 'ellipsis', { x: 2213, y: 1685 }, 'ellipsis', 70);
   addPill(builder, spec, 'badge-1', 'badge', { x: 2100, y: 1680, width: 65, height: 65 }, { spans: [{ text: '1' }] }, { fill: firstBadgeFill, textFill: '#FFFFFF', size: 42, radius: 10 });
-  addPill(builder, spec, 'badge-last', 'badge', { x: 2820, y: 1680, width: 85, height: 65 }, { spans: [{ text: `${moeData.experts}` }] }, { fill: spec.theme.accent, textFill: '#FFFFFF', size: 42, radius: 10 });
+  addPill(builder, spec, 'badge-last', 'badge', { x: lastBadgeX, y: 1680, width: 85, height: 65 }, { spans: [{ text: `${moeData.experts}` }] }, { fill: lastBadgeFill, textFill: '#FFFFFF', size: 42, radius: 10 });
   addFlow(builder, 'moe-output', [{ x: 2213, y: 1380 }, { x: 2213, y: 1325 }], { role: 'moe-flow' });
 
   const leaderLines: Array<[string, Point[], string?]> = [
@@ -485,23 +512,27 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     ['ffn-leader', [{ x: 1955, y: 950 }, { x: 1810, y: 1601 }]],
     ['dimension-leader', [{ x: 2215, y: 950 }, { x: 2272, y: 1015 }]],
   ];
-  leaderLines.forEach(([id, points, stroke]) => addFlow(builder, id, points, { role: 'leader', dash: 'dotted', arrow: 'none', stroke }));
+  leaderLines
+    .filter(([id]) => (id === 'attention-leader' ? showHeadsAnnotation : true))
+    .forEach(([id, points, stroke]) => addFlow(builder, id, points, { role: 'leader', dash: 'dotted', arrow: 'none', stroke }));
   addFlow(builder, 'moe-zoom', [{ x: 1182, y: 944 }, { x: 1736, y: 1290 }], { role: 'zoom-leader', dash: 'dotted', arrow: 'none', stroke: spec.theme.accent });
 
   addAnnotation(builder, spec, 'vocabulary', { x: 1240, y: 185 });
   addAnnotation(builder, spec, 'context', { x: 25, y: 1934 }, { size: 54 });
-  addAnnotation(builder, spec, 'heads', { x: 1592, y: 2408 }, {
-    size: 52,
-    content: [{ spans: [{ text: `${attentionData.heads}`, color: 'accent' }, { text: ' heads' }] }],
-  });
+  if (showHeadsAnnotation) {
+    addAnnotation(builder, spec, 'heads', { x: 1592, y: 2408 }, {
+      size: 52,
+      content: [{ spans: [{ text: `${attentionData.heads}`, color: 'accent' }, { text: ' heads' }] }],
+    });
+  }
   addAnnotation(builder, spec, 'embedding-dimension', { x: 1365, y: 2602 }, { size: 53 });
   addAnnotation(builder, spec, 'expert-dimensions', { x: 2025, y: expertAnnotationY }, { size: 48 });
   addAnnotation(builder, spec, 'resource-savings-title', { x: 1955, y: 2252 }, { size: 56 });
   const resource = annotationOf(spec, 'resource-savings');
   const resourceBullets = resource && 'bullets' in resource.content ? [...resource.content.bullets] : [];
-  const activeLabel = moeData.sharedExperts && moeData.sharedExperts > 0
+  const activeLabel = activeExpertLabel ?? (moeData.sharedExperts && moeData.sharedExperts > 0
     ? `${moeData.sharedExperts} (shared) + ${moeData.activeExperts} experts`
-    : `${moeData.activeExperts} experts`;
+    : `${moeData.activeExperts} experts`);
   const activeIndex = resourceBullets.findIndex((bullet) => bullet.spans.some((span) => span.text.includes('expert')));
   if (activeIndex >= 0) {
     resourceBullets[activeIndex] = { maxWidth: 780, spans: [{ text: 'but only ' }, { text: activeLabel, color: 'accent' }, { text: ' active per token' }] };
@@ -513,9 +544,34 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     lineGap: resourceLineGap,
     content: resourceBullets.map((bullet) => ({ ...bullet, maxWidth: bullet.maxWidth ?? resourceMaxWidth })),
   });
+  if (denseFirstLeader && annotationOf(spec, 'dense-first')) {
+    addFlow(builder, 'dense-first-leader', [{ x: 420, y: 2240 }, { x: 620, y: 1980 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
+  }
   addAnnotation(builder, spec, 'dense-first', { x: 20, y: 2390 }, { size: 44 });
 
   return scaleScene(builder.scene(spec), 2904, 2699);
+}
+
+function addComposedCenteredLine(
+  builder: SceneBuilder,
+  context: LayoutContext,
+  id: string,
+  centerX: number,
+  y: number,
+  size: number,
+  pieces: Array<{ text: string; fill: string }>,
+): void {
+  const widths = pieces.map((piece) => context.metrics.measure({ text: piece.text }, { size, weight: 400, family: 'sans-serif' }));
+  let cursor = centerX - widths.reduce((sum, width) => sum + width, 0) / 2;
+  pieces.forEach((piece, index) => {
+    builder.text(`${id}-${index}`, 'attention-label', { x: cursor, y }, piece.text, {
+      size,
+      fill: piece.fill,
+      align: 'start',
+      sourceId: 'attention',
+    });
+    cursor += widths[index];
+  });
 }
 
 function scaleScene(scene: Scene, baseWidth: number, baseHeight: number): Scene {

@@ -1,6 +1,6 @@
 # LLM Architecture Components
 
-A TypeScript-first workspace for a component library that lets coding agents draw LLM architecture diagrams. The current implementation provides spec-driven rendering for 29 verified figures, with hand-authored prototypes preserved as golden fixtures and template adapters sharing an internal TemplateScene helper layer.
+A TypeScript-first workspace for a component library that lets coding agents draw LLM architecture diagrams. The current implementation provides spec-driven rendering for 35 verified figures, with hand-authored prototypes preserved as golden fixtures and template adapters sharing an internal TemplateScene helper layer.
 
 ## Environment
 
