@@ -31,8 +31,8 @@ export type FigureSpecEntry = {
 };
 
 export const figureSpecs: FigureSpecEntry[] = [
-  { slug: 'deepseek-r1', name: 'DeepSeek-R1 (671B)', reference: '../images/deepseek-r1.webp', width: 2786, height: 2725, spec: deepSeekR1Spec },
   { slug: 'deepseek-v3', name: 'DeepSeek-V3 (671B)', reference: '../images/deepseek-v3.webp', width: 2786, height: 2725, spec: deepSeekV3Spec },
+  { slug: 'deepseek-r1', name: 'DeepSeek-R1 (671B)', reference: '../images/deepseek-r1.webp', width: 2786, height: 2725, spec: deepSeekR1Spec },
   { slug: 'gemma-3-270m', name: 'Gemma 3 (270M)', reference: '../images/gemma-3-270m.webp', width: 2678, height: 2652, spec: gemma3SmallSpec },
   { slug: 'gemma-3-27b', name: 'Gemma 3 (27B)', reference: '../images/gemma-3-27b.webp', width: 2593, height: 2686, spec: gemma3Spec },
   { slug: 'gemma-4-12b', name: 'Gemma 4 (12B)', reference: '../images/gemma-4-12b.webp', width: 2582, height: 2686, spec: gemma412bSpec },

@@ -44,8 +44,8 @@ import { renderFigure, SceneSvg } from './core/renderFigure';
 import { figureSpecs } from './specs';
 
 const references: Record<string, string> = {
-  'deepseek-r1': deepseekR1Ref,
   'deepseek-v3': deepseekV3Ref,
+  'deepseek-r1': deepseekR1Ref,
   'gemma-3-270m': gemma3SmallRef,
   'gemma-3-27b': gemma3Ref,
   'gemma-4-12b': gemma412bRef,

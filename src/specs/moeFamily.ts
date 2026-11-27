@@ -38,6 +38,7 @@ type MoeFamilyInput = {
   attentionBoxHeight?: number;
   expertAnnotationY?: number;
   resourceMaxWidth?: number;
+  resourceLineGap?: number;
   wideInsets?: boolean;
 };
 
@@ -111,6 +112,7 @@ function moeFamilySpec(input: MoeFamilyInput): FigureSpec {
         ...(input.attentionBoxHeight !== undefined ? { attentionBoxHeight: input.attentionBoxHeight } : {}),
         ...(input.expertAnnotationY !== undefined ? { expertAnnotationY: input.expertAnnotationY } : {}),
         ...(input.resourceMaxWidth !== undefined ? { resourceMaxWidth: input.resourceMaxWidth } : {}),
+        ...(input.resourceLineGap !== undefined ? { resourceLineGap: input.resourceLineGap } : {}),
         ...(input.wideInsets ? {
           ffnInsetWidth: 856,
           ffnInsetHeight: 700,
@@ -203,7 +205,7 @@ export const qwen3CoderFlashSpec = moeFamilySpec({
   experts: 128, activeExperts: 8, sharedExperts: 0,
   expertDimensions: [text('Intermediate hidden'), text('layer dimension of'), emphasized('', '768')],
   modelSize: '30B', activeParams: '3.3B', showQKNorm: true, showHeadsAnnotation: false,
-  expertAnnotationY: 1070, wideInsets: true,
+  expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
 
 export const minimaxM25Spec = moeFamilySpec({
@@ -216,7 +218,7 @@ export const minimaxM25Spec = moeFamilySpec({
   modelSize: '230B', activeParams: '10B',
   activeParamsLine: { spans: [{ text: '' }, { text: 'per inference step (i.e., only ' }, { text: '4.37%', color: 'accent' }, { text: ' parameters active)' }] },
   ropeLabel: 'Partial RoPE', showQKNorm: true, showHeadsAnnotation: false, firstBadgeFill: '#5E5E5E',
-  expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
+  expertAnnotationY: 1070, resourceMaxWidth: 900, resourceLineGap: 58, wideInsets: true,
 });
 
 export const glm47Spec = moeFamilySpec({
