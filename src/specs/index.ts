@@ -6,7 +6,7 @@ import { gptOss120bSpec } from './gptOss120b';
 import { qwen38FlashNextSpec } from './qwen38FlashNext';
 import { glm54Spec } from './glm54';
 import { llama3Spec } from './llama3';
-import { llama321bSpec, llama323bSpec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec } from './denseBackbone';
+import { antares1bSpec, llama321bSpec, llama323bSpec, mistralSmall31Spec, nanbeige41Spec, nanbeige43Spec, olmo2Spec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, vibeThinker3bSpec } from './denseBackbone';
 import { domynEdgeSpec, granite41Spec, gpt2xlSpec } from './edgeBackbone';
 import { deepSeekR1Spec, glm45355bSpec, glm45AirSpec, glm47Spec, glm51Spec, glm5744bSpec, gptOss20bSpec, intellect3Spec, minimaxM25Spec, mistralLarge3Spec, qwen3235bSpec, qwen3CoderFlashSpec } from './moeFamily';
 import { qwen3Spec } from './qwen3';
@@ -41,6 +41,7 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'gpt-oss-120b', name: 'gpt-oss (120B)', reference: '../images/gpt-oss-120b.webp', width: 2904, height: 2699, spec: gptOss120bSpec },
   { slug: 'qwen3-8-flash-next-125b-a6b', name: 'Qwen3.8-Flash-Next (125B-A6B)', reference: '../images/qwen3-8-flash-next-125b-a6b.webp', width: 4078, height: 3391, spec: qwen38FlashNextSpec },
   { slug: 'glm-5-4', name: 'GLM-5.4 (~750B)', reference: '../images/glm-5-4.webp', width: 3354, height: 2862, spec: glm54Spec },
+  { slug: 'antares-1b', name: 'Antares-1B', reference: '../images/antares-1b.webp', width: 2530, height: 2632, spec: antares1bSpec },
   { slug: 'llama-3-2-1b', name: 'Llama 3.2 (1B)', reference: '../images/llama-3-2-1b.webp', width: 2553, height: 2664, spec: llama321bSpec },
   { slug: 'llama-3-2-3b', name: 'Llama 3.2 (3B)', reference: '../images/llama-3-2-3b.webp', width: 2553, height: 2664, spec: llama323bSpec },
   { slug: 'llama-3-8b', name: 'Llama 3 (8B)', reference: '../images/llama-3-8b.webp', width: 2554, height: 2670, spec: llama3Spec },
@@ -49,6 +50,11 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'qwen3-8b', name: 'Qwen3 (8B)', reference: '../images/qwen3-8b.webp', width: 2533, height: 2642, spec: qwen3Spec },
   { slug: 'qwen3-32b', name: 'Qwen3 (32B)', reference: '../images/qwen3-32b.webp', width: 2531, height: 2634, spec: qwen332bSpec },
   { slug: 'phi-4', name: 'Phi-4 (14B)', reference: '../images/phi-4.webp', width: 2563, height: 2671, spec: phi4Spec },
+  { slug: 'vibethinker-3b', name: 'VibeThinker-3B', reference: '../images/vibethinker-3b.webp', width: 2555, height: 2652, spec: vibeThinker3bSpec },
+  { slug: 'nanbeige-4-1-3b', name: 'Nanbeige4.1 (3B)', reference: '../images/nanbeige-4-1-3b.webp', width: 2649, height: 2664, spec: nanbeige41Spec },
+  { slug: 'nanbeige-4-3-33b', name: 'Nanbeige4.3 (33B)', reference: '../images/nanbeige-4-3-33b.webp', width: 2599, height: 2664, spec: nanbeige43Spec },
+  { slug: 'mistral-small-3-1-24b', name: 'Mistral Small 3.1 (24B)', reference: '../images/mistral-small-3-1-24b.webp', width: 2554, height: 2686, spec: mistralSmall31Spec },
+  { slug: 'olmo-2-7b', name: 'OLMo 2 (7B)', reference: '../images/olmo-2-7b.webp', width: 2595, height: 2679, spec: olmo2Spec },
   { slug: 'domyn-edge-3-93b', name: 'Domyn Edge (3.93B)', reference: '../images/domyn-edge-3-93b.webp', width: 2494, height: 2663, spec: domynEdgeSpec },
   { slug: 'granite-4-1-30b', name: 'Granite 4.1 (30B)', reference: '../images/granite-4-1-30b.webp', width: 2530, height: 2634, spec: granite41Spec },
   { slug: 'gpt-2-xl-1-5b', name: 'GPT-2 XL (1.5B)', reference: '../images/gpt-2-xl-1-5b.webp', width: 2488, height: 2698, spec: gpt2xlSpec },
@@ -74,4 +80,4 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'tencent-hy4-770b-a49b', name: 'Tencent Hy4 (770B-A49B)', reference: '../images/tencent-hy4-770b-a49b.webp', width: 3834, height: 2949, spec: tencentHy4Spec },
 ];
 
-export { deepSeekR1Spec, deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, qwen3CoderFlashSpec, minimaxM2Spec, minimaxM25Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm47Spec, glm51Spec, glm5744bSpec, mistralLarge3Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };
+export { antares1bSpec, deepSeekR1Spec, deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, vibeThinker3bSpec, nanbeige41Spec, nanbeige43Spec, mistralSmall31Spec, olmo2Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, qwen3CoderFlashSpec, minimaxM2Spec, minimaxM25Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm47Spec, glm51Spec, glm5744bSpec, mistralLarge3Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };

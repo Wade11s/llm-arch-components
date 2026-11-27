@@ -160,7 +160,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   }
   const layoutOptions = spec.layout.options;
   const normLabels = layoutOptions?.normLabels;
-  const showPostNorms = normLabels === undefined || normLabels === 'pre-post';
+  const showPostNorms = typeof layoutOptions?.showPostNorms === 'boolean'
+    ? layoutOptions.showPostNorms
+    : normLabels === undefined || normLabels === 'pre-post';
+  const showPreNorms = layoutOptions?.showPreNorms !== false;
   const showQKNorm = layoutOptions?.showQKNorm !== false;
   const showRoPE = layoutOptions?.showRoPE !== false;
   const normStroke = layoutOptions?.normStroke === 'ink'
@@ -213,19 +216,26 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, `${gqaData.ratio} (local:global)`, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
     builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: [{ text: 'sliding window', color: 'accent' }, { text: ' and', color: 'inverse' }] }, { size: 42, align: 'center', sourceId: 'attention' });
     builder.text('attention-line-3', 'attention-label', { x: cx, y: 1642 }, 'GQA', { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  } else if (layoutOptions?.attentionLabelStyle === 'mha') {
+    builder.text('attention-line-1', 'attention-label', { x: cx, y: 1580 }, { spans: [{ text: 'Multi-head attention' }] }, { size: 40, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   } else {
+    const attentionFirstLineAccent = layoutOptions?.attentionFirstLineAccent === true;
+    const attentionSuffix = typeof layoutOptions?.attentionSuffix === 'string' ? layoutOptions.attentionSuffix : undefined;
     const labelSpans = gqa?.label?.spans ?? [{ text: 'Grouped-query' }, { text: 'attention' }];
     const split = labelSpans.length > 2 ? labelSpans.length - 1 : 1;
-    builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, { spans: labelSpans.slice(0, split) }, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
-    builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: labelSpans.slice(split) }, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    const secondLineSpans = attentionSuffix
+      ? [{ text: 'attention ', color: 'inverse' as const }, { text: attentionSuffix, color: 'accent' as const }]
+      : labelSpans.slice(split);
+    builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, { spans: labelSpans.slice(0, split) }, { size: 42, fill: attentionFirstLineAccent ? spec.theme.accent : '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: secondLineSpans }, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   }
   addPill(builder, spec, 'ffn', 'feed-forward', { x: 848, y: 969, width: 350, height: 84 }, { spans: [{ text: 'Feed forward' }] }, { fill: spec.theme.surface, stroke: '#3A3A3A', radius: 26 });
   const normPrefix = normLabels === 'rmsnorm' ? 'RMSNorm' : normLabels === 'layernorm' ? 'LayerNorm' : 'Pre-RMSNorm';
   const dropoutLabel = dropoutNode ? textOf(dropoutNode) : { spans: [{ text: 'Dropout' }] };
-  addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: `${normPrefix} 1` }] }, { stroke: normStroke, radius: 26 });
+  if (showPreNorms) addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: `${normPrefix} 1` }] }, { stroke: normStroke, radius: 26 });
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-1', 'norm', { x: 848, y: 1376, width: 348, height: 82 }, { spans: [{ text: 'Post-RMSNorm 1' }] }, { stroke: normStroke, radius: 26 });
   if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-attention', 'dropout', { x: 848, y: 1376, width: 348, height: 82 }, dropoutLabel, { stroke: normStroke, radius: 26 });
-  addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: `${normPrefix} 2` }] }, { stroke: normStroke, radius: 26 });
+  if (showPreNorms) addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: `${normPrefix} 2` }] }, { stroke: normStroke, radius: 26 });
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: normStroke, radius: 26 });
   if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-ffn', 'dropout', { x: 852, y: 832, width: 348, height: 84 }, dropoutLabel, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: normLabels === 'layernorm' ? 'Final LayerNorm' : 'Final RMSNorm' }] });
