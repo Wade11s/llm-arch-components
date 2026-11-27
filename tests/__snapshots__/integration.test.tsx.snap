@@ -47682,3 +47682,4920 @@ exports[`spec-driven integration surface all validated figures render through th
   "schemaVersion": 1,
 }
 `;
+
+exports[`spec-driven integration surface all validated figures render through the same interface with stable Scene snapshots: deepseek-v4-1-flash 1`] = `
+{
+  "canvas": {
+    "height": 3556,
+    "width": 5000,
+  },
+  "diagnostics": [],
+  "elements": [
+    {
+      "align": "start",
+      "at": {
+        "x": 1560,
+        "y": 90,
+      },
+      "fontFamily": "'Arial Black', Arial, sans-serif",
+      "id": "figure-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 90,
+          "spans": [
+            {
+              "fill": "#1E88E5",
+              "size": 96,
+              "text": "DeepSeek-V4.1-Flash (552B)",
+              "weight": 900,
+              "width": 1365.8111999999999,
+              "x": 1560,
+            },
+          ],
+        },
+      ],
+      "role": "title",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1700,
+        "y": 180,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "figure-subtitle",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 180,
+          "spans": [
+            {
+              "fill": "#666666",
+              "size": 34,
+              "text": "Text backbone shown. Vision encoder and DSpark speculative decoding modules omitted.",
+              "weight": 400,
+              "width": 1399.4400000000016,
+              "x": 1700,
+            },
+          ],
+        },
+      ],
+      "role": "subtitle",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 2900,
+        "width": 1600,
+        "x": 780,
+        "y": 400,
+      },
+      "children": [],
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "model",
+      "kind": "group",
+      "role": "model-container",
+      "sourceId": "model",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 1900,
+        "width": 650,
+        "x": 830,
+        "y": 900,
+      },
+      "fill": {
+        "color": "#75A9D8",
+        "kind": "solid",
+      },
+      "id": "encoder-tower",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "encoder-tower",
+      "sourceId": "encoder",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 1900,
+        "width": 650,
+        "x": 2100,
+        "y": 900,
+      },
+      "fill": {
+        "color": "#75A9D8",
+        "kind": "solid",
+      },
+      "id": "decoder-tower",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "decoder-tower",
+      "sourceId": "decoder",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1370,
+        "y": 960,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 960,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "Causal encoder",
+              "weight": 800,
+              "width": 278.6160000000001,
+              "x": 1370,
+            },
+          ],
+        },
+      ],
+      "role": "tower-title",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1370,
+        "y": 1030,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-layers",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1030,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "20 layers",
+              "weight": 700,
+              "width": 142.10560000000004,
+              "x": 1370,
+            },
+          ],
+        },
+      ],
+      "role": "tower-title",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2170,
+        "y": 960,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 960,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "Decoder",
+              "weight": 800,
+              "width": 151.75680000000003,
+              "x": 2170,
+            },
+          ],
+        },
+      ],
+      "role": "tower-title",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2170,
+        "y": 1030,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-layers",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1030,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "20 layers",
+              "weight": 700,
+              "width": 142.10560000000004,
+              "x": 2170,
+            },
+          ],
+        },
+      ],
+      "role": "tower-title",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 900,
+        "y": 780,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "encoder-final-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "tower-output",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1115,
+        "y": 830.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-final-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 830.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Final encoder hidden states",
+              "weight": 500,
+              "width": 362.31999999999994,
+              "x": 933.84,
+            },
+          ],
+        },
+      ],
+      "role": "tower-output-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2210,
+        "y": 740,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "decoder-premix-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "tower-output",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2425,
+        "y": 790.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-premix-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 790.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Final pre-mix (4 to 1)",
+              "weight": 500,
+              "width": 289.24,
+              "x": 2280.38,
+            },
+          ],
+        },
+      ],
+      "role": "tower-output-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 410,
+        "x": 2220,
+        "y": 620,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "decoder-final-norm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "norm",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2425,
+        "y": 670.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-final-norm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 670.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Final RMSNorm",
+              "weight": 500,
+              "width": 202.72000000000006,
+              "x": 2323.64,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 380,
+        "x": 2300,
+        "y": 500,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "decoder-output-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "output-layer",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2490,
+        "y": 550.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-output-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 550.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear output layer",
+              "weight": 500,
+              "width": 257.6,
+              "x": 2361.2,
+            },
+          ],
+        },
+      ],
+      "role": "output-layer-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 300,
+        "width": 550,
+        "x": 880,
+        "y": 1100,
+      },
+      "fill": {
+        "color": "#FFFFFF00",
+        "kind": "solid",
+      },
+      "id": "encoder-reuse-frame",
+      "kind": "box",
+      "label": undefined,
+      "radius": 34,
+      "role": "nested-repeat-frame",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1465,
+        "y": 1250,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-reuse-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1250,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "×5",
+              "weight": 700,
+              "width": 35.2768,
+              "x": 1465,
+            },
+          ],
+        },
+      ],
+      "role": "nested-repeat-count",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 940,
+        "y": 1050,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "encoder-reuse-moe-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-block",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 1100.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-reuse-moe-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1100.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "MoE",
+              "weight": 500,
+              "width": 56.28000000000001,
+              "x": 1126.86,
+            },
+          ],
+        },
+      ],
+      "role": "moe-block-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 940,
+        "y": 1200,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "encoder-reuse-attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "attention-node",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 1250.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-reuse-attention-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1250.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "CSA2(2, Reuse)",
+              "weight": 500,
+              "width": 208.32000000000005,
+              "x": 1050.84,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 700,
+        "width": 550,
+        "x": 880,
+        "y": 1450,
+      },
+      "fill": {
+        "color": "#FFFFFF00",
+        "kind": "solid",
+      },
+      "id": "encoder-full-frame",
+      "kind": "box",
+      "label": undefined,
+      "radius": 34,
+      "role": "nested-repeat-frame",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1465,
+        "y": 1800,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-full-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1800,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "×3",
+              "weight": 700,
+              "width": 35.2768,
+              "x": 1465,
+            },
+          ],
+        },
+      ],
+      "role": "nested-repeat-count",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 940,
+        "y": 1700,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "encoder-full-moe-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-block",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 1750.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-full-moe-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1750.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "MoE",
+              "weight": 500,
+              "width": 56.28000000000001,
+              "x": 1126.86,
+            },
+          ],
+        },
+      ],
+      "role": "moe-block-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 940,
+        "y": 1800,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "encoder-full-moe-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-block",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 1850.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-full-moe-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1850.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "MoE",
+              "weight": 500,
+              "width": 56.28000000000001,
+              "x": 1126.86,
+            },
+          ],
+        },
+      ],
+      "role": "moe-block-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 100,
+        "width": 430,
+        "x": 940,
+        "y": 1900,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "encoder-full-attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "attention-node",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 1941.1799999999998,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-full-attention-label-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1941.1799999999998,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Compressed Sparse Attention 2",
+              "weight": 500,
+              "width": 421.3999999999998,
+              "x": 944.3000000000001,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 1978.9799999999998,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-full-attention-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1978.9799999999998,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "CSA2(2, Full)",
+              "weight": 500,
+              "width": 179.48000000000005,
+              "x": 1065.26,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 350,
+        "width": 550,
+        "x": 880,
+        "y": 2150,
+      },
+      "fill": {
+        "color": "#FFFFFF00",
+        "kind": "solid",
+      },
+      "id": "encoder-swa-frame",
+      "kind": "box",
+      "label": undefined,
+      "radius": 34,
+      "role": "nested-repeat-frame",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1465,
+        "y": 2325,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-swa-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2325,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "×2",
+              "weight": 700,
+              "width": 35.2768,
+              "x": 1465,
+            },
+          ],
+        },
+      ],
+      "role": "nested-repeat-count",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 940,
+        "y": 2250,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "encoder-swa-moe-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-block",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 2300.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-swa-moe-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2300.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "MoE",
+              "weight": 500,
+              "width": 56.28000000000001,
+              "x": 1126.86,
+            },
+          ],
+        },
+      ],
+      "role": "moe-block-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 90,
+        "width": 430,
+        "x": 940,
+        "y": 2400,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "encoder-swa-attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "attention-node",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 2436.18,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-swa-attention-label-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2436.18,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Sliding window attention",
+              "weight": 500,
+              "width": 327.03999999999996,
+              "x": 991.48,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 2473.98,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "encoder-swa-attention-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2473.98,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "(SWA)",
+              "weight": 500,
+              "width": 89.60000000000001,
+              "x": 1110.2,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 300,
+        "width": 550,
+        "x": 2160,
+        "y": 1100,
+      },
+      "fill": {
+        "color": "#FFFFFF00",
+        "kind": "solid",
+      },
+      "id": "decoder-reuse-top-frame",
+      "kind": "box",
+      "label": undefined,
+      "radius": 34,
+      "role": "nested-repeat-frame",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2745,
+        "y": 1250,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reuse-top-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1250,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "×3",
+              "weight": 700,
+              "width": 35.2768,
+              "x": 2745,
+            },
+          ],
+        },
+      ],
+      "role": "nested-repeat-count",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2220,
+        "y": 1050,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "decoder-reuse-top-moe-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-block",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2435,
+        "y": 1100.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reuse-top-moe-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1100.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "MoE",
+              "weight": 500,
+              "width": 56.28000000000001,
+              "x": 2406.86,
+            },
+          ],
+        },
+      ],
+      "role": "moe-block-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2220,
+        "y": 1200,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "decoder-reuse-top-attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "attention-node",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2435,
+        "y": 1250.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reuse-top-attention-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1250.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "CSA2(1, Reuse)",
+              "weight": 500,
+              "width": 208.32000000000005,
+              "x": 2330.84,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 400,
+        "width": 550,
+        "x": 2160,
+        "y": 1500,
+      },
+      "fill": {
+        "color": "#FFFFFF00",
+        "kind": "solid",
+      },
+      "id": "decoder-reindex-frame",
+      "kind": "box",
+      "label": undefined,
+      "radius": 34,
+      "role": "nested-repeat-frame",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2745,
+        "y": 1700,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reindex-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1700,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "×4",
+              "weight": 700,
+              "width": 35.2768,
+              "x": 2745,
+            },
+          ],
+        },
+      ],
+      "role": "nested-repeat-count",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2220,
+        "y": 1600,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "decoder-reindex-moe-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-block",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2435,
+        "y": 1650.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reindex-moe-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1650.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "MoE",
+              "weight": 500,
+              "width": 56.28000000000001,
+              "x": 2406.86,
+            },
+          ],
+        },
+      ],
+      "role": "moe-block-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2220,
+        "y": 1750,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "decoder-reindex-attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "attention-node",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2435,
+        "y": 1800.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reindex-attention-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1800.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "CSA2(1, Reindex)",
+              "weight": 500,
+              "width": 231.00000000000006,
+              "x": 2319.5,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 450,
+        "width": 550,
+        "x": 2160,
+        "y": 2000,
+      },
+      "fill": {
+        "color": "#FFFFFF00",
+        "kind": "solid",
+      },
+      "id": "decoder-reuse-bottom-frame",
+      "kind": "box",
+      "label": undefined,
+      "radius": 34,
+      "role": "nested-repeat-frame",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2745,
+        "y": 2225,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reuse-bottom-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2225,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "×3",
+              "weight": 700,
+              "width": 35.2768,
+              "x": 2745,
+            },
+          ],
+        },
+      ],
+      "role": "nested-repeat-count",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2220,
+        "y": 2100,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "decoder-reuse-bottom-moe-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-block",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2435,
+        "y": 2150.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reuse-bottom-moe-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2150.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "MoE",
+              "weight": 500,
+              "width": 56.28000000000001,
+              "x": 2406.86,
+            },
+          ],
+        },
+      ],
+      "role": "moe-block-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2220,
+        "y": 2250,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "decoder-reuse-bottom-attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "attention-node",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2435,
+        "y": 2300.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-reuse-bottom-attention-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2300.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "CSA2(1, Reuse)",
+              "weight": 500,
+              "width": 208.32000000000005,
+              "x": 2330.84,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 2220,
+        "y": 2600,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "decoder-full-attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "attention-node",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2435,
+        "y": 2650.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "decoder-full-attention-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2650.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "CSA2(1, Full)",
+              "weight": 500,
+              "width": 179.48000000000005,
+              "x": 2345.2599999999998,
+            },
+          ],
+        },
+      ],
+      "role": "attention-node-label",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "encoder-flow-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1155,
+          "y": 2500,
+        },
+        {
+          "x": 1155,
+          "y": 2330,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "encoder-flow-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1155,
+          "y": 2250,
+        },
+        {
+          "x": 1155,
+          "y": 2080,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "encoder-flow-3",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1155,
+          "y": 1900,
+        },
+        {
+          "x": 1155,
+          "y": 1780,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "encoder-flow-4",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1155,
+          "y": 1700,
+        },
+        {
+          "x": 1155,
+          "y": 1280,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "encoder-flow-5",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1155,
+          "y": 1200,
+        },
+        {
+          "x": 1155,
+          "y": 860,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "decoder-flow-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2435,
+          "y": 2680,
+        },
+        {
+          "x": 2435,
+          "y": 2530,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "decoder-flow-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2435,
+          "y": 2600,
+        },
+        {
+          "x": 2435,
+          "y": 2330,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "decoder-flow-3",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2435,
+          "y": 2250,
+        },
+        {
+          "x": 2435,
+          "y": 1830,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "decoder-flow-4",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2435,
+          "y": 1750,
+        },
+        {
+          "x": 2435,
+          "y": 1280,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "decoder-flow-5",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2435,
+          "y": 1200,
+        },
+        {
+          "x": 2435,
+          "y": 820,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 120,
+        "width": 220,
+        "x": 1650,
+        "y": 1750,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ced-global-kv-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "cross-tower-link",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1760,
+        "y": 1820.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ced-global-kv-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1820.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": 
+"CED
+Global KV"
+,
+              "weight": 500,
+              "width": 193.76000000000005,
+              "x": 1663.12,
+            },
+          ],
+        },
+      ],
+      "role": "cross-tower-link-label",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "ced-left",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1480,
+          "y": 1810,
+        },
+        {
+          "x": 1650,
+          "y": 1810,
+        },
+      ],
+      "role": "cross-tower-link",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "ced-right",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1870,
+          "y": 1810,
+        },
+        {
+          "x": 2100,
+          "y": 1810,
+        },
+      ],
+      "role": "cross-tower-link",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2200,
+        "y": 2890,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "indexer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2890,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Hierarchical sparse indexer",
+              "weight": 700,
+              "width": 403.7279999999999,
+              "x": 2200,
+            },
+          ],
+        },
+      ],
+      "role": "hierarchical-indexer",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 450,
+        "x": 2200,
+        "y": 2950,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "candidate-pool-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "candidate-pool",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2425,
+        "y": 3000.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "candidate-pool-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3000.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Candidate pool",
+              "weight": 500,
+              "width": 190.40000000000006,
+              "x": 2329.8,
+            },
+          ],
+        },
+      ],
+      "role": "candidate-pool-label",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "candidate-link",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2650,
+          "y": 1790,
+        },
+        {
+          "x": 2750,
+          "y": 1790,
+        },
+        {
+          "x": 2750,
+          "y": 2990,
+        },
+        {
+          "x": 2650,
+          "y": 2990,
+        },
+      ],
+      "role": "cross-tower-link",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 430,
+        "x": 950,
+        "y": 2870,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "token-embedding-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "embedding",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1165,
+        "y": 2920.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "token-embedding-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2920.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Token embedding layer",
+              "weight": 500,
+              "width": 295.4,
+              "x": 1017.3,
+            },
+          ],
+        },
+      ],
+      "role": "embedding-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 360,
+        "x": 980,
+        "y": 3090,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "tokenized-text-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "input",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1160,
+        "y": 3140.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "tokenized-text-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3140.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Tokenized text",
+              "weight": 500,
+              "width": 197.40000000000006,
+              "x": 1061.3,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1155,
+        "y": 3250,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "sample-input",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3250,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Sample input text",
+              "weight": 400,
+              "width": 337.20000000000016,
+              "x": 986.3999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "embedding-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1155,
+          "y": 3050,
+        },
+        {
+          "x": 1155,
+          "y": 2950,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3270,
+        "y": 410,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 410,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 42,
+              "text": "Feed forward (SwiGLU) module",
+              "weight": 800,
+              "width": 660.0047999999999,
+              "x": 3270,
+            },
+          ],
+        },
+      ],
+      "role": "ffn-title",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 620,
+        "width": 800,
+        "x": 3270,
+        "y": 450,
+      },
+      "fill": {
+        "color": "#F3F3F3",
+        "kind": "solid",
+      },
+      "id": "ffn-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 54,
+      "role": "ffn-inset",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 3330,
+        "y": 510,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-top-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3445,
+        "y": 560.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-top-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 560.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 160.72000000000006,
+              "x": 3364.64,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 3330,
+        "y": 710,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-activation-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3445,
+        "y": 760.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-activation-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 760.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "SiLU activation",
+              "weight": 500,
+              "width": 205.52000000000007,
+              "x": 3342.24,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 3330,
+        "y": 910,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-bottom-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3445,
+        "y": 960.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-bottom-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 960.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 160.72000000000006,
+              "x": 3364.64,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 3750,
+        "y": 710,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-side-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3865,
+        "y": 760.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-side-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 760.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 160.72000000000006,
+              "x": 3784.64,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 3720,
+        "y": 610,
+      },
+      "glyph": "multiply",
+      "id": "ffn-multiply",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 54,
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3445,
+          "y": 910,
+        },
+        {
+          "x": 3445,
+          "y": 790,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3445,
+          "y": 710,
+        },
+        {
+          "x": 3445,
+          "y": 590,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-a",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3445,
+          "y": 610,
+        },
+        {
+          "x": 3720,
+          "y": 610,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-b",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3750,
+          "y": 610,
+        },
+        {
+          "x": 3865,
+          "y": 610,
+        },
+        {
+          "x": 3865,
+          "y": 710,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3400,
+        "y": 1150,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-dimensions-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1150,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "Intermediate hidden",
+              "weight": 700,
+              "width": 369.9072000000001,
+              "x": 3400,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-ffn-dimensions",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3400,
+        "y": 1202,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-dimensions-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1202,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "layer dimension of",
+              "weight": 700,
+              "width": 339.0816000000001,
+              "x": 3400,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-ffn-dimensions",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3400,
+        "y": 1254,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-dimensions-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1254,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 3400,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 38,
+              "text": "2,304",
+              "weight": 700,
+              "width": 94.84800000000003,
+              "x": 3400,
+            },
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 3494.848,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-ffn-dimensions",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 900,
+        "width": 1000,
+        "x": 3200,
+        "y": 1510,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "moe-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 58,
+      "role": "moe-inset",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3570,
+        "y": 1620,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "moe-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1620,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 50,
+              "text": "MoE layer",
+              "weight": 800,
+              "width": 243.88000000000008,
+              "x": 3448.06,
+            },
+          ],
+        },
+      ],
+      "role": "moe-title",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 3680,
+        "y": 1700,
+      },
+      "glyph": "plus",
+      "id": "moe-plus",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 60,
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 310,
+        "x": 3250,
+        "y": 1880,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "moe-left-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-expert",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3405,
+        "y": 1930.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "moe-left-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1930.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Feed forward",
+              "weight": 500,
+              "width": 182.84000000000006,
+              "x": 3313.58,
+            },
+          ],
+        },
+      ],
+      "role": "moe-expert-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 310,
+        "x": 3810,
+        "y": 1880,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "moe-right-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "moe-expert",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3965,
+        "y": 1930.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "moe-right-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1930.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Feed forward",
+              "weight": 500,
+              "width": 182.84000000000006,
+              "x": 3873.58,
+            },
+          ],
+        },
+      ],
+      "role": "moe-expert-label",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 3680,
+        "y": 1910,
+      },
+      "glyph": "ellipsis",
+      "id": "moe-ellipsis",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "ellipsis",
+      "size": 60,
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 65,
+        "width": 65,
+        "x": 3530,
+        "y": 1920,
+      },
+      "fill": {
+        "color": "#000000",
+        "kind": "solid",
+      },
+      "id": "moe-badge-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "badge",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3562.5,
+        "y": 1964.02,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "moe-badge-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1964.02,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "1",
+              "weight": 500,
+              "width": 16.96,
+              "x": 3554.02,
+            },
+          ],
+        },
+      ],
+      "role": "badge-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 65,
+        "width": 85,
+        "x": 4010,
+        "y": 1920,
+      },
+      "fill": {
+        "color": "#1E88E5",
+        "kind": "solid",
+      },
+      "id": "moe-badge-last-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "badge",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 4052.5,
+        "y": 1964.02,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "moe-badge-last-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1964.02,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "384",
+              "weight": 500,
+              "width": 50.88,
+              "x": 4027.06,
+            },
+          ],
+        },
+      ],
+      "role": "badge-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 200,
+        "x": 3580,
+        "y": 2200,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "moe-router-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "router",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3680,
+        "y": 2250.8,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "moe-router-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2250.8,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Router",
+              "weight": 500,
+              "width": 99.30000000000001,
+              "x": 3630.35,
+            },
+          ],
+        },
+      ],
+      "role": "router-label",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "moe-router-up",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3680,
+          "y": 2200,
+        },
+        {
+          "x": 3680,
+          "y": 1990,
+        },
+      ],
+      "role": "moe-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "moe-router-left",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3580,
+          "y": 2240,
+        },
+        {
+          "x": 3405,
+          "y": 1960,
+        },
+      ],
+      "role": "moe-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "moe-router-right",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3780,
+          "y": 2240,
+        },
+        {
+          "x": 3965,
+          "y": 1960,
+        },
+      ],
+      "role": "moe-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "moe-left-up",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3405,
+          "y": 1880,
+        },
+        {
+          "x": 3680,
+          "y": 1700,
+        },
+      ],
+      "role": "moe-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "moe-right-up",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3965,
+          "y": 1880,
+        },
+        {
+          "x": 3680,
+          "y": 1700,
+        },
+      ],
+      "role": "moe-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 4200,
+        "y": 1780,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "resource-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1780,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "Parameters and compute",
+              "weight": 700,
+              "width": 444.4128,
+              "x": 4200,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-resource",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 4200,
+        "y": 1830,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "resource-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1830,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 4200,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 36,
+              "text": "552B backbone + 196B Engram",
+              "weight": 700,
+              "width": 523.7855999999999,
+              "x": 4200,
+            },
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 4723.7856,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-resource",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 4200,
+        "y": 1880,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "resource-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1880,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "1 shared + 6 routed experts",
+              "weight": 700,
+              "width": 488.9663999999999,
+              "x": 4200,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-resource",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 4200,
+        "y": 1930,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "resource-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1930,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 4200,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 36,
+              "text": "8B",
+              "weight": 700,
+              "width": 44.553599999999996,
+              "x": 4200,
+            },
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": " active for prefill",
+              "weight": 700,
+              "width": 311.5008000000001,
+              "x": 4244.5536,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-resource",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 4200,
+        "y": 1980,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "resource-4",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1980,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 4200,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 36,
+              "text": "16B",
+              "weight": 700,
+              "width": 64.39680000000001,
+              "x": 4200,
+            },
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": " active for decoding",
+              "weight": 700,
+              "width": 350.064,
+              "x": 4264.3968,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-resource",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 900,
+        "width": 1800,
+        "x": 3180,
+        "y": 2550,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mhc-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 58,
+      "role": "mhc-inset",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3400,
+        "y": 2630,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2630,
+          "spans": [
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 38,
+              "text": "Single-Pass mHC",
+              "weight": 800,
+              "width": 316.55520000000007,
+              "x": 3400,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-title",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "mhc-stream-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3220,
+          "y": 2740,
+        },
+        {
+          "x": 4600,
+          "y": 2740,
+        },
+      ],
+      "role": "residual-stream",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 4,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "mhc-stream-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3220,
+          "y": 2760,
+        },
+        {
+          "x": 4600,
+          "y": 2760,
+        },
+      ],
+      "role": "residual-stream",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 4,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "mhc-stream-3",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3220,
+          "y": 2780,
+        },
+        {
+          "x": 4600,
+          "y": 2780,
+        },
+      ],
+      "role": "residual-stream",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 4,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "mhc-stream-4",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3220,
+          "y": 2800,
+        },
+        {
+          "x": 4600,
+          "y": 2800,
+        },
+      ],
+      "role": "residual-stream",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 4,
+      },
+    },
+    {
+      "box": {
+        "height": 60,
+        "width": 220,
+        "x": 3770,
+        "y": 2670,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "mhc-res-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "mhc-res",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3880,
+        "y": 2710.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-res-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2710.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "mHC res",
+              "weight": 500,
+              "width": 112.28000000000002,
+              "x": 3823.86,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-res-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 160,
+        "width": 300,
+        "x": 3400,
+        "y": 2820,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "mhc-pre-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "mhc-pre",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3550,
+        "y": 2872.2799999999997,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-pre-label-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2872.2799999999997,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Previous",
+              "weight": 500,
+              "width": 115.36000000000003,
+              "x": 3492.32,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-pre-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3550,
+        "y": 2910.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-pre-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2910.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "pre-mix",
+              "weight": 500,
+              "width": 105,
+              "x": 3497.5,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-pre-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3550,
+        "y": 2947.8799999999997,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-pre-label-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2947.8799999999997,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "(4 to 1)",
+              "weight": 500,
+              "width": 104.72000000000003,
+              "x": 3497.64,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-pre-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 160,
+        "width": 330,
+        "x": 3820,
+        "y": 2820,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "mhc-sublayer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "mhc-sublayer",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3985,
+        "y": 2872.2799999999997,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-sublayer-label-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2872.2799999999997,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "RMSNorm +",
+              "weight": 500,
+              "width": 153.72000000000003,
+              "x": 3908.14,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-sublayer-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3985,
+        "y": 2910.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-sublayer-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2910.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "sublayer",
+              "weight": 500,
+              "width": 111.72000000000003,
+              "x": 3929.14,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-sublayer-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 3985,
+        "y": 2947.8799999999997,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-sublayer-label-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2947.8799999999997,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "(attention or MoE)",
+              "weight": 500,
+              "width": 257.88000000000005,
+              "x": 3856.06,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-sublayer-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 160,
+        "width": 300,
+        "x": 4280,
+        "y": 2820,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "mhc-post-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "mhc-post",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 4430,
+        "y": 2891.18,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-post-label-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2891.18,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "mHC post",
+              "weight": 500,
+              "width": 127.12000000000003,
+              "x": 4366.44,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-post-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 4430,
+        "y": 2928.98,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-post-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2928.98,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "+ residual",
+              "weight": 500,
+              "width": 127.40000000000005,
+              "x": 4366.3,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-post-label",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "mhc-flow-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 3700,
+          "y": 2900,
+        },
+        {
+          "x": 3820,
+          "y": 2900,
+        },
+      ],
+      "role": "mhc-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mhc-flow-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 4150,
+          "y": 2900,
+        },
+        {
+          "x": 4280,
+          "y": 2900,
+        },
+      ],
+      "role": "mhc-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3400,
+        "y": 3100,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-note",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3100,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "with ",
+              "weight": 800,
+              "width": 96.42880000000002,
+              "x": 3400,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 38,
+              "text": "4",
+              "weight": 800,
+              "width": 20.945600000000002,
+              "x": 3496.4288,
+            },
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": " parallel residual streams",
+              "weight": 800,
+              "width": 477.00640000000004,
+              "x": 3517.3744,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-note",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3400,
+        "y": 3260,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-note-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3260,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Each sublayer computes pre-mix weights for the next sublayer",
+              "weight": 500,
+              "width": 894.0000000000008,
+              "x": 3400,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-note",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 3400,
+        "y": 3410,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mhc-note-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3410,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Single-Pass mHC surrounds every attention (SWA or CSA2) sublayer and every MoE sublayer",
+              "weight": 500,
+              "width": 1320.9000000000012,
+              "x": 3400,
+            },
+          ],
+        },
+      ],
+      "role": "mhc-note",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 650,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 650,
+          "spans": [
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 32,
+              "text": "CSA2(ratio, mode)",
+              "weight": 700,
+              "width": 297.52320000000003,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 694,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 694,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "• mode=Full mode builds",
+              "weight": 700,
+              "width": 371.07199999999995,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 738,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 738,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "  global KV and sparse",
+              "weight": 700,
+              "width": 338.4576,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 782,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 782,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "  indices",
+              "weight": 700,
+              "width": 125.46560000000002,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 826,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-4",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 826,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "• mode=Reindex",
+              "weight": 700,
+              "width": 244.2752000000001,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 870,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-5",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 870,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "  recomputes sparse",
+              "weight": 700,
+              "width": 319.8208,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 914,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-6",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 914,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "  indices",
+              "weight": 700,
+              "width": 125.46560000000002,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 958,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-7",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 958,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "• mode=Reuse shares KV",
+              "weight": 700,
+              "width": 385.7152,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1002,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-8",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1002,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "  and sparse indices",
+              "weight": 700,
+              "width": 302.84800000000007,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1046,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-9",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1046,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "(Note 1: The first decoder",
+              "weight": 700,
+              "width": 417.3311999999999,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1090,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-10",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1090,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "Full layer builds a",
+              "weight": 700,
+              "width": 272.89600000000013,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1134,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-11",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1134,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "candidate pool for later",
+              "weight": 700,
+              "width": 373.4016,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1178,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-12",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1178,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "Reindex layers using a",
+              "weight": 700,
+              "width": 342.4512,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1222,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-13",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1222,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "hierarchical indexer)",
+              "weight": 700,
+              "width": 328.80640000000005,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1266,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-14",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1266,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "(Note 2: CSA2 includes",
+              "weight": 700,
+              "width": 355.4304,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1310,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "csa-legend-15",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1310,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "SWA)",
+              "weight": 700,
+              "width": 88.8576,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-csa-legend",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 250,
+        "x": 50,
+        "y": 2080,
+      },
+      "fill": {
+        "color": "#E8E8E8",
+        "kind": "solid",
+      },
+      "id": "engram-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "engram",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 175,
+        "y": 2130.8,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "engram-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2130.8,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Engram",
+              "weight": 500,
+              "width": 108,
+              "x": 121,
+            },
+          ],
+        },
+      ],
+      "role": "engram-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 2230,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "engram-note-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2230,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "196B parameters",
+              "weight": 700,
+              "width": 270.2336000000001,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-engram-note",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 2274,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "engram-note-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2274,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "in encoder blocks",
+              "weight": 700,
+              "width": 266.57280000000014,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-engram-note",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 2318,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "engram-note-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2318,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "2 and 15",
+              "weight": 700,
+              "width": 124.46720000000003,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-engram-note",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 2362,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "engram-note-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2362,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "(token n-gram lookup)",
+              "weight": 700,
+              "width": 355.0976,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-engram-note",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "engram-feed-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 300,
+          "y": 2120,
+        },
+        {
+          "x": 880,
+          "y": 1700,
+        },
+      ],
+      "role": "engram-link",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "engram-feed-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 300,
+          "y": 2120,
+        },
+        {
+          "x": 880,
+          "y": 1000,
+        },
+      ],
+      "role": "engram-link",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 260,
+        "x": 100,
+        "y": 2700,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "partial-rope-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 22,
+      "role": "side-pill",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 230,
+        "y": 2745.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "partial-rope-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2745.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Partial RoPE",
+              "weight": 500,
+              "width": 171.64000000000004,
+              "x": 144.17999999999998,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 90,
+        "y": 2940,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2940,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "YaRN context",
+              "weight": 700,
+              "width": 243.36000000000007,
+              "x": 90,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 90,
+        "y": 2988,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2988,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 90,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 36,
+              "text": "1M tokens",
+              "weight": 700,
+              "width": 180.08640000000005,
+              "x": 90,
+            },
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 270.0864,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 90,
+        "y": 3036,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3036,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 90,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 36,
+              "text": "64k pretraining",
+              "weight": 700,
+              "width": 269.5680000000001,
+              "x": 90,
+            },
+            {
+              "fill": "#000000",
+              "size": 36,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 359.5680000000001,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1600,
+        "y": 740,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "vocabulary-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 740,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "Vocabulary size",
+              "weight": 700,
+              "width": 289.6816000000001,
+              "x": 1600,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-vocabulary",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1600,
+        "y": 792,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "vocabulary-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 792,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "of ",
+              "weight": 700,
+              "width": 52.9568,
+              "x": 1600,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 38,
+              "text": "129k",
+              "weight": 700,
+              "width": 83.78240000000001,
+              "x": 1652.9568,
+            },
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1736.7392,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-vocabulary",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1400,
+        "y": 3170,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3170,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "Embedding",
+              "weight": 700,
+              "width": 195.22880000000006,
+              "x": 1400,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1400,
+        "y": 3222,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 3222,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "dimension of ",
+              "weight": 700,
+              "width": 244.2336000000001,
+              "x": 1400,
+            },
+            {
+              "color": "accent",
+              "fill": "#1E88E5",
+              "size": 38,
+              "text": "5,120",
+              "weight": 700,
+              "width": 94.84800000000003,
+              "x": 1644.2336,
+            },
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1739.0816,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-zoom",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2650,
+          "y": 1100,
+        },
+        {
+          "x": 3270,
+          "y": 700,
+        },
+      ],
+      "role": "zoom-leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "moe-zoom",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2750,
+          "y": 1100,
+        },
+        {
+          "x": 3200,
+          "y": 1700,
+        },
+      ],
+      "role": "zoom-leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+  ],
+  "id": "deepseek-v4-1-flash",
+  "metadata": {
+    "description": "DeepSeek-V4.1-Flash text backbone with a 20-layer causal encoder, a 20-layer decoder, CSA2 sparse attention modes, Engram, a hierarchical sparse indexer, MoE, and Single-Pass mHC residual streams.",
+    "title": "DeepSeek-V4.1-Flash (552B)",
+  },
+  "schemaVersion": 1,
+}
+`;

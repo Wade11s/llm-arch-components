@@ -5,6 +5,7 @@ import { layoutQwenSparse } from './templates/qwenSparse';
 import { layoutMixingDetail } from './templates/mixingDetail';
 import { layoutXlstm } from './templates/xlstm';
 import { layoutMotifMultiStream } from './templates/motifMultiStream';
+import { layoutDeepSeekMultiTower } from './templates/deepSeekMultiTower';
 import { layoutGlmLayerSchedule } from './templates/glmLayerSchedule';
 import type {
   AnnotationSpec,
@@ -514,6 +515,8 @@ export const templateLayoutEngine: LayoutEngine = {
         return layoutMoe(spec, context);
       case 'attention-mask':
         return layoutQwenSparse(spec, context);
+      case 'multi-tower':
+        return layoutDeepSeekMultiTower(spec, context);
       case 'layer-schedule':
         return layoutGlmLayerSchedule(spec, context);
       case 'manual':

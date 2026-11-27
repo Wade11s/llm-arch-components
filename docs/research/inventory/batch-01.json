@@ -624,8 +624,8 @@
       "custom:dual-tower-encoder-decoder",
       "custom:multi-stream-residual-inset"
     ],
-    "confidence": "medium",
-    "notes": "Much denser than the single-backbone family: two blue towers with nested dotted repeat groups, side-fed Engram/Partial RoPE, and a separate mHC inset showing four parallel residual lanes. Renderer needs nested repeat frames and bundled multi-line arrows; some small labels are hard to read at source resolution."
+    "confidence": "high",
+    "notes": "Verified against the reference for the multi-tower pilot: two blue towers with nested dotted repeat groups, side-fed Engram/Partial RoPE, CED Global KV bridge, hierarchical sparse indexer and candidate pool, and a separate Single-Pass mHC inset with four parallel residual lanes."
   },
   {
     "file": "deepseek-v4-flash.webp",

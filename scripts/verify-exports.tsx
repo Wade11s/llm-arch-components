@@ -33,7 +33,9 @@ const specCases: VerifyCase[] = figureSpecs.map((entry) => ({
             ? ['repeat-block', 'ffn-inset', 'moe-inset', 'pass-strip', 'feedback-loop']
             : entry.slug === 'motif-3-beta'
               ? ['repeat-block', 'ffn-inset', 'moe-inset', 'residual-stream', 'mhc-read', 'mhc-write']
-              : ['repeat-block', 'ffn-inset'],
+              : entry.slug === 'deepseek-v4-1-flash'
+                ? ['encoder-tower', 'decoder-tower', 'candidate-pool', 'hierarchical-indexer', 'mhc-res', 'mhc-post', 'moe-inset', 'ffn-inset']
+                : ['repeat-block', 'ffn-inset'],
 }));
 
 const results: Array<Record<string, unknown>> = [];

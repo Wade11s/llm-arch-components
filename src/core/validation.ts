@@ -168,7 +168,7 @@ function issue(code: string, message: string, path?: string, sourceIds?: Id[]): 
   return { severity: 'error', code, message, path, sourceIds };
 }
 
-const implementedTemplates = new Set(['backbone', 'moe', 'attention-mask', 'layer-schedule']);
+const implementedTemplates = new Set(['backbone', 'moe', 'attention-mask', 'layer-schedule', 'multi-tower']);
 
 function semanticIssues(spec: FigureSpec): Diagnostic[] {
   const issues: Diagnostic[] = [];
