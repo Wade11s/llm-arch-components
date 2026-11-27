@@ -46,10 +46,12 @@ describe('typed layout.variant', () => {
     delete legacy.layout.variant;
     legacy.layout.options = { ...legacy.layout.options, variant: 'mixing-detail' };
 
-    expect(validationIssues(legacy)).toContainEqual(expect.objectContaining({
+    const issues = validationIssues(legacy);
+    expect(issues).toContainEqual(expect.objectContaining({
       code: 'legacy-variant-location',
       path: 'layout.options.variant',
     }));
+    expect(issues.filter((issue) => issue.code === 'legacy-variant-location')).toHaveLength(1);
   });
 
   test('uses the targeted legacy diagnostic even for an invalid legacy value', () => {
