@@ -32554,7 +32554,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
         {
           "x": 1740,
-          "y": 1280,
+          "y": 1750,
         },
       ],
       "role": "leader",
@@ -32783,7 +32783,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1760,
-        "y": 1280,
+        "y": 1750,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-0",
@@ -32791,7 +32791,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1280,
+          "baseline": 1750,
           "spans": [
             {
               "fill": "#000000",
@@ -32828,7 +32828,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1760,
-        "y": 1345,
+        "y": 1815,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-1",
@@ -32836,7 +32836,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1345,
+          "baseline": 1815,
           "spans": [
             {
               "fill": "#000000",
@@ -49795,7 +49795,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 1022,
-        "y": 2646,
+        "y": 2636,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "sample-input",
@@ -49803,7 +49803,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 2646,
+          "baseline": 2636,
           "spans": [
             {
               "fill": "#000000",
@@ -50265,7 +50265,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
         {
           "x": 1740,
-          "y": 1280,
+          "y": 1750,
         },
       ],
       "role": "leader",
@@ -50539,7 +50539,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1760,
-        "y": 1280,
+        "y": 1750,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-0",
@@ -50547,7 +50547,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1280,
+          "baseline": 1750,
           "spans": [
             {
               "fill": "#000000",
@@ -50584,7 +50584,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1760,
-        "y": 1345,
+        "y": 1815,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-1",
@@ -50592,7 +50592,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1345,
+          "baseline": 1815,
           "spans": [
             {
               "fill": "#000000",
@@ -52268,7 +52268,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
         {
           "x": 1580,
-          "y": 1280,
+          "y": 1750,
         },
       ],
       "role": "leader",
@@ -52497,7 +52497,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1600,
-        "y": 1280,
+        "y": 1750,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-0",
@@ -52505,7 +52505,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1280,
+          "baseline": 1750,
           "spans": [
             {
               "color": "accent",
@@ -52551,7 +52551,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1600,
-        "y": 1345,
+        "y": 1815,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-1",
@@ -52559,7 +52559,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1345,
+          "baseline": 1815,
           "spans": [
             {
               "fill": "#000000",
@@ -54182,7 +54182,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
         {
           "x": 1580,
-          "y": 1280,
+          "y": 1750,
         },
       ],
       "role": "leader",
@@ -54411,7 +54411,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1600,
-        "y": 1280,
+        "y": 1750,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-0",
@@ -54419,7 +54419,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1280,
+          "baseline": 1750,
           "spans": [
             {
               "color": "accent",
@@ -54448,7 +54448,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1600,
-        "y": 1345,
+        "y": 1815,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-1",
@@ -54456,7 +54456,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1345,
+          "baseline": 1815,
           "spans": [
             {
               "fill": "#000000",
@@ -54485,7 +54485,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1600,
-        "y": 1410,
+        "y": 1880,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-2",
@@ -54493,7 +54493,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1410,
+          "baseline": 1880,
           "spans": [
             {
               "fill": "#000000",
@@ -56116,7 +56116,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
         {
           "x": 1740,
-          "y": 1280,
+          "y": 1750,
         },
       ],
       "role": "leader",
@@ -56345,7 +56345,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1760,
-        "y": 1280,
+        "y": 1750,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-0",
@@ -56353,7 +56353,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1280,
+          "baseline": 1750,
           "spans": [
             {
               "fill": "#000000",
@@ -56390,7 +56390,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1760,
-        "y": 1345,
+        "y": 1815,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-1",
@@ -56398,7 +56398,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1345,
+          "baseline": 1815,
           "spans": [
             {
               "fill": "#000000",
