@@ -25,6 +25,7 @@ The 17 primitive and 9 composite-template categories remain internal capabilitie
 | Spec validation | Reject malformed, unsafe, dangling, or unsupported FigureSpec input, including unsupported typed variants. |
 | LayoutEngine | Convert a normalized Spec into a deterministic positioned Scene. |
 | Template adapters | Implement backbone, MoE, attention-mask, layer-schedule, multi-tower, and manual grammars. |
+| TemplateScene | Share internal pill/flow/callout/inset/repeat helpers across template adapters without entering the public export surface. |
 | SceneBuilder | Construct serializable boxes, paths, text, glyphs, stacks, and grids. |
 | SceneSvg / SVG renderer | Convert Scene to accessible, self-contained SVG without measuring the DOM. |
 | Export/CLI adapters | Render typed or JSON Specs to standalone SVG. |
@@ -63,7 +64,7 @@ Variant names are validated during Spec validation. Unknown variants fail instea
 - The shared SVG marker currently uses a single arrow color.
 - Some braces are simplified paths.
 - Mask column headers and GR labels use current text primitives; rotation/subscripts are not yet implemented.
-- Several recurrent and composite adapters still contain figure-specific visual constants; shared helper extraction is a later refactor.
+- Several recurrent and composite adapters still contain figure-specific visual constants; shared helper extraction is complete, but visual constant parameterization remains future work.
 - Some adapters consume typed node/group data but do not yet preserve every Spec edge as a separate Scene path.
 
 ## Pilot completion and next coverage work
@@ -72,9 +73,9 @@ The 12-figure pilot defined in #11–#19 is complete: 17 figures are now verifie
 
 Next steps:
 
-1. Extract shared template helpers and reduce visual constants before starting a second coverage batch.
-2. Parameterize additional canonical dense/GQA and MoE families using the existing adapters.
-3. Preserve Spec edge provenance where an adapter emits a simplified composite path.
-4. Continue reviewing medium-confidence inventory entries before promoting new figures to verified rendering.
+1. Parameterize additional canonical dense/GQA and MoE families using the existing adapters.
+2. Reduce remaining visual constants and preserve Spec edge provenance where an adapter emits a simplified composite path.
+3. Continue reviewing medium-confidence inventory entries before promoting new figures to verified rendering.
+4. Add typed layout variants only after a new family proves the current option surface insufficient.
 
 Coverage is reported as verified rendering, not merely structural expressiveness.

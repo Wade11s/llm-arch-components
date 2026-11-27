@@ -1,5 +1,4 @@
-import { FigureLayoutError } from '../errors';
-import { SceneBuilder } from '../sceneBuilder';
+import { TemplateScene, templateText as text, createTemplateApi, annotationOf, annotationLines, templateFailure } from './templateScene';
 import type {
   Box,
   FigureSpec,
@@ -17,6 +16,8 @@ type OperationNode = Extract<NodeSpec, { kind: 'operation' | 'composite' }>;
 type MaskNode = Extract<NodeSpec, { kind: 'mask' }>;
 type TemplateLayout = Extract<FigureSpec['layout'], { mode: 'template' }>;
 type Annotation = NonNullable<FigureSpec['annotations']>[number];
+
+const { slot, groupOf } = createTemplateApi('Tencent Hy4', 'attention-mask-ihc');
 
 const VARIANT = 'ihc-pipeline';
 
@@ -50,33 +51,14 @@ const COLORS = {
   selection: '#C8241B',
 };
 
-function text(value: string): TextSpec {
-  return { spans: [{ text: value }] };
-}
-
-function fail(code: string, message: string, sourceIds?: Id[]): never {
-  throw new FigureLayoutError([{ severity: 'error', code, message, sourceIds }]);
-}
-
 function templateLayout(spec: FigureSpec): TemplateLayout {
   if (spec.layout.mode !== 'template' || spec.layout.template !== 'attention-mask') {
-    fail('wrong-template', 'iHC pipeline is an attention-mask template variant');
+    templateFailure('wrong-template', 'iHC pipeline is an attention-mask template variant');
   }
   if (spec.layout.options?.variant !== VARIANT) {
-    fail('wrong-variant', `attention-mask layout requires layout.options.variant = "${VARIANT}"`);
+    templateFailure('wrong-variant', `attention-mask layout requires layout.options.variant = "${VARIANT}"`);
   }
   return spec.layout;
-}
-
-function optionalSlot(spec: FigureSpec, name: string): Id | undefined {
-  const value = templateLayout(spec).slots[name];
-  return Array.isArray(value) ? value[0] : value;
-}
-
-function slot(spec: FigureSpec, name: string): Id {
-  const id = optionalSlot(spec, name);
-  if (!id) fail('missing-slot', `iHC pipeline layout requires a "${name}" slot`, [name]);
-  return id;
 }
 
 function numberOption(spec: FigureSpec, name: string, fallback: number): number {
@@ -84,38 +66,24 @@ function numberOption(spec: FigureSpec, name: string, fallback: number): number 
   return typeof value === 'number' ? value : fallback;
 }
 
-function groupOf(spec: FigureSpec, id: Id): GroupSpec {
-  const group = spec.groups.find((candidate) => candidate.id === id);
-  if (!group) fail('missing-group', `Group "${id}" does not exist`, [id]);
-  return group;
-}
-
 function nodeOf(spec: FigureSpec, id: Id): NodeSpec {
   const node = spec.nodes.find((candidate) => candidate.id === id);
-  if (!node) fail('missing-node', `Node "${id}" does not exist`, [id]);
+  if (!node) templateFailure('missing-node', `Node "${id}" does not exist`, [id]);
   return node;
 }
 
 function operationOf(spec: FigureSpec, id: Id): OperationNode {
   const node = nodeOf(spec, id);
   if (node.kind !== 'operation' && node.kind !== 'composite') {
-    fail('wrong-node-kind', `Node "${id}" must be an operation or composite`, [id]);
+    templateFailure('wrong-node-kind', `Node "${id}" must be an operation or composite`, [id]);
   }
   return node;
 }
 
 function requiredOperation(spec: FigureSpec, name: string, predicate: (node: OperationNode) => boolean, message: string): OperationNode {
   const node = operationOf(spec, slot(spec, name));
-  if (!predicate(node)) fail('wrong-operation', message, [node.id]);
+  if (!predicate(node)) templateFailure('wrong-operation', message, [node.id]);
   return node;
-}
-
-function annotationOf(spec: FigureSpec, id: Id): Annotation | undefined {
-  return (spec.annotations ?? []).find((candidate) => candidate.id === id);
-}
-
-function annotationLines(annotation: Annotation): TextSpec[] {
-  return 'bullets' in annotation.content ? annotation.content.bullets : [annotation.content];
 }
 
 function formatNumber(value: number): string {
@@ -131,65 +99,7 @@ function streamsOf(node: OperationNode): number {
   return node.data.family === 'gated-residual' ? node.data.streams : 4;
 }
 
-function flow(
-  builder: SceneBuilder,
-  id: Id,
-  points: Point[],
-  options: {
-    role?: string;
-    stroke?: string;
-    width?: number;
-    dash?: 'solid' | 'dashed' | 'dotted';
-    arrow?: 'none' | 'end' | 'both';
-    junction?: 'plus' | 'multiply' | 'gate';
-    sourceId?: Id;
-  } = {},
-): void {
-  builder.path(id, options.role ?? 'flow-path', points, {
-    stroke: builder.stroke(options.stroke ?? '#000000', options.width ?? 6, options.dash),
-    arrow: options.arrow ?? 'end',
-    junction: options.junction,
-    sourceId: options.sourceId,
-  });
-}
-
-function pill(
-  builder: SceneBuilder,
-  id: Id,
-  role: string,
-  box: Box,
-  content: TextSpec,
-  options: {
-    fill?: string;
-    stroke?: string;
-    radius?: number;
-    size?: number;
-    weight?: number;
-    textFill?: string;
-    sourceId?: Id;
-  } = {},
-): void {
-  builder.box(id, role, box, {
-    fill: builder.solid(options.fill ?? '#FFFFFF'),
-    stroke: builder.stroke(options.stroke ?? '#000000', 5),
-    radius: options.radius ?? 24,
-    sourceId: options.sourceId ?? id,
-    label: builder.labelOf(content),
-  });
-  builder.text(`${id}-label`, `${role}-label`, {
-    x: box.x + box.width / 2,
-    y: box.y + box.height / 2 + (options.size ?? 28) * 0.36,
-  }, content, {
-    size: options.size ?? 28,
-    weight: options.weight ?? 500,
-    fill: options.textFill,
-    align: 'center',
-    sourceId: options.sourceId ?? id,
-    label: builder.labelOf(content),
-  });
-}
-
-function drawTitle(builder: SceneBuilder, spec: FigureSpec): void {
+function drawTitle(builder: TemplateScene, spec: FigureSpec): void {
   builder.text('figure-title', 'title', { x: 280, y: 150 }, spec.title, {
     size: 144,
     weight: 900,
@@ -200,7 +110,7 @@ function drawTitle(builder: SceneBuilder, spec: FigureSpec): void {
 
   const drafter = annotationOf(spec, 'drafter');
   if (drafter) {
-    annotationLines(drafter).forEach((line, index) => {
+    annotationLines(spec, 'drafter').forEach((line, index) => {
       builder.text(`title-subtitle-${index + 1}`, 'title-subtitle', { x: CENTER_X, y: 225 + index * 52 }, line, {
         size: 46,
         weight: 500,
@@ -214,7 +124,7 @@ function drawTitle(builder: SceneBuilder, spec: FigureSpec): void {
 }
 
 function drawBackbone(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   spec: FigureSpec,
   block: GroupSpec,
   attention: OperationNode,
@@ -252,41 +162,41 @@ function drawBackbone(
     ['flow-embedding-tokenized', 2384, 2445],
     ['flow-tokenized-input', 2533, 2620],
   ];
-  flows.forEach(([id, from, to]) => flow(builder, id, [{ x: CENTER_X, y: from }, { x: CENTER_X, y: to }]));
+  flows.forEach(([id, from, to]) => builder.flow(id, [{ x: CENTER_X, y: from }, { x: CENTER_X, y: to }]));
 
-  pill(builder, 'output-layer', 'output-layer', { x: 970, y: 418, width: 360, height: 80 }, text('Linear output layer'), {
+  builder.pill('output-layer', 'output-layer', { x: 970, y: 418, width: 360, height: 80 }, text('Linear output layer'), {
     fill: spec.theme.surface,
     size: 32,
   });
-  pill(builder, 'final-rmsnorm', 'norm', { x: 975, y: 534, width: 350, height: 80 }, text('Final RMSNorm'), {
+  builder.pill('final-rmsnorm', 'norm', { x: 975, y: 534, width: 350, height: 80 }, text('Final RMSNorm'), {
     fill: spec.theme.surface,
     size: 32,
   });
-  pill(builder, 'final-ihc-head', 'final-ihc-head', { x: 975, y: 656, width: 350, height: 80 }, text('Final iHC Head'), {
+  builder.pill('final-ihc-head', 'final-ihc-head', { x: 975, y: 656, width: 350, height: 80 }, text('Final iHC Head'), {
     fill: spec.theme.surface,
     size: 32,
   });
 
   const ihcBox = (y: number): Box => ({ x: 1000, y, width: 300, height: 56 });
-  pill(builder, 'ihc-write-top', 'ihc-write-pill', ihcBox(844), text('iHC Write'), {
+  builder.pill('ihc-write-top', 'ihc-write-pill', ihcBox(844), text('iHC Write'), {
     size: 30,
     weight: 700,
     textFill: spec.theme.accent,
     sourceId: write.id,
   });
-  pill(builder, 'moe', 'moe-block', { x: 975, y: 973, width: 350, height: 74 }, text('MoE'), {
+  builder.pill('moe', 'moe-block', { x: 975, y: 973, width: 350, height: 74 }, text('MoE'), {
     fill: spec.theme.surface,
     size: 32,
     sourceId: moe.id,
   });
-  pill(builder, 'rmsnorm-2', 'norm', { x: 975, y: 1120, width: 350, height: 74 }, text('RMSNorm 2'), { size: 32 });
-  pill(builder, 'ihc-read-top', 'ihc-read-pill', ihcBox(1300), text('iHC Read'), {
+  builder.pill('rmsnorm-2', 'norm', { x: 975, y: 1120, width: 350, height: 74 }, text('RMSNorm 2'), { size: 32 });
+  builder.pill('ihc-read-top', 'ihc-read-pill', ihcBox(1300), text('iHC Read'), {
     size: 30,
     weight: 700,
     textFill: spec.theme.accent,
     sourceId: read.id,
   });
-  pill(builder, 'ihc-write-mid', 'ihc-write-pill', ihcBox(1492), text('iHC Write'), {
+  builder.pill('ihc-write-mid', 'ihc-write-pill', ihcBox(1492), text('iHC Write'), {
     size: 30,
     weight: 700,
     textFill: spec.theme.accent,
@@ -314,20 +224,20 @@ function drawBackbone(
     });
   });
 
-  pill(builder, 'rmsnorm-1', 'norm', { x: 975, y: 1961, width: 350, height: 74 }, text('RMSNorm 1'), {
+  builder.pill('rmsnorm-1', 'norm', { x: 975, y: 1961, width: 350, height: 74 }, text('RMSNorm 1'), {
     size: 32,
     sourceId: 'rmsnorm-1',
   });
-  pill(builder, 'ihc-read-low', 'ihc-read-pill', ihcBox(2098), text('iHC Read'), {
+  builder.pill('ihc-read-low', 'ihc-read-pill', ihcBox(2098), text('iHC Read'), {
     size: 30,
     weight: 700,
     textFill: spec.theme.accent,
     sourceId: read.id,
   });
-  pill(builder, 'embedding-layer', 'embedding', { x: 880, y: 2296, width: 540, height: 88 }, text('Token embedding layer'), {
+  builder.pill('embedding-layer', 'embedding', { x: 880, y: 2296, width: 540, height: 88 }, text('Token embedding layer'), {
     size: 32,
   });
-  pill(builder, 'tokenized-text', 'input', { x: 980, y: 2445, width: 340, height: 88 }, text('Tokenized text'), {
+  builder.pill('tokenized-text', 'input', { x: 980, y: 2445, width: 340, height: 88 }, text('Tokenized text'), {
     size: 32,
   });
   builder.text('sample-input', 'input-label', { x: CENTER_X, y: 2680 }, 'Sample input text', {
@@ -337,13 +247,13 @@ function drawBackbone(
     label: 'Sample input text',
   });
 
-  flow(builder, 'residual-trunk', [{ x: RESIDUAL_X, y: 872 }, { x: RESIDUAL_X, y: 2126 }], {
+  builder.flow('residual-trunk', [{ x: RESIDUAL_X, y: 872 }, { x: RESIDUAL_X, y: 2126 }], {
     role: 'residual-path',
     width: 5,
     arrow: 'none',
   });
   [872, 1328, 1520, 2126].forEach((y, index) => {
-    flow(builder, `residual-branch-${index + 1}`, [{ x: 1300, y }, { x: RESIDUAL_X, y }], {
+    builder.flow(`residual-branch-${index + 1}`, [{ x: 1300, y }, { x: RESIDUAL_X, y }], {
       role: 'residual-branch',
       width: 5,
       arrow: 'none',
@@ -374,7 +284,7 @@ function drawBackbone(
     label: '×',
   });
 
-  pill(builder, 'partial-rope', 'side-pill', { x: 470, y: 1615, width: 330, height: 120 }, text('Partial RoPE'), {
+  builder.pill('partial-rope', 'side-pill', { x: 470, y: 1615, width: 330, height: 120 }, text('Partial RoPE'), {
     size: 30,
   });
   builder.text('partial-rope-detail', 'side-pill-label', { x: 635, y: 1718 }, '(RoPE + NoPE)', {
@@ -382,11 +292,11 @@ function drawBackbone(
     align: 'center',
     label: '(RoPE + NoPE)',
   });
-  flow(builder, 'rope-flow', [{ x: 800, y: 1675 }, { x: 895, y: 1675 }]);
+  builder.flow('rope-flow', [{ x: 800, y: 1675 }, { x: 895, y: 1675 }]);
 
 }
 
-function drawMask(builder: SceneBuilder, spec: FigureSpec, inset: GroupSpec, mask: MaskNode): void {
+function drawMask(builder: TemplateScene, spec: FigureSpec, inset: GroupSpec, mask: MaskNode): void {
   const insetCenter = MASK_INSET.x + MASK_INSET.width / 2;
   builder.group(inset.id, 'mask-inset', MASK_INSET, [], {
     fill: builder.solid('#FFFFFF'),
@@ -469,7 +379,7 @@ function drawMask(builder: SceneBuilder, spec: FigureSpec, inset: GroupSpec, mas
     columns.forEach((_column, columnIndex) => {
       if (values[currentRow * columnCount + columnIndex] !== 1) return;
       const endX = cellX(columnIndex) + MASK.cell / 2;
-      flow(builder, `mask-selection-arc-${columnIndex + 1}`, [
+      builder.flow(`mask-selection-arc-${columnIndex + 1}`, [
         start,
         { x: start.x + 24, y: rowY - 54 },
         { x: endX - 24, y: rowY - 76 },
@@ -503,7 +413,7 @@ function drawMask(builder: SceneBuilder, spec: FigureSpec, inset: GroupSpec, mas
   });
 }
 
-function drawIhc(builder: SceneBuilder, spec: FigureSpec, inset: GroupSpec, read: OperationNode, write: OperationNode): void {
+function drawIhc(builder: TemplateScene, spec: FigureSpec, inset: GroupSpec, read: OperationNode, write: OperationNode): void {
   const streams = streamsOf(read);
   builder.group(inset.id, 'ihc-inset', IHC_INSET, [], {
     fill: builder.solid('#FFFFFF'),
@@ -600,17 +510,17 @@ function drawIhc(builder: SceneBuilder, spec: FigureSpec, inset: GroupSpec, read
     label: "R_i′ = R_i + s_i y",
   });
 
-  flow(builder, 'ihc-flow-1', [{ x: IHC.read.x + IHC.read.width, y: 2435 }, { x: IHC.sublayer.x, y: 2435 }], {
+  builder.flow('ihc-flow-1', [{ x: IHC.read.x + IHC.read.width, y: 2435 }, { x: IHC.sublayer.x, y: 2435 }], {
     role: 'ihc-flow',
     width: 6,
   });
-  flow(builder, 'ihc-flow-2', [{ x: IHC.sublayer.x + IHC.sublayer.width, y: 2435 }, { x: IHC.write.x, y: 2435 }], {
+  builder.flow('ihc-flow-2', [{ x: IHC.sublayer.x + IHC.sublayer.width, y: 2435 }, { x: IHC.write.x, y: 2435 }], {
     role: 'ihc-flow',
     width: 6,
   });
 
   [2355, 2392, 2429, 2466].forEach((y, index) => {
-    flow(builder, `ihc-branch-in-${index + 1}`, [{ x: IHC.branchInX, y }, { x: IHC.read.x, y }], {
+    builder.flow(`ihc-branch-in-${index + 1}`, [{ x: IHC.branchInX, y }, { x: IHC.read.x, y }], {
       role: 'ihc-branch',
       width: 5,
       arrow: 'none',
@@ -625,7 +535,7 @@ function drawIhc(builder: SceneBuilder, spec: FigureSpec, inset: GroupSpec, read
       stroke: builder.stroke(spec.theme.ink, 0),
       radius: 12,
     });
-    flow(builder, `ihc-branch-out-${index + 1}`, [{ x: IHC.write.x + IHC.write.width, y }, { x: IHC.branchOutX, y }], {
+    builder.flow(`ihc-branch-out-${index + 1}`, [{ x: IHC.write.x + IHC.write.width, y }, { x: IHC.branchOutX, y }], {
       role: 'ihc-branch',
       width: 5,
       arrow: 'none',
@@ -671,7 +581,7 @@ function drawIhc(builder: SceneBuilder, spec: FigureSpec, inset: GroupSpec, read
 }
 
 function caption(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   id: Id,
   at: Point,
   content: TextSpec,
@@ -688,12 +598,13 @@ function caption(
 }
 
 function drawAnnotation(
-  builder: SceneBuilder,
+  builder: TemplateScene,
+  spec: FigureSpec,
   annotation: Annotation,
   at: Point,
   options: { size: number; lineGap: number; x?: number },
 ): void {
-  annotationLines(annotation).forEach((line, index) => {
+  annotationLines(spec, annotation.id).forEach((line, index) => {
     caption(builder, `caption-${annotation.id}-${index + 1}`, {
       x: options.x ?? at.x,
       y: at.y + index * options.lineGap,
@@ -705,7 +616,7 @@ function drawAnnotation(
 }
 
 function drawCaptions(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   spec: FigureSpec,
   block: GroupSpec,
   attention: OperationNode,
@@ -713,7 +624,7 @@ function drawCaptions(
   ffn: OperationNode,
 ): void {
   const vocabulary = annotationOf(spec, 'vocabulary');
-  if (vocabulary) drawAnnotation(builder, vocabulary, { x: 24, y: 530 }, { size: 52, lineGap: 62 });
+  if (vocabulary) drawAnnotation(builder, spec, vocabulary, { x: 24, y: 530 }, { size: 52, lineGap: 62 });
 
   const repeatCount = block.repeat?.count ?? 0;
   const remaining = Math.max(0, repeatCount - 1);
@@ -751,7 +662,7 @@ function drawCaptions(
   });
 
   const context = annotationOf(spec, 'context');
-  if (context) drawAnnotation(builder, context, { x: 24, y: 1830 }, { size: 48, lineGap: 60 });
+  if (context) drawAnnotation(builder, spec, context, { x: 24, y: 1830 }, { size: 48, lineGap: 60 });
 
   const denseLines: TextSpec[] = [
     text('First layer uses a'),
@@ -769,10 +680,10 @@ function drawCaptions(
   });
 
   const embedding = annotationOf(spec, 'embedding');
-  if (embedding) drawAnnotation(builder, embedding, { x: 350, y: 2525 }, { size: 46, lineGap: 58 });
+  if (embedding) drawAnnotation(builder, spec, embedding, { x: 350, y: 2525 }, { size: 46, lineGap: 58 });
 }
 
-function drawLeaders(builder: SceneBuilder, spec: FigureSpec): void {
+function drawLeaders(builder: TemplateScene, spec: FigureSpec): void {
   const leaders: Array<[Id, Point[]]> = [
     ['vocabulary', [{ x: 530, y: 550 }, { x: 970, y: 500 }]],
     ['moe', [{ x: 380, y: 915 }, { x: 975, y: 1010 }]],
@@ -784,7 +695,7 @@ function drawLeaders(builder: SceneBuilder, spec: FigureSpec): void {
   leaders.forEach(([id, points]) => {
     const annotation = annotationOf(spec, id);
     const node = spec.nodes.find((candidate) => candidate.id === id);
-    flow(builder, `leader-${id}`, points, {
+    builder.flow(`leader-${id}`, points, {
       role: 'leader',
       width: 5,
       dash: 'dotted',
@@ -793,13 +704,13 @@ function drawLeaders(builder: SceneBuilder, spec: FigureSpec): void {
     });
   });
 
-  flow(builder, 'mask-zoom-leader', [{ x: 1440, y: 900 }, { x: MASK_INSET.x, y: 1050 }], {
+  builder.flow('mask-zoom-leader', [{ x: 1440, y: 900 }, { x: MASK_INSET.x, y: 1050 }], {
     role: 'zoom-leader',
     dash: 'dotted',
     width: 6,
     arrow: 'none',
   });
-  flow(builder, 'ihc-zoom-leader', [{ x: 1440, y: 2130 }, { x: IHC_INSET.x, y: 2240 }], {
+  builder.flow('ihc-zoom-leader', [{ x: 1440, y: 2130 }, { x: IHC_INSET.x, y: 2240 }], {
     role: 'zoom-leader',
     dash: 'dotted',
     width: 6,
@@ -818,12 +729,12 @@ export function layoutTencentHy4(spec: FigureSpec, context: LayoutContext): Scen
   const read = requiredOperation(spec, 'read', (node) => node.data.family === 'gated-residual' && node.data.operation === 'read', 'iHC pipeline layout requires an iHC Read node');
   const write = requiredOperation(spec, 'write', (node) => node.data.family === 'gated-residual' && node.data.operation === 'write', 'iHC pipeline layout requires an iHC Write node');
   const maskNode = nodeOf(spec, slot(spec, 'maskNode'));
-  if (maskNode.kind !== 'mask') fail('wrong-node-kind', `Node "${maskNode.id}" must be a mask node`, [maskNode.id]);
+  if (maskNode.kind !== 'mask') templateFailure('wrong-node-kind', `Node "${maskNode.id}" must be a mask node`, [maskNode.id]);
 
-  const builder = new SceneBuilder(spec.theme, context.metrics);
+  const builder = new TemplateScene(spec.theme, context.metrics, { pillRadius: 24, pillSize: 28, pillSourceId: 'id', pillIdSuffix: false, pillTextLabel: true });
   drawTitle(builder, spec);
   drawBackbone(builder, spec, block, attention, moe, read, write);
-  flow(builder, 'output-to-drafter', [{ x: CENTER_X, y: 418 }, { x: CENTER_X, y: 300 }], { role: 'flow-path' });
+  builder.flow('output-to-drafter', [{ x: CENTER_X, y: 418 }, { x: CENTER_X, y: 300 }], { role: 'flow-path' });
   drawMask(builder, spec, maskInset, maskNode);
   drawIhc(builder, spec, ihcInset, read, write);
   drawCaptions(builder, spec, block, attention, moe, ffn);

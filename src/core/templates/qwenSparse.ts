@@ -1,5 +1,4 @@
-import { FigureLayoutError } from '../errors';
-import { SceneBuilder } from '../sceneBuilder';
+import { TemplateScene, templateText as text, createTemplateApi, templateFailure as layoutFailure } from './templateScene';
 import type {
   Box,
   FigureSpec,
@@ -58,23 +57,11 @@ const COLORS = {
   delta: '#F0A48F',
 };
 
-function layoutFailure(code: string, message: string, sourceIds?: Id[]): never {
-  throw new FigureLayoutError([{ severity: 'error', code, message, sourceIds }]);
-}
-
 function isOperation(node: NodeSpec | undefined): node is OperationNode {
   return Boolean(node) && (node?.kind === 'operation' || node?.kind === 'composite');
 }
 
-function text(value: string): TextSpec {
-  return { spans: [{ text: value }] };
-}
-
-function slot(spec: FigureSpec, name: string): Id {
-  const id = optionalSlot(spec, name);
-  if (!id) layoutFailure('missing-slot', `attention-mask layout requires a "${name}" slot`, [name]);
-  return id;
-}
+const { slot, groupOf } = createTemplateApi('attention-mask layout', 'attention-mask');
 
 function optionalSlot(spec: FigureSpec, name: string): Id | undefined {
   if (spec.layout.mode !== 'template') return undefined;
@@ -103,12 +90,6 @@ function operationOf(spec: FigureSpec, id: Id): OperationNode {
   const node = nodeOf(spec, id);
   if (!isOperation(node)) layoutFailure('wrong-node-kind', `Node "${id}" must be an operation or composite`, [id]);
   return node;
-}
-
-function groupOf(spec: FigureSpec, id: Id) {
-  const group = spec.groups.find((candidate) => candidate.id === id);
-  if (!group) layoutFailure('missing-group', `Group "${id}" does not exist`, [id]);
-  return group;
 }
 
 function familyName(family: OperationNode['data']['family']): string {
@@ -140,89 +121,7 @@ function centerY(box: Box): number {
   return box.y + box.height / 2;
 }
 
-function flow(
-  builder: SceneBuilder,
-  id: Id,
-  points: Point[],
-  options: {
-    role?: string;
-    stroke?: string;
-    width?: number;
-    dash?: 'solid' | 'dashed' | 'dotted';
-    arrow?: 'none' | 'end' | 'both';
-    junction?: 'plus' | 'multiply' | 'gate';
-    sourceId?: Id;
-  } = {},
-): void {
-  builder.path(id, options.role ?? 'flow-path', points, {
-    stroke: builder.stroke(options.stroke ?? '#000000', options.width ?? 6, options.dash),
-    arrow: options.arrow ?? 'end',
-    junction: options.junction,
-    sourceId: options.sourceId,
-  });
-}
-
-function pill(
-  builder: SceneBuilder,
-  id: Id,
-  role: string,
-  box: Box,
-  content: TextSpec,
-  options: {
-    fill?: Fill;
-    stroke?: string;
-    radius?: number;
-    size?: number;
-    weight?: number;
-    textFill?: string;
-    sourceId?: Id;
-  } = {},
-): void {
-  builder.box(id, role, box, {
-    fill: options.fill ?? builder.solid('#FFFFFF'),
-    stroke: builder.stroke(options.stroke ?? '#000000', 5),
-    radius: options.radius ?? 30,
-    sourceId: options.sourceId ?? id,
-    label: builder.labelOf(content),
-  });
-  builder.text(`${id}-label`, `${role}-label`, { x: box.x + box.width / 2, y: box.y + box.height / 2 + (options.size ?? 32) * 0.36 }, content, {
-    size: options.size ?? 32,
-    weight: options.weight ?? 500,
-    fill: options.textFill,
-    align: 'center',
-    sourceId: options.sourceId ?? id,
-  });
-}
-
-function annotationLines(spec: FigureSpec, id: Id): TextSpec[] {
-  const annotation = (spec.annotations ?? []).find((candidate) => candidate.id === id);
-  if (!annotation) return [];
-  return 'bullets' in annotation.content ? annotation.content.bullets : [annotation.content];
-}
-
-function callout(
-  builder: SceneBuilder,
-  spec: FigureSpec,
-  id: Id,
-  at: Point,
-  options: { size?: number; lineGap?: number; align?: 'start' | 'center' | 'end'; weight?: number } = {},
-): void {
-  const lines = annotationLines(spec, id);
-  const annotation = (spec.annotations ?? []).find((candidate) => candidate.id === id);
-  lines.forEach((line, index) => {
-    builder.text(`${id}-line-${index}`, `annotation-${id}`, {
-      x: at.x,
-      y: at.y + index * (options.lineGap ?? Math.round((options.size ?? 36) * 1.42)),
-    }, line, {
-      size: options.size ?? 36,
-      weight: options.weight ?? 700,
-      align: options.align ?? 'start',
-      sourceId: annotation?.id,
-    });
-  });
-}
-
-function drawTitle(builder: SceneBuilder, spec: FigureSpec): void {
+function drawTitle(builder: TemplateScene, spec: FigureSpec): void {
   const [name, qualifier] = spec.title.split(' (');
   builder.text('figure-title', 'title', { x: 1210, y: 112 }, name, {
     size: 116,
@@ -246,7 +145,7 @@ function drawTitle(builder: SceneBuilder, spec: FigureSpec): void {
 }
 
 function drawBackbone(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   spec: FigureSpec,
   blockId: Id,
   attention: OperationNode,
@@ -288,19 +187,19 @@ function drawBackbone(
     ['flow-output', 500, 415],
   ];
   for (const [id, from, to] of flows) {
-    flow(builder, id, [{ x: cx, y: from }, { x: cx, y: to }]);
+    builder.flow(id, [{ x: cx, y: from }, { x: cx, y: to }]);
   }
 
   // Residual trunk: one line per branch, each joining a GR pill.
   const trunkTop = 936;
-  flow(builder, 'residual-trunk', [
+  builder.flow('residual-trunk', [
     { x: cx, y: 2115 },
     { x: BACKBONE.trunkX, y: 2115 },
     { x: BACKBONE.trunkX, y: trunkTop },
   ], { role: 'residual-path', arrow: 'none' });
   const junctions = [936, 1176, 1596, 2016];
   junctions.forEach((y, index) => {
-    flow(builder, `residual-branch-${index + 1}`, [{ x: BACKBONE.trunkX, y }, { x: BACKBONE.pillX + BACKBONE.pillWidth, y }], {
+    builder.flow(`residual-branch-${index + 1}`, [{ x: BACKBONE.trunkX, y }, { x: BACKBONE.pillX + BACKBONE.pillWidth, y }], {
       role: 'residual-stub',
       width: 5,
     });
@@ -323,25 +222,25 @@ function drawBackbone(
 
   // Stacked backbone pills.
   const midBox = (y: number, height: number): Box => ({ x: BACKBONE.pillX, y, width: BACKBONE.pillWidth, height });
-  pill(builder, 'output-layer', 'output-layer', midBox(500, 76), text('Linear output layer'));
-  pill(builder, 'final-gr-read', 'final-gr-read', midBox(640, 76), text('Final GR Read'));
+  builder.pill('output-layer', 'output-layer', midBox(500, 76), text('Linear output layer'));
+  builder.pill('final-gr-read', 'final-gr-read', midBox(640, 76), text('Final GR Read'));
 
   const residualLabel = (operation: 'read' | 'write'): string => `${familyName('gated-residual')} ${operation === 'read' ? 'Read' : 'Write'}`;
   const readLabel = residualLabel('read');
   const writeLabel = residualLabel('write');
   const grLabel = (value: string): TextSpec => ({ spans: [{ text: value, color: 'accent', emphasis: 'bold' }] });
 
-  pill(builder, 'gr-write-2', 'gr-write-pill', midBox(900, 72), grLabel(writeLabel), { size: 34, sourceId: write.id });
-  pill(builder, 'moe', 'moe-block', midBox(1020, 76), text(familyName('moe')), {
+  builder.pill('gr-write-2', 'gr-write-pill', midBox(900, 72), grLabel(writeLabel), { size: 34, sourceId: write.id });
+  builder.pill('moe', 'moe-block', midBox(1020, 76), text(familyName('moe')), {
     fill: builder.solid(spec.theme.surface),
     size: 34,
     sourceId: moe.id,
   });
-  pill(builder, 'gr-read-2', 'gr-read-pill', midBox(1140, 72), grLabel(readLabel), { size: 34, sourceId: read.id });
-  pill(builder, 'gr-write-1', 'gr-write-pill', midBox(1560, 72), grLabel(writeLabel), { size: 34, sourceId: write.id });
-  pill(builder, 'gr-read-1', 'gr-read-pill', midBox(1980, 72), grLabel(readLabel), { size: 34, sourceId: read.id });
-  pill(builder, 'embedding-layer', 'embedding', { x: 908, y: 2320, width: 521, height: 72 }, text('Token embedding layer'), { size: 32 });
-  pill(builder, 'tokenized-text', 'input', { x: 965, y: 2467, width: 374, height: 72 }, text('Tokenized text'), { size: 32 });
+  builder.pill('gr-read-2', 'gr-read-pill', midBox(1140, 72), grLabel(readLabel), { size: 34, sourceId: read.id });
+  builder.pill('gr-write-1', 'gr-write-pill', midBox(1560, 72), grLabel(writeLabel), { size: 34, sourceId: write.id });
+  builder.pill('gr-read-1', 'gr-read-pill', midBox(1980, 72), grLabel(readLabel), { size: 34, sourceId: read.id });
+  builder.pill('embedding-layer', 'embedding', { x: 908, y: 2320, width: 521, height: 72 }, text('Token embedding layer'), { size: 32 });
+  builder.pill('tokenized-text', 'input', { x: 965, y: 2467, width: 374, height: 72 }, text('Tokenized text'), { size: 32 });
   builder.text('sample-input', 'input-label', { x: cx, y: 2700 }, 'Sample input text', {
     size: 34,
     align: 'center',
@@ -381,7 +280,7 @@ function drawBackbone(
   });
 
   // Norm and position-embedding side pills.
-  pill(builder, 'qk-norm', 'side-pill', { x: 526, y: 1641, width: 290, height: 68 }, text('QK-Norm'), { size: 30 });
+  builder.pill('qk-norm', 'side-pill', { x: 526, y: 1641, width: 290, height: 68 }, text('QK-Norm'), { size: 30 });
   builder.box('rope', 'side-pill', { x: 495, y: 1733, width: 396, height: 122 }, {
     fill: builder.solid('#FFFFFF'),
     stroke: builder.stroke(spec.theme.ink, 5),
@@ -391,8 +290,8 @@ function drawBackbone(
   });
   builder.text('rope-label', 'side-pill-label', { x: 693, y: 1786 }, 'Partial RoPE', { size: 30, align: 'center' });
   builder.text('rope-note', 'side-pill-label', { x: 693, y: 1828 }, '(QSA layers only)', { size: 28, align: 'center' });
-  flow(builder, 'qk-norm-flow', [{ x: 816, y: 1675 }, { x: attentionBox.x - 6, y: 1752 }], { width: 5 });
-  flow(builder, 'rope-flow', [{ x: 891, y: 1794 }, { x: attentionBox.x - 6, y: 1828 }], { width: 5 });
+  builder.flow('qk-norm-flow', [{ x: 816, y: 1675 }, { x: attentionBox.x - 6, y: 1752 }], { width: 5 });
+  builder.flow('rope-flow', [{ x: 891, y: 1794 }, { x: attentionBox.x - 6, y: 1828 }], { width: 5 });
 
   // Repetition marker.
   builder.glyph('repeat-brace', 'repeat-marker', { x: 735, y: 2125 }, 'brace', 190);
@@ -405,12 +304,12 @@ function drawBackbone(
   builder.text('repeat-x', 'repeat-marker', { x: 712, y: 2244 }, '×', { size: 42, weight: 700, fill: spec.theme.accent });
 
   // Leaders to the mask and GR insets.
-  flow(builder, 'mask-zoom-leader', [{ x: 1382, y: 1700 }, { x: 2150, y: 1140 }], {
+  builder.flow('mask-zoom-leader', [{ x: 1382, y: 1700 }, { x: 2150, y: 1140 }], {
     role: 'zoom-leader',
     dash: 'dotted',
     arrow: 'none',
   });
-  flow(builder, 'gr-zoom-leader', [{ x: 1445, y: 2035 }, { x: 1596, y: 2508 }], {
+  builder.flow('gr-zoom-leader', [{ x: 1445, y: 2035 }, { x: 1596, y: 2508 }], {
     role: 'zoom-leader',
     dash: 'dotted',
     arrow: 'none',
@@ -418,7 +317,7 @@ function drawBackbone(
 }
 
 function drawMask(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   spec: FigureSpec,
   mask: MaskNode,
   maskInsetId: Id,
@@ -550,7 +449,7 @@ function drawMask(
     const arcStart = { x: blockX(0) + MASK.blockSize * 0.45, y: y - 26 };
     const arcEnd = { x: blockX(columnBlocks - 1) + 14, y: y - 26 };
     const arcMid = (arcStart.x + arcEnd.x) / 2;
-    flow(builder, 'mask-selection-arc', [
+    builder.flow('mask-selection-arc', [
       arcStart,
       { x: arcMid - 170, y: y - 120 },
       { x: arcMid + 60, y: y - 132 },
@@ -572,7 +471,7 @@ function drawMask(
 }
 
 function drawResidualInset(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   spec: FigureSpec,
   residualInsetId: Id,
   read: OperationNode,
@@ -656,12 +555,12 @@ function drawResidualInset(
   const step = streams > 1 ? (readBox.height - 80) / (streams - 1) : 0;
   for (let index = 0; index < streams; index += 1) {
     const y = top + index * step;
-    flow(builder, `gr-branch-in-${index + 1}`, [{ x: GR.branchInX, y }, { x: readBox.x, y }], {
+    builder.flow(`gr-branch-in-${index + 1}`, [{ x: GR.branchInX, y }, { x: readBox.x, y }], {
       role: 'gr-branch',
       width: 5,
       arrow: 'none',
     });
-    flow(builder, `gr-branch-out-${index + 1}`, [{ x: right(writeBox), y }, { x: GR.branchOutX, y }], {
+    builder.flow(`gr-branch-out-${index + 1}`, [{ x: right(writeBox), y }, { x: GR.branchOutX, y }], {
       role: 'gr-branch',
       width: 5,
       arrow: 'none',
@@ -675,8 +574,8 @@ function drawResidualInset(
     }
   }
 
-  flow(builder, 'gr-read-to-sublayer', [{ x: right(readBox), y: centerY(readBox) }, { x: subBox.x, y: centerY(readBox) }], { width: 5 });
-  flow(builder, 'gr-sublayer-to-write', [{ x: right(subBox), y: centerY(subBox) }, { x: writeBox.x, y: centerY(subBox) }], { width: 5 });
+  builder.flow('gr-read-to-sublayer', [{ x: right(readBox), y: centerY(readBox) }, { x: subBox.x, y: centerY(readBox) }], { width: 5 });
+  builder.flow('gr-sublayer-to-write', [{ x: right(subBox), y: centerY(subBox) }, { x: writeBox.x, y: centerY(subBox) }], { width: 5 });
 
   builder.text('gr-caption-title', 'gr-note-title', { x: 1900, y: 3065 }, {
     spans: [
@@ -701,7 +600,7 @@ function drawResidualInset(
   });
 }
 
-function drawAnnotations(builder: SceneBuilder, spec: FigureSpec): void {
+function drawAnnotations(builder: TemplateScene, spec: FigureSpec): void {
   const leaders: Array<[Id, Point[]]> = [
     ['vocabulary', [{ x: 352, y: 700 }, { x: 955, y: 540 }]],
     ['moe-spec', [{ x: 350, y: 1122 }, { x: 955, y: 1058 }]],
@@ -714,7 +613,7 @@ function drawAnnotations(builder: SceneBuilder, spec: FigureSpec): void {
   for (const [id, points] of leaders) {
     const annotation = (spec.annotations ?? []).find((candidate) => candidate.id === id);
     if (!annotation) continue;
-    flow(builder, `leader-${id}`, points, {
+    builder.flow(`leader-${id}`, points, {
       role: 'leader',
       width: 5,
       dash: 'dotted',
@@ -723,13 +622,13 @@ function drawAnnotations(builder: SceneBuilder, spec: FigureSpec): void {
     });
   }
 
-  callout(builder, spec, 'vocabulary', { x: 30, y: 620 });
-  callout(builder, spec, 'moe-spec', { x: 30, y: 1080 });
-  callout(builder, spec, 'qsa', { x: 30, y: 1350 });
-  callout(builder, spec, 'gated-delta', { x: 30, y: 1600 });
-  callout(builder, spec, 'context', { x: 25, y: 1960 });
-  callout(builder, spec, 'ngram', { x: 120, y: 2560 });
-  callout(builder, spec, 'embedding', { x: 400, y: 2820 });
+  builder.callout(spec, 'vocabulary', { x: 30, y: 620 });
+  builder.callout(spec, 'moe-spec', { x: 30, y: 1080 });
+  builder.callout(spec, 'qsa', { x: 30, y: 1350 });
+  builder.callout(spec, 'gated-delta', { x: 30, y: 1600 });
+  builder.callout(spec, 'context', { x: 25, y: 1960 });
+  builder.callout(spec, 'ngram', { x: 120, y: 2560 });
+  builder.callout(spec, 'embedding', { x: 400, y: 2820 });
 }
 
 function scaleScene(scene: Scene, canvas: Size): Scene {
@@ -806,7 +705,7 @@ export function layoutQwenSparse(spec: FigureSpec, context: LayoutContext): Scen
     layoutFailure('invalid-mask', 'Mask values must cover every row/column pair', [mask.id]);
   }
 
-  const builder = new SceneBuilder(spec.theme, context.metrics);
+  const builder = new TemplateScene(spec.theme, context.metrics, { pillRadius: 30, pillSize: 32, pillIdSuffix: false, pillSourceId: 'id', calloutIdStyle: 'line' });
   drawTitle(builder, spec);
   drawBackbone(builder, spec, blockId, attention, delta, moe, read, write);
   drawMask(builder, spec, mask, maskInsetId, attention.data.blockSize ?? 4);

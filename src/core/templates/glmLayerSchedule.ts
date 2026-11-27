@@ -1,7 +1,7 @@
 import { FigureLayoutError } from '../errors';
 import { layoutLfmLayerGroup } from './lfmLayerGroup';
 import { layoutInklingRecurrentPass } from './inklingRecurrentPass';
-import { SceneBuilder } from '../sceneBuilder';
+import { TemplateScene, createTemplateApi } from './templateScene';
 import type {
   Box,
   EdgeSpec,
@@ -33,25 +33,7 @@ function fail(message: string, sourceIds: Id[] = []): never {
   throw new FigureLayoutError([{ severity: 'error', code: 'layer-schedule', message, sourceIds }]);
 }
 
-function templateSlots(spec: FigureSpec): Record<string, Id | Id[]> {
-  if (spec.layout.mode !== 'template' || spec.layout.template !== 'layer-schedule') {
-    fail('layer-schedule layout requires layout.template = "layer-schedule"');
-  }
-  return spec.layout.slots;
-}
-
-function slot(spec: FigureSpec, name: string): Id {
-  const value = templateSlots(spec)[name];
-  const id = Array.isArray(value) ? value[0] : value;
-  if (!id) fail(`layer-schedule layout requires the "${name}" slot`);
-  return id;
-}
-
-function groupOf(spec: FigureSpec, id: Id): GroupSpec {
-  const group = spec.groups.find((candidate) => candidate.id === id);
-  if (!group) fail(`Group "${id}" does not exist`, [id]);
-  return group;
-}
+const { slot, groupOf } = createTemplateApi('GLM-5.4', 'layer-schedule');
 
 function nodeOf(spec: FigureSpec, id: Id): NodeSpec {
   const node = spec.nodes.find((candidate) => candidate.id === id);
@@ -92,7 +74,7 @@ function inverseSpans(spec: TextSpec): TextSpec {
 }
 
 function addText(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   id: Id,
   role: string,
   at: Point,
@@ -129,7 +111,7 @@ function addText(
 }
 
 function addPill(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   spec: FigureSpec,
   id: Id,
   role: string,
@@ -161,7 +143,7 @@ function addPill(
   });
 }
 
-function addLeader(builder: SceneBuilder, id: Id, points: Point[]): void {
+function addLeader(builder: TemplateScene, id: Id, points: Point[]): void {
   builder.path(id, 'leader', points, {
     stroke: builder.stroke('#000000', 5, 'dotted'),
     arrow: 'none',
@@ -190,7 +172,7 @@ function sidePoint(box: Box, side: EdgeSpec['from']['side'] = 'center', offset =
 }
 
 function addEdge(
-  builder: SceneBuilder,
+  builder: TemplateScene,
   spec: FigureSpec,
   edge: EdgeSpec,
   boxes: Map<Id, Box>,
@@ -266,7 +248,7 @@ export function layoutGlmLayerSchedule(spec: FigureSpec, context: LayoutContext)
   if (moeNode.kind !== 'composite' || moeNode.data.family !== 'moe') fail('Node "moe" must carry typed MoE data', ['moe']);
   if (ffnNode.kind !== 'composite' || ffnNode.data.family !== 'ffn') fail('Node "ffn" must carry typed FFN data', ['ffn']);
 
-  const builder = new SceneBuilder(spec.theme, context.metrics);
+  const builder = new TemplateScene(spec.theme, context.metrics);
   const accent = spec.theme.accent;
   const cx = 1680;
 

@@ -3,6 +3,7 @@ import { SceneBuilder } from '../sceneBuilder';
 import type {
   Box,
   FigureSpec,
+  Fill,
   GroupSpec,
   Id,
   NodeSpec,
@@ -76,14 +77,34 @@ export class TemplateScene {
   private readonly calloutLineGap?: number;
   private readonly calloutSourceId?: Id | null;
   private readonly calloutSize?: number;
+  private readonly calloutIdStyle?: 'plain' | 'line';
+  private readonly pillSourceId?: 'id' | 'none';
+  private readonly pillIdSuffix?: boolean;
+  private readonly pillTextLabel?: boolean;
 
-  constructor(theme: Theme, metrics: TextMetrics, options: { pillRadius?: number; pillSize?: number; calloutLineGap?: number; calloutSourceId?: Id | null; calloutSize?: number } = {}) {
+  constructor(theme: Theme, metrics: TextMetrics, options: { pillRadius?: number; pillSize?: number; calloutLineGap?: number; calloutSourceId?: Id | null; calloutSize?: number; calloutIdStyle?: 'plain' | 'line'; pillSourceId?: 'id' | 'none'; pillIdSuffix?: boolean; pillTextLabel?: boolean } = {}) {
     this.builder = new SceneBuilder(theme, metrics);
     this.pillRadius = options.pillRadius;
     this.pillSize = options.pillSize;
     this.calloutLineGap = options.calloutLineGap;
     this.calloutSourceId = options.calloutSourceId;
     this.calloutSize = options.calloutSize;
+    this.calloutIdStyle = options.calloutIdStyle ?? 'plain';
+    this.pillSourceId = options.pillSourceId ?? 'none';
+    this.pillIdSuffix = options.pillIdSuffix ?? true;
+    this.pillTextLabel = options.pillTextLabel ?? false;
+  }
+
+  get elements() {
+    return this.builder.elements;
+  }
+
+  get diagnostics() {
+    return this.builder.diagnostics;
+  }
+
+  labelOf(text: TextSpec): string {
+    return this.builder.labelOf(text);
   }
 
   solid(color: string) {
@@ -141,7 +162,7 @@ export class TemplateScene {
     box: Box,
     content: TextSpec,
     options: {
-      fill?: string;
+      fill?: Fill | string;
       stroke?: string;
       strokeWidth?: number;
       radius?: number;
@@ -152,20 +173,58 @@ export class TemplateScene {
     } = {},
   ): void {
     const size = options.size ?? this.pillSize ?? 34;
-    this.box(`${id}-box`, role, box, {
-      fill: this.solid(options.fill ?? '#FFFFFF'),
+    const sourceId = options.sourceId ?? (this.pillSourceId === 'id' ? id : undefined);
+    this.box(this.pillIdSuffix ? `${id}-box` : id, role, box, {
+      fill: typeof options.fill === 'string' ? this.solid(options.fill) : options.fill ?? this.solid('#FFFFFF'),
       stroke: this.stroke(options.stroke ?? '#000000', options.strokeWidth ?? 5),
       radius: options.radius ?? this.pillRadius ?? 28,
-      sourceId: options.sourceId,
-      label: options.sourceId ? this.builder.labelOf(content) : undefined,
+      sourceId,
+      label: sourceId ? this.builder.labelOf(content) : undefined,
     });
     this.text(`${id}-label`, `${role}-label`, { x: box.x + box.width / 2, y: box.y + box.height / 2 + size * 0.36 }, content, {
       size,
       weight: options.weight ?? 500,
       fill: options.textFill,
       align: 'center',
-      sourceId: options.sourceId,
+      sourceId,
+      label: this.pillTextLabel ? this.builder.labelOf(content) : undefined,
     });
+  }
+
+  multilinePill(
+    id: Id,
+    role: string,
+    box: Box,
+    lines: TextSpec[],
+    options: { fill?: string; stroke?: string; radius?: number; size?: number; sourceId?: Id } = {},
+  ): void {
+    const size = options.size ?? 28;
+    const sourceId = options.sourceId ?? (this.pillSourceId === 'id' ? id : undefined);
+    this.box(`${id}-box`, role, box, {
+      fill: this.solid(options.fill ?? '#FFFFFF'),
+      stroke: this.stroke(options.stroke ?? '#000000', 5),
+      radius: options.radius ?? 22,
+      sourceId,
+      label: sourceId ? lines.map((line) => this.builder.labelOf(line)).join('\n') : undefined,
+    });
+    const startY = box.y + box.height / 2 - ((lines.length - 1) * size * 1.35) / 2 + size * 0.36;
+    lines.forEach((line, index) => {
+      this.text(`${id}-label-${index}`, `${role}-label`, { x: box.x + box.width / 2, y: startY + index * size * 1.35 }, line, {
+        size,
+        weight: 500,
+        align: 'center',
+        sourceId,
+      });
+    });
+  }
+
+  repeatFrame(id: Id, box: Box, count: string): void {
+    this.box(`${id}-frame`, 'nested-repeat-frame', box, {
+      fill: this.solid('#FFFFFF00'),
+      stroke: this.stroke('#000000', 8, 'dotted'),
+      radius: 34,
+    });
+    this.text(`${id}-count`, 'nested-repeat-count', { x: box.x + box.width + 35, y: box.y + box.height / 2 }, templateText(count), { size: 32, weight: 700 });
   }
 
   callout(
@@ -177,7 +236,7 @@ export class TemplateScene {
     const lines = annotationLines(spec, id);
     const annotation = annotationOf(spec, id);
     lines.forEach((line, index) => {
-      this.text(`${id}-${index}`, options.role ?? `annotation-${id}`, {
+      this.text(this.calloutIdStyle === 'line' ? `${id}-line-${index}` : `${id}-${index}`, options.role ?? `annotation-${id}`, {
         x: at.x,
         y: at.y + index * (options.lineGap ?? this.calloutLineGap ?? Math.round((options.size ?? 36) * 1.42)),
       }, line, {
