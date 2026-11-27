@@ -259,7 +259,7 @@ const templateVariants = {
   "multi-stream-residual": [],
   "multi-tower": [],
   "attention-mask": ["ihc-pipeline"],
-} as const;
+} as const satisfies Record<TemplateId, readonly string[]>;
 
 type TemplateLayout = {
   [T in TemplateId]: {

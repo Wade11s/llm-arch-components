@@ -28,7 +28,8 @@ function validationIssues(spec: FigureSpec) {
 describe('typed layout.variant', () => {
   test('accepts a template variant at the public layout field', () => {
     const result = renderFigure(typedVariantSpec, { idPrefix: 'typed-layout-variant' });
-    expect(result.scene.elements.length).toBeGreaterThan(100);
+    expect(result.scene.elements.some((element) => element.role === 'mixing-attention-inset')).toBe(true);
+    expect(result.scene.elements.some((element) => element.role === 'mixing-delta-inset')).toBe(true);
     expect(result.svg).toContain('Gated DeltaNet');
   });
 
@@ -44,6 +45,18 @@ describe('typed layout.variant', () => {
     if (legacy.layout.mode !== 'template') throw new Error('bad fixture');
     delete legacy.layout.variant;
     legacy.layout.options = { ...legacy.layout.options, variant: 'mixing-detail' };
+
+    expect(validationIssues(legacy)).toContainEqual(expect.objectContaining({
+      code: 'legacy-variant-location',
+      path: 'layout.options.variant',
+    }));
+  });
+
+  test('uses the targeted legacy diagnostic even for an invalid legacy value', () => {
+    const legacy = structuredClone(typedVariantSpec);
+    if (legacy.layout.mode !== 'template') throw new Error('bad fixture');
+    delete legacy.layout.variant;
+    Object.assign(legacy.layout.options ?? {}, { variant: null });
 
     expect(validationIssues(legacy)).toContainEqual(expect.objectContaining({
       code: 'legacy-variant-location',
