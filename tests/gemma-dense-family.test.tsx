@@ -93,7 +93,7 @@ describe('Gemma dense family', () => {
     expect(slugs).toContain('gemma-4-31b');
 
     const coverage = readFileSync('docs/research/rendering-coverage.md', 'utf8');
-    expect(coverage).toContain('| Verified rendering | 20 / 132 |');
+    expect(coverage).toContain(`| Verified rendering | ${figureSpecs.length} / 132 |`);
     expect(coverage).toContain('| gemma-3-270m | yes | yes | yes |');
     expect(coverage).toContain('| gemma-4-12b | yes | yes | yes |');
     expect(coverage).toContain('| gemma-4-31b | yes | yes | yes |');
