@@ -9,6 +9,7 @@ import gptOssRef from '../images/gpt-oss-120b.webp';
 import gptOss20bRef from '../images/gpt-oss-20b.webp';
 import qwen38FlashNextRef from '../images/qwen3-8-flash-next-125b-a6b.webp';
 import glm54Ref from '../images/glm-5-4.webp';
+import antares1bRef from '../images/antares-1b.webp';
 import llama321bRef from '../images/llama-3-2-1b.webp';
 import llama323bRef from '../images/llama-3-2-3b.webp';
 import llama3Ref from '../images/llama-3-8b.webp';
@@ -17,6 +18,11 @@ import qwen34bRef from '../images/qwen3-4b.webp';
 import qwen3Ref from '../images/qwen3-8b.webp';
 import qwen332bRef from '../images/qwen3-32b.webp';
 import phi4Ref from '../images/phi-4.webp';
+import vibeThinker3bRef from '../images/vibethinker-3b.webp';
+import nanbeige41Ref from '../images/nanbeige-4-1-3b.webp';
+import nanbeige43Ref from '../images/nanbeige-4-3-33b.webp';
+import mistralSmall31Ref from '../images/mistral-small-3-1-24b.webp';
+import olmo2Ref from '../images/olmo-2-7b.webp';
 import domynEdgeRef from '../images/domyn-edge-3-93b.webp';
 import granite41Ref from '../images/granite-4-1-30b.webp';
 import gpt2xlRef from '../images/gpt-2-xl-1-5b.webp';
@@ -54,6 +60,7 @@ const references: Record<string, string> = {
   'gpt-oss-120b': gptOssRef,
   'qwen3-8-flash-next-125b-a6b': qwen38FlashNextRef,
   'glm-5-4': glm54Ref,
+  'antares-1b': antares1bRef,
   'llama-3-2-1b': llama321bRef,
   'llama-3-2-3b': llama323bRef,
   'llama-3-8b': llama3Ref,
@@ -62,6 +69,11 @@ const references: Record<string, string> = {
   'qwen3-8b': qwen3Ref,
   'qwen3-32b': qwen332bRef,
   'phi-4': phi4Ref,
+  'vibethinker-3b': vibeThinker3bRef,
+  'nanbeige-4-1-3b': nanbeige41Ref,
+  'nanbeige-4-3-33b': nanbeige43Ref,
+  'mistral-small-3-1-24b': mistralSmall31Ref,
+  'olmo-2-7b': olmo2Ref,
   'domyn-edge-3-93b': domynEdgeRef,
   'granite-4-1-30b': granite41Ref,
   'gpt-2-xl-1-5b': gpt2xlRef,

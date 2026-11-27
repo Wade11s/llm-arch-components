@@ -23,6 +23,14 @@ function denseBackboneSpec(input: {
   blockFill: string;
   normLabels: 'rmsnorm' | 'pre';
   showQKNorm: boolean;
+  showPostNorms?: boolean;
+  showPreNorms?: boolean;
+  attentionLabelStyle?: 'mha';
+  attentionSuffix?: string;
+  attentionFirstLineAccent?: boolean;
+  normStroke?: string;
+  insetOffsetX?: number;
+  insetTitle?: string;
   hiddenAnnotationX?: number;
   headsAnnotationX?: number;
   headsAnnotationY?: number;
@@ -30,8 +38,10 @@ function denseBackboneSpec(input: {
   headsLeaderEndY?: number;
   sampleInputY?: number;
 }): FigureSpec {
-  const normDescription = input.normLabels === 'pre' ? 'Pre-RMSNorm pairs' : 'RMSNorm pairs';
-  const attentionDescription = input.showQKNorm ? 'QK-Norm grouped-query attention' : 'grouped-query attention';
+  const normDescription = input.showPostNorms ? 'Post-RMSNorm pairs' : input.normLabels === 'pre' ? 'Pre-RMSNorm pairs' : 'RMSNorm pairs';
+  const attentionDescription = input.attentionLabelStyle === 'mha'
+    ? input.showQKNorm ? 'QK-Norm multi-head attention' : 'multi-head attention'
+    : input.showQKNorm ? 'QK-Norm grouped-query attention' : 'grouped-query attention';
   return {
     schemaVersion: 1,
     id: input.id,
@@ -49,7 +59,7 @@ function denseBackboneSpec(input: {
     groups: [
       { id: 'model', kind: 'model', children: ['backbone', 'ffn-inset'] },
       { id: 'backbone', kind: 'repeat-block', parent: 'model', repeat: { count: input.layers }, children: ['attention', 'ffn'], style: { fill: { kind: 'solid', color: input.blockFill } } },
-      { id: 'ffn-inset', kind: 'inset', parent: 'model', children: ['ffn'] },
+      { id: 'ffn-inset', kind: 'inset', parent: 'model', title: input.insetTitle ? { spans: [{ text: input.insetTitle }] } : undefined, children: ['ffn'] },
     ],
     nodes: [
       { id: 'attention', kind: 'composite', label: input.attention.label ?? { spans: [{ text: 'Grouped-query' }, { text: 'attention' }] }, data: { family: 'gqa', heads: input.attention.heads, kvHeads: input.attention.kvHeads } },
@@ -73,7 +83,13 @@ function denseBackboneSpec(input: {
       options: {
         normLabels: input.normLabels,
         showQKNorm: input.showQKNorm,
-        normStroke: 'ink',
+        normStroke: input.normStroke ?? 'ink',
+        ...(input.showPostNorms !== undefined ? { showPostNorms: input.showPostNorms } : {}),
+        ...(input.showPreNorms !== undefined ? { showPreNorms: input.showPreNorms } : {}),
+        ...(input.attentionLabelStyle ? { attentionLabelStyle: input.attentionLabelStyle } : {}),
+        ...(input.attentionSuffix ? { attentionSuffix: input.attentionSuffix } : {}),
+        ...(input.attentionFirstLineAccent ? { attentionFirstLineAccent: true } : {}),
+        ...(input.insetOffsetX !== undefined ? { insetOffsetX: input.insetOffsetX } : {}),
         ...(input.hiddenAnnotationX !== undefined ? { hiddenAnnotationX: input.hiddenAnnotationX } : {}),
         ...(input.headsAnnotationX !== undefined ? { headsAnnotationX: input.headsAnnotationX } : {}),
         ...(input.headsAnnotationY !== undefined ? { headsAnnotationY: input.headsAnnotationY } : {}),
@@ -222,4 +238,154 @@ export const phi4Spec = denseBackboneSpec({
   normLabels: 'rmsnorm',
   showQKNorm: false,
   hiddenAnnotationX: 1800,
+});
+
+export const antares1bSpec = denseBackboneSpec({
+  id: 'antares-1b',
+  title: 'Antares-1B',
+  layers: 40,
+  hidden: 4096,
+  hiddenAnnotation: { bullets: [emphasized('Input size: ', '2,048'), text('Intermediate projection:'), emphasized('', '4,096')] },
+  embedding: '2,048',
+  contextAnnotation: { bullets: [text('Native context'), emphasized('', '131,072', ' tokens')] },
+  headsAnnotation: { bullets: [emphasized('', '16', ' Q heads'), emphasized('', '4', ' KV heads')] },
+  attention: { heads: 16, kvHeads: 4 },
+  vocabulary: '100k',
+  canvas: { width: 2530, height: 2632 },
+  accent: '#105FF7',
+  blockFill: '#6390E8',
+  normLabels: 'pre',
+  showQKNorm: false,
+  headsAnnotationY: 1280,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
+  headsLeaderEndY: 1280,
+  insetOffsetX: -120,
+  insetTitle: 'Feed forward (SwiGLU) module',
+});
+
+export const vibeThinker3bSpec = denseBackboneSpec({
+  id: 'vibethinker-3b',
+  title: 'VibeThinker-3B',
+  layers: 36,
+  hidden: 11008,
+  hiddenAnnotation: { bullets: [emphasized('Input size: ', '2,048'), emphasized('Intermediate projection size: ', '11,008')] },
+  embedding: '2,048',
+  contextAnnotation: { bullets: [text('Context length'), emphasized('', '64k', ' training'), emphasized('', '128k', ' in config')] },
+  headsAnnotation: { bullets: [emphasized('', '16', ' heads,'), emphasized('', '2', ' KV heads')] },
+  attention: { heads: 16, kvHeads: 2 },
+  vocabulary: '151k',
+  canvas: { width: 2555, height: 2652 },
+  accent: '#01A2FF',
+  blockFill: '#56C1FF',
+  normLabels: 'rmsnorm',
+  showQKNorm: false,
+  attentionSuffix: '(GQA)',
+  headsAnnotationY: 1280,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
+  headsLeaderEndY: 1280,
+  insetOffsetX: -120,
+});
+
+export const nanbeige41Spec = denseBackboneSpec({
+  id: 'nanbeige-4-1-3b',
+  title: 'Nanbeige4.1 (3B)',
+  layers: 32,
+  hidden: 10496,
+  hiddenAnnotation: { bullets: [text('Intermediate projection'), emphasized('size of ', '10,496')] },
+  embedding: '2,560',
+  contextAnnotation: { bullets: [text('Native context'), emphasized('', '262,144', ' tokens')] },
+  headsAnnotation: { bullets: [
+    { spans: [{ text: '20 Q heads, ', color: 'accent' }, { text: '4 KV heads (group size ' }, { text: '5', color: 'accent' }, { text: ')' }] },
+    { spans: [{ text: 'head dim ' }, { text: '128', color: 'accent' }] },
+  ] },
+  attention: { heads: 20, kvHeads: 4 },
+  vocabulary: '166k',
+  canvas: { width: 2649, height: 2664 },
+  accent: '#007F00',
+  blockFill: '#A9D18E',
+  normLabels: 'rmsnorm',
+  showQKNorm: false,
+  headsAnnotationY: 1280,
+  headsLeaderEndY: 1280,
+  headsAnnotationX: 1500,
+  headsLeaderEndX: 1480,
+});
+
+export const nanbeige43Spec = denseBackboneSpec({
+  id: 'nanbeige-4-3-33b',
+  title: 'Nanbeige4.3 (33B)',
+  layers: 52,
+  hidden: 22016,
+  hiddenAnnotation: { bullets: [text('Intermediate projection'), emphasized('size of ', '22,016')] },
+  embedding: '7,168',
+  contextAnnotation: { bullets: [text('Native context'), emphasized('', '524,288', ' tokens')] },
+  headsAnnotation: { bullets: [
+    { spans: [{ text: '56 Q heads, ', color: 'accent' }, { text: '8 KV heads (group size ' }, { text: '7', color: 'accent' }, { text: ')' }] },
+    { spans: [{ text: 'head dim ' }, { text: '128', color: 'accent' }] },
+  ] },
+  attention: { heads: 56, kvHeads: 8 },
+  vocabulary: '167k',
+  canvas: { width: 2599, height: 2664 },
+  accent: '#007F00',
+  blockFill: '#86A872',
+  normLabels: 'rmsnorm',
+  showQKNorm: false,
+  headsAnnotationY: 1280,
+  headsLeaderEndY: 1280,
+  headsAnnotationX: 1500,
+  headsLeaderEndX: 1480,
+  insetOffsetX: -40,
+});
+
+export const mistralSmall31Spec = denseBackboneSpec({
+  id: 'mistral-small-3-1-24b',
+  title: 'Mistral Small 3.1 (24B)',
+  layers: 40,
+  hidden: 32768,
+  hiddenAnnotation: { bullets: [text('Hidden layer'), emphasized('dimension of ', '32,768')] },
+  embedding: '5,120',
+  contextAnnotation: { bullets: [text('Native context'), emphasized('', '131,072', ' tokens')] },
+  headsAnnotation: { bullets: [emphasized('', '32', ' attention heads'), emphasized('', '8', ' key & value heads')] },
+  attention: { heads: 32, kvHeads: 8 },
+  vocabulary: '131,072',
+  canvas: { width: 2554, height: 2686 },
+  accent: '#FF644E',
+  blockFill: '#EB978B',
+  normLabels: 'pre',
+  showQKNorm: false,
+  attentionFirstLineAccent: true,
+  normStroke: '#FF644E',
+  headsAnnotationY: 1280,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
+  headsLeaderEndY: 1280,
+  insetOffsetX: -120,
+});
+
+export const olmo2Spec = denseBackboneSpec({
+  id: 'olmo-2-7b',
+  title: 'OLMo 2 (7B)',
+  layers: 32,
+  hidden: 11008,
+  hiddenAnnotation: { bullets: [emphasized('Input size: ', '4,096'), text('Intermediate projection'), emphasized('size = ', '11,008')] },
+  embedding: '4,096',
+  contextAnnotation: { bullets: [text('Native context'), emphasized('', '4,096', ' tokens')] },
+  headsAnnotation: { bullets: [emphasized('', '32', ' attention heads'), emphasized('', '32', ' key & value heads'), text('(regular multi-head attention)')] },
+  attention: { heads: 32, kvHeads: 32 },
+  vocabulary: '100k',
+  canvas: { width: 2595, height: 2679 },
+  accent: '#F1539D',
+  blockFill: '#DDADC4',
+  normLabels: 'rmsnorm',
+  showQKNorm: true,
+  showPostNorms: true,
+  showPreNorms: false,
+  attentionLabelStyle: 'mha',
+  headsAnnotationY: 1280,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
+  headsLeaderEndY: 1280,
+  insetOffsetX: -40,
 });
