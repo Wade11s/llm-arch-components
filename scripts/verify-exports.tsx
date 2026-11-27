@@ -27,7 +27,9 @@ const specCases: VerifyCase[] = figureSpecs.map((entry) => ({
       ? ['middle-layer-count', 'loop-layer-card', 'moe-expert']
       : entry.slug === 'qwen3-next-80b-a3b' || entry.slug === 'kimi-linear-48b-a3b'
         ? ['repeat-block', 'mixing-attention-inset', 'mixing-delta-inset', 'mixing-conv']
-        : ['repeat-block', 'ffn-inset'],
+        : entry.slug === 'lfm2-5-8b-a1b'
+          ? ['repeat-block', 'moe-inset', 'gqa-head-grid', 'layer-group-box']
+          : ['repeat-block', 'ffn-inset'],
 }));
 
 const results: Array<Record<string, unknown>> = [];
