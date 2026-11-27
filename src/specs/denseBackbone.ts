@@ -261,7 +261,7 @@ export const antares1bSpec = denseBackboneSpec({
   headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
   hiddenAnnotationX: 1600,
-  sampleInputY: 2630,
+  sampleInputY: 2620,
   insetOffsetX: -120,
   insetTitle: 'Feed forward (SwiGLU) module',
 });
@@ -271,7 +271,7 @@ export const vibeThinker3bSpec = denseBackboneSpec({
   title: 'VibeThinker-3B',
   layers: 36,
   hidden: 11008,
-  hiddenAnnotation: { bullets: [emphasized('Input size: ', '2,048'), emphasized('Intermediate projection size: ', '11,008')] },
+  hiddenAnnotation: { bullets: [emphasized('Input size: ', '2,048'), text('Intermediate projection'), emphasized('size: ', '11,008')] },
   embedding: '2,048',
   contextAnnotation: { bullets: [text('Context length'), emphasized('', '64k', ' training'), emphasized('', '128k', ' in config')] },
   headsAnnotation: { bullets: [emphasized('', '16', ' heads,'), emphasized('', '2', ' KV heads')] },
@@ -287,7 +287,7 @@ export const vibeThinker3bSpec = denseBackboneSpec({
   headsAnnotationX: 1760,
   headsLeaderEndX: 1740,
   headsLeaderEndY: 1280,
-  hiddenAnnotationX: 1500,
+  hiddenAnnotationX: 1700,
   insetOffsetX: -120,
 });
 
@@ -325,7 +325,8 @@ export const nanbeige43Spec = denseBackboneSpec({
   embedding: '7,168',
   contextAnnotation: { bullets: [text('Native context'), emphasized('', '524,288', ' tokens')] },
   headsAnnotation: { bullets: [
-    { spans: [{ text: '56 Q heads, ', color: 'accent' }, { text: '8 KV heads (group size ' }, { text: '7', color: 'accent' }, { text: ')' }] },
+    { spans: [{ text: '56 Q heads, ', color: 'accent' }, { text: '8 KV heads' }] },
+    { spans: [{ text: 'group size ' }, { text: '7', color: 'accent' }] },
     { spans: [{ text: 'head dim ' }, { text: '128', color: 'accent' }] },
   ] },
   attention: { heads: 56, kvHeads: 8 },
@@ -337,8 +338,8 @@ export const nanbeige43Spec = denseBackboneSpec({
   showQKNorm: false,
   headsAnnotationY: 1280,
   headsLeaderEndY: 1280,
-  headsAnnotationX: 1550,
-  headsLeaderEndX: 1530,
+  headsAnnotationX: 1600,
+  headsLeaderEndX: 1580,
   insetOffsetX: -40,
 });
 
@@ -387,10 +388,10 @@ export const olmo2Spec = denseBackboneSpec({
   showPreNorms: false,
   attentionLabelStyle: 'mha',
   normStroke: '#F1539D',
-  headsAnnotationY: 1280,
-  headsAnnotationX: 1500,
-  headsLeaderEndX: 1480,
-  headsLeaderEndY: 1280,
-  hiddenAnnotationX: 1500,
+  headsAnnotationY: 1600,
+  headsAnnotationX: 1700,
+  headsLeaderEndX: 1680,
+  headsLeaderEndY: 1600,
+  hiddenAnnotationX: 1700,
   insetOffsetX: -40,
 });

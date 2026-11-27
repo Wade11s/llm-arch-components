@@ -48,7 +48,8 @@ describe('simple dense family', () => {
     expect(text).toContain('16 heads,');
     expect(text).toContain('2 KV heads');
     expect(text).toContain('(GQA)');
-    expect(text).toContain('Intermediate projection size: 11,008');
+    expect(text).toContain('Intermediate projection');
+    expect(text).toContain('size: 11,008');
     expect(text).toContain('dimension of 2,048');
   });
 
@@ -74,7 +75,8 @@ describe('simple dense family', () => {
     expect(text).toContain('Nanbeige4.3 (33B)');
     expect(text).toContain('Vocabulary size of 167k');
     expect(text).toContain('52');
-    expect(text).toContain('56 Q heads, 8 KV heads (group size 7)');
+    expect(text).toContain('56 Q heads, 8 KV heads');
+    expect(text).toContain('group size 7');
     expect(text).toContain('head dim 128');
     expect(text).toContain('size of 22,016');
     expect(text).toContain('524,288 tokens');
@@ -123,7 +125,7 @@ describe('simple dense family', () => {
       for (const element of result.scene.elements) {
         if (element.kind !== 'text') continue;
         for (const line of element.lines) {
-          expect(line.baseline).toBeLessThanOrEqual(result.scene.canvas.height);
+          expect(line.baseline).toBeLessThanOrEqual(result.scene.canvas.height - 5);
           for (const span of line.spans) {
             expect(span.x).toBeGreaterThanOrEqual(0);
             expect(span.x + span.width).toBeLessThanOrEqual(result.scene.canvas.width + 1);

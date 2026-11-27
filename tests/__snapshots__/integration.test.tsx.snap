@@ -32056,7 +32056,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 1022,
-        "y": 2630,
+        "y": 2620,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "sample-input",
@@ -32064,7 +32064,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 2630,
+          "baseline": 2620,
           "spans": [
             {
               "fill": "#000000",
@@ -50701,7 +50701,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
+        "x": 1700,
         "y": 1482,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -50718,7 +50718,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Input size: ",
               "weight": 700,
               "width": 297.6064000000002,
-              "x": 1500,
+              "x": 1700,
             },
             {
               "color": "accent",
@@ -50727,7 +50727,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "2,048",
               "weight": 700,
               "width": 139.77600000000004,
-              "x": 1797.6064000000001,
+              "x": 1997.6064000000001,
             },
             {
               "fill": "#000000",
@@ -50735,7 +50735,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1937.3824000000002,
+              "x": 2137.3824,
             },
           ],
         },
@@ -50746,7 +50746,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
+        "x": 1700,
         "y": 1547,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -50760,10 +50760,38 @@ exports[`spec-driven integration surface all validated figures render through th
             {
               "fill": "#000000",
               "size": 56,
-              "text": "Intermediate projection size: ",
+              "text": "Intermediate projection",
               "weight": 700,
-              "width": 811.8655999999995,
-              "x": 1500,
+              "width": 654.0351999999999,
+              "x": 1700,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-hidden-dimension",
+      "sourceId": "hidden-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1700,
+        "y": 1612,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "hidden-dimension-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1612,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "size: ",
+              "weight": 700,
+              "width": 141.52320000000006,
+              "x": 1700,
             },
             {
               "color": "accent",
@@ -50772,7 +50800,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "11,008",
               "weight": 700,
               "width": 170.64320000000004,
-              "x": 2311.8655999999996,
+              "x": 1841.5232,
             },
             {
               "fill": "#000000",
@@ -50780,7 +50808,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 2482.5087999999996,
+              "x": 2012.1664,
             },
           ],
         },
@@ -54153,7 +54181,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1530,
+          "x": 1580,
           "y": 1280,
         },
       ],
@@ -54382,7 +54410,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1550,
+        "x": 1600,
         "y": 1280,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -54400,32 +54428,15 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "56 Q heads, ",
               "weight": 700,
               "width": 319.7376000000001,
-              "x": 1550,
+              "x": 1600,
             },
             {
               "fill": "#000000",
               "size": 56,
-              "text": "8 KV heads (group size ",
+              "text": "8 KV heads",
               "weight": 700,
-              "width": 637.728,
-              "x": 1869.7376000000002,
-            },
-            {
-              "color": "accent",
-              "fill": "#007F00",
-              "size": 56,
-              "text": "7",
-              "weight": 700,
-              "width": 30.8672,
-              "x": 2507.4656,
-            },
-            {
-              "fill": "#000000",
-              "size": 56,
-              "text": ")",
-              "weight": 700,
-              "width": 30.8672,
-              "x": 2538.3328,
+              "width": 294.6944000000001,
+              "x": 1919.7376000000002,
             },
           ],
         },
@@ -54436,7 +54447,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1550,
+        "x": 1600,
         "y": 1345,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -54450,10 +54461,47 @@ exports[`spec-driven integration surface all validated figures render through th
             {
               "fill": "#000000",
               "size": 56,
+              "text": "group size ",
+              "weight": 700,
+              "width": 295.85920000000016,
+              "x": 1600,
+            },
+            {
+              "color": "accent",
+              "fill": "#007F00",
+              "size": 56,
+              "text": "7",
+              "weight": 700,
+              "width": 30.8672,
+              "x": 1895.8592,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1600,
+        "y": 1410,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1410,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
               "text": "head dim ",
               "weight": 700,
               "width": 251.01440000000008,
-              "x": 1550,
+              "x": 1600,
             },
             {
               "color": "accent",
@@ -54462,7 +54510,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "128",
               "weight": 700,
               "width": 92.6016,
-              "x": 1801.0144,
+              "x": 1851.0144,
             },
           ],
         },
@@ -58027,8 +58075,8 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1480,
-          "y": 1280,
+          "x": 1680,
+          "y": 1600,
         },
       ],
       "role": "leader",
@@ -58256,8 +58304,8 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
-        "y": 1280,
+        "x": 1700,
+        "y": 1600,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-0",
@@ -58265,7 +58313,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1280,
+          "baseline": 1600,
           "spans": [
             {
               "fill": "#000000",
@@ -58273,7 +58321,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1500,
+              "x": 1700,
             },
             {
               "color": "accent",
@@ -58282,7 +58330,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "32",
               "weight": 700,
               "width": 61.7344,
-              "x": 1500,
+              "x": 1700,
             },
             {
               "fill": "#000000",
@@ -58290,7 +58338,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": " attention heads",
               "weight": 700,
               "width": 450.19520000000017,
-              "x": 1561.7344,
+              "x": 1761.7344,
             },
           ],
         },
@@ -58301,8 +58349,8 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
-        "y": 1345,
+        "x": 1700,
+        "y": 1665,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-1",
@@ -58310,7 +58358,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1345,
+          "baseline": 1665,
           "spans": [
             {
               "fill": "#000000",
@@ -58318,7 +58366,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1500,
+              "x": 1700,
             },
             {
               "color": "accent",
@@ -58327,7 +58375,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "32",
               "weight": 700,
               "width": 61.7344,
-              "x": 1500,
+              "x": 1700,
             },
             {
               "fill": "#000000",
@@ -58335,7 +58383,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": " key & value heads",
               "weight": 700,
               "width": 482.80960000000016,
-              "x": 1561.7344,
+              "x": 1761.7344,
             },
           ],
         },
@@ -58346,8 +58394,8 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
-        "y": 1410,
+        "x": 1700,
+        "y": 1730,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-2",
@@ -58355,7 +58403,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1410,
+          "baseline": 1730,
           "spans": [
             {
               "fill": "#000000",
@@ -58363,7 +58411,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "(regular multi-head attention)",
               "weight": 700,
               "width": 855.5455999999997,
-              "x": 1500,
+              "x": 1700,
             },
           ],
         },
@@ -58447,7 +58495,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
+        "x": 1700,
         "y": 1482,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -58464,7 +58512,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Input size: ",
               "weight": 700,
               "width": 297.6064000000002,
-              "x": 1500,
+              "x": 1700,
             },
             {
               "color": "accent",
@@ -58473,7 +58521,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "4,096",
               "weight": 700,
               "width": 139.77600000000004,
-              "x": 1797.6064000000001,
+              "x": 1997.6064000000001,
             },
             {
               "fill": "#000000",
@@ -58481,7 +58529,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1937.3824000000002,
+              "x": 2137.3824,
             },
           ],
         },
@@ -58492,7 +58540,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
+        "x": 1700,
         "y": 1547,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -58509,7 +58557,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Intermediate projection",
               "weight": 700,
               "width": 654.0351999999999,
-              "x": 1500,
+              "x": 1700,
             },
           ],
         },
@@ -58520,7 +58568,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 1500,
+        "x": 1700,
         "y": 1612,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -58537,7 +58585,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "size = ",
               "weight": 700,
               "width": 172.39040000000006,
-              "x": 1500,
+              "x": 1700,
             },
             {
               "color": "accent",
@@ -58546,7 +58594,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "11,008",
               "weight": 700,
               "width": 170.64320000000004,
-              "x": 1672.3904,
+              "x": 1872.3904,
             },
             {
               "fill": "#000000",
@@ -58554,7 +58602,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "",
               "weight": 700,
               "width": 0,
-              "x": 1843.0336,
+              "x": 2043.0336,
             },
           ],
         },
