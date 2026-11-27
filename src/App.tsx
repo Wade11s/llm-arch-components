@@ -1,18 +1,42 @@
 import { useState } from 'react';
-import deepseekRef from '../images/deepseek-v3.webp';
-import gemmaRef from '../images/gemma-3-27b.webp';
+import deepseekV3Ref from '../images/deepseek-v3.webp';
+import gemma3Ref from '../images/gemma-3-27b.webp';
 import gptOssRef from '../images/gpt-oss-120b.webp';
-import qwenRef from '../images/qwen3-8-flash-next-125b-a6b.webp';
-import glmRef from '../images/glm-5-4.webp';
+import qwen38FlashNextRef from '../images/qwen3-8-flash-next-125b-a6b.webp';
+import glm54Ref from '../images/glm-5-4.webp';
+import llama3Ref from '../images/llama-3-8b.webp';
+import qwen3Ref from '../images/qwen3-8b.webp';
+import qwen3MoeRef from '../images/qwen3-30b-a3b.webp';
+import minimaxM2Ref from '../images/minimax-m2-230b.webp';
+import qwen3NextRef from '../images/qwen3-next-80b-a3b.webp';
+import kimiLinearRef from '../images/kimi-linear-48b-a3b.webp';
+import xlstmRef from '../images/xlstm-7b.webp';
+import lfm25Ref from '../images/lfm2-5-8b-a1b.webp';
+import inkling2MiniRef from '../images/inkling-2-mini.webp';
+import motif3BetaRef from '../images/motif-3-beta.webp';
+import deepseekV41FlashRef from '../images/deepseek-v4-1-flash.webp';
+import tencentHy4Ref from '../images/tencent-hy4-770b-a49b.webp';
 import { renderFigure, SceneSvg } from './core/renderFigure';
 import { figureSpecs } from './specs';
 
 const references: Record<string, string> = {
-  'deepseek-v3': deepseekRef,
-  'gemma-3-27b': gemmaRef,
+  'deepseek-v3': deepseekV3Ref,
+  'gemma-3-27b': gemma3Ref,
   'gpt-oss-120b': gptOssRef,
-  'qwen3-8-flash-next-125b-a6b': qwenRef,
-  'glm-5-4': glmRef,
+  'qwen3-8-flash-next-125b-a6b': qwen38FlashNextRef,
+  'glm-5-4': glm54Ref,
+  'llama-3-8b': llama3Ref,
+  'qwen3-8b': qwen3Ref,
+  'qwen3-30b-a3b': qwen3MoeRef,
+  'minimax-m2-230b': minimaxM2Ref,
+  'qwen3-next-80b-a3b': qwen3NextRef,
+  'kimi-linear-48b-a3b': kimiLinearRef,
+  'xlstm-7b': xlstmRef,
+  'lfm2-5-8b-a1b': lfm25Ref,
+  'inkling-2-mini': inkling2MiniRef,
+  'motif-3-beta': motif3BetaRef,
+  'deepseek-v4-1-flash': deepseekV41FlashRef,
+  'tencent-hy4-770b-a49b': tencentHy4Ref,
 };
 
 export default function App() {
@@ -21,7 +45,7 @@ export default function App() {
     <main className="app">
       <header className="app-header">
         <div>
-          <p className="eyebrow">Issue #7 · renderFigure integration</p>
+          <p className="eyebrow">Spec-driven Gallery</p>
           <h1>LLM architecture prototypes</h1>
           <p className="intro">Reference images are on the left; the right side is rendered from FigureSpec through the shared Scene interface.</p>
         </div>
