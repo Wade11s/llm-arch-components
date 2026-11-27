@@ -3,6 +3,7 @@ import { systemTextMetrics } from './metrics';
 import { SceneBuilder } from './sceneBuilder';
 import { layoutQwenSparse } from './templates/qwenSparse';
 import { layoutMixingDetail } from './templates/mixingDetail';
+import { layoutXlstm } from './templates/xlstm';
 import { layoutGlmLayerSchedule } from './templates/glmLayerSchedule';
 import type {
   AnnotationSpec,
@@ -110,6 +111,7 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   if (spec.layout.mode !== 'template' || spec.layout.template !== 'backbone') {
     throw new FigureLayoutError([{ severity: 'error', code: 'wrong-template', message: 'backbone layout requires template backbone' }]);
   }
+  if (spec.layout.options?.variant === 'recurrent-detail') return layoutXlstm(spec, context);
   const blockId = spec.layout.slots.block;
   const insetId = Array.isArray(spec.layout.slots.inset) ? spec.layout.slots.inset[0] : spec.layout.slots.inset;
   if (!blockId || Array.isArray(blockId)) {

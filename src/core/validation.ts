@@ -53,6 +53,7 @@ const operationDataSchema = z.discriminatedUnion('family', [
   z.object({ family: z.literal('qsa'), heads: z.number().int().positive(), kvHeads: z.number().int().positive(), blockSize: z.number().int().positive().optional() }).strict(),
   z.object({ family: z.literal('gated-delta-net'), qkHeads: z.number().int().positive(), vHeads: z.number().int().positive() }).strict(),
   z.object({ family: z.literal('gated-residual'), streams: z.number().int().positive(), operation: z.enum(['read', 'write']) }).strict(),
+  z.object({ family: z.literal('xlstm'), matrixMemory: z.literal(true) }).strict(),
 ]);
 
 const operatorDataSchema = z.object({ operator: z.enum(['plus', 'multiply', 'sigmoid', 'exp']) }).strict();

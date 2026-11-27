@@ -34163,3 +34163,2536 @@ exports[`spec-driven integration surface all validated figures render through th
   "schemaVersion": 1,
 }
 `;
+
+exports[`spec-driven integration surface all validated figures render through the same interface with stable Scene snapshots: xlstm-7b 1`] = `
+{
+  "canvas": {
+    "height": 2635,
+    "width": 2874,
+  },
+  "diagnostics": [],
+  "elements": [
+    {
+      "align": "center",
+      "at": {
+        "x": 790,
+        "y": 100,
+      },
+      "fontFamily": "'Arial Black', Arial, sans-serif",
+      "id": "figure-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 100,
+          "spans": [
+            {
+              "fill": "#A58F00",
+              "size": 112,
+              "text": "xLSTM (7B)",
+              "weight": 900,
+              "width": 682.5728000000001,
+              "x": 448.71359999999993,
+            },
+          ],
+        },
+      ],
+      "role": "title",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 2040,
+        "width": 1100,
+        "x": 550,
+        "y": 300,
+      },
+      "children": [],
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "model",
+      "kind": "group",
+      "role": "model-container",
+      "sourceId": "model",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 1220,
+        "width": 790,
+        "x": 720,
+        "y": 650,
+      },
+      "fill": {
+        "color": "#F4C84B",
+        "kind": "solid",
+      },
+      "id": "repeat-block",
+      "kind": "box",
+      "label": undefined,
+      "radius": 64,
+      "role": "repeat-block",
+      "sourceId": "backbone",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-attention",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 1450,
+        },
+        {
+          "x": 1335,
+          "y": 1450,
+        },
+        {
+          "x": 1335,
+          "y": 1200,
+        },
+        {
+          "x": 1140,
+          "y": 1200,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-ffn",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 940,
+        },
+        {
+          "x": 1335,
+          "y": 940,
+        },
+        {
+          "x": 1335,
+          "y": 700,
+        },
+        {
+          "x": 1140,
+          "y": 700,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-input",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 2590,
+        },
+        {
+          "x": 1110,
+          "y": 2490,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 2360,
+        },
+        {
+          "x": 1110,
+          "y": 2155,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-pre-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 1960,
+        },
+        {
+          "x": 1110,
+          "y": 1730,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 1570,
+        },
+        {
+          "x": 1110,
+          "y": 1545,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-post-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 1380,
+        },
+        {
+          "x": 1110,
+          "y": 1140,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 950,
+        },
+        {
+          "x": 1110,
+          "y": 950,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-block-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 820,
+        },
+        {
+          "x": 1110,
+          "y": 590,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-final-norm",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 510,
+        },
+        {
+          "x": 1110,
+          "y": 450,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1110,
+          "y": 370,
+        },
+        {
+          "x": 1110,
+          "y": 190,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 380,
+        "x": 920,
+        "y": 360,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "output-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "output-layer",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 414.24,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "output-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 414.24,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "Linear output layer",
+              "weight": 500,
+              "width": 312.8,
+              "x": 953.6,
+            },
+          ],
+        },
+      ],
+      "role": "output-layer-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 380,
+        "x": 920,
+        "y": 500,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "final-rmsnorm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "norm",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 554.24,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "final-rmsnorm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 554.24,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "Final RMSNorm",
+              "weight": 500,
+              "width": 246.16000000000008,
+              "x": 986.92,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 380,
+        "x": 920,
+        "y": 860,
+      },
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "ffn-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "feed-forward",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 914.24,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 914.24,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "Feed forward",
+              "weight": 500,
+              "width": 222.02000000000007,
+              "x": 998.99,
+            },
+          ],
+        },
+      ],
+      "role": "feed-forward-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 380,
+        "x": 920,
+        "y": 1050,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "rmsnorm-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "norm",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 1104.24,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "rmsnorm-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1104.24,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "RMSNorm 2",
+              "weight": 500,
+              "width": 186.66000000000003,
+              "x": 1016.67,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 165,
+        "width": 500,
+        "x": 860,
+        "y": 1380,
+      },
+      "fill": {
+        "color": "#5E5E5E",
+        "kind": "solid",
+      },
+      "id": "xlstm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "attention-block",
+      "sourceId": "xlstm",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 1442,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "xlstm-line-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1442,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 36,
+              "text": "xLSTM with matrix",
+              "weight": 400,
+              "width": 333.72,
+              "x": 943.14,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "xlstm",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 1490,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "xlstm-line-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1490,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 36,
+              "text": "memory",
+              "weight": 400,
+              "width": 135.36,
+              "x": 1042.32,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "xlstm",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 380,
+        "x": 920,
+        "y": 1640,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "rmsnorm-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "norm",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 1694.24,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "rmsnorm-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1694.24,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "RMSNorm 1",
+              "weight": 500,
+              "width": 186.66000000000003,
+              "x": 1016.67,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 90,
+        "width": 540,
+        "x": 840,
+        "y": 2060,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "embedding-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "embedding",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 2117.24,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2117.24,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "Token embedding layer",
+              "weight": 500,
+              "width": 358.7,
+              "x": 930.65,
+            },
+          ],
+        },
+      ],
+      "role": "embedding-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 340,
+        "x": 940,
+        "y": 2400,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "tokenized-text-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "input",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 2454.24,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "tokenized-text-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2454.24,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "Tokenized text",
+              "weight": 500,
+              "width": 239.70000000000007,
+              "x": 990.15,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1110,
+        "y": 2580,
+      },
+      "fontFamily": "'Courier New', monospace",
+      "id": "sample-input",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2580,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 48,
+              "text": "Sample input text",
+              "weight": 400,
+              "width": 404.64000000000016,
+              "x": 907.68,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 570,
+        "y": 1905,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1905,
+          "spans": [
+            {
+              "fill": "#A58F00",
+              "size": 58,
+              "text": "32",
+              "weight": 700,
+              "width": 63.93920000000001,
+              "x": 570,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 655,
+        "y": 1905,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-x",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1905,
+          "spans": [
+            {
+              "fill": "#A58F00",
+              "size": 58,
+              "text": "×",
+              "weight": 700,
+              "width": 31.969600000000003,
+              "x": 655,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 765,
+        "y": 1870,
+      },
+      "glyph": "brace",
+      "id": "repeat-brace",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "repeat-marker",
+      "size": 150,
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 610,
+        "width": 800,
+        "x": 1830,
+        "y": 320,
+      },
+      "fill": {
+        "color": "#F3F3F3",
+        "kind": "solid",
+      },
+      "id": "ffn-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 54,
+      "role": "ffn-inset",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 1880,
+        "y": 380,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-top-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1995,
+        "y": 430.8,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-top-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 430.8,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 172.20000000000005,
+              "x": 1908.9,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 1880,
+        "y": 580,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-activation-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1995,
+        "y": 630.8,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-activation-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 630.8,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "SiLU activation",
+              "weight": 500,
+              "width": 220.20000000000007,
+              "x": 1884.8999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 1880,
+        "y": 780,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-bottom-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1995,
+        "y": 830.8,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-bottom-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 830.8,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 172.20000000000005,
+              "x": 1908.9,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 230,
+        "x": 2240,
+        "y": 580,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-side-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2355,
+        "y": 630.8,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-side-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 630.8,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 172.20000000000005,
+              "x": 2268.9,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 2210,
+        "y": 490,
+      },
+      "glyph": "multiply",
+      "id": "ffn-multiply",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 54,
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1995,
+          "y": 780,
+        },
+        {
+          "x": 1995,
+          "y": 660,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1995,
+          "y": 580,
+        },
+        {
+          "x": 1995,
+          "y": 460,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-a",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1995,
+          "y": 490,
+        },
+        {
+          "x": 2210,
+          "y": 490,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-b",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2240,
+          "y": 490,
+        },
+        {
+          "x": 2355,
+          "y": 490,
+        },
+        {
+          "x": 2355,
+          "y": 580,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1930,
+        "y": 1360,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1360,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "mLSTM layer",
+              "weight": 800,
+              "width": 288.28800000000007,
+              "x": 1930,
+            },
+          ],
+        },
+      ],
+      "role": "mlstm-title",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 1130,
+        "width": 1080,
+        "x": 1740,
+        "y": 1420,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mlstm-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 58,
+      "role": "mlstm-inset",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#A58F00",
+        "dash": "dotted",
+        "width": 8,
+      },
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 160,
+        "x": 2150,
+        "y": 1490,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mlstm-output-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2230,
+        "y": 1535.8,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-output-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1535.8,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Linear",
+              "weight": 500,
+              "width": 91.80000000000001,
+              "x": 2184.1,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 2220,
+        "y": 1620,
+      },
+      "glyph": "multiply",
+      "id": "mlstm-multiply",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 54,
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 180,
+        "x": 2140,
+        "y": 1710,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mlstm-rmsnorm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2230,
+        "y": 1755.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-rmsnorm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1755.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "RMSNorm",
+              "weight": 500,
+              "width": 131.04000000000002,
+              "x": 2164.48,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 85,
+        "width": 600,
+        "x": 1950,
+        "y": 1820,
+      },
+      "fill": {
+        "color": "#FFF6BF",
+        "kind": "solid",
+      },
+      "id": "mlstm-operation-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2250,
+        "y": 1874.74,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-operation-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1874.74,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 34,
+              "text": "mLSTM",
+              "weight": 500,
+              "width": 123.08,
+              "x": 2188.46,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2000,
+        "y": 1950,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-Q",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1950,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "Q",
+              "weight": 700,
+              "width": 26.0832,
+              "x": 1986.9584,
+            },
+          ],
+        },
+      ],
+      "role": "recurrent-input",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2050,
+        "y": 1950,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-K",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1950,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "K",
+              "weight": 700,
+              "width": 26.0832,
+              "x": 2036.9584,
+            },
+          ],
+        },
+      ],
+      "role": "recurrent-input",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2220,
+        "y": 1950,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-V",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1950,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "V",
+              "weight": 700,
+              "width": 26.0832,
+              "x": 2206.9584,
+            },
+          ],
+        },
+      ],
+      "role": "recurrent-input",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2380,
+        "y": 1950,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-f",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1950,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "f",
+              "weight": 700,
+              "width": 20.945600000000002,
+              "x": 2369.5272,
+            },
+          ],
+        },
+      ],
+      "role": "recurrent-input",
+      "sourceId": undefined,
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2450,
+        "y": 1950,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-i",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1950,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "i",
+              "weight": 700,
+              "width": 11.065600000000002,
+              "x": 2444.4672,
+            },
+          ],
+        },
+      ],
+      "role": "recurrent-input",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 170,
+        "x": 1950,
+        "y": 2390,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mlstm-qk-linear-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2035,
+        "y": 2435.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-qk-linear-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2435.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear",
+              "weight": 500,
+              "width": 85.68,
+              "x": 1992.16,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 160,
+        "x": 2160,
+        "y": 2390,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mlstm-v-linear-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2240,
+        "y": 2435.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-v-linear-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2435.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear",
+              "weight": 500,
+              "width": 85.68,
+              "x": 2197.16,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 170,
+        "x": 2340,
+        "y": 2390,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mlstm-fi-linear-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2425,
+        "y": 2435.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-fi-linear-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2435.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear",
+              "weight": 500,
+              "width": 85.68,
+              "x": 2382.16,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 160,
+        "x": 2580,
+        "y": 2390,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "mlstm-gate-linear-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2660,
+        "y": 2435.08,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-gate-linear-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2435.08,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Linear",
+              "weight": 500,
+              "width": 85.68,
+              "x": 2617.16,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 2380,
+        "y": 2160,
+      },
+      "glyph": "sigmoid",
+      "id": "mlstm-f-sigmoid",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 44,
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 2450,
+        "y": 2260,
+      },
+      "glyph": "exp",
+      "id": "mlstm-i-exp",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 32,
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 2620,
+        "y": 2070,
+      },
+      "glyph": "sigmoid",
+      "id": "mlstm-gate",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 50,
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2670,
+        "y": 2060,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-gate-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2060,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Sigmoid",
+              "weight": 400,
+              "width": 101.64000000000001,
+              "x": 2670,
+            },
+          ],
+        },
+      ],
+      "role": "mixing-gate",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2670,
+        "y": 2098,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "mlstm-gate-label-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2098,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 28,
+              "text": "Gate",
+              "weight": 400,
+              "width": 63,
+              "x": 2670,
+            },
+          ],
+        },
+      ],
+      "role": "mixing-gate",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-rule-up",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2250,
+          "y": 1820,
+        },
+        {
+          "x": 2250,
+          "y": 1780,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-output-up",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2250,
+          "y": 1710,
+        },
+        {
+          "x": 2250,
+          "y": 1620,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-output-top",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2250,
+          "y": 1620,
+        },
+        {
+          "x": 2250,
+          "y": 1560,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-q-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2000,
+          "y": 2390,
+        },
+        {
+          "x": 2000,
+          "y": 1905,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-k-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2050,
+          "y": 2390,
+        },
+        {
+          "x": 2050,
+          "y": 1905,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-v-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2240,
+          "y": 2390,
+        },
+        {
+          "x": 2240,
+          "y": 1905,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-f-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2400,
+          "y": 2390,
+        },
+        {
+          "x": 2400,
+          "y": 1905,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-i-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2450,
+          "y": 2390,
+        },
+        {
+          "x": 2450,
+          "y": 1905,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "mlstm-gate-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2660,
+          "y": 2390,
+        },
+        {
+          "x": 2660,
+          "y": 2070,
+        },
+        {
+          "x": 2275,
+          "y": 1620,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2350,
+        "y": 1510,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "credit-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1510,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "Adapted and modified",
+              "weight": 700,
+              "width": 312.62399999999997,
+              "x": 2350,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-credit",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2350,
+        "y": 1552,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "credit-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1552,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 30,
+              "text": "from @maxmbeck",
+              "weight": 700,
+              "width": 259.8960000000001,
+              "x": 2350,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-credit",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1450,
+        "y": 200,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "vocabulary-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 200,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "Vocabulary size of ",
+              "weight": 700,
+              "width": 409.5520000000001,
+              "x": 1450,
+            },
+            {
+              "color": "accent",
+              "fill": "#A58F00",
+              "size": 44,
+              "text": "50k",
+              "weight": 700,
+              "width": 72.75840000000001,
+              "x": 1859.5520000000001,
+            },
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1932.3104,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-vocabulary",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 110,
+        "y": 1730,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1730,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "Context length",
+              "weight": 700,
+              "width": 322.6080000000001,
+              "x": 110,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 110,
+        "y": 1788,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1788,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 110,
+            },
+            {
+              "color": "accent",
+              "fill": "#A58F00",
+              "size": 44,
+              "text": "8k",
+              "weight": 700,
+              "width": 48.5056,
+              "x": 110,
+            },
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": " training",
+              "weight": 700,
+              "width": 183.95520000000005,
+              "x": 158.50560000000002,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 110,
+        "y": 1846,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1846,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "No fixed limit",
+              "weight": 700,
+              "width": 290.1184000000001,
+              "x": 110,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 2390,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2390,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "Embedding",
+              "weight": 700,
+              "width": 226.05440000000007,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 2448,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2448,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "dimension of ",
+              "weight": 700,
+              "width": 282.79680000000013,
+              "x": 20,
+            },
+            {
+              "color": "accent",
+              "fill": "#A58F00",
+              "size": 44,
+              "text": "4,096",
+              "weight": 700,
+              "width": 109.82400000000003,
+              "x": 302.79680000000013,
+            },
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 412.62080000000014,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2040,
+        "y": 1150,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-dimensions-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1150,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "Input dim.: ",
+              "weight": 700,
+              "width": 235.6640000000001,
+              "x": 2040,
+            },
+            {
+              "color": "accent",
+              "fill": "#A58F00",
+              "size": 44,
+              "text": "4,096",
+              "weight": 700,
+              "width": 109.82400000000003,
+              "x": 2275.664,
+            },
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2385.4880000000003,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-ffn-dimensions",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 2040,
+        "y": 1208,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-dimensions-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1208,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "Intermediate dim.: ",
+              "weight": 700,
+              "width": 407.264,
+              "x": 2040,
+            },
+            {
+              "color": "accent",
+              "fill": "#A58F00",
+              "size": 44,
+              "text": "10,944",
+              "weight": 700,
+              "width": 134.07680000000002,
+              "x": 2447.264,
+            },
+            {
+              "fill": "#000000",
+              "size": 44,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2581.3408,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-ffn-dimensions",
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-zoom",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1300,
+          "y": 900,
+        },
+        {
+          "x": 1830,
+          "y": 550,
+        },
+      ],
+      "role": "zoom-leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "mlstm-zoom",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1360,
+          "y": 1450,
+        },
+        {
+          "x": 1740,
+          "y": 1770,
+        },
+      ],
+      "role": "zoom-leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+  ],
+  "id": "xlstm-7b",
+  "metadata": {
+    "description": "xLSTM 7B architecture with 32 residual blocks, an xLSTM cell using matrix memory, SiLU feed-forward, and a detailed mLSTM layer inset.",
+    "title": "xLSTM (7B)",
+  },
+  "schemaVersion": 1,
+}
+`;

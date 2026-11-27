@@ -10,6 +10,7 @@ import { qwen3MoeSpec } from './qwen3Moe';
 import { minimaxM2Spec } from './minimaxM2';
 import { qwen3NextSpec } from './qwen3Next';
 import { kimiLinearSpec } from './kimiLinear';
+import { xlstmSpec } from './xlstm';
 
 export type FigureSpecEntry = {
   slug: string;
@@ -32,6 +33,7 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'minimax-m2-230b', name: 'MiniMax-M2 (230B)', reference: '../images/minimax-m2-230b.webp', width: 2751, height: 2709, spec: minimaxM2Spec },
   { slug: 'qwen3-next-80b-a3b', name: 'Qwen3-Next (80B-A3B)', reference: '../images/qwen3-next-80b-a3b.webp', width: 2946, height: 2771, spec: qwen3NextSpec },
   { slug: 'kimi-linear-48b-a3b', name: 'Kimi Linear (48B-A3B)', reference: '../images/kimi-linear-48b-a3b.webp', width: 2935, height: 2754, spec: kimiLinearSpec },
+  { slug: 'xlstm-7b', name: 'xLSTM (7B)', reference: '../images/xlstm-7b.webp', width: 2874, height: 2635, spec: xlstmSpec },
 ];
 
-export { deepSeekV3Spec, gemma3Spec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, qwen3Spec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec };
+export { deepSeekV3Spec, gemma3Spec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, qwen3Spec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec };

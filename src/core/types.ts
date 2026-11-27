@@ -70,7 +70,8 @@ export type OperationData =
   | { family: 'ffn'; hidden: number; activation: string }
   | { family: 'qsa'; heads: number; kvHeads: number; blockSize?: number }
   | { family: 'gated-delta-net'; qkHeads: number; vHeads: number }
-  | { family: 'gated-residual'; streams: number; operation: 'read' | 'write' };
+  | { family: 'gated-residual'; streams: number; operation: 'read' | 'write' }
+  | { family: 'xlstm'; matrixMemory: true };
 
 export type OperatorData = { operator: 'plus' | 'multiply' | 'sigmoid' | 'exp' };
 export type MaskData = { rows: string[]; columns: string[]; values: Array<0 | 1> };
