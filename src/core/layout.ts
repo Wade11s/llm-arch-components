@@ -146,6 +146,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   }
   const block = groupOf(spec, blockId);
   const inset = insetId ? groupOf(spec, insetId) : undefined;
+  const positionalId = Array.isArray(spec.layout.slots.positional) ? spec.layout.slots.positional[0] : spec.layout.slots.positional;
+  const dropoutId = Array.isArray(spec.layout.slots.dropout) ? spec.layout.slots.dropout[0] : spec.layout.slots.dropout;
+  const positionalNode = positionalId ? spec.nodes.find((node) => node.id === positionalId) : undefined;
+  const dropoutNode = dropoutId ? spec.nodes.find((node) => node.id === dropoutId) : undefined;
   const operations = spec.nodes.filter(isOperation);
   const gqa = operations.find((node) => node.data.family === 'gqa');
   const ffn = operations.find((node) => node.data.family === 'ffn');
@@ -158,6 +162,7 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const normLabels = layoutOptions?.normLabels;
   const showPostNorms = normLabels === undefined || normLabels === 'pre-post';
   const showQKNorm = layoutOptions?.showQKNorm !== false;
+  const showRoPE = layoutOptions?.showRoPE !== false;
   const normStroke = layoutOptions?.normStroke === 'ink'
     ? spec.theme.ink
     : typeof layoutOptions?.normStroke === 'string' && layoutOptions.normStroke.startsWith('#')
@@ -167,7 +172,14 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const builder = new SceneBuilder(spec.theme, context.metrics);
   const cx = 1022;
   const repeatCount = block.repeat?.count ?? 0;
-  builder.text('figure-title', 'title', { x: 1068, y: 114 }, spec.title, { size: 112, weight: 900, fill: spec.theme.accent, align: 'center', family: "'Arial Black', Arial, sans-serif" });
+  const titleColor = layoutOptions?.titleColor;
+  builder.text('figure-title', 'title', { x: 1068, y: 114 }, spec.title, {
+    size: 112,
+    weight: 900,
+    fill: typeof titleColor === 'string' ? titleColor : spec.theme.accent,
+    align: 'center',
+    family: "'Arial Black', Arial, sans-serif",
+  });
 
   builder.group('model', 'model-container', { x: 465, y: 328, width: 1097, height: 2053 }, [], {
     fill: builder.solid(spec.theme.surface),
@@ -208,12 +220,15 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: labelSpans.slice(split) }, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   }
   addPill(builder, spec, 'ffn', 'feed-forward', { x: 848, y: 969, width: 350, height: 84 }, { spans: [{ text: 'Feed forward' }] }, { fill: spec.theme.surface, stroke: '#3A3A3A', radius: 26 });
-  const normPrefix = normLabels === 'rmsnorm' ? 'RMSNorm' : 'Pre-RMSNorm';
+  const normPrefix = normLabels === 'rmsnorm' ? 'RMSNorm' : normLabels === 'layernorm' ? 'LayerNorm' : 'Pre-RMSNorm';
+  const dropoutLabel = dropoutNode ? textOf(dropoutNode) : { spans: [{ text: 'Dropout' }] };
   addPill(builder, spec, 'pre-rmsnorm-1', 'norm', { x: 848, y: 1723, width: 348, height: 82 }, { spans: [{ text: `${normPrefix} 1` }] }, { stroke: normStroke, radius: 26 });
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-1', 'norm', { x: 848, y: 1376, width: 348, height: 82 }, { spans: [{ text: 'Post-RMSNorm 1' }] }, { stroke: normStroke, radius: 26 });
+  if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-attention', 'dropout', { x: 848, y: 1376, width: 348, height: 82 }, dropoutLabel, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'pre-rmsnorm-2', 'norm', { x: 852, y: 1114, width: 348, height: 84 }, { spans: [{ text: `${normPrefix} 2` }] }, { stroke: normStroke, radius: 26 });
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: normStroke, radius: 26 });
-  addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: 'Final RMSNorm' }] });
+  if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-ffn', 'dropout', { x: 852, y: 832, width: 348, height: 84 }, dropoutLabel, { stroke: normStroke, radius: 26 });
+  addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: normLabels === 'layernorm' ? 'Final LayerNorm' : 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
   const qkNormStroke = layoutOptions?.qkNormStroke;
   const ropeStroke = layoutOptions?.ropeStroke;
@@ -225,25 +240,30 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const ropeSecondaryLabel = layoutOptions?.ropeSecondaryLabel;
   const hasCustomRope = typeof ropeLabel === 'string';
   const hasTwoLineRope = hasCustomRope && typeof ropeSecondaryLabel === 'string';
-  addPill(
-    builder,
-    spec,
-    'rope',
-    'side-pill',
-    hasTwoLineRope ? { x: 353, y: 1527, width: 360, height: 100 } : { x: 420, y: 1535, width: 293, height: 84 },
-    { spans: [{ text: hasCustomRope ? ropeLabel : 'RoPE' }] },
-    {
-      size: hasTwoLineRope ? 32 : 38,
-      stroke: typeof ropeStroke === 'string' ? ropeStroke : undefined,
-      secondaryText: hasTwoLineRope ? { spans: [{ text: ropeSecondaryLabel }] } : undefined,
-    },
-  );
+  if (showRoPE) {
+    addPill(
+      builder,
+      spec,
+      'rope',
+      'side-pill',
+      hasTwoLineRope ? { x: 353, y: 1527, width: 360, height: 100 } : { x: 420, y: 1535, width: 293, height: 84 },
+      { spans: [{ text: hasCustomRope ? ropeLabel : 'RoPE' }] },
+      {
+        size: hasTwoLineRope ? 32 : 38,
+        stroke: typeof ropeStroke === 'string' ? ropeStroke : undefined,
+        secondaryText: hasTwoLineRope ? { spans: [{ text: ropeSecondaryLabel }] } : undefined,
+      },
+    );
+  }
   if (showQKNorm) addFlow(builder, 'qk-norm-flow', [{ x: 756, y: 1428 }, { x: 829, y: 1488 }]);
-  addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
-  addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
+  if (showRoPE) addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
+  addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: positionalNode ? 2240 : 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
+  if (positionalNode) addPill(builder, spec, 'positional-embedding', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, textOf(positionalNode), { stroke: normStroke });
+  if (dropoutNode) addPill(builder, spec, 'dropout-input', 'dropout', { x: 754, y: 1900, width: 536, height: 92 }, dropoutLabel, { stroke: normStroke });
   addPill(builder, spec, 'tokenized-text', 'input', { x: 847, y: 2417, width: 350, height: 86 }, { spans: [{ text: 'Tokenized text' }] });
   const sampleInputY = layoutOptions?.sampleInputY;
-  builder.text('sample-input', 'input-label', { x: cx, y: typeof sampleInputY === 'number' ? sampleInputY : 2646 }, 'Sample input text', { size: 54, align: 'center' });
+  const sampleInputText = layoutOptions?.sampleInputText;
+  builder.text('sample-input', 'input-label', { x: cx, y: typeof sampleInputY === 'number' ? sampleInputY : 2646 }, typeof sampleInputText === 'string' ? sampleInputText : 'Sample input text', { size: 54, align: 'center' });
 
   builder.text('repeat-count', 'repeat-marker', { x: 478, y: 1912 }, `${repeatCount}`, { size: 58, weight: 700, fill: spec.theme.accent });
   builder.text('repeat-x', 'repeat-marker', { x: 560, y: 1908 }, '×', { size: 44, weight: 700, fill: spec.theme.accent });
