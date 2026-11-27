@@ -7,8 +7,14 @@ import gemma431bRef from '../images/gemma-4-31b.webp';
 import gptOssRef from '../images/gpt-oss-120b.webp';
 import qwen38FlashNextRef from '../images/qwen3-8-flash-next-125b-a6b.webp';
 import glm54Ref from '../images/glm-5-4.webp';
+import llama321bRef from '../images/llama-3-2-1b.webp';
+import llama323bRef from '../images/llama-3-2-3b.webp';
 import llama3Ref from '../images/llama-3-8b.webp';
+import qwen306bRef from '../images/qwen3-0-6b.webp';
+import qwen34bRef from '../images/qwen3-4b.webp';
 import qwen3Ref from '../images/qwen3-8b.webp';
+import qwen332bRef from '../images/qwen3-32b.webp';
+import phi4Ref from '../images/phi-4.webp';
 import qwen3MoeRef from '../images/qwen3-30b-a3b.webp';
 import minimaxM2Ref from '../images/minimax-m2-230b.webp';
 import qwen3NextRef from '../images/qwen3-next-80b-a3b.webp';
@@ -31,8 +37,14 @@ const references: Record<string, string> = {
   'gpt-oss-120b': gptOssRef,
   'qwen3-8-flash-next-125b-a6b': qwen38FlashNextRef,
   'glm-5-4': glm54Ref,
+  'llama-3-2-1b': llama321bRef,
+  'llama-3-2-3b': llama323bRef,
   'llama-3-8b': llama3Ref,
+  'qwen3-0-6b': qwen306bRef,
+  'qwen3-4b': qwen34bRef,
   'qwen3-8b': qwen3Ref,
+  'qwen3-32b': qwen332bRef,
+  'phi-4': phi4Ref,
   'qwen3-30b-a3b': qwen3MoeRef,
   'minimax-m2-230b': minimaxM2Ref,
   'qwen3-next-80b-a3b': qwen3NextRef,

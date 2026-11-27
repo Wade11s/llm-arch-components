@@ -6,6 +6,7 @@ import { gptOss120bSpec } from './gptOss120b';
 import { qwen38FlashNextSpec } from './qwen38FlashNext';
 import { glm54Spec } from './glm54';
 import { llama3Spec } from './llama3';
+import { llama321bSpec, llama323bSpec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec } from './denseBackbone';
 import { qwen3Spec } from './qwen3';
 import { qwen3MoeSpec } from './qwen3Moe';
 import { minimaxM2Spec } from './minimaxM2';
@@ -36,8 +37,14 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'gpt-oss-120b', name: 'gpt-oss (120B)', reference: '../images/gpt-oss-120b.webp', width: 2904, height: 2699, spec: gptOss120bSpec },
   { slug: 'qwen3-8-flash-next-125b-a6b', name: 'Qwen3.8-Flash-Next (125B-A6B)', reference: '../images/qwen3-8-flash-next-125b-a6b.webp', width: 4078, height: 3391, spec: qwen38FlashNextSpec },
   { slug: 'glm-5-4', name: 'GLM-5.4 (~750B)', reference: '../images/glm-5-4.webp', width: 3354, height: 2862, spec: glm54Spec },
+  { slug: 'llama-3-2-1b', name: 'Llama 3.2 (1B)', reference: '../images/llama-3-2-1b.webp', width: 2553, height: 2664, spec: llama321bSpec },
+  { slug: 'llama-3-2-3b', name: 'Llama 3.2 (3B)', reference: '../images/llama-3-2-3b.webp', width: 2553, height: 2664, spec: llama323bSpec },
   { slug: 'llama-3-8b', name: 'Llama 3 (8B)', reference: '../images/llama-3-8b.webp', width: 2554, height: 2670, spec: llama3Spec },
+  { slug: 'qwen3-0-6b', name: 'Qwen3 (0.6B)', reference: '../images/qwen3-0-6b.webp', width: 2531, height: 2654, spec: qwen306bSpec },
+  { slug: 'qwen3-4b', name: 'Qwen3 (4B)', reference: '../images/qwen3-4b.webp', width: 2531, height: 2654, spec: qwen34bSpec },
   { slug: 'qwen3-8b', name: 'Qwen3 (8B)', reference: '../images/qwen3-8b.webp', width: 2533, height: 2642, spec: qwen3Spec },
+  { slug: 'qwen3-32b', name: 'Qwen3 (32B)', reference: '../images/qwen3-32b.webp', width: 2531, height: 2634, spec: qwen332bSpec },
+  { slug: 'phi-4', name: 'Phi-4 (14B)', reference: '../images/phi-4.webp', width: 2563, height: 2671, spec: phi4Spec },
   { slug: 'qwen3-30b-a3b', name: 'Qwen3 (30B-A3B)', reference: '../images/qwen3-30b-a3b.webp', width: 2829, height: 2715, spec: qwen3MoeSpec },
   { slug: 'minimax-m2-230b', name: 'MiniMax-M2 (230B)', reference: '../images/minimax-m2-230b.webp', width: 2751, height: 2709, spec: minimaxM2Spec },
   { slug: 'qwen3-next-80b-a3b', name: 'Qwen3-Next (80B-A3B)', reference: '../images/qwen3-next-80b-a3b.webp', width: 2946, height: 2771, spec: qwen3NextSpec },
@@ -50,4 +57,4 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'tencent-hy4-770b-a49b', name: 'Tencent Hy4 (770B-A49B)', reference: '../images/tencent-hy4-770b-a49b.webp', width: 3834, height: 2949, spec: tencentHy4Spec },
 ];
 
-export { deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, qwen3Spec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };
+export { deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };

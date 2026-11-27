@@ -34,7 +34,7 @@ The 17 primitive and 9 composite-template categories remain internal capabilitie
 
 ## Validated structures
 
-Twenty figures have deterministic Scene snapshots, self-contained SVG exports, and completed 50% comparisons:
+Twenty-six figures have deterministic Scene snapshots, self-contained SVG exports, and completed 50% comparisons:
 
 | Figure | Validated structures |
 |---|---|
@@ -46,8 +46,14 @@ Twenty figures have deterministic Scene snapshots, self-contained SVG exports, a
 | DeepSeek-V3 (671B) | MLA, dense-first note, Partial RoPE, 256 experts, shared/active experts. |
 | Qwen3.8-Flash-Next | Sparse-attention Mask Matrix, GR Read/Write, 4 residual streams. |
 | GLM-5.4 | Layer cards, pass strip, 28-layer recurrence loop, 78/106 arithmetic. |
+| Llama 3.2 (1B) | Masked GQA, 16× repeat, 32 heads, 2,048/8,192 dimensions, Llama 3 RoPE. |
+| Llama 3.2 (3B) | Masked GQA, 28× repeat, 24 heads, 3,072/8,192 dimensions. |
 | Llama 3 (8B) | Masked grouped-query attention, 32× repeat, SiLU FFN. |
+| Qwen3 (0.6B) | Masked GQA, 28× repeat, 16 heads, 1,024/3,072 dimensions, QK-Norm/RoPE. |
+| Qwen3 (4B) | Masked GQA, 36× repeat, 32 heads, 2,560/9,728 dimensions, YaRN context. |
 | Qwen3 (8B) | QK-Norm/RoPE, 36× repeat, YaRN context, SiLU FFN. |
+| Qwen3 (32B) | Pre-RMSNorm, 64× repeat, 64/8 heads, 5,120/25,600 dimensions. |
+| Phi-4 (14B) | GQA, 40× repeat, 40/10 heads, 5,120/17,920 dimensions. |
 | Qwen3 (30B-A3B) | MoE template, 128 experts, 8 active experts, resource notes. |
 | MiniMax-M2 (230B) | Partial RoPE, 256 experts, resource annotations, themed MoE inset. |
 | Qwen3-Next (80B-A3B) | `moe` `mixing-detail` variant: Gated GQA, Gated DeltaNet, 3:1 schedule. |
@@ -72,7 +78,7 @@ Variants are declared as typed `layout.variant` values. TypeScript checks templa
 
 ## Pilot completion and next coverage work
 
-The 12-figure pilot defined in #11–#19 is complete, and the Gemma dense family from #25 is verified: 20 figures are now verified.
+The 12-figure pilot defined in #11–#19 is complete, the Gemma dense family from #25 is verified, and the Llama/Qwen/Phi dense batch from #26 is verified: 26 figures are now verified.
 
 Next steps:
 
