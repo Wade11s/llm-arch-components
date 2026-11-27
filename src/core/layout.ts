@@ -4,6 +4,7 @@ import { SceneBuilder } from './sceneBuilder';
 import { layoutQwenSparse } from './templates/qwenSparse';
 import { layoutMixingDetail } from './templates/mixingDetail';
 import { layoutXlstm } from './templates/xlstm';
+import { layoutMotifMultiStream } from './templates/motifMultiStream';
 import { layoutGlmLayerSchedule } from './templates/glmLayerSchedule';
 import type {
   AnnotationSpec,
@@ -238,6 +239,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     throw new FigureLayoutError([{ severity: 'error', code: 'wrong-template', message: 'moe layout requires template moe' }]);
   }
   if (spec.layout.options?.variant === 'mixing-detail') return layoutMixingDetail(spec, context);
+  if (spec.layout.options?.variant === 'multi-stream-residual') return layoutMotifMultiStream(spec, context);
   const blockId = spec.layout.slots.block;
   const ffnInsetId = spec.layout.slots.ffn;
   const moeInsetId = spec.layout.slots.moe;

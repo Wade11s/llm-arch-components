@@ -31,7 +31,9 @@ const specCases: VerifyCase[] = figureSpecs.map((entry) => ({
           ? ['repeat-block', 'moe-inset', 'gqa-head-grid', 'layer-group-box']
           : entry.slug === 'inkling-2-mini'
             ? ['repeat-block', 'ffn-inset', 'moe-inset', 'pass-strip', 'feedback-loop']
-            : ['repeat-block', 'ffn-inset'],
+            : entry.slug === 'motif-3-beta'
+              ? ['repeat-block', 'ffn-inset', 'moe-inset', 'residual-stream', 'mhc-read', 'mhc-write']
+              : ['repeat-block', 'ffn-inset'],
 }));
 
 const results: Array<Record<string, unknown>> = [];
