@@ -33,6 +33,7 @@ function edgeBackboneSpec(input: {
   headsLeaderEndX?: number;
   insetOffsetX?: number;
   contextLeaderStartX?: number;
+  contextLeaderEndX?: number;
   sampleInputY?: number;
   positionalEmbedding?: boolean;
   dropout?: boolean;
@@ -74,7 +75,7 @@ function edgeBackboneSpec(input: {
       { id: 'vocabulary', target: 'model', placement: 'top', content: emphasized('Vocabulary size of ', input.vocabulary) },
       { id: 'context', target: 'backbone', placement: 'left', content: input.contextAnnotation },
       ...(input.headsAnnotation ? [{ id: 'heads', target: 'attention', placement: 'right' as const, content: input.headsAnnotation }] : []),
-      ...(input.positionsAnnotation ? [{ id: 'positions', target: input.positionalEmbedding ? 'positional-embedding' : 'attention', placement: 'right' as const, content: input.positionsAnnotation }] : []),
+      ...(input.positionsAnnotation && input.positionalEmbedding ? [{ id: 'positions', target: 'positional-embedding', placement: 'right' as const, content: input.positionsAnnotation }] : []),
       { id: 'embedding-dimension', target: 'model', placement: 'bottom', content: input.embeddingAnnotation ?? { bullets: [text('Embedding'), emphasized('dimension of ', input.embedding)] } },
       { id: 'hidden-dimension', target: 'ffn', placement: 'right', content: input.hiddenAnnotation },
     ],
@@ -98,6 +99,7 @@ function edgeBackboneSpec(input: {
         ...(input.headsLeaderEndX !== undefined ? { headsLeaderEndX: input.headsLeaderEndX } : {}),
         ...(input.insetOffsetX !== undefined ? { insetOffsetX: input.insetOffsetX } : {}),
         ...(input.contextLeaderStartX !== undefined ? { contextLeaderStartX: input.contextLeaderStartX } : {}),
+        ...(input.contextLeaderEndX !== undefined ? { contextLeaderEndX: input.contextLeaderEndX } : {}),
         ...(input.sampleInputY !== undefined ? { sampleInputY: input.sampleInputY } : {}),
         ...(input.titleColor !== undefined ? { titleColor: input.titleColor } : {}),
         ...(input.sampleInputText !== undefined ? { sampleInputText: input.sampleInputText } : {}),
@@ -179,4 +181,5 @@ export const gpt2xlSpec = edgeBackboneSpec({
   headsLeaderEndX: 1580,
   insetOffsetX: -120,
   contextLeaderStartX: 160,
+  contextLeaderEndX: 465,
 });

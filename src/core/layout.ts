@@ -291,7 +291,15 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   }
 
   if (annotationOf(spec, 'positions')) {
-    addFlow(builder, 'leader-positions', [{ x: 1237, y: 1639 }, { x: 1600, y: 1970 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
+    const positionsX = layoutOptions?.positionsAnnotationX;
+    const positionsY = layoutOptions?.positionsAnnotationY;
+    addFlow(builder, 'leader-positions', [
+      positionalNode ? { x: 1290, y: 2130 } : { x: 1237, y: 1639 },
+      {
+        x: typeof positionsX === 'number' ? positionsX : 1600,
+        y: typeof positionsY === 'number' ? positionsY : 1970,
+      },
+    ], { role: 'leader', dash: 'dotted', arrow: 'none' });
   }
 
   const leaders: Array<[string, Point[]]> = [
@@ -300,8 +308,8 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
       x: typeof layoutOptions?.headsLeaderEndX === 'number' ? layoutOptions.headsLeaderEndX : 1882,
       y: typeof layoutOptions?.headsLeaderEndY === 'number' ? layoutOptions.headsLeaderEndY : 1889,
     }]],
-    ['leader-ffn', [{ x: 1200, y: 1006 }, { x: 1772, y: 876 }]],
-    ['leader-embedding', [{ x: 1290, y: 2132 }, { x: 1598, y: 2244 }]],
+    ['leader-ffn', [{ x: 1200, y: 1006 }, { x: typeof layoutOptions?.insetOffsetX === 'number' ? 1772 + layoutOptions.insetOffsetX : 1772, y: 876 }]],
+    ['leader-embedding', [{ x: 1290, y: positionalNode ? 2288 : 2132 }, { x: 1598, y: 2244 }]],
     ['leader-context', [{
       x: typeof layoutOptions?.contextLeaderStartX === 'number' ? layoutOptions.contextLeaderStartX : 320,
       y: typeof layoutOptions?.contextLeaderStartY === 'number' ? layoutOptions.contextLeaderStartY : 1845,

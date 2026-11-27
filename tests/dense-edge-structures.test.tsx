@@ -61,6 +61,11 @@ describe('dense edge structures', () => {
     expect(result.svg).toContain('32,768');
     expect(result.svg).toContain('SiLU activation');
     expect(result.svg).not.toContain('GELU activation');
+    expectInsetWithinCanvas(result);
+    expect(result.scene.elements.find((element) => element.id === 'leader-ffn')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 1200, y: 1006 }, { x: 1692, y: 876 }],
+    });
     expectNoTextOverflow(result);
   });
 
@@ -92,7 +97,22 @@ describe('dense edge structures', () => {
     expect(result.svg).not.toContain('QK-Norm');
     expect(result.svg).not.toContain('RoPE');
     expect(result.scene.elements.some((element) => element.id === 'positions-0')).toBe(true);
-    expect(result.scene.elements.some((element) => element.id === 'leader-positions')).toBe(true);
+    expect(result.scene.elements.find((element) => element.id === 'leader-positions')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 1290, y: 2130 }, { x: 1600, y: 1970 }],
+    });
+    expect(result.scene.elements.find((element) => element.id === 'leader-context')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 160, y: 1845 }, { x: 465, y: 1624 }],
+    });
+    expect(result.scene.elements.find((element) => element.id === 'leader-ffn')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 1200, y: 1006 }, { x: 1652, y: 876 }],
+    });
+    expect(result.scene.elements.find((element) => element.id === 'leader-embedding')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 1290, y: 2288 }, { x: 1598, y: 2244 }],
+    });
     expectInsetWithinCanvas(result);
     expectNoTextOverflow(result);
   });

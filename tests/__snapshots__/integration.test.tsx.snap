@@ -42444,7 +42444,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1006,
         },
         {
-          "x": 1772,
+          "x": 1652,
           "y": 876,
         },
       ],
@@ -44387,7 +44387,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1006,
         },
         {
-          "x": 1772,
+          "x": 1692,
           "y": 876,
         },
       ],
@@ -46414,8 +46414,8 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1237,
-          "y": 1639,
+          "x": 1290,
+          "y": 2130,
         },
         {
           "x": 1600,
@@ -46490,7 +46490,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1006,
         },
         {
-          "x": 1772,
+          "x": 1652,
           "y": 876,
         },
       ],
@@ -46511,7 +46511,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1290,
-          "y": 2132,
+          "y": 2288,
         },
         {
           "x": 1598,
@@ -46538,7 +46538,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1845,
         },
         {
-          "x": 420,
+          "x": 465,
           "y": 1624,
         },
       ],
