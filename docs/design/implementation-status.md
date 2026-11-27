@@ -34,11 +34,14 @@ The 17 primitive and 9 composite-template categories remain internal capabilitie
 
 ## Validated structures
 
-Seventeen figures have deterministic Scene snapshots, self-contained SVG exports, and completed 50% comparisons:
+Twenty figures have deterministic Scene snapshots, self-contained SVG exports, and completed 50% comparisons:
 
 | Figure | Validated structures |
 |---|---|
+| Gemma 3 (270M) | Backbone, 18× repeat, multi-query attention, 640/2,048 dimensions, side pills, callouts. |
 | Gemma 3 (27B) | Backbone, 62× repeat, Pre/Post-RMSNorm, sliding-window GQA, FFN inset, side pills, callouts. |
+| Gemma 4 (12B) | Backbone, 48× repeat, Partial/Full RoPE, local/global heads, 3,840/15,360 dimensions. |
+| Gemma 4 (31B) | Backbone, 60× repeat, Partial/Full RoPE, 32-head local/global attention, 5,376/21,504 dimensions. |
 | GPT-OSS (120B) | MoE, FFN inset, badges, ellipsis, resource notes, 36× repeat. |
 | DeepSeek-V3 (671B) | MLA, dense-first note, Partial RoPE, 256 experts, shared/active experts. |
 | Qwen3.8-Flash-Next | Sparse-attention Mask Matrix, GR Read/Write, 4 residual streams. |
@@ -69,7 +72,7 @@ Variants are declared as typed `layout.variant` values. TypeScript checks templa
 
 ## Pilot completion and next coverage work
 
-The 12-figure pilot defined in #11–#19 is complete: 17 figures are now verified (five from #4–#10 plus 12 pilot figures).
+The 12-figure pilot defined in #11–#19 is complete, and the Gemma dense family from #25 is verified: 20 figures are now verified.
 
 Next steps:
 

@@ -10,7 +10,10 @@ const rendered = new Set(figureSpecs.map((entry) => entry.slug));
 // Verified rendering requires a completed 50% side-by-side review, not merely a registered Spec.
 const verified = new Set([
   'deepseek-v3',
+  'gemma-3-270m',
   'gemma-3-27b',
+  'gemma-4-12b',
+  'gemma-4-31b',
   'gpt-oss-120b',
   'qwen3-8-flash-next-125b-a6b',
   'glm-5-4',
