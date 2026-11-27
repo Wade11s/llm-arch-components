@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
-import { FigureValidationError, renderFigure } from '../src/core/renderFigure';
+import { renderFigure } from '../src/core/renderFigure';
 import { tencentHy4Layout } from '../src/core/templates/tencentHy4';
 import { tencentHy4Spec } from '../src/specs/tencentHy4';
 import type { FigureSpec, RenderedFigure, SceneElement } from '../src/core/types';
@@ -47,7 +47,7 @@ describe('Tencent Hy4 (770B-A49B) attention-mask / iHC figure', () => {
     expect(tencentHy4Spec.layout.mode).toBe('template');
     if (tencentHy4Spec.layout.mode !== 'template') throw new Error('template fixture missing');
     expect(tencentHy4Spec.layout.template).toBe('attention-mask');
-    expect(tencentHy4Spec.layout.options?.variant).toBe('ihc-pipeline');
+    expect(tencentHy4Spec.layout.variant).toBe('ihc-pipeline');
     expect(tencentHy4Spec.groups.find((group) => group.id === 'backbone')?.repeat?.count).toBe(78);
   });
 
@@ -250,9 +250,13 @@ describe('Tencent Hy4 (770B-A49B) attention-mask / iHC figure', () => {
       mode: 'template',
       template: 'attention-mask',
       slots: tencentHy4Spec.layout.mode === 'template' ? tencentHy4Spec.layout.slots : {},
-      options: { variant: 'qsa-blocks' },
+      variant: 'qsa-blocks' as never,
     };
-    expect(() => render(spec)).toThrow(FigureValidationError);
+    expect(() => render(spec)).toThrow(expect.objectContaining({
+      issues: expect.arrayContaining([
+        expect.objectContaining({ code: 'unsupported-variant', path: 'layout.variant' }),
+      ]),
+    }));
   });
 
   test('records the re-checked inventory confidence and the corrected layer count', () => {

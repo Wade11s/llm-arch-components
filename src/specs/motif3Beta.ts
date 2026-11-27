@@ -98,6 +98,6 @@ export const motif3BetaSpec = {
     mode: 'template',
     template: 'moe',
     slots: { block: 'backbone', ffn: 'ffn-inset', moe: 'moe-inset', mhc: 'mhc-detail' },
-    options: { variant: 'multi-stream-residual' },
+    variant: 'multi-stream-residual',
   },
 } satisfies FigureSpec;

@@ -114,7 +114,7 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   if (spec.layout.mode !== 'template' || spec.layout.template !== 'backbone') {
     throw new FigureLayoutError([{ severity: 'error', code: 'wrong-template', message: 'backbone layout requires template backbone' }]);
   }
-  if (spec.layout.options?.variant === 'recurrent-detail') return layoutXlstm(spec, context);
+  if (spec.layout.variant === 'recurrent-detail') return layoutXlstm(spec, context);
   const blockId = spec.layout.slots.block;
   const insetId = Array.isArray(spec.layout.slots.inset) ? spec.layout.slots.inset[0] : spec.layout.slots.inset;
   if (!blockId || Array.isArray(blockId)) {
@@ -241,8 +241,8 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   if (spec.layout.mode !== 'template' || spec.layout.template !== 'moe') {
     throw new FigureLayoutError([{ severity: 'error', code: 'wrong-template', message: 'moe layout requires template moe' }]);
   }
-  if (spec.layout.options?.variant === 'mixing-detail') return layoutMixingDetail(spec, context);
-  if (spec.layout.options?.variant === 'multi-stream-residual') return layoutMotifMultiStream(spec, context);
+  if (spec.layout.variant === 'mixing-detail') return layoutMixingDetail(spec, context);
+  if (spec.layout.variant === 'multi-stream-residual') return layoutMotifMultiStream(spec, context);
   const blockId = spec.layout.slots.block;
   const ffnInsetId = spec.layout.slots.ffn;
   const moeInsetId = spec.layout.slots.moe;
@@ -516,7 +516,7 @@ export const templateLayoutEngine: LayoutEngine = {
       case 'moe':
         return layoutMoe(spec, context);
       case 'attention-mask':
-        return spec.layout.mode === 'template' && spec.layout.options?.variant === 'ihc-pipeline'
+        return spec.layout.mode === 'template' && spec.layout.variant === 'ihc-pipeline'
           ? layoutTencentHy4(spec, context)
           : layoutQwenSparse(spec, context);
       case 'multi-tower':

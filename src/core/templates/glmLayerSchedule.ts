@@ -223,10 +223,10 @@ function annotationLayout(spec: FigureSpec, annotation: Annotation): AnnotationL
 }
 
 export function layoutGlmLayerSchedule(spec: FigureSpec, context: LayoutContext): Scene {
-  if (spec.layout.mode === 'template' && spec.layout.options?.variant === 'layer-group') {
+  if (spec.layout.mode === 'template' && spec.layout.variant === 'layer-group') {
     return layoutLfmLayerGroup(spec, context);
   }
-  if (spec.layout.mode === 'template' && spec.layout.options?.variant === 'recurrent-pass') {
+  if (spec.layout.mode === 'template' && spec.layout.variant === 'recurrent-pass') {
     return layoutInklingRecurrentPass(spec, context);
   }
   const modelId = slot(spec, 'model');

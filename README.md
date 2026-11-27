@@ -16,7 +16,7 @@ import { gemma3Spec } from './src/specs/gemma3';
 const { scene, svg, diagnostics } = renderFigure(gemma3Spec);
 ```
 
-The runtime export surface is intentionally limited to `renderFigure`, `renderFigureFromJson`, `SceneSvg`, and the two structured error classes. See `docs/design/implementation-status.md` for the frozen vocabulary and coverage plan.
+The runtime export surface is intentionally limited to `renderFigure`, `renderFigureFromJson`, `SceneSvg`, and the two structured error classes. Template variants are declared as `layout.variant`; `layout.options.variant` is rejected. See `docs/design/implementation-status.md` for the frozen vocabulary and coverage plan.
 
 ## Prototype commands
 
@@ -44,7 +44,7 @@ Validation notes: `docs/research/prototype-validation.md`.
 ## Research
 
 - Accepted interface design: `docs/design/figure-rendering-interface.md`
-- Interface ADR: `docs/adr/0001-figure-rendering-interface.md`
+- Interface ADRs: `docs/adr/0001-figure-rendering-interface.md`, `docs/adr/0002-typed-layout-variants.md`
 - Rendering research: `docs/research/react-svg-rendering.md`
 - Full 132-figure inventory: `docs/research/corpus-inventory.md`
 - Regenerate inventory: `bun scripts/build-corpus-inventory.ts`

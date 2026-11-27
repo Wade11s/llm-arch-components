@@ -2,7 +2,7 @@
 
 **Status:** accepted after issues #10–#19  
 **Design:** `figure-rendering-interface.md`  
-**ADR:** `../adr/0001-figure-rendering-interface.md`
+**ADRs:** `../adr/0001-figure-rendering-interface.md`, `../adr/0002-typed-layout-variants.md`
 
 ## Public surface
 
@@ -56,7 +56,7 @@ Seventeen figures have deterministic Scene snapshots, self-contained SVG exports
 | DeepSeek-V4.1-Flash (552B) | `multi-tower`: encoder/decoder towers, CED link, Engram, candidate pool, Single-Pass mHC. |
 | Tencent Hy4 (770B-A49B) | `attention-mask` `ihc-pipeline` variant: 6×6 DSA mask, highlight, iHC Read/Write pipeline. |
 
-Variant names are validated during Spec validation. Unknown variants fail instead of silently selecting another layout.
+Variants are declared as typed `layout.variant` values. TypeScript checks template-specific combinations, JSON runtime validation uses the same `templateVariants` definition, and `layout.options.variant` is rejected with a targeted diagnostic. Unknown variants fail instead of silently selecting another layout.
 
 ## Known non-structural limitations
 
@@ -76,6 +76,6 @@ Next steps:
 1. Parameterize additional canonical dense/GQA and MoE families using the existing adapters.
 2. Reduce remaining visual constants and preserve Spec edge provenance where an adapter emits a simplified composite path.
 3. Continue reviewing medium-confidence inventory entries before promoting new figures to verified rendering.
-4. Add typed layout variants only after a new family proves the current option surface insufficient.
+4. Add the next coverage batch using the typed `layout.variant` interface.
 
 Coverage is reported as verified rendering, not merely structural expressiveness.

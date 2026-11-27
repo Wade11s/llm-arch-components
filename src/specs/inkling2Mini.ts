@@ -105,6 +105,6 @@ export const inkling2MiniSpec = {
     mode: 'template',
     template: 'layer-schedule',
     slots: { model: 'model', block: 'backbone', ffn: 'ffn-inset', moe: 'moe-inset' },
-    options: { variant: 'recurrent-pass' },
+    variant: 'recurrent-pass',
   },
 } satisfies FigureSpec;

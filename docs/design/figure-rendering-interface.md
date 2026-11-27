@@ -250,21 +250,35 @@ type TemplateId =
   | "multi-tower"
   | "attention-mask";
 
-type LayoutSpec =
-  | {
-      mode: "template";
-      template: TemplateId;
-      slots: Record<string, Id | Id[]>;
-      options?: Record<string, number | string | boolean>;
-    }
-  | {
-      mode: "manual";
-      placements: Record<Id, Box>;
-      routes?: Record<Id, Point[]>;
-    };
+const templateVariants = {
+  backbone: ["recurrent-detail"],
+  "residual-block": [],
+  "feed-forward": [],
+  moe: ["mixing-detail", "multi-stream-residual"],
+  "layer-schedule": ["layer-group", "recurrent-pass"],
+  "multi-stream-residual": [],
+  "multi-tower": [],
+  "attention-mask": ["ihc-pipeline"],
+} as const;
+
+type TemplateLayout = {
+  [T in TemplateId]: {
+    mode: "template";
+    template: T;
+    variant?: (typeof templateVariants)[T][number];
+    slots: Record<string, Id | Id[]>;
+    options?: Record<string, number | string | boolean>;
+  };
+}[TemplateId];
+
+type LayoutSpec = TemplateLayout | {
+  mode: "manual";
+  placements: Record<Id, Box>;
+  routes?: Record<Id, Point[]>;
+};
 ```
 
-Template IDs are a versioned public union, not arbitrary strings. Builders may provide a convenient way to produce these IDs, but they do not hide the underlying Spec. Internal template implementation names are not exposed.
+Template IDs are a versioned public union, not arbitrary strings. A `Layout Variant` is also typed per template and lives at `layout.variant`; `layout.options.variant` is rejected. Builders may provide a convenient way to produce these IDs, but they do not hide the underlying Spec. Internal template implementation names are not exposed.
 
 Manual placement is explicit and validated for bounds and overlap. It is not the default authoring style.
 
