@@ -9,6 +9,7 @@ const entries = inventoryFiles.flat();
 const rendered = new Set(figureSpecs.map((entry) => entry.slug));
 // Verified rendering requires a completed 50% side-by-side review, not merely a registered Spec.
 const verified = new Set([
+  'deepseek-r1',
   'deepseek-v3',
   'gemma-3-270m',
   'gemma-3-27b',
@@ -31,10 +32,15 @@ const verified = new Set([
   'gpt-2-xl-1-5b',
   'qwen3-30b-a3b',
   'qwen3-235b-a22b',
+  'qwen3-coder-flash-30b-a3b',
   'minimax-m2-230b',
+  'minimax-m2-5-230b',
+  'mistral-large-3',
   'intellect-3',
   'glm-4-5-air',
   'glm-4-5-355b',
+  'glm-4-7-355b',
+  'glm-5-1',
   'glm-5-744b',
   'qwen3-next-80b-a3b',
   'kimi-linear-48b-a3b',

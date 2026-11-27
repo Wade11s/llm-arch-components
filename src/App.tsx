@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import deepseekV3Ref from '../images/deepseek-v3.webp';
+import deepseekR1Ref from '../images/deepseek-r1.webp';
 import gemma3SmallRef from '../images/gemma-3-270m.webp';
 import gemma3Ref from '../images/gemma-3-27b.webp';
 import gemma412bRef from '../images/gemma-4-12b.webp';
@@ -21,10 +22,15 @@ import granite41Ref from '../images/granite-4-1-30b.webp';
 import gpt2xlRef from '../images/gpt-2-xl-1-5b.webp';
 import qwen3MoeRef from '../images/qwen3-30b-a3b.webp';
 import qwen3235bRef from '../images/qwen3-235b-a22b.webp';
+import qwen3CoderFlashRef from '../images/qwen3-coder-flash-30b-a3b.webp';
 import minimaxM2Ref from '../images/minimax-m2-230b.webp';
+import minimaxM25Ref from '../images/minimax-m2-5-230b.webp';
+import mistralLarge3Ref from '../images/mistral-large-3.webp';
 import intellect3Ref from '../images/intellect-3.webp';
 import glm45AirRef from '../images/glm-4-5-air.webp';
 import glm45355bRef from '../images/glm-4-5-355b.webp';
+import glm47Ref from '../images/glm-4-7-355b.webp';
+import glm51Ref from '../images/glm-5-1.webp';
 import glm5744bRef from '../images/glm-5-744b.webp';
 import qwen3NextRef from '../images/qwen3-next-80b-a3b.webp';
 import kimiLinearRef from '../images/kimi-linear-48b-a3b.webp';
@@ -39,6 +45,7 @@ import { figureSpecs } from './specs';
 
 const references: Record<string, string> = {
   'deepseek-v3': deepseekV3Ref,
+  'deepseek-r1': deepseekR1Ref,
   'gemma-3-270m': gemma3SmallRef,
   'gemma-3-27b': gemma3Ref,
   'gemma-4-12b': gemma412bRef,
@@ -60,10 +67,15 @@ const references: Record<string, string> = {
   'gpt-2-xl-1-5b': gpt2xlRef,
   'qwen3-30b-a3b': qwen3MoeRef,
   'qwen3-235b-a22b': qwen3235bRef,
+  'qwen3-coder-flash-30b-a3b': qwen3CoderFlashRef,
   'minimax-m2-230b': minimaxM2Ref,
+  'minimax-m2-5-230b': minimaxM25Ref,
+  'mistral-large-3': mistralLarge3Ref,
   'intellect-3': intellect3Ref,
   'glm-4-5-air': glm45AirRef,
   'glm-4-5-355b': glm45355bRef,
+  'glm-4-7-355b': glm47Ref,
+  'glm-5-1': glm51Ref,
   'glm-5-744b': glm5744bRef,
   'qwen3-next-80b-a3b': qwen3NextRef,
   'kimi-linear-48b-a3b': kimiLinearRef,
