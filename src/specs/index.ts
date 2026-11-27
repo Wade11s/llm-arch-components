@@ -15,6 +15,7 @@ import { lfm25Spec } from './lfm25';
 import { inkling2MiniSpec } from './inkling2Mini';
 import { motif3BetaSpec } from './motif3Beta';
 import { deepSeekV41FlashSpec } from './deepSeekV41Flash';
+import { tencentHy4Spec } from './tencentHy4';
 
 export type FigureSpecEntry = {
   slug: string;
@@ -42,6 +43,7 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'inkling-2-mini', name: 'Inkling 2 Mini (26.4B)', reference: '../images/inkling-2-mini.webp', width: 3687, height: 3426, spec: inkling2MiniSpec },
   { slug: 'motif-3-beta', name: 'Motif-3-Beta (314B-A13B)', reference: '../images/motif-3-beta.webp', width: 3683, height: 3062, spec: motif3BetaSpec },
   { slug: 'deepseek-v4-1-flash', name: 'DeepSeek-V4.1-Flash (552B)', reference: '../images/deepseek-v4-1-flash.webp', width: 5000, height: 3556, spec: deepSeekV41FlashSpec },
+  { slug: 'tencent-hy4-770b-a49b', name: 'Tencent Hy4 (770B-A49B)', reference: '../images/tencent-hy4-770b-a49b.webp', width: 3834, height: 2949, spec: tencentHy4Spec },
 ];
 
-export { deepSeekV3Spec, gemma3Spec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, qwen3Spec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec };
+export { deepSeekV3Spec, gemma3Spec, gptOss120bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, qwen3Spec, qwen3MoeSpec, minimaxM2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };

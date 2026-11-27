@@ -67,7 +67,7 @@ describe('review regressions', () => {
 
   test('unsupported template IDs fail during validation', () => {
     const spec = structuredClone(figureSpecs[0].spec);
-    spec.layout = { mode: 'template', template: 'multi-tower', slots: {} };
+    spec.layout = { mode: 'template', template: 'multi-stream-residual', slots: {} };
     expect(() => renderFigure(spec)).toThrow(FigureValidationError);
   });
 

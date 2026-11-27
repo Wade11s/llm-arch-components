@@ -1519,8 +1519,8 @@
       "branch-terminal"
     ],
     "customTemplates": [],
-    "confidence": "medium",
-    "notes": "Dense composite: the mask-matrix inset with curved annotation arrows and the pipeline inset with terminal stubs both need custom handling; small matrix labels are hard to read at thumbnail size."
+    "confidence": "high",
+    "notes": "Re-checked at full resolution before implementation: the reference is a 6×6 token mask (not three tokens), reads 78× (not the 60 layers first logged), has a dense first layer with the remaining 77 using MoE, and uses 256 MoE experts (8 routed + 1 shared, not 384); Gated DSA has 64 attention heads, 32 indexer heads, and top-k 2,048. There is no FFN inset in the image—the dense SwiGLU FFN appears only in the left caption. The mask-matrix inset with curved selection arrows and the 4-stage iHC pipeline with branch terminals need the custom attention-mask variant; column labels are rotated in the reference."
   },
   {
     "file": "tencent-hy4-preview-770b-a49b.webp",

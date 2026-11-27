@@ -6,6 +6,7 @@ import { layoutMixingDetail } from './templates/mixingDetail';
 import { layoutXlstm } from './templates/xlstm';
 import { layoutMotifMultiStream } from './templates/motifMultiStream';
 import { layoutDeepSeekMultiTower } from './templates/deepSeekMultiTower';
+import { layoutTencentHy4 } from './templates/tencentHy4';
 import { layoutGlmLayerSchedule } from './templates/glmLayerSchedule';
 import type {
   AnnotationSpec,
@@ -514,7 +515,9 @@ export const templateLayoutEngine: LayoutEngine = {
       case 'moe':
         return layoutMoe(spec, context);
       case 'attention-mask':
-        return layoutQwenSparse(spec, context);
+        return spec.layout.mode === 'template' && spec.layout.options?.variant === 'ihc-pipeline'
+          ? layoutTencentHy4(spec, context)
+          : layoutQwenSparse(spec, context);
       case 'multi-tower':
         return layoutDeepSeekMultiTower(spec, context);
       case 'layer-schedule':
