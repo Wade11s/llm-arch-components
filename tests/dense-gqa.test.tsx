@@ -53,7 +53,7 @@ describe('dense/GQA pilot figures', () => {
 
   test('reports verified rendering coverage for the dense/GQA batch', () => {
     const coverage = readFileSync('docs/research/rendering-coverage.md', 'utf8');
-    expect(coverage).toContain('| Verified rendering | 7 / 132 |');
+    expect(coverage).toContain(`| Verified rendering | ${figureSpecs.length} / 132 |`);
     expect(coverage).toContain('| llama-3-8b | yes | yes | yes |');
     expect(coverage).toContain('| qwen3-8b | yes | yes | yes |');
   });

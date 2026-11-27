@@ -52,21 +52,22 @@ function addAnnotation(
   if (!annotation) return;
   const content = annotation.content;
   const texts = options.content ?? ('bullets' in content ? content.bullets : [content]);
+  const lineGap = options.lineGap ?? Math.round((options.size ?? 56) * 1.16);
+  let cursorY = at.y;
   texts.forEach((text, index) => {
     const role = id === 'resource-savings' ? 'resource-savings' : id === 'dense-first' ? 'dense-first-note' : `annotation-${id}`;
     const continuation = text.spans[0]?.text === '';
     const rendered = options.bullets ? { ...text, spans: [{ text: continuation ? '   ' : '• ' }, ...text.spans] } : text;
-    builder.text(`${id}-${index}`, role, { x: at.x, y: at.y + index * (options.lineGap ?? Math.round((options.size ?? 56) * 1.16)) }, rendered, {
+    builder.text(`${id}-${index}`, role, { x: at.x, y: cursorY }, rendered, {
       size: options.size ?? 56,
       weight: options.weight ?? 700,
       align: options.align ?? 'start',
       sourceId: annotation.id,
     });
+    const last = builder.elements[builder.elements.length - 1];
+    const lineCount = last.kind === 'text' ? last.lines.length : 1;
+    cursorY += Math.max(1, lineCount) * lineGap;
   });
-}
-
-function formatNumber(value: number): string {
-  return value.toLocaleString('en-US');
 }
 
 function addPill(
@@ -254,6 +255,12 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   }
 
   const builder = new SceneBuilder(spec.theme, context.metrics);
+  const layoutOptions = spec.layout.options;
+  const showQKNorm = layoutOptions?.showQKNorm === true;
+  const ropeLabel = typeof layoutOptions?.ropeLabel === 'string' ? layoutOptions.ropeLabel : undefined;
+  const firstBadgeFill = typeof layoutOptions?.firstBadgeFill === 'string' ? layoutOptions.firstBadgeFill : '#000000';
+  const expertAnnotationY = typeof layoutOptions?.expertAnnotationY === 'number' ? layoutOptions.expertAnnotationY : 1054;
+  const resourceMaxWidth = typeof layoutOptions?.resourceMaxWidth === 'number' ? layoutOptions.resourceMaxWidth : 780;
   const cx = 1016;
   const repeatCount = block.repeat?.count ?? 0;
   builder.text('figure-title', 'title', { x: 590, y: 136 }, spec.title, { size: 136, weight: 700, fill: spec.theme.accent, align: 'start' });
@@ -299,8 +306,13 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   addPill(builder, spec, 'embedding-layer', 'embedding', { x: 743, y: 2090, width: 529, height: 84 }, { spans: [{ text: 'Token embedding layer' }] });
   addPill(builder, spec, 'tokenized-text', 'input', { x: 833, y: 2443, width: 343, height: 83 }, { spans: [{ text: 'Tokenized text' }] });
   builder.text('sample-input', 'input-label', { x: 1010, y: 2648 }, 'Sample input text', { size: 44, align: 'center', family: spec.theme.monospaceFamily ?? 'monospace' });
-  addPill(builder, spec, 'rope', 'side-pill', { x: 372, y: 1455, width: 300, height: 84 }, { spans: [{ text: attentionData.family === 'mla' ? 'Partial RoPE' : 'RoPE' }] }, { size: 40 });
-  addFlow(builder, 'rope-flow', [{ x: 672, y: 1497 }, { x: 758, y: 1497 }]);
+  if (showQKNorm) {
+    addPill(builder, spec, 'qk-norm', 'side-pill', { x: 372, y: 1368, width: 300, height: 84 }, { spans: [{ text: 'QK-Norm' }] }, { size: 40 });
+    addFlow(builder, 'qk-norm-flow', [{ x: 672, y: 1410 }, { x: 758, y: 1472 }]);
+  }
+  const ropeY = showQKNorm ? 1510 : 1455;
+  addPill(builder, spec, 'rope', 'side-pill', { x: 372, y: ropeY, width: 300, height: 84 }, { spans: [{ text: ropeLabel ?? (attentionData.family === 'mla' ? 'Partial RoPE' : 'RoPE') }] }, { size: 40 });
+  addFlow(builder, 'rope-flow', [{ x: 672, y: ropeY + 42 }, { x: 758, y: ropeY + 42 }]);
 
   builder.text('repeat-count', 'repeat-marker', { x: 468, y: 1908 }, `${repeatCount}`, { size: 60, weight: 700, fill: spec.theme.accent });
   builder.text('repeat-x', 'repeat-marker', { x: 558, y: 1908 }, '×', { size: 60, weight: 700, fill: spec.theme.accent });
@@ -341,7 +353,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   addFlow(builder, 'expert-center-up', [{ x: 2213, y: 1728 }, { x: 2213, y: 1480 }], { role: 'moe-flow' });
   builder.glyph('moe-plus', 'operator', { x: 2213, y: 1410 }, 'plus', 60);
   builder.glyph('expert-ellipsis', 'ellipsis', { x: 2213, y: 1685 }, 'ellipsis', 70);
-  addPill(builder, spec, 'badge-1', 'badge', { x: 2100, y: 1680, width: 65, height: 65 }, { spans: [{ text: '1' }] }, { fill: '#000000', textFill: '#FFFFFF', size: 42, radius: 10 });
+  addPill(builder, spec, 'badge-1', 'badge', { x: 2100, y: 1680, width: 65, height: 65 }, { spans: [{ text: '1' }] }, { fill: firstBadgeFill, textFill: '#FFFFFF', size: 42, radius: 10 });
   addPill(builder, spec, 'badge-last', 'badge', { x: 2820, y: 1680, width: 85, height: 65 }, { spans: [{ text: `${moeData.experts}` }] }, { fill: spec.theme.accent, textFill: '#FFFFFF', size: 42, radius: 10 });
   addFlow(builder, 'moe-output', [{ x: 2213, y: 1380 }, { x: 2213, y: 1325 }], { role: 'moe-flow' });
 
@@ -363,16 +375,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     content: [{ spans: [{ text: `${attentionData.heads}`, color: 'accent' }, { text: ' heads' }] }],
   });
   addAnnotation(builder, spec, 'embedding-dimension', { x: 1365, y: 2602 }, { size: 53 });
-  const expertDimensionContent: TextSpec[] = attentionData.family === 'mla'
-    ? [
-        { spans: [{ text: 'Intermediate hidden' }] },
-        { spans: [{ text: 'layer dimension of ' }, { text: formatNumber(ffnData.hidden), color: 'accent' }] },
-      ]
-    : [
-        { spans: [{ text: 'Input expert size: ' }, { text: formatNumber(ffnData.hidden), color: 'accent' }] },
-        { spans: [{ text: 'Intermediate projection size: ' }, { text: formatNumber(ffnData.hidden), color: 'accent' }] },
-      ];
-  addAnnotation(builder, spec, 'expert-dimensions', { x: 2025, y: 1054 }, { size: 48, content: expertDimensionContent });
+  addAnnotation(builder, spec, 'expert-dimensions', { x: 2025, y: expertAnnotationY }, { size: 48 });
   addAnnotation(builder, spec, 'resource-savings-title', { x: 1955, y: 2252 }, { size: 56 });
   const resource = annotationOf(spec, 'resource-savings');
   const resourceBullets = resource && 'bullets' in resource.content ? [...resource.content.bullets] : [];
@@ -383,11 +386,12 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   if (activeIndex >= 0) {
     resourceBullets[activeIndex] = { maxWidth: 780, spans: [{ text: 'but only ' }, { text: activeLabel, color: 'accent' }, { text: ' active per token' }] };
   }
+  const resourceLineGap = typeof layoutOptions?.resourceLineGap === 'number' ? layoutOptions.resourceLineGap : resourceBullets.length > 4 ? 62 : 82;
   addAnnotation(builder, spec, 'resource-savings', { x: 1955, y: 2326 }, {
     size: 48,
     bullets: true,
-    lineGap: resourceBullets.length > 4 ? 62 : 82,
-    content: resourceBullets,
+    lineGap: resourceLineGap,
+    content: resourceBullets.map((bullet) => ({ ...bullet, maxWidth: bullet.maxWidth ?? resourceMaxWidth })),
   });
   addAnnotation(builder, spec, 'dense-first', { x: 20, y: 2390 }, { size: 44 });
 
