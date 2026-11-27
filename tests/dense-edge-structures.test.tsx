@@ -117,7 +117,7 @@ describe('dense edge structures', () => {
     expectNoTextOverflow(result);
   });
 
-  test('registers the edge figures and reports 29 verified figures', () => {
+  test('registers the edge figures and reports verified coverage', () => {
     const slugs = figureSpecs.map((entry) => entry.slug);
     for (const slug of ['domyn-edge-3-93b', 'granite-4-1-30b', 'gpt-2-xl-1-5b']) {
       expect(slugs).toContain(slug);

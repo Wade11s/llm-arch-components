@@ -5,6 +5,7 @@ import gemma3Ref from '../images/gemma-3-27b.webp';
 import gemma412bRef from '../images/gemma-4-12b.webp';
 import gemma431bRef from '../images/gemma-4-31b.webp';
 import gptOssRef from '../images/gpt-oss-120b.webp';
+import gptOss20bRef from '../images/gpt-oss-20b.webp';
 import qwen38FlashNextRef from '../images/qwen3-8-flash-next-125b-a6b.webp';
 import glm54Ref from '../images/glm-5-4.webp';
 import llama321bRef from '../images/llama-3-2-1b.webp';
@@ -19,7 +20,12 @@ import domynEdgeRef from '../images/domyn-edge-3-93b.webp';
 import granite41Ref from '../images/granite-4-1-30b.webp';
 import gpt2xlRef from '../images/gpt-2-xl-1-5b.webp';
 import qwen3MoeRef from '../images/qwen3-30b-a3b.webp';
+import qwen3235bRef from '../images/qwen3-235b-a22b.webp';
 import minimaxM2Ref from '../images/minimax-m2-230b.webp';
+import intellect3Ref from '../images/intellect-3.webp';
+import glm45AirRef from '../images/glm-4-5-air.webp';
+import glm45355bRef from '../images/glm-4-5-355b.webp';
+import glm5744bRef from '../images/glm-5-744b.webp';
 import qwen3NextRef from '../images/qwen3-next-80b-a3b.webp';
 import kimiLinearRef from '../images/kimi-linear-48b-a3b.webp';
 import xlstmRef from '../images/xlstm-7b.webp';
@@ -37,6 +43,7 @@ const references: Record<string, string> = {
   'gemma-3-27b': gemma3Ref,
   'gemma-4-12b': gemma412bRef,
   'gemma-4-31b': gemma431bRef,
+  'gpt-oss-20b': gptOss20bRef,
   'gpt-oss-120b': gptOssRef,
   'qwen3-8-flash-next-125b-a6b': qwen38FlashNextRef,
   'glm-5-4': glm54Ref,
@@ -52,7 +59,12 @@ const references: Record<string, string> = {
   'granite-4-1-30b': granite41Ref,
   'gpt-2-xl-1-5b': gpt2xlRef,
   'qwen3-30b-a3b': qwen3MoeRef,
+  'qwen3-235b-a22b': qwen3235bRef,
   'minimax-m2-230b': minimaxM2Ref,
+  'intellect-3': intellect3Ref,
+  'glm-4-5-air': glm45AirRef,
+  'glm-4-5-355b': glm45355bRef,
+  'glm-5-744b': glm5744bRef,
   'qwen3-next-80b-a3b': qwen3NextRef,
   'kimi-linear-48b-a3b': kimiLinearRef,
   'xlstm-7b': xlstmRef,
