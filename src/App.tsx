@@ -5,6 +5,8 @@ import gemma3SmallRef from '../images/gemma-3-270m.webp';
 import gemma3Ref from '../images/gemma-3-27b.webp';
 import gemma412bRef from '../images/gemma-4-12b.webp';
 import gemma431bRef from '../images/gemma-4-31b.webp';
+import gemma4E2bRef from '../images/gemma-4-e2b.webp';
+import gemma4E4bRef from '../images/gemma-4-e4b.webp';
 import gptOssRef from '../images/gpt-oss-120b.webp';
 import gptOss20bRef from '../images/gpt-oss-20b.webp';
 import qwen38FlashNextRef from '../images/qwen3-8-flash-next-125b-a6b.webp';
@@ -20,15 +22,19 @@ import qwen332bRef from '../images/qwen3-32b.webp';
 import phi4Ref from '../images/phi-4.webp';
 import vibeThinker3bRef from '../images/vibethinker-3b.webp';
 import nanbeige41Ref from '../images/nanbeige-4-1-3b.webp';
+import nanbeige42Ref from '../images/nanbeige-4-2-3b.webp';
 import nanbeige43Ref from '../images/nanbeige-4-3-33b.webp';
 import mistralSmall31Ref from '../images/mistral-small-3-1-24b.webp';
 import olmo2Ref from '../images/olmo-2-7b.webp';
+import olmo3Ref from '../images/olmo-3-7b.webp';
+import smollm3Ref from '../images/smollm3-3b.webp';
 import domynEdgeRef from '../images/domyn-edge-3-93b.webp';
 import granite41Ref from '../images/granite-4-1-30b.webp';
 import gpt2xlRef from '../images/gpt-2-xl-1-5b.webp';
 import qwen3MoeRef from '../images/qwen3-30b-a3b.webp';
 import qwen3235bRef from '../images/qwen3-235b-a22b.webp';
 import qwen3CoderFlashRef from '../images/qwen3-coder-flash-30b-a3b.webp';
+import kimiK2Ref from '../images/kimi-k2.webp';
 import minimaxM2Ref from '../images/minimax-m2-230b.webp';
 import minimaxM25Ref from '../images/minimax-m2-5-230b.webp';
 import mistralLarge3Ref from '../images/mistral-large-3.webp';
@@ -56,6 +62,8 @@ const references: Record<string, string> = {
   'gemma-3-27b': gemma3Ref,
   'gemma-4-12b': gemma412bRef,
   'gemma-4-31b': gemma431bRef,
+  'gemma-4-e2b': gemma4E2bRef,
+  'gemma-4-e4b': gemma4E4bRef,
   'gpt-oss-20b': gptOss20bRef,
   'gpt-oss-120b': gptOssRef,
   'qwen3-8-flash-next-125b-a6b': qwen38FlashNextRef,
@@ -71,15 +79,19 @@ const references: Record<string, string> = {
   'phi-4': phi4Ref,
   'vibethinker-3b': vibeThinker3bRef,
   'nanbeige-4-1-3b': nanbeige41Ref,
+  'nanbeige-4-2-3b': nanbeige42Ref,
   'nanbeige-4-3-33b': nanbeige43Ref,
   'mistral-small-3-1-24b': mistralSmall31Ref,
   'olmo-2-7b': olmo2Ref,
+  'olmo-3-7b': olmo3Ref,
+  'smollm3-3b': smollm3Ref,
   'domyn-edge-3-93b': domynEdgeRef,
   'granite-4-1-30b': granite41Ref,
   'gpt-2-xl-1-5b': gpt2xlRef,
   'qwen3-30b-a3b': qwen3MoeRef,
   'qwen3-235b-a22b': qwen3235bRef,
   'qwen3-coder-flash-30b-a3b': qwen3CoderFlashRef,
+  'kimi-k2': kimiK2Ref,
   'minimax-m2-230b': minimaxM2Ref,
   'minimax-m2-5-230b': minimaxM25Ref,
   'mistral-large-3': mistralLarge3Ref,

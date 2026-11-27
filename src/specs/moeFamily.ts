@@ -259,6 +259,18 @@ export const mistralLarge3Spec = moeFamilySpec({
   firstBadgeFill: '#000000', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
 
+export const kimiK2Spec = moeFamilySpec({
+  id: 'kimi-k2', title: 'Kimi K2 (1T)', canvas: { width: 2807, height: 2689 },
+  accent: '#00A000', blockFill: '#57D957', layers: 61, embedding: '7,168', vocabulary: '160k',
+  context: [text('YaRN context'), emphasized('', '128k', ' tokens'), emphasized('', '4k', ' RoPE base')],
+  attention: { family: 'mla', heads: 64, kvRank: 512 }, hidden: 2048,
+  experts: 384, activeExperts: 8, sharedExperts: 1,
+  expertDimensions: [text('Intermediate hidden'), text('layer dimension of'), emphasized('', '2,048')],
+  modelSize: '1T', activeParams: '32B', ropeLabel: 'Partial RoPE',
+  denseFirst: [emphasized('First ', '1', ' block uses'), text('dense FFN with'), emphasized('hidden size ', '18,432'), text('instead of MoE')],
+  firstBadgeFill: '#000000', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
+});
+
 export const glm51Spec = moeFamilySpec({
   id: 'glm-5-1', title: 'GLM-5.1 (744B)', canvas: { width: 2777, height: 2703 },
   accent: '#1A89FE', blockFill: '#5CA7F0', layers: 78, embedding: '6,144', vocabulary: '155k',

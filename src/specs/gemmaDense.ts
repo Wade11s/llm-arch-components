@@ -28,6 +28,8 @@ function denseGemmaSpec(input: {
   headsLeaderEndX?: number;
   headsLeaderEndY?: number;
   sampleInputY?: number;
+  ratio?: string;
+  perLayerEmbeddings?: boolean;
 }): FigureSpec {
   return {
     schemaVersion: 1,
@@ -50,8 +52,9 @@ function denseGemmaSpec(input: {
       { id: 'ffn-inset', kind: 'inset', parent: 'model', title: text('Feed forward (GELU) module'), children: ['ffn'] },
     ],
     nodes: [
-      { id: 'attention', kind: 'composite', data: { family: 'gqa', heads: input.heads.attention, kvHeads: input.heads.kv, ratio: '5:1' } },
+      { id: 'attention', kind: 'composite', data: { family: 'gqa', heads: input.heads.attention, kvHeads: input.heads.kv, ratio: input.ratio ?? '5:1' } },
       { id: 'ffn', kind: 'composite', data: { family: 'ffn', hidden: input.hidden, activation: 'GELU' } },
+      ...(input.perLayerEmbeddings ? [{ id: 'per-layer-embeddings', kind: 'text' as const, data: { spans: [{ text: 'Per-Layer Embeddings' }] } }] : []),
     ],
     edges: [
       { id: 'residual-attention', kind: 'residual', from: { node: 'attention' }, to: { node: 'attention', side: 'top' }, junction: 'plus' },
@@ -67,7 +70,7 @@ function denseGemmaSpec(input: {
     layout: {
       mode: 'template',
       template: 'backbone',
-      slots: { block: 'backbone', inset: 'ffn-inset' },
+      slots: { block: 'backbone', inset: 'ffn-inset', ...(input.perLayerEmbeddings ? { perLayerEmbeddings: 'per-layer-embeddings' } : {}) },
       options: {
         ...(input.ropeLabels ? { ropeLabel: input.ropeLabels.primary, ropeSecondaryLabel: input.ropeLabels.secondary } : {}),
         ...(input.normStroke ? { normStroke: input.normStroke } : {}),
@@ -177,6 +180,81 @@ export const gemma431bSpec = denseGemmaSpec({
   qkNormStroke: '#56C1FF',
   headsLeaderEndX: 1760,
   hiddenAnnotationX: 1876,
+  headsAnnotationX: 1800,
+  headsAnnotationY: 1700,
+});
+
+export const gemma4E2bSpec = denseGemmaSpec({
+  id: 'gemma-4-e2b',
+  title: 'Gemma 4 E2B',
+  layers: 35,
+  hidden: 12288,
+  hiddenAnnotation: { bullets: [
+    emphasized('Input width ', '1,536'),
+    { spans: [{ text: 'Layers ' }, { text: '1–15', color: 'accent' }, { text: ' use FFN width ' }, { text: '6,144', color: 'accent' }] },
+    { spans: [{ text: 'Layers ' }, { text: '16–35', color: 'accent' }, { text: ' use FFN width ' }, { text: '12,288', color: 'accent' }] },
+  ] },
+  embedding: '1,536',
+  context: '131,072',
+  heads: {
+    attention: 8,
+    kv: 1,
+    annotation: { bullets: [
+      text('4:1 Local (sliding) to'),
+      text('global (full attention) ratio'),
+      text('Local:'),
+      emphasized('', '8', ' attention heads'),
+      emphasized('', '1', ' key & value heads'),
+      text('Global:'),
+      emphasized('', '8', ' attention heads'),
+      emphasized('', '1', ' key & value heads'),
+    ] },
+  },
+  blockFill: '#3B82F6',
+  ropeLabels: { primary: 'Partial RoPE (global)', secondary: 'Full RoPE (local)' },
+  normStroke: '#56C1FF',
+  qkNormStroke: '#56C1FF',
+  ratio: '4:1',
+  perLayerEmbeddings: true,
+  headsLeaderEndX: 1760,
+  hiddenAnnotationX: 1600,
+  headsAnnotationX: 1800,
+  headsAnnotationY: 1700,
+});
+
+export const gemma4E4bSpec = denseGemmaSpec({
+  id: 'gemma-4-e4b',
+  title: 'Gemma 4 E4B',
+  layers: 42,
+  hidden: 10240,
+  hiddenAnnotation: { bullets: [
+    emphasized('Input dim.: ', '2,560'),
+    emphasized('Intermediate dim.: ', '10,240'),
+  ] },
+  embedding: '2,560',
+  context: '131,072',
+  heads: {
+    attention: 8,
+    kv: 2,
+    annotation: { bullets: [
+      text('5:1 Local (sliding) to'),
+      text('global (full attention) ratio'),
+      text('Local:'),
+      emphasized('', '8', ' attention heads'),
+      emphasized('', '2', ' key & value heads'),
+      text('Global:'),
+      emphasized('', '8', ' attention heads'),
+      emphasized('', '2', ' key & value heads'),
+    ] },
+  },
+  blockFill: '#3B82F6',
+  ropeLabels: { primary: 'Partial RoPE (global)', secondary: 'Full RoPE (local)' },
+  normStroke: '#56C1FF',
+  qkNormStroke: '#56C1FF',
+  ratio: '5:1',
+  perLayerEmbeddings: true,
+  headsLeaderEndX: 1760,
+  hiddenAnnotationX: 1600,
   headsAnnotationX: 1800,
   headsAnnotationY: 1700,
 });

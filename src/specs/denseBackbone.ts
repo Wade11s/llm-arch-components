@@ -25,12 +25,21 @@ function denseBackboneSpec(input: {
   showQKNorm: boolean;
   showPostNorms?: boolean;
   showPreNorms?: boolean;
-  attentionLabelStyle?: 'mha';
+  attentionLabelStyle?: 'mha' | 'mha-sliding';
+  attentionRatio?: string;
   attentionSuffix?: string;
   attentionFirstLineAccent?: boolean;
   normStroke?: string;
   insetOffsetX?: number;
   insetTitle?: string;
+  ropeLabel?: string;
+  ropeSecondaryLabel?: string;
+  nopeLabel?: string;
+  nopeAnnotation?: AnnotationContent;
+  windowSizeAnnotation?: AnnotationContent;
+  repeatOnceWithSameWeights?: boolean;
+  repeatLoopLabel?: string;
+  repeatNote?: AnnotationContent;
   hiddenAnnotationX?: number;
   headsAnnotationX?: number;
   headsAnnotationY?: number;
@@ -62,7 +71,7 @@ function denseBackboneSpec(input: {
       { id: 'ffn-inset', kind: 'inset', parent: 'model', title: input.insetTitle ? { spans: [{ text: input.insetTitle }] } : undefined, children: ['ffn'] },
     ],
     nodes: [
-      { id: 'attention', kind: 'composite', label: input.attention.label ?? { spans: [{ text: 'Grouped-query' }, { text: 'attention' }] }, data: { family: 'gqa', heads: input.attention.heads, kvHeads: input.attention.kvHeads } },
+      { id: 'attention', kind: 'composite', label: input.attention.label ?? { spans: [{ text: 'Grouped-query' }, { text: 'attention' }] }, data: { family: 'gqa', heads: input.attention.heads, kvHeads: input.attention.kvHeads, ...(input.attentionRatio ? { ratio: input.attentionRatio } : {}) } },
       { id: 'ffn', kind: 'composite', data: { family: 'ffn', hidden: input.hidden, activation: 'SiLU' } },
     ],
     edges: [
@@ -75,6 +84,9 @@ function denseBackboneSpec(input: {
       { id: 'heads', target: 'attention', placement: 'right', content: input.headsAnnotation },
       { id: 'embedding-dimension', target: 'model', placement: 'bottom', content: { bullets: [text('Embedding'), emphasized('dimension of ', input.embedding)] } },
       { id: 'hidden-dimension', target: 'ffn', placement: 'right', content: input.hiddenAnnotation },
+      ...(input.nopeAnnotation ? [{ id: 'nope', target: 'attention', placement: 'left' as const, content: input.nopeAnnotation }] : []),
+      ...(input.windowSizeAnnotation ? [{ id: 'window-size', target: 'attention', placement: 'right' as const, content: input.windowSizeAnnotation }] : []),
+      ...(input.repeatNote ? [{ id: 'repeat-note', target: 'backbone', placement: 'left' as const, content: input.repeatNote }] : []),
     ],
     layout: {
       mode: 'template',
@@ -90,6 +102,11 @@ function denseBackboneSpec(input: {
         ...(input.attentionSuffix ? { attentionSuffix: input.attentionSuffix } : {}),
         ...(input.attentionFirstLineAccent ? { attentionFirstLineAccent: true } : {}),
         ...(input.insetOffsetX !== undefined ? { insetOffsetX: input.insetOffsetX } : {}),
+        ...(input.ropeLabel ? { ropeLabel: input.ropeLabel } : {}),
+        ...(input.ropeSecondaryLabel ? { ropeSecondaryLabel: input.ropeSecondaryLabel } : {}),
+        ...(input.nopeLabel ? { nopeLabel: input.nopeLabel } : {}),
+        ...(input.repeatOnceWithSameWeights ? { repeatOnceWithSameWeights: true } : {}),
+        ...(input.repeatLoopLabel ? { repeatLoopLabel: input.repeatLoopLabel } : {}),
         ...(input.hiddenAnnotationX !== undefined ? { hiddenAnnotationX: input.hiddenAnnotationX } : {}),
         ...(input.headsAnnotationX !== undefined ? { headsAnnotationX: input.headsAnnotationX } : {}),
         ...(input.headsAnnotationY !== undefined ? { headsAnnotationY: input.headsAnnotationY } : {}),
@@ -367,6 +384,92 @@ export const mistralSmall31Spec = denseBackboneSpec({
   headsLeaderEndX: 1740,
   headsLeaderEndY: 1750,
   insetOffsetX: -120,
+});
+
+export const smollm3Spec = denseBackboneSpec({
+  id: 'smollm3-3b',
+  title: 'SmolLM3 (3B)',
+  layers: 36,
+  hidden: 11008,
+  hiddenAnnotation: { bullets: [text('Hidden layer'), emphasized('dimension of ', '11,008')] },
+  embedding: '2,048',
+  contextAnnotation: { bullets: [text('Context length'), emphasized('', '64k', ' native'), emphasized('', '128k', ' with YaRN')] },
+  headsAnnotation: { bullets: [emphasized('', '16', ' heads')] },
+  attention: { heads: 16, kvHeads: 4, label: maskedAttention },
+  vocabulary: '128k',
+  canvas: { width: 2571, height: 2642 },
+  accent: '#FFAA00',
+  blockFill: '#F2DA8B',
+  normLabels: 'rmsnorm',
+  showQKNorm: false,
+  nopeLabel: 'NoPE',
+  nopeAnnotation: { bullets: [text('NoPE every'), text('4th layer')] },
+  headsAnnotationY: 1750,
+  headsAnnotationX: 1760,
+  headsLeaderEndX: 1740,
+  headsLeaderEndY: 1750,
+  hiddenAnnotationX: 1700,
+  sampleInputY: 2636,
+  insetOffsetX: -40,
+});
+
+export const olmo3Spec = denseBackboneSpec({
+  id: 'olmo-3-7b',
+  title: 'Olmo 3 (7B)',
+  layers: 32,
+  hidden: 11008,
+  hiddenAnnotation: { bullets: [emphasized('Input size: ', '4,096'), text('Intermediate projection'), emphasized('size = ', '11,008')] },
+  embedding: '4,096',
+  contextAnnotation: { bullets: [text('YaRN context'), emphasized('', '64k', ' tokens'), emphasized('', '8k', ' RoPE base')] },
+  headsAnnotation: { bullets: [emphasized('', '32', ' attention heads'), emphasized('', '32', ' key & value heads'), text('(regular multi-head attention)')] },
+  attention: { heads: 32, kvHeads: 32 },
+  vocabulary: '100k',
+  canvas: { width: 2596, height: 2684 },
+  accent: '#F1539D',
+  blockFill: '#DDADC4',
+  normLabels: 'rmsnorm',
+  showQKNorm: true,
+  showPostNorms: true,
+  showPreNorms: false,
+  normStroke: '#F1539D',
+  attentionRatio: '3:1',
+  attentionLabelStyle: 'mha-sliding',
+  ropeLabel: 'RoPE + YaRN',
+  windowSizeAnnotation: { bullets: [text('Sliding'), text('window size'), emphasized('', '4,096')] },
+  headsAnnotationY: 1750,
+  headsAnnotationX: 1700,
+  headsLeaderEndX: 1680,
+  headsLeaderEndY: 1750,
+  hiddenAnnotationX: 1700,
+  insetOffsetX: -40,
+});
+
+export const nanbeige42Spec = denseBackboneSpec({
+  id: 'nanbeige-4-2-3b',
+  title: 'Nanbeige4.2 (3B)',
+  layers: 22,
+  hidden: 10752,
+  hiddenAnnotation: { bullets: [text('Intermediate projection'), emphasized('size of ', '10,752')] },
+  embedding: '3,072',
+  contextAnnotation: { bullets: [text('Native context'), emphasized('', '262,144', ' tokens')] },
+  headsAnnotation: { bullets: [
+    { spans: [{ text: '48 Q heads, ', color: 'accent' }, { text: '8 KV heads (group size ' }, { text: '6', color: 'accent' }, { text: ')' }] },
+    { spans: [{ text: 'head dim ' }, { text: '128', color: 'accent' }] },
+  ] },
+  attention: { heads: 48, kvHeads: 8 },
+  vocabulary: '166k',
+  canvas: { width: 2683, height: 2664 },
+  accent: '#007F00',
+  blockFill: '#86A872',
+  normLabels: 'rmsnorm',
+  showQKNorm: false,
+  repeatOnceWithSameWeights: true,
+  repeatLoopLabel: 'Repeat once with same 22-layer weights',
+  repeatNote: { bullets: [emphasized('22×', ' distinct layers;'), emphasized('44×', ' total layers')] },
+  headsAnnotationY: 1750,
+  headsAnnotationX: 1600,
+  headsLeaderEndX: 1580,
+  headsLeaderEndY: 1750,
 });
 
 export const olmo2Spec = denseBackboneSpec({
