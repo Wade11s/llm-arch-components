@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import deepseekV3Ref from '../images/deepseek-v3.webp';
+import gemma3SmallRef from '../images/gemma-3-270m.webp';
 import gemma3Ref from '../images/gemma-3-27b.webp';
+import gemma412bRef from '../images/gemma-4-12b.webp';
+import gemma431bRef from '../images/gemma-4-31b.webp';
 import gptOssRef from '../images/gpt-oss-120b.webp';
 import qwen38FlashNextRef from '../images/qwen3-8-flash-next-125b-a6b.webp';
 import glm54Ref from '../images/glm-5-4.webp';
@@ -21,7 +24,10 @@ import { figureSpecs } from './specs';
 
 const references: Record<string, string> = {
   'deepseek-v3': deepseekV3Ref,
+  'gemma-3-270m': gemma3SmallRef,
   'gemma-3-27b': gemma3Ref,
+  'gemma-4-12b': gemma412bRef,
+  'gemma-4-31b': gemma431bRef,
   'gpt-oss-120b': gptOssRef,
   'qwen3-8-flash-next-125b-a6b': qwen38FlashNextRef,
   'glm-5-4': glm54Ref,

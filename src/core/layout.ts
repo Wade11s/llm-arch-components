@@ -82,7 +82,7 @@ function addPill(
   role: string,
   box: Box,
   text: TextSpec,
-  options: { fill?: string; stroke?: string; radius?: number; size?: number; weight?: number; textFill?: string } = {},
+  options: { fill?: string; stroke?: string; radius?: number; size?: number; weight?: number; textFill?: string; secondaryText?: TextSpec } = {},
 ): void {
   builder.box(`${id}-box`, role, box, {
     sourceId: id,
@@ -90,6 +90,30 @@ function addPill(
     stroke: options.stroke ? builder.stroke(options.stroke, 5) : undefined,
     radius: options.radius ?? 30,
   });
+  if (options.secondaryText) {
+    const size = options.size ?? 40;
+    builder.text(`${id}-label-1`, `${role}-label`, {
+      x: box.x + box.width / 2,
+      y: box.y + box.height / 2 - 4,
+    }, text, {
+      size,
+      weight: options.weight ?? 500,
+      fill: options.textFill,
+      align: 'center',
+      sourceId: id,
+    });
+    builder.text(`${id}-label-2`, `${role}-label`, {
+      x: box.x + box.width / 2,
+      y: box.y + box.height / 2 + size * 1.1,
+    }, options.secondaryText, {
+      size,
+      weight: options.weight ?? 500,
+      fill: options.textFill,
+      align: 'center',
+      sourceId: id,
+    });
+    return;
+  }
   builder.text(`${id}-label`, `${role}-label`, {
     x: box.x + box.width / 2,
     y: box.y + box.height / 2 + (options.size ?? 40) * 0.35,
@@ -134,7 +158,11 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const normLabels = layoutOptions?.normLabels;
   const showPostNorms = normLabels === undefined || normLabels === 'pre-post';
   const showQKNorm = layoutOptions?.showQKNorm !== false;
-  const normStroke = layoutOptions?.normStroke === 'ink' ? spec.theme.ink : spec.theme.accent;
+  const normStroke = layoutOptions?.normStroke === 'ink'
+    ? spec.theme.ink
+    : typeof layoutOptions?.normStroke === 'string' && layoutOptions.normStroke.startsWith('#')
+      ? layoutOptions.normStroke
+      : spec.theme.accent;
 
   const builder = new SceneBuilder(spec.theme, context.metrics);
   const cx = 1022;
@@ -187,13 +215,35 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
-  if (showQKNorm) addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, { size: 38 });
-  addPill(builder, spec, 'rope', 'side-pill', { x: 420, y: 1535, width: 293, height: 84 }, { spans: [{ text: 'RoPE' }] }, { size: 38 });
+  const qkNormStroke = layoutOptions?.qkNormStroke;
+  const ropeStroke = layoutOptions?.ropeStroke;
+  if (showQKNorm) addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, {
+    size: 38,
+    stroke: typeof qkNormStroke === 'string' ? qkNormStroke : undefined,
+  });
+  const ropeLabel = layoutOptions?.ropeLabel;
+  const ropeSecondaryLabel = layoutOptions?.ropeSecondaryLabel;
+  const hasCustomRope = typeof ropeLabel === 'string';
+  const hasTwoLineRope = hasCustomRope && typeof ropeSecondaryLabel === 'string';
+  addPill(
+    builder,
+    spec,
+    'rope',
+    'side-pill',
+    hasTwoLineRope ? { x: 353, y: 1527, width: 360, height: 100 } : { x: 420, y: 1535, width: 293, height: 84 },
+    { spans: [{ text: hasCustomRope ? ropeLabel : 'RoPE' }] },
+    {
+      size: hasTwoLineRope ? 32 : 38,
+      stroke: typeof ropeStroke === 'string' ? ropeStroke : undefined,
+      secondaryText: hasTwoLineRope ? { spans: [{ text: ropeSecondaryLabel }] } : undefined,
+    },
+  );
   if (showQKNorm) addFlow(builder, 'qk-norm-flow', [{ x: 756, y: 1428 }, { x: 829, y: 1488 }]);
   addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
   addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
   addPill(builder, spec, 'tokenized-text', 'input', { x: 847, y: 2417, width: 350, height: 86 }, { spans: [{ text: 'Tokenized text' }] });
-  builder.text('sample-input', 'input-label', { x: cx, y: 2646 }, 'Sample input text', { size: 54, align: 'center' });
+  const sampleInputY = layoutOptions?.sampleInputY;
+  builder.text('sample-input', 'input-label', { x: cx, y: typeof sampleInputY === 'number' ? sampleInputY : 2646 }, 'Sample input text', { size: 54, align: 'center' });
 
   builder.text('repeat-count', 'repeat-marker', { x: 478, y: 1912 }, `${repeatCount}`, { size: 58, weight: 700, fill: spec.theme.accent });
   builder.text('repeat-x', 'repeat-marker', { x: 560, y: 1908 }, '×', { size: 44, weight: 700, fill: spec.theme.accent });
@@ -220,7 +270,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
 
   const leaders: Array<[string, Point[]]> = [
     ['leader-vocabulary', [{ x: 1218, y: 396 }, { x: 1350, y: 258 }]],
-    ['leader-attention', [{ x: 1237, y: 1639 }, { x: 1882, y: 1889 }]],
+    ['leader-attention', [{ x: 1237, y: 1639 }, {
+      x: typeof layoutOptions?.headsLeaderEndX === 'number' ? layoutOptions.headsLeaderEndX : 1882,
+      y: typeof layoutOptions?.headsLeaderEndY === 'number' ? layoutOptions.headsLeaderEndY : 1889,
+    }]],
     ['leader-ffn', [{ x: 1200, y: 1006 }, { x: 1772, y: 876 }]],
     ['leader-embedding', [{ x: 1290, y: 2132 }, { x: 1598, y: 2244 }]],
     ['leader-context', [{ x: 320, y: 1845 }, { x: 420, y: 1624 }]],
@@ -230,9 +283,15 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
 
   addAnnotation(builder, spec, 'vocabulary', { x: 1352, y: 254 });
   addAnnotation(builder, spec, 'context', { x: 20, y: 1893 });
-  addAnnotation(builder, spec, 'heads', { x: 1938, y: 1905 });
+  const headsAnnotationX = layoutOptions?.headsAnnotationX;
+  const headsAnnotationY = layoutOptions?.headsAnnotationY;
+  addAnnotation(builder, spec, 'heads', {
+    x: typeof headsAnnotationX === 'number' ? headsAnnotationX : 1938,
+    y: typeof headsAnnotationY === 'number' ? headsAnnotationY : 1905,
+  });
   addAnnotation(builder, spec, 'embedding-dimension', { x: 1608, y: 2242 });
-  addAnnotation(builder, spec, 'hidden-dimension', { x: 1926, y: 1482 });
+  const hiddenAnnotationX = layoutOptions?.hiddenAnnotationX;
+  addAnnotation(builder, spec, 'hidden-dimension', { x: typeof hiddenAnnotationX === 'number' ? hiddenAnnotationX : 1926, y: 1482 });
 
   return builder.scene(spec);
 }

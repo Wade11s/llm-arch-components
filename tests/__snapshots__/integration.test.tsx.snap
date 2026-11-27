@@ -3156,6 +3156,2235 @@ exports[`spec-driven integration surface all validated figures render through th
 }
 `;
 
+exports[`spec-driven integration surface all validated figures render through the same interface with stable Scene snapshots: gemma-3-270m 1`] = `
+{
+  "canvas": {
+    "height": 2652,
+    "width": 2678,
+  },
+  "diagnostics": [],
+  "elements": [
+    {
+      "align": "center",
+      "at": {
+        "x": 1068,
+        "y": 114,
+      },
+      "fontFamily": "'Arial Black', Arial, sans-serif",
+      "id": "figure-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 114,
+          "spans": [
+            {
+              "fill": "#F27200",
+              "size": 112,
+              "text": "Gemma 3 (270M)",
+              "weight": 900,
+              "width": 922.5216000000003,
+              "x": 606.7391999999999,
+            },
+          ],
+        },
+      ],
+      "role": "title",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 2053,
+        "width": 1097,
+        "x": 465,
+        "y": 328,
+      },
+      "children": [],
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "model",
+      "kind": "group",
+      "role": "model-container",
+      "sourceId": "model",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "box": {
+        "height": 1212,
+        "width": 778,
+        "x": 641,
+        "y": 675,
+      },
+      "fill": {
+        "color": "#DECBA3",
+        "kind": "solid",
+      },
+      "id": "repeat-block",
+      "kind": "box",
+      "label": undefined,
+      "radius": 52,
+      "role": "repeat-block",
+      "sourceId": "backbone",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-attention",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1848,
+        },
+        {
+          "x": 1265,
+          "y": 1848,
+        },
+        {
+          "x": 1265,
+          "y": 1326,
+        },
+        {
+          "x": 1054,
+          "y": 1326,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-ffn",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1260,
+        },
+        {
+          "x": 1265,
+          "y": 1260,
+        },
+        {
+          "x": 1265,
+          "y": 769,
+        },
+        {
+          "x": 1054,
+          "y": 769,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-input",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2588,
+        },
+        {
+          "x": 1022,
+          "y": 2509,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2413,
+        },
+        {
+          "x": 1022,
+          "y": 2180,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-pre-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2080,
+        },
+        {
+          "x": 1022,
+          "y": 1809,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1719,
+        },
+        {
+          "x": 1022,
+          "y": 1661,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-post-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1501,
+        },
+        {
+          "x": 1022,
+          "y": 1463,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-pre-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1372,
+        },
+        {
+          "x": 1022,
+          "y": 1361,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1292,
+        },
+        {
+          "x": 1022,
+          "y": 1202,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-post-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1110,
+        },
+        {
+          "x": 1022,
+          "y": 1057,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-block-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 965,
+        },
+        {
+          "x": 1022,
+          "y": 921,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-final-norm",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 828,
+        },
+        {
+          "x": 1022,
+          "y": 804,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 735,
+        },
+        {
+          "x": 1022,
+          "y": 615,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-logits",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 523,
+        },
+        {
+          "x": 1022,
+          "y": 474,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-end",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 381,
+        },
+        {
+          "x": 1022,
+          "y": 238,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 152,
+        "width": 430,
+        "x": 807,
+        "y": 1505,
+      },
+      "fill": {
+        "color": "#5E5E5E",
+        "kind": "solid",
+      },
+      "id": "attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "attention-block",
+      "sourceId": "attention",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1558,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1558,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": "5:1 (local:global)",
+              "weight": 400,
+              "width": 327.1800000000002,
+              "x": 858.4099999999999,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1600,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1600,
+          "spans": [
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 42,
+              "text": "sliding window",
+              "weight": 400,
+              "width": 283.50000000000006,
+              "x": 840.98,
+            },
+            {
+              "color": "inverse",
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": " and",
+              "weight": 400,
+              "width": 78.54,
+              "x": 1124.48,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1642,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1642,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": "GQA",
+              "weight": 400,
+              "width": 83.16,
+              "x": 980.42,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 350,
+        "x": 848,
+        "y": 969,
+      },
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "ffn-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "feed-forward",
+      "sourceId": "ffn",
+      "stroke": {
+        "color": "#3A3A3A",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1023,
+        "y": 1025,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1025,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Feed forward",
+              "weight": 500,
+              "width": 261.2000000000001,
+              "x": 892.4,
+            },
+          ],
+        },
+      ],
+      "role": "feed-forward-label",
+      "sourceId": "ffn",
+    },
+    {
+      "box": {
+        "height": 82,
+        "width": 348,
+        "x": 848,
+        "y": 1723,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "pre-rmsnorm-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "pre-rmsnorm-1",
+      "stroke": {
+        "color": "#F27200",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1778,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "pre-rmsnorm-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1778,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Pre-RMSNorm 1",
+              "weight": 500,
+              "width": 309.6,
+              "x": 867.2,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "pre-rmsnorm-1",
+    },
+    {
+      "box": {
+        "height": 82,
+        "width": 348,
+        "x": 848,
+        "y": 1376,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "post-rmsnorm-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "post-rmsnorm-1",
+      "stroke": {
+        "color": "#F27200",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1431,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "post-rmsnorm-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1431,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Post-RMSNorm 1",
+              "weight": 500,
+              "width": 330.80000000000007,
+              "x": 856.5999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "post-rmsnorm-1",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 1114,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "pre-rmsnorm-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "pre-rmsnorm-2",
+      "stroke": {
+        "color": "#F27200",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 1170,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "pre-rmsnorm-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1170,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Pre-RMSNorm 2",
+              "weight": 500,
+              "width": 309.6,
+              "x": 871.2,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "pre-rmsnorm-2",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 832,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "post-rmsnorm-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "post-rmsnorm-2",
+      "stroke": {
+        "color": "#F27200",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 888,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "post-rmsnorm-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 888,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Post-RMSNorm 2",
+              "weight": 500,
+              "width": 330.80000000000007,
+              "x": 860.5999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "post-rmsnorm-2",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 527,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "final-rmsnorm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "norm",
+      "sourceId": "final-rmsnorm",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 583,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "final-rmsnorm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 583,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Final RMSNorm",
+              "weight": 500,
+              "width": 289.6000000000001,
+              "x": 881.1999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "final-rmsnorm",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 372,
+        "x": 840,
+        "y": 385,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "output-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "output-layer",
+      "sourceId": "output-layer",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 441,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "output-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 441,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear output layer",
+              "weight": 500,
+              "width": 368.00000000000006,
+              "x": 842,
+            },
+          ],
+        },
+      ],
+      "role": "output-layer-label",
+      "sourceId": "output-layer",
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 356,
+        "x": 400,
+        "y": 1368,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "qk-norm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "side-pill",
+      "sourceId": "qk-norm",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 578,
+        "y": 1421.3,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "qk-norm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1421.3,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "QK-Norm",
+              "weight": 500,
+              "width": 166.82000000000002,
+              "x": 494.59,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "qk-norm",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 293,
+        "x": 420,
+        "y": 1535,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "rope-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "side-pill",
+      "sourceId": "rope",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 566.5,
+        "y": 1590.3,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "rope-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1590.3,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "RoPE",
+              "weight": 500,
+              "width": 95.38000000000001,
+              "x": 518.81,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "rope",
+    },
+    {
+      "arrow": "end",
+      "id": "qk-norm-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 756,
+          "y": 1428,
+        },
+        {
+          "x": 829,
+          "y": 1488,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "rope-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 713,
+          "y": 1577,
+        },
+        {
+          "x": 799,
+          "y": 1577,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 92,
+        "width": 536,
+        "x": 754,
+        "y": 2084,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "embedding-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "embedding",
+      "sourceId": "embedding-layer",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2144,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2144,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Token embedding layer",
+              "weight": 500,
+              "width": 421.99999999999994,
+              "x": 811,
+            },
+          ],
+        },
+      ],
+      "role": "embedding-label",
+      "sourceId": "embedding-layer",
+    },
+    {
+      "box": {
+        "height": 86,
+        "width": 350,
+        "x": 847,
+        "y": 2417,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "tokenized-text-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "input",
+      "sourceId": "tokenized-text",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2474,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "tokenized-text-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2474,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Tokenized text",
+              "weight": 500,
+              "width": 282.0000000000001,
+              "x": 881,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": "tokenized-text",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2638,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "sample-input",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2638,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 54,
+              "text": "Sample input text",
+              "weight": 400,
+              "width": 455.2200000000002,
+              "x": 794.3899999999999,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 478,
+        "y": 1912,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1912,
+          "spans": [
+            {
+              "fill": "#F27200",
+              "size": 58,
+              "text": "18",
+              "weight": 700,
+              "width": 63.93920000000001,
+              "x": 478,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 560,
+        "y": 1908,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-x",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1908,
+          "spans": [
+            {
+              "fill": "#F27200",
+              "size": 44,
+              "text": "×",
+              "weight": 700,
+              "width": 24.2528,
+              "x": 560,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 665,
+        "y": 1870,
+      },
+      "glyph": "brace",
+      "id": "repeat-brace",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "repeat-marker",
+      "size": 150,
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 608,
+        "width": 790,
+        "x": 1777,
+        "y": 575,
+      },
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "ffn-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 54,
+      "role": "ffn-inset",
+      "sourceId": "ffn-inset",
+      "stroke": {
+        "color": "#000000",
+        "dash": "dashed",
+        "width": 10,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2172,
+        "y": 550,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-inset-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 550,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 54,
+              "text": "Feed forward (GELU) module",
+              "weight": 700,
+              "width": 786.8015999999999,
+              "x": 1778.5992,
+            },
+          ],
+        },
+      ],
+      "role": "ffn-inset-title",
+      "sourceId": "ffn-inset",
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 1020,
+        },
+        {
+          "x": 1994,
+          "y": 937,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 826,
+        },
+        {
+          "x": 1994,
+          "y": 736,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-a",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 780,
+        },
+        {
+          "x": 2157,
+          "y": 780,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-b",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2209,
+          "y": 780,
+        },
+        {
+          "x": 2245,
+          "y": 780,
+        },
+        {
+          "x": 2245,
+          "y": 827,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 104,
+        "width": 333,
+        "x": 1828,
+        "y": 1024,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-bottom-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-bottom",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 1090,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-bottom-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1090,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 1879.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-bottom",
+    },
+    {
+      "box": {
+        "height": 103,
+        "width": 333,
+        "x": 1828,
+        "y": 830,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-activation-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-activation",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 895.5,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-activation-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 895.5,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "GELU activation",
+              "weight": 500,
+              "width": 308.80000000000007,
+              "x": 1840.1,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-activation",
+    },
+    {
+      "box": {
+        "height": 104,
+        "width": 333,
+        "x": 1828,
+        "y": 628,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-top-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-top",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 694,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-top-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 694,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 1879.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-top",
+    },
+    {
+      "box": {
+        "height": 98,
+        "width": 343,
+        "x": 2180,
+        "y": 831,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-side-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-side",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2351.5,
+        "y": 894,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-side-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 894,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 2236.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-side",
+    },
+    {
+      "at": {
+        "x": 2183,
+        "y": 780,
+      },
+      "glyph": "multiply",
+      "id": "ffn-multiply",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 54,
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "leader-vocabulary",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1218,
+          "y": 396,
+        },
+        {
+          "x": 1350,
+          "y": 258,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1237,
+          "y": 1639,
+        },
+        {
+          "x": 1882,
+          "y": 1889,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1200,
+          "y": 1006,
+        },
+        {
+          "x": 1772,
+          "y": 876,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1290,
+          "y": 2132,
+        },
+        {
+          "x": 1598,
+          "y": 2244,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-context",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 320,
+          "y": 1845,
+        },
+        {
+          "x": 420,
+          "y": 1624,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-hidden",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2010,
+          "y": 1184,
+        },
+        {
+          "x": 2010,
+          "y": 1388,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1352,
+        "y": 254,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "vocabulary-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 254,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Vocabulary size of ",
+              "weight": 700,
+              "width": 521.248,
+              "x": 1352,
+            },
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 56,
+              "text": "262k",
+              "weight": 700,
+              "width": 123.4688,
+              "x": 1873.248,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1996.7168000000001,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-vocabulary",
+      "sourceId": "vocabulary",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1893,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1893,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Native context",
+              "weight": 700,
+              "width": 410.59200000000016,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": "context",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1958,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1958,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 20,
+            },
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 56,
+              "text": "32,768",
+              "weight": 700,
+              "width": 170.64320000000004,
+              "x": 20,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " tokens",
+              "weight": 700,
+              "width": 201.51040000000006,
+              "x": 190.64320000000004,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": "context",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1938,
+        "y": 1905,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1905,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1938,
+            },
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 56,
+              "text": "4",
+              "weight": 700,
+              "width": 30.8672,
+              "x": 1938,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " attention heads",
+              "weight": 700,
+              "width": 450.19520000000017,
+              "x": 1968.8672,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1938,
+        "y": 1970,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1970,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1938,
+            },
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 56,
+              "text": "1",
+              "weight": 700,
+              "width": 30.8672,
+              "x": 1938,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " key & value heads",
+              "weight": 700,
+              "width": 482.80960000000016,
+              "x": 1968.8672,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1938,
+        "y": 2035,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2035,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "(technically",
+              "weight": 700,
+              "width": 326.7264000000002,
+              "x": 1938,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1938,
+        "y": 2100,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2100,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "multi-query attention)",
+              "weight": 700,
+              "width": 637.728,
+              "x": 1938,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1608,
+        "y": 2242,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2242,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Embedding",
+              "weight": 700,
+              "width": 287.7056000000001,
+              "x": 1608,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": "embedding-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1608,
+        "y": 2307,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2307,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "dimension of ",
+              "weight": 700,
+              "width": 359.9232000000002,
+              "x": 1608,
+            },
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 56,
+              "text": "640",
+              "weight": 700,
+              "width": 92.6016,
+              "x": 1967.9232000000002,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2060.5248,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": "embedding-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1680,
+        "y": 1482,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "hidden-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1482,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Input size: ",
+              "weight": 700,
+              "width": 297.6064000000002,
+              "x": 1680,
+            },
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 56,
+              "text": "640",
+              "weight": 700,
+              "width": 92.6016,
+              "x": 1977.6064000000001,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2070.208,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-hidden-dimension",
+      "sourceId": "hidden-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1680,
+        "y": 1547,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "hidden-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1547,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Intermediate projection size = ",
+              "weight": 700,
+              "width": 842.7327999999995,
+              "x": 1680,
+            },
+            {
+              "color": "accent",
+              "fill": "#F27200",
+              "size": 56,
+              "text": "2,048",
+              "weight": 700,
+              "width": 139.77600000000004,
+              "x": 2522.7327999999998,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2662.5087999999996,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-hidden-dimension",
+      "sourceId": "hidden-dimension",
+    },
+  ],
+  "id": "gemma-3-270m",
+  "metadata": {
+    "description": "Gemma 3 (270M) architecture with 18 repeated residual blocks, grouped-query attention, pre- and post-RMSNorm pairs, and a GELU feed-forward inset.",
+    "title": "Gemma 3 (270M)",
+  },
+  "schemaVersion": 1,
+}
+`;
+
 exports[`spec-driven integration surface all validated figures render through the same interface with stable Scene snapshots: gemma-3-27b 1`] = `
 {
   "canvas": {
@@ -5352,6 +7581,4812 @@ exports[`spec-driven integration surface all validated figures render through th
   "metadata": {
     "description": "Gemma 3 architecture with 62 repeated residual blocks, grouped-query attention, pre- and post-RMSNorm pairs, and a GELU feed-forward inset.",
     "title": "Gemma 3 (27B)",
+  },
+  "schemaVersion": 1,
+}
+`;
+
+exports[`spec-driven integration surface all validated figures render through the same interface with stable Scene snapshots: gemma-4-12b 1`] = `
+{
+  "canvas": {
+    "height": 2686,
+    "width": 2582,
+  },
+  "diagnostics": [],
+  "elements": [
+    {
+      "align": "center",
+      "at": {
+        "x": 1068,
+        "y": 114,
+      },
+      "fontFamily": "'Arial Black', Arial, sans-serif",
+      "id": "figure-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 114,
+          "spans": [
+            {
+              "fill": "#2F80ED",
+              "size": 112,
+              "text": "Gemma 4 (12B)",
+              "weight": 900,
+              "width": 842.1504000000001,
+              "x": 646.9248,
+            },
+          ],
+        },
+      ],
+      "role": "title",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 2053,
+        "width": 1097,
+        "x": 465,
+        "y": 328,
+      },
+      "children": [],
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "model",
+      "kind": "group",
+      "role": "model-container",
+      "sourceId": "model",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "box": {
+        "height": 1212,
+        "width": 778,
+        "x": 641,
+        "y": 675,
+      },
+      "fill": {
+        "color": "#3B82F6",
+        "kind": "solid",
+      },
+      "id": "repeat-block",
+      "kind": "box",
+      "label": undefined,
+      "radius": 52,
+      "role": "repeat-block",
+      "sourceId": "backbone",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-attention",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1848,
+        },
+        {
+          "x": 1265,
+          "y": 1848,
+        },
+        {
+          "x": 1265,
+          "y": 1326,
+        },
+        {
+          "x": 1054,
+          "y": 1326,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-ffn",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1260,
+        },
+        {
+          "x": 1265,
+          "y": 1260,
+        },
+        {
+          "x": 1265,
+          "y": 769,
+        },
+        {
+          "x": 1054,
+          "y": 769,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-input",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2588,
+        },
+        {
+          "x": 1022,
+          "y": 2509,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2413,
+        },
+        {
+          "x": 1022,
+          "y": 2180,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-pre-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2080,
+        },
+        {
+          "x": 1022,
+          "y": 1809,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1719,
+        },
+        {
+          "x": 1022,
+          "y": 1661,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-post-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1501,
+        },
+        {
+          "x": 1022,
+          "y": 1463,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-pre-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1372,
+        },
+        {
+          "x": 1022,
+          "y": 1361,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1292,
+        },
+        {
+          "x": 1022,
+          "y": 1202,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-post-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1110,
+        },
+        {
+          "x": 1022,
+          "y": 1057,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-block-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 965,
+        },
+        {
+          "x": 1022,
+          "y": 921,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-final-norm",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 828,
+        },
+        {
+          "x": 1022,
+          "y": 804,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 735,
+        },
+        {
+          "x": 1022,
+          "y": 615,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-logits",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 523,
+        },
+        {
+          "x": 1022,
+          "y": 474,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-end",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 381,
+        },
+        {
+          "x": 1022,
+          "y": 238,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 152,
+        "width": 430,
+        "x": 807,
+        "y": 1505,
+      },
+      "fill": {
+        "color": "#5E5E5E",
+        "kind": "solid",
+      },
+      "id": "attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "attention-block",
+      "sourceId": "attention",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1558,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1558,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": "5:1 (local:global)",
+              "weight": 400,
+              "width": 327.1800000000002,
+              "x": 858.4099999999999,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1600,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1600,
+          "spans": [
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 42,
+              "text": "sliding window",
+              "weight": 400,
+              "width": 283.50000000000006,
+              "x": 840.98,
+            },
+            {
+              "color": "inverse",
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": " and",
+              "weight": 400,
+              "width": 78.54,
+              "x": 1124.48,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1642,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1642,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": "GQA",
+              "weight": 400,
+              "width": 83.16,
+              "x": 980.42,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 350,
+        "x": 848,
+        "y": 969,
+      },
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "ffn-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "feed-forward",
+      "sourceId": "ffn",
+      "stroke": {
+        "color": "#3A3A3A",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1023,
+        "y": 1025,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1025,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Feed forward",
+              "weight": 500,
+              "width": 261.2000000000001,
+              "x": 892.4,
+            },
+          ],
+        },
+      ],
+      "role": "feed-forward-label",
+      "sourceId": "ffn",
+    },
+    {
+      "box": {
+        "height": 82,
+        "width": 348,
+        "x": 848,
+        "y": 1723,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "pre-rmsnorm-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "pre-rmsnorm-1",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1778,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "pre-rmsnorm-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1778,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Pre-RMSNorm 1",
+              "weight": 500,
+              "width": 309.6,
+              "x": 867.2,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "pre-rmsnorm-1",
+    },
+    {
+      "box": {
+        "height": 82,
+        "width": 348,
+        "x": 848,
+        "y": 1376,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "post-rmsnorm-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "post-rmsnorm-1",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1431,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "post-rmsnorm-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1431,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Post-RMSNorm 1",
+              "weight": 500,
+              "width": 330.80000000000007,
+              "x": 856.5999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "post-rmsnorm-1",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 1114,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "pre-rmsnorm-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "pre-rmsnorm-2",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 1170,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "pre-rmsnorm-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1170,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Pre-RMSNorm 2",
+              "weight": 500,
+              "width": 309.6,
+              "x": 871.2,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "pre-rmsnorm-2",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 832,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "post-rmsnorm-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "post-rmsnorm-2",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 888,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "post-rmsnorm-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 888,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Post-RMSNorm 2",
+              "weight": 500,
+              "width": 330.80000000000007,
+              "x": 860.5999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "post-rmsnorm-2",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 527,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "final-rmsnorm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "norm",
+      "sourceId": "final-rmsnorm",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 583,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "final-rmsnorm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 583,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Final RMSNorm",
+              "weight": 500,
+              "width": 289.6000000000001,
+              "x": 881.1999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "final-rmsnorm",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 372,
+        "x": 840,
+        "y": 385,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "output-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "output-layer",
+      "sourceId": "output-layer",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 441,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "output-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 441,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear output layer",
+              "weight": 500,
+              "width": 368.00000000000006,
+              "x": 842,
+            },
+          ],
+        },
+      ],
+      "role": "output-layer-label",
+      "sourceId": "output-layer",
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 356,
+        "x": 400,
+        "y": 1368,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "qk-norm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "side-pill",
+      "sourceId": "qk-norm",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 578,
+        "y": 1421.3,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "qk-norm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1421.3,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "QK-Norm",
+              "weight": 500,
+              "width": 166.82000000000002,
+              "x": 494.59,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "qk-norm",
+    },
+    {
+      "box": {
+        "height": 100,
+        "width": 360,
+        "x": 353,
+        "y": 1527,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "rope-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "side-pill",
+      "sourceId": "rope",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 533,
+        "y": 1573,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "rope-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1573,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "Partial RoPE (global)",
+              "weight": 500,
+              "width": 324.8,
+              "x": 370.6,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "rope",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 533,
+        "y": 1612.2,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "rope-label-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1612.2,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "Full RoPE (local)",
+              "weight": 500,
+              "width": 256.9600000000001,
+              "x": 404.52,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "rope",
+    },
+    {
+      "arrow": "end",
+      "id": "qk-norm-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 756,
+          "y": 1428,
+        },
+        {
+          "x": 829,
+          "y": 1488,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "rope-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 713,
+          "y": 1577,
+        },
+        {
+          "x": 799,
+          "y": 1577,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 92,
+        "width": 536,
+        "x": 754,
+        "y": 2084,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "embedding-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "embedding",
+      "sourceId": "embedding-layer",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2144,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2144,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Token embedding layer",
+              "weight": 500,
+              "width": 421.99999999999994,
+              "x": 811,
+            },
+          ],
+        },
+      ],
+      "role": "embedding-label",
+      "sourceId": "embedding-layer",
+    },
+    {
+      "box": {
+        "height": 86,
+        "width": 350,
+        "x": 847,
+        "y": 2417,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "tokenized-text-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "input",
+      "sourceId": "tokenized-text",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2474,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "tokenized-text-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2474,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Tokenized text",
+              "weight": 500,
+              "width": 282.0000000000001,
+              "x": 881,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": "tokenized-text",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2646,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "sample-input",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2646,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 54,
+              "text": "Sample input text",
+              "weight": 400,
+              "width": 455.2200000000002,
+              "x": 794.3899999999999,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 478,
+        "y": 1912,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1912,
+          "spans": [
+            {
+              "fill": "#2F80ED",
+              "size": 58,
+              "text": "48",
+              "weight": 700,
+              "width": 63.93920000000001,
+              "x": 478,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 560,
+        "y": 1908,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-x",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1908,
+          "spans": [
+            {
+              "fill": "#2F80ED",
+              "size": 44,
+              "text": "×",
+              "weight": 700,
+              "width": 24.2528,
+              "x": 560,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 665,
+        "y": 1870,
+      },
+      "glyph": "brace",
+      "id": "repeat-brace",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "repeat-marker",
+      "size": 150,
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 608,
+        "width": 790,
+        "x": 1777,
+        "y": 575,
+      },
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "ffn-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 54,
+      "role": "ffn-inset",
+      "sourceId": "ffn-inset",
+      "stroke": {
+        "color": "#000000",
+        "dash": "dashed",
+        "width": 10,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2172,
+        "y": 550,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-inset-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 550,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 54,
+              "text": "Feed forward (GELU) module",
+              "weight": 700,
+              "width": 786.8015999999999,
+              "x": 1778.5992,
+            },
+          ],
+        },
+      ],
+      "role": "ffn-inset-title",
+      "sourceId": "ffn-inset",
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 1020,
+        },
+        {
+          "x": 1994,
+          "y": 937,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 826,
+        },
+        {
+          "x": 1994,
+          "y": 736,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-a",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 780,
+        },
+        {
+          "x": 2157,
+          "y": 780,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-b",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2209,
+          "y": 780,
+        },
+        {
+          "x": 2245,
+          "y": 780,
+        },
+        {
+          "x": 2245,
+          "y": 827,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 104,
+        "width": 333,
+        "x": 1828,
+        "y": 1024,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-bottom-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-bottom",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 1090,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-bottom-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1090,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 1879.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-bottom",
+    },
+    {
+      "box": {
+        "height": 103,
+        "width": 333,
+        "x": 1828,
+        "y": 830,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-activation-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-activation",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 895.5,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-activation-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 895.5,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "GELU activation",
+              "weight": 500,
+              "width": 308.80000000000007,
+              "x": 1840.1,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-activation",
+    },
+    {
+      "box": {
+        "height": 104,
+        "width": 333,
+        "x": 1828,
+        "y": 628,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-top-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-top",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 694,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-top-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 694,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 1879.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-top",
+    },
+    {
+      "box": {
+        "height": 98,
+        "width": 343,
+        "x": 2180,
+        "y": 831,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-side-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-side",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2351.5,
+        "y": 894,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-side-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 894,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 2236.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-side",
+    },
+    {
+      "at": {
+        "x": 2183,
+        "y": 780,
+      },
+      "glyph": "multiply",
+      "id": "ffn-multiply",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 54,
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "leader-vocabulary",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1218,
+          "y": 396,
+        },
+        {
+          "x": 1350,
+          "y": 258,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1237,
+          "y": 1639,
+        },
+        {
+          "x": 1760,
+          "y": 1889,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1200,
+          "y": 1006,
+        },
+        {
+          "x": 1772,
+          "y": 876,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1290,
+          "y": 2132,
+        },
+        {
+          "x": 1598,
+          "y": 2244,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-context",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 320,
+          "y": 1845,
+        },
+        {
+          "x": 420,
+          "y": 1624,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-hidden",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2010,
+          "y": 1184,
+        },
+        {
+          "x": 2010,
+          "y": 1388,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1352,
+        "y": 254,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "vocabulary-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 254,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Vocabulary size of ",
+              "weight": 700,
+              "width": 521.248,
+              "x": 1352,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "262k",
+              "weight": 700,
+              "width": 123.4688,
+              "x": 1873.248,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1996.7168000000001,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-vocabulary",
+      "sourceId": "vocabulary",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1893,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1893,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Native context",
+              "weight": 700,
+              "width": 410.59200000000016,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": "context",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1958,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1958,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 20,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "262,144",
+              "weight": 700,
+              "width": 201.51040000000006,
+              "x": 20,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " tokens",
+              "weight": 700,
+              "width": 201.51040000000006,
+              "x": 221.51040000000006,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": "context",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1700,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1700,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "5:1 Local (sliding) to",
+              "weight": 700,
+              "width": 570.1696000000001,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1765,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1765,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "global (full attention) ratio",
+              "weight": 700,
+              "width": 764.1087999999999,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1830,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1830,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Local:",
+              "weight": 700,
+              "width": 163.6544,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1895,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1895,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "16",
+              "weight": 700,
+              "width": 61.7344,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " attention heads",
+              "weight": 700,
+              "width": 450.19520000000017,
+              "x": 1861.7344,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1960,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-4",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1960,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "8",
+              "weight": 700,
+              "width": 30.8672,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " key & value heads",
+              "weight": 700,
+              "width": 482.80960000000016,
+              "x": 1830.8672,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 2025,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-5",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2025,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Global:",
+              "weight": 700,
+              "width": 179.96160000000006,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 2090,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-6",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2090,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "16",
+              "weight": 700,
+              "width": 61.7344,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " attention heads",
+              "weight": 700,
+              "width": 450.19520000000017,
+              "x": 1861.7344,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 2155,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-7",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2155,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "1",
+              "weight": 700,
+              "width": 30.8672,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " key & value head",
+              "weight": 700,
+              "width": 451.9424000000002,
+              "x": 1830.8672,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1608,
+        "y": 2242,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2242,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Embedding",
+              "weight": 700,
+              "width": 287.7056000000001,
+              "x": 1608,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": "embedding-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1608,
+        "y": 2307,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2307,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "dimension of ",
+              "weight": 700,
+              "width": 359.9232000000002,
+              "x": 1608,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "3,840",
+              "weight": 700,
+              "width": 139.77600000000004,
+              "x": 1967.9232000000002,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2107.6992,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": "embedding-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1876,
+        "y": 1482,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "hidden-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1482,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Input dim.: ",
+              "weight": 700,
+              "width": 299.9360000000001,
+              "x": 1876,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "3,840",
+              "weight": 700,
+              "width": 139.77600000000004,
+              "x": 2175.936,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2315.712,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-hidden-dimension",
+      "sourceId": "hidden-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1876,
+        "y": 1547,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "hidden-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1547,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Intermediate dim.: ",
+              "weight": 700,
+              "width": 518.336,
+              "x": 1876,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "15,360",
+              "weight": 700,
+              "width": 170.64320000000004,
+              "x": 2394.3360000000002,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2564.9792,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-hidden-dimension",
+      "sourceId": "hidden-dimension",
+    },
+  ],
+  "id": "gemma-4-12b",
+  "metadata": {
+    "description": "Gemma 4 (12B) architecture with 48 repeated residual blocks, grouped-query attention, pre- and post-RMSNorm pairs, and a GELU feed-forward inset.",
+    "title": "Gemma 4 (12B)",
+  },
+  "schemaVersion": 1,
+}
+`;
+
+exports[`spec-driven integration surface all validated figures render through the same interface with stable Scene snapshots: gemma-4-31b 1`] = `
+{
+  "canvas": {
+    "height": 2686,
+    "width": 2582,
+  },
+  "diagnostics": [],
+  "elements": [
+    {
+      "align": "center",
+      "at": {
+        "x": 1068,
+        "y": 114,
+      },
+      "fontFamily": "'Arial Black', Arial, sans-serif",
+      "id": "figure-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 114,
+          "spans": [
+            {
+              "fill": "#2F80ED",
+              "size": 112,
+              "text": "Gemma 4 (31B)",
+              "weight": 900,
+              "width": 842.1504000000001,
+              "x": 646.9248,
+            },
+          ],
+        },
+      ],
+      "role": "title",
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 2053,
+        "width": 1097,
+        "x": 465,
+        "y": 328,
+      },
+      "children": [],
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "model",
+      "kind": "group",
+      "role": "model-container",
+      "sourceId": "model",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "box": {
+        "height": 1212,
+        "width": 778,
+        "x": 641,
+        "y": 675,
+      },
+      "fill": {
+        "color": "#3B82F6",
+        "kind": "solid",
+      },
+      "id": "repeat-block",
+      "kind": "box",
+      "label": undefined,
+      "radius": 52,
+      "role": "repeat-block",
+      "sourceId": "backbone",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-attention",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1848,
+        },
+        {
+          "x": 1265,
+          "y": 1848,
+        },
+        {
+          "x": 1265,
+          "y": 1326,
+        },
+        {
+          "x": 1054,
+          "y": 1326,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "residual-ffn",
+      "junction": "plus",
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1260,
+        },
+        {
+          "x": 1265,
+          "y": 1260,
+        },
+        {
+          "x": 1265,
+          "y": 769,
+        },
+        {
+          "x": 1054,
+          "y": 769,
+        },
+      ],
+      "role": "residual-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-input",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2588,
+        },
+        {
+          "x": 1022,
+          "y": 2509,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2413,
+        },
+        {
+          "x": 1022,
+          "y": 2180,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-pre-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 2080,
+        },
+        {
+          "x": 1022,
+          "y": 1809,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1719,
+        },
+        {
+          "x": 1022,
+          "y": 1661,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-post-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1501,
+        },
+        {
+          "x": 1022,
+          "y": 1463,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-pre-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1372,
+        },
+        {
+          "x": 1022,
+          "y": 1361,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1292,
+        },
+        {
+          "x": 1022,
+          "y": 1202,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-post-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 1110,
+        },
+        {
+          "x": 1022,
+          "y": 1057,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-block-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 965,
+        },
+        {
+          "x": 1022,
+          "y": 921,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-final-norm",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 828,
+        },
+        {
+          "x": 1022,
+          "y": 804,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 735,
+        },
+        {
+          "x": 1022,
+          "y": 615,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-logits",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 523,
+        },
+        {
+          "x": 1022,
+          "y": 474,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-end",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1022,
+          "y": 381,
+        },
+        {
+          "x": 1022,
+          "y": 238,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 152,
+        "width": 430,
+        "x": 807,
+        "y": 1505,
+      },
+      "fill": {
+        "color": "#5E5E5E",
+        "kind": "solid",
+      },
+      "id": "attention-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "attention-block",
+      "sourceId": "attention",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1558,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1558,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": "5:1 (local:global)",
+              "weight": 400,
+              "width": 327.1800000000002,
+              "x": 858.4099999999999,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1600,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1600,
+          "spans": [
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 42,
+              "text": "sliding window",
+              "weight": 400,
+              "width": 283.50000000000006,
+              "x": 840.98,
+            },
+            {
+              "color": "inverse",
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": " and",
+              "weight": 400,
+              "width": 78.54,
+              "x": 1124.48,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1642,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1642,
+          "spans": [
+            {
+              "fill": "#FFFFFF",
+              "size": 42,
+              "text": "GQA",
+              "weight": 400,
+              "width": 83.16,
+              "x": 980.42,
+            },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 350,
+        "x": 848,
+        "y": 969,
+      },
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "ffn-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "feed-forward",
+      "sourceId": "ffn",
+      "stroke": {
+        "color": "#3A3A3A",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1023,
+        "y": 1025,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1025,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Feed forward",
+              "weight": 500,
+              "width": 261.2000000000001,
+              "x": 892.4,
+            },
+          ],
+        },
+      ],
+      "role": "feed-forward-label",
+      "sourceId": "ffn",
+    },
+    {
+      "box": {
+        "height": 82,
+        "width": 348,
+        "x": 848,
+        "y": 1723,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "pre-rmsnorm-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "pre-rmsnorm-1",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1778,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "pre-rmsnorm-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1778,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Pre-RMSNorm 1",
+              "weight": 500,
+              "width": 309.6,
+              "x": 867.2,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "pre-rmsnorm-1",
+    },
+    {
+      "box": {
+        "height": 82,
+        "width": 348,
+        "x": 848,
+        "y": 1376,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "post-rmsnorm-1-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "post-rmsnorm-1",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 1431,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "post-rmsnorm-1-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1431,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Post-RMSNorm 1",
+              "weight": 500,
+              "width": 330.80000000000007,
+              "x": 856.5999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "post-rmsnorm-1",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 1114,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "pre-rmsnorm-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "pre-rmsnorm-2",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 1170,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "pre-rmsnorm-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1170,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Pre-RMSNorm 2",
+              "weight": 500,
+              "width": 309.6,
+              "x": 871.2,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "pre-rmsnorm-2",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 832,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "post-rmsnorm-2-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "norm",
+      "sourceId": "post-rmsnorm-2",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 888,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "post-rmsnorm-2-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 888,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Post-RMSNorm 2",
+              "weight": 500,
+              "width": 330.80000000000007,
+              "x": 860.5999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "post-rmsnorm-2",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 348,
+        "x": 852,
+        "y": 527,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "final-rmsnorm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "norm",
+      "sourceId": "final-rmsnorm",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 583,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "final-rmsnorm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 583,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Final RMSNorm",
+              "weight": 500,
+              "width": 289.6000000000001,
+              "x": 881.1999999999999,
+            },
+          ],
+        },
+      ],
+      "role": "norm-label",
+      "sourceId": "final-rmsnorm",
+    },
+    {
+      "box": {
+        "height": 84,
+        "width": 372,
+        "x": 840,
+        "y": 385,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "output-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "output-layer",
+      "sourceId": "output-layer",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1026,
+        "y": 441,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "output-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 441,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear output layer",
+              "weight": 500,
+              "width": 368.00000000000006,
+              "x": 842,
+            },
+          ],
+        },
+      ],
+      "role": "output-layer-label",
+      "sourceId": "output-layer",
+    },
+    {
+      "box": {
+        "height": 80,
+        "width": 356,
+        "x": 400,
+        "y": 1368,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "qk-norm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "side-pill",
+      "sourceId": "qk-norm",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 578,
+        "y": 1421.3,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "qk-norm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1421.3,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 38,
+              "text": "QK-Norm",
+              "weight": 500,
+              "width": 166.82000000000002,
+              "x": 494.59,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "qk-norm",
+    },
+    {
+      "box": {
+        "height": 100,
+        "width": 360,
+        "x": 353,
+        "y": 1527,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "rope-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "side-pill",
+      "sourceId": "rope",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 533,
+        "y": 1573,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "rope-label-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1573,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "Partial RoPE (global)",
+              "weight": 500,
+              "width": 324.8,
+              "x": 370.6,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "rope",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 533,
+        "y": 1612.2,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "rope-label-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1612.2,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 32,
+              "text": "Full RoPE (local)",
+              "weight": 500,
+              "width": 256.9600000000001,
+              "x": 404.52,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "rope",
+    },
+    {
+      "arrow": "end",
+      "id": "qk-norm-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 756,
+          "y": 1428,
+        },
+        {
+          "x": 829,
+          "y": 1488,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "rope-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 713,
+          "y": 1577,
+        },
+        {
+          "x": 799,
+          "y": 1577,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 92,
+        "width": 536,
+        "x": 754,
+        "y": 2084,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "embedding-layer-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "embedding",
+      "sourceId": "embedding-layer",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2144,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-layer-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2144,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Token embedding layer",
+              "weight": 500,
+              "width": 421.99999999999994,
+              "x": 811,
+            },
+          ],
+        },
+      ],
+      "role": "embedding-label",
+      "sourceId": "embedding-layer",
+    },
+    {
+      "box": {
+        "height": 86,
+        "width": 350,
+        "x": 847,
+        "y": 2417,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "tokenized-text-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "input",
+      "sourceId": "tokenized-text",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2474,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "tokenized-text-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2474,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Tokenized text",
+              "weight": 500,
+              "width": 282.0000000000001,
+              "x": 881,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": "tokenized-text",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 2646,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "sample-input",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2646,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 54,
+              "text": "Sample input text",
+              "weight": 400,
+              "width": 455.2200000000002,
+              "x": 794.3899999999999,
+            },
+          ],
+        },
+      ],
+      "role": "input-label",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 478,
+        "y": 1912,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-count",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1912,
+          "spans": [
+            {
+              "fill": "#2F80ED",
+              "size": 58,
+              "text": "60",
+              "weight": 700,
+              "width": 63.93920000000001,
+              "x": 478,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 560,
+        "y": 1908,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-x",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1908,
+          "spans": [
+            {
+              "fill": "#2F80ED",
+              "size": 44,
+              "text": "×",
+              "weight": 700,
+              "width": 24.2528,
+              "x": 560,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-marker",
+      "sourceId": undefined,
+    },
+    {
+      "at": {
+        "x": 665,
+        "y": 1870,
+      },
+      "glyph": "brace",
+      "id": "repeat-brace",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "repeat-marker",
+      "size": 150,
+      "sourceId": undefined,
+    },
+    {
+      "box": {
+        "height": 608,
+        "width": 790,
+        "x": 1777,
+        "y": 575,
+      },
+      "fill": {
+        "color": "#D5D5D5",
+        "kind": "solid",
+      },
+      "id": "ffn-inset",
+      "kind": "box",
+      "label": undefined,
+      "radius": 54,
+      "role": "ffn-inset",
+      "sourceId": "ffn-inset",
+      "stroke": {
+        "color": "#000000",
+        "dash": "dashed",
+        "width": 10,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2172,
+        "y": 550,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-inset-title",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 550,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 54,
+              "text": "Feed forward (GELU) module",
+              "weight": 700,
+              "width": 786.8015999999999,
+              "x": 1778.5992,
+            },
+          ],
+        },
+      ],
+      "role": "ffn-inset-title",
+      "sourceId": "ffn-inset",
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 1020,
+        },
+        {
+          "x": 1994,
+          "y": 937,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "ffn-up-2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 826,
+        },
+        {
+          "x": 1994,
+          "y": 736,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-a",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1994,
+          "y": 780,
+        },
+        {
+          "x": 2157,
+          "y": 780,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "ffn-side-b",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2209,
+          "y": 780,
+        },
+        {
+          "x": 2245,
+          "y": 780,
+        },
+        {
+          "x": 2245,
+          "y": 827,
+        },
+      ],
+      "role": "inset-flow",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "box": {
+        "height": 104,
+        "width": 333,
+        "x": 1828,
+        "y": 1024,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-bottom-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-bottom",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 1090,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-bottom-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1090,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 1879.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-bottom",
+    },
+    {
+      "box": {
+        "height": 103,
+        "width": 333,
+        "x": 1828,
+        "y": 830,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-activation-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-activation",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 895.5,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-activation-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 895.5,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "GELU activation",
+              "weight": 500,
+              "width": 308.80000000000007,
+              "x": 1840.1,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-activation",
+    },
+    {
+      "box": {
+        "height": 104,
+        "width": 333,
+        "x": 1828,
+        "y": 628,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-top-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-top",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1994.5,
+        "y": 694,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-top-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 694,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 1879.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-top",
+    },
+    {
+      "box": {
+        "height": 98,
+        "width": 343,
+        "x": 2180,
+        "y": 831,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "ffn-linear-side-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 28,
+      "role": "inset-operation",
+      "sourceId": "ffn-linear-side",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 2351.5,
+        "y": 894,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "ffn-linear-side-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 894,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Linear layer",
+              "weight": 500,
+              "width": 229.60000000000008,
+              "x": 2236.7,
+            },
+          ],
+        },
+      ],
+      "role": "inset-operation-label",
+      "sourceId": "ffn-linear-side",
+    },
+    {
+      "at": {
+        "x": 2183,
+        "y": 780,
+      },
+      "glyph": "multiply",
+      "id": "ffn-multiply",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "operator",
+      "size": 54,
+      "sourceId": undefined,
+    },
+    {
+      "arrow": "none",
+      "id": "leader-vocabulary",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1218,
+          "y": 396,
+        },
+        {
+          "x": 1350,
+          "y": 258,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1237,
+          "y": 1639,
+        },
+        {
+          "x": 1760,
+          "y": 1889,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-ffn",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1200,
+          "y": 1006,
+        },
+        {
+          "x": 1772,
+          "y": 876,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1290,
+          "y": 2132,
+        },
+        {
+          "x": 1598,
+          "y": 2244,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-context",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 320,
+          "y": 1845,
+        },
+        {
+          "x": 420,
+          "y": 1624,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "none",
+      "id": "leader-hidden",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 2010,
+          "y": 1184,
+        },
+        {
+          "x": 2010,
+          "y": 1388,
+        },
+      ],
+      "role": "leader",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1352,
+        "y": 254,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "vocabulary-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 254,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Vocabulary size of ",
+              "weight": 700,
+              "width": 521.248,
+              "x": 1352,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "262k",
+              "weight": 700,
+              "width": 123.4688,
+              "x": 1873.248,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1996.7168000000001,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-vocabulary",
+      "sourceId": "vocabulary",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1893,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1893,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Native context",
+              "weight": 700,
+              "width": 410.59200000000016,
+              "x": 20,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": "context",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 20,
+        "y": 1958,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "context-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1958,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 20,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "262,144",
+              "weight": 700,
+              "width": 201.51040000000006,
+              "x": 20,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " tokens",
+              "weight": 700,
+              "width": 201.51040000000006,
+              "x": 221.51040000000006,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-context",
+      "sourceId": "context",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1700,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1700,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "5:1 Local (sliding) to",
+              "weight": 700,
+              "width": 570.1696000000001,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1765,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1765,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "global (full attention) ratio",
+              "weight": 700,
+              "width": 764.1087999999999,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1830,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1830,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Local:",
+              "weight": 700,
+              "width": 163.6544,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1895,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-3",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1895,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "32",
+              "weight": 700,
+              "width": 61.7344,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " attention heads",
+              "weight": 700,
+              "width": 450.19520000000017,
+              "x": 1861.7344,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 1960,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-4",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1960,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "16",
+              "weight": 700,
+              "width": 61.7344,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " key & value heads",
+              "weight": 700,
+              "width": 482.80960000000016,
+              "x": 1861.7344,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 2025,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-5",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2025,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Global:",
+              "weight": 700,
+              "width": 179.96160000000006,
+              "x": 1800,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 2090,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-6",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2090,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "32",
+              "weight": 700,
+              "width": 61.7344,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " attention heads",
+              "weight": 700,
+              "width": 450.19520000000017,
+              "x": 1861.7344,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1800,
+        "y": 2155,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "heads-7",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2155,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 1800,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "4",
+              "weight": 700,
+              "width": 30.8672,
+              "x": 1800,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": " key & value heads",
+              "weight": 700,
+              "width": 482.80960000000016,
+              "x": 1830.8672,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-heads",
+      "sourceId": "heads",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1608,
+        "y": 2242,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2242,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Embedding",
+              "weight": 700,
+              "width": 287.7056000000001,
+              "x": 1608,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": "embedding-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1608,
+        "y": 2307,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "embedding-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 2307,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "dimension of ",
+              "weight": 700,
+              "width": 359.9232000000002,
+              "x": 1608,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "5,376",
+              "weight": 700,
+              "width": 139.77600000000004,
+              "x": 1967.9232000000002,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2107.6992,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-embedding-dimension",
+      "sourceId": "embedding-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1876,
+        "y": 1482,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "hidden-dimension-0",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1482,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Input dim.: ",
+              "weight": 700,
+              "width": 299.9360000000001,
+              "x": 1876,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "5,376",
+              "weight": 700,
+              "width": 139.77600000000004,
+              "x": 2175.936,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2315.712,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-hidden-dimension",
+      "sourceId": "hidden-dimension",
+    },
+    {
+      "align": "start",
+      "at": {
+        "x": 1876,
+        "y": 1547,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "hidden-dimension-1",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1547,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "Intermediate dim.: ",
+              "weight": 700,
+              "width": 518.336,
+              "x": 1876,
+            },
+            {
+              "color": "accent",
+              "fill": "#2F80ED",
+              "size": 56,
+              "text": "21,504",
+              "weight": 700,
+              "width": 170.64320000000004,
+              "x": 2394.3360000000002,
+            },
+            {
+              "fill": "#000000",
+              "size": 56,
+              "text": "",
+              "weight": 700,
+              "width": 0,
+              "x": 2564.9792,
+            },
+          ],
+        },
+      ],
+      "role": "annotation-hidden-dimension",
+      "sourceId": "hidden-dimension",
+    },
+  ],
+  "id": "gemma-4-31b",
+  "metadata": {
+    "description": "Gemma 4 (31B) architecture with 60 repeated residual blocks, grouped-query attention, pre- and post-RMSNorm pairs, and a GELU feed-forward inset.",
+    "title": "Gemma 4 (31B)",
   },
   "schemaVersion": 1,
 }
