@@ -14206,7 +14206,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 65,
         "width": 84.09263085399449,
-        "x": 2780.003443526171,
+        "x": 2760.21694214876,
         "y": 1680,
       },
       "fill": {
@@ -14228,7 +14228,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2822.049758953168,
+        "x": 2802.2632575757575,
         "y": 1727.2,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -14245,7 +14245,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "32",
               "weight": 500,
               "width": 44.044752066115706,
-              "x": 2800.02738292011,
+              "x": 2780.2408815426993,
             },
           ],
         },
@@ -14382,7 +14382,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1934.1305096418732,
-          "y": 950,
+          "y": 1040,
         },
         {
           "x": 1790.6783746556473,
@@ -14406,11 +14406,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 2191.3550275482094,
-          "y": 950,
+          "y": 1040,
         },
         {
           "x": 2247.746556473829,
-          "y": 1015,
+          "y": 1031,
         },
       ],
       "role": "leader",
@@ -14722,7 +14722,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 2003.3832644628098,
-        "y": 1054,
+        "y": 1070,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-0",
@@ -14730,7 +14730,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1054,
+          "baseline": 1070,
           "spans": [
             {
               "fill": "#000000",
@@ -14767,7 +14767,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 2003.3832644628098,
-        "y": 1110,
+        "y": 1126,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-1",
@@ -14775,7 +14775,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1110,
+          "baseline": 1126,
           "spans": [
             {
               "fill": "#000000",
@@ -54659,7 +54659,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 65.38532789922193,
         "width": 80.9607438016529,
-        "x": 2676.46694214876,
+        "x": 2657.4173553719006,
         "y": 1689.9592441645052,
       },
       "fill": {
@@ -54681,7 +54681,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2716.9473140495866,
+        "x": 2697.897727272727,
         "y": 1737.4390515005557,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -54698,7 +54698,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "128",
               "weight": 500,
               "width": 63.60657024793389,
-              "x": 2685.1440289256198,
+              "x": 2666.09444214876,
             },
           ],
         },
@@ -54811,7 +54811,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1862.0971074380166,
-          "y": 955.6317154501667,
+          "y": 1046.165246387551,
         },
         {
           "x": 1723.9876033057851,
@@ -54835,11 +54835,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 2109.74173553719,
-          "y": 955.6317154501667,
+          "y": 1046.165246387551,
         },
         {
           "x": 2164.03305785124,
-          "y": 1021.0170433493886,
+          "y": 1037.1118932938125,
         },
       ],
       "role": "leader",
@@ -55114,7 +55114,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1928.7706611570247,
-        "y": 1116.5802148944053,
+        "y": 1076.3430900333456,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-0",
@@ -55122,7 +55122,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1116.5802148944053,
+          "baseline": 1076.3430900333456,
           "spans": [
             {
               "fill": "#000000",
@@ -55142,7 +55142,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1928.7706611570247,
-        "y": 1172.9121896998888,
+        "y": 1132.6750648388293,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-1",
@@ -55150,7 +55150,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1172.9121896998888,
+          "baseline": 1132.6750648388293,
           "spans": [
             {
               "fill": "#000000",
@@ -55170,7 +55170,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1928.7706611570247,
-        "y": 1229.2441645053723,
+        "y": 1189.0070396443127,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-2",
@@ -55178,7 +55178,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1229.2441645053723,
+          "baseline": 1189.0070396443127,
           "spans": [
             {
               "fill": "#000000",
@@ -60527,7 +60527,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 65.24082993701371,
         "width": 81.31198347107438,
-        "x": 2688.0785123966944,
+        "x": 2668.9462809917354,
         "y": 1686.224527602816,
       },
       "fill": {
@@ -60549,7 +60549,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2728.7345041322315,
+        "x": 2709.6022727272725,
         "y": 1733.5994071878474,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -60566,7 +60566,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "128",
               "weight": 500,
               "width": 63.882520661157024,
-              "x": 2696.793243801653,
+              "x": 2677.6610123966943,
             },
           ],
         },
@@ -60679,7 +60679,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1870.1756198347107,
-          "y": 953.5198221563543,
+          "y": 1043.8532789922194,
         },
         {
           "x": 1731.4669421487604,
@@ -60703,11 +60703,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 2118.8946280991736,
-          "y": 953.5198221563543,
+          "y": 1043.8532789922194,
         },
         {
           "x": 2173.4214876033056,
-          "y": 1018.760652093368,
+          "y": 1034.819933308633,
         },
       ],
       "role": "leader",
@@ -60965,7 +60965,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1114.1126343090034,
+        "y": 1073.964431270841,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-0",
@@ -60973,7 +60973,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1114.1126343090034,
+          "baseline": 1073.964431270841,
           "spans": [
             {
               "fill": "#000000",
@@ -61010,7 +61010,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1170.3201185624307,
+        "y": 1130.1719155242683,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-1",
@@ -61018,7 +61018,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1170.3201185624307,
+          "baseline": 1130.1719155242683,
           "spans": [
             {
               "fill": "#000000",
@@ -61038,7 +61038,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1226.5276028158578,
+        "y": 1186.3793997776954,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-2",
@@ -61046,7 +61046,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1226.5276028158578,
+          "baseline": 1186.3793997776954,
           "spans": [
             {
               "fill": "#000000",
@@ -61623,7 +61623,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 401.77685950413223,
-          "y": 2248.299370137088,
+          "y": 2338.632826972953,
         },
         {
           "x": 593.099173553719,
@@ -63591,7 +63591,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 65.24082993701371,
         "width": 81.31198347107438,
-        "x": 2688.0785123966944,
+        "x": 2668.9462809917354,
         "y": 1686.224527602816,
       },
       "fill": {
@@ -63613,7 +63613,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2728.7345041322315,
+        "x": 2709.6022727272725,
         "y": 1733.5994071878474,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -63630,7 +63630,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "128",
               "weight": 500,
               "width": 63.882520661157024,
-              "x": 2696.793243801653,
+              "x": 2677.6610123966943,
             },
           ],
         },
@@ -63743,7 +63743,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1870.1756198347107,
-          "y": 953.5198221563543,
+          "y": 1043.8532789922194,
         },
         {
           "x": 1731.4669421487604,
@@ -63767,11 +63767,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 2118.8946280991736,
-          "y": 953.5198221563543,
+          "y": 1043.8532789922194,
         },
         {
           "x": 2173.4214876033056,
-          "y": 1018.760652093368,
+          "y": 1034.819933308633,
         },
       ],
       "role": "leader",
@@ -64046,7 +64046,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1114.1126343090034,
+        "y": 1073.964431270841,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-0",
@@ -64054,7 +64054,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1114.1126343090034,
+          "baseline": 1073.964431270841,
           "spans": [
             {
               "fill": "#000000",
@@ -64091,7 +64091,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1170.3201185624307,
+        "y": 1130.1719155242683,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-1",
@@ -64099,7 +64099,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1170.3201185624307,
+          "baseline": 1130.1719155242683,
           "spans": [
             {
               "fill": "#000000",
@@ -64119,7 +64119,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1226.5276028158578,
+        "y": 1186.3793997776954,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-2",
@@ -64127,7 +64127,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1226.5276028158578,
+          "baseline": 1186.3793997776954,
           "spans": [
             {
               "fill": "#000000",
@@ -64704,7 +64704,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 401.77685950413223,
-          "y": 2248.299370137088,
+          "y": 2338.632826972953,
         },
         {
           "x": 593.099173553719,
@@ -66747,7 +66747,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 65.24082993701371,
         "width": 81.31198347107438,
-        "x": 2688.0785123966944,
+        "x": 2668.9462809917354,
         "y": 1686.224527602816,
       },
       "fill": {
@@ -66769,7 +66769,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2728.7345041322315,
+        "x": 2709.6022727272725,
         "y": 1733.5994071878474,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -66786,7 +66786,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "160",
               "weight": 500,
               "width": 63.882520661157024,
-              "x": 2696.793243801653,
+              "x": 2677.6610123966943,
             },
           ],
         },
@@ -66899,7 +66899,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1870.1756198347107,
-          "y": 953.5198221563543,
+          "y": 1043.8532789922194,
         },
         {
           "x": 1731.4669421487604,
@@ -66923,11 +66923,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 2118.8946280991736,
-          "y": 953.5198221563543,
+          "y": 1043.8532789922194,
         },
         {
           "x": 2173.4214876033056,
-          "y": 1018.760652093368,
+          "y": 1034.819933308633,
         },
       ],
       "role": "leader",
@@ -67202,7 +67202,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1114.1126343090034,
+        "y": 1073.964431270841,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-0",
@@ -67210,7 +67210,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1114.1126343090034,
+          "baseline": 1073.964431270841,
           "spans": [
             {
               "fill": "#000000",
@@ -67247,7 +67247,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1170.3201185624307,
+        "y": 1130.1719155242683,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-1",
@@ -67255,7 +67255,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1170.3201185624307,
+          "baseline": 1130.1719155242683,
           "spans": [
             {
               "fill": "#000000",
@@ -67275,7 +67275,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1937.138429752066,
-        "y": 1226.5276028158578,
+        "y": 1186.3793997776954,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-2",
@@ -67283,7 +67283,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1226.5276028158578,
+          "baseline": 1186.3793997776954,
           "spans": [
             {
               "fill": "#000000",
@@ -67860,7 +67860,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 401.77685950413223,
-          "y": 2248.299370137088,
+          "y": 2338.632826972953,
         },
         {
           "x": 593.099173553719,
@@ -68670,7 +68670,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 730.0143939393938,
+        "x": 742.5414944903581,
         "y": 1442.1341237495367,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -68683,11 +68683,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FFFFFF",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": "Multi-head ",
               "weight": 400,
-              "width": 164.324958677686,
-              "x": 730.0143939393938,
+              "width": 154.05464876033062,
+              "x": 742.5414944903581,
             },
           ],
         },
@@ -68698,7 +68698,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 894.3393526170797,
+        "x": 896.5961432506887,
         "y": 1442.1341237495367,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -68711,11 +68711,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FF968D",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": "latent",
               "weight": 400,
-              "width": 89.65961432506889,
-              "x": 894.3393526170797,
+              "width": 84.05588842975209,
+              "x": 896.5961432506887,
             },
           ],
         },
@@ -68726,7 +68726,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 983.9989669421487,
+        "x": 980.6520316804408,
         "y": 1442.1341237495367,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -68739,11 +68739,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FFFFFF",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": " attention",
               "weight": 400,
-              "width": 146.88264462809923,
-              "x": 983.9989669421487,
+              "width": 137.70247933884303,
+              "x": 980.6520316804408,
             },
           ],
         },
@@ -68767,11 +68767,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FFFFFF",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": "(MLA)",
               "weight": 400,
-              "width": 97.92176308539945,
-              "x": 881.4871212121211,
+              "width": 91.80165289256198,
+              "x": 884.54717630854,
             },
           ],
         },
@@ -68795,11 +68795,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FFFFFF",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": "+",
               "weight": 400,
-              "width": 16.218292011019283,
-              "x": 922.3388567493113,
+              "width": 15.20464876033058,
+              "x": 922.8456783746556,
             },
           ],
         },
@@ -68810,7 +68810,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 806.6687741046832,
+        "x": 814.4049758953167,
         "y": 1550.294183030752,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -68823,11 +68823,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FFFFFF",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": "DeepSeek ",
               "weight": 400,
-              "width": 146.27063360881547,
-              "x": 806.6687741046832,
+              "width": 137.12871900826448,
+              "x": 814.4049758953167,
             },
           ],
         },
@@ -68838,7 +68838,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "start",
       "at": {
-        "x": 952.9394077134986,
+        "x": 951.5336949035812,
         "y": 1550.294183030752,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -68851,11 +68851,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FF968D",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": "Sparse",
               "weight": 400,
-              "width": 101.28782369146006,
-              "x": 952.9394077134986,
+              "width": 94.95733471074381,
+              "x": 951.5336949035812,
             },
           ],
         },
@@ -68879,11 +68879,11 @@ exports[`spec-driven integration surface all validated figures render through th
           "spans": [
             {
               "fill": "#FFFFFF",
-              "size": 30.600550964187327,
+              "size": 28.68801652892562,
               "text": "Attention (DSA)",
               "weight": 400,
-              "width": 243.88639118457309,
-              "x": 808.5048071625345,
+              "width": 228.64349173553725,
+              "x": 816.1262568870523,
             },
           ],
         },
@@ -70013,7 +70013,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 65.09633197480548,
         "width": 81.28271349862258,
-        "x": 2687.1108815426996,
+        "x": 2667.9855371900826,
         "y": 1682.4898110411261,
       },
       "fill": {
@@ -70035,7 +70035,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 2727.752238292011,
+        "x": 2708.626893939394,
         "y": 1729.759762875139,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -70052,7 +70052,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "256",
               "weight": 500,
               "width": 63.85952479338843,
-              "x": 2695.822475895317,
+              "x": 2676.6971315427,
             },
           ],
         },
@@ -70165,7 +70165,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1869.5024104683196,
-          "y": 951.4079288625417,
+          "y": 1041.5413115968877,
         },
         {
           "x": 1730.8436639118456,
@@ -70189,11 +70189,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 2118.1318870523414,
-          "y": 951.4079288625417,
+          "y": 1041.5413115968877,
         },
         {
           "x": 2172.6391184573004,
-          "y": 1016.5042608373471,
+          "y": 1032.5279733234531,
         },
       ],
       "role": "leader",
@@ -70451,7 +70451,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1936.4411157024792,
-        "y": 1111.6450537236012,
+        "y": 1071.5857725083363,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-0",
@@ -70459,7 +70459,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1111.6450537236012,
+          "baseline": 1071.5857725083363,
           "spans": [
             {
               "fill": "#000000",
@@ -70496,7 +70496,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1936.4411157024792,
-        "y": 1167.7280474249721,
+        "y": 1127.6687662097072,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-1",
@@ -70504,7 +70504,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1167.7280474249721,
+          "baseline": 1127.6687662097072,
           "spans": [
             {
               "fill": "#000000",
@@ -70524,7 +70524,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1936.4411157024792,
-        "y": 1223.811041126343,
+        "y": 1183.7517599110781,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "expert-dimensions-2",
@@ -70532,7 +70532,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1223.811041126343,
+          "baseline": 1183.7517599110781,
           "spans": [
             {
               "fill": "#000000",
@@ -71109,7 +71109,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 401.63223140495865,
-          "y": 2243.319748054835,
+          "y": 2333.453130789181,
         },
         {
           "x": 592.8856749311294,

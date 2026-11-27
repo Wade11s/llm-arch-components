@@ -130,7 +130,34 @@ describe('second MoE family batch', () => {
     expect(result.scene.elements.filter((element) => element.role === 'attention-label')).toHaveLength(8);
   });
 
-  test('registers the second MoE family and reports 35 verified figures', () => {
+  test('keeps expert annotations and GLM-5 attention labels inside their boxes', () => {
+    for (const spec of [gptOss20bSpec, qwen3235bSpec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm5744bSpec]) {
+      const scene = renderFigure(spec).scene;
+      const ffnInset = scene.elements.find((element) => element.id === 'ffn-inset');
+      const moeInset = scene.elements.find((element) => element.id === 'moe-inset');
+      const expertAnnotation = scene.elements.find((element) => element.id === 'expert-dimensions-0');
+
+      expect(ffnInset?.kind === 'box' && expertAnnotation?.kind === 'text' && expertAnnotation.at.y > ffnInset.box.y + ffnInset.box.height).toBe(true);
+      expect(moeInset?.kind === 'box' && expertAnnotation?.kind === 'text' && (expertAnnotation.lines.at(-1)?.baseline ?? Infinity) < moeInset.box.y).toBe(true);
+    }
+
+    const glm5 = renderFigure(glm5744bSpec).scene;
+    const attentionBox = glm5.elements.find((element) => element.id === 'attention-box');
+    expect(attentionBox?.kind).toBe('box');
+    if (attentionBox?.kind === 'box') {
+      for (const element of glm5.elements.filter((candidate) => candidate.role === 'attention-label')) {
+        if (element.kind !== 'text') continue;
+        for (const line of element.lines) {
+          for (const span of line.spans) {
+            expect(span.x).toBeGreaterThanOrEqual(attentionBox.box.x);
+            expect(span.x + span.width).toBeLessThanOrEqual(attentionBox.box.x + attentionBox.box.width);
+          }
+        }
+      }
+    }
+  });
+
+  test('registers the second MoE family and reports verified coverage', () => {
     const slugs = figureSpecs.map((entry) => entry.slug);
     expect(slugs).toContain('gpt-oss-20b');
     expect(slugs).toContain('qwen3-235b-a22b');
@@ -138,9 +165,8 @@ describe('second MoE family batch', () => {
     expect(slugs).toContain('glm-4-5-air');
     expect(slugs).toContain('glm-4-5-355b');
     expect(slugs).toContain('glm-5-744b');
-    expect(figureSpecs).toHaveLength(35);
 
     const coverage = readFileSync('docs/research/rendering-coverage.md', 'utf8');
-    expect(coverage).toContain('| Verified rendering | 35 / 132 |');
+    expect(coverage).toContain(`| Verified rendering | ${figureSpecs.length} / 132 |`);
   });
 });

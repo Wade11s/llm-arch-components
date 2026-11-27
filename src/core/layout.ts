@@ -393,6 +393,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   const moeInsetWidth = typeof layoutOptions?.moeInsetWidth === 'number' ? layoutOptions.moeInsetWidth : 968;
   const moeInsetTitleX = typeof layoutOptions?.moeInsetTitleX === 'number' ? layoutOptions.moeInsetTitleX : 2630;
   const lastBadgeX = typeof layoutOptions?.lastBadgeX === 'number' ? layoutOptions.lastBadgeX : 2820;
+  const dimensionLeaderEndY = typeof layoutOptions?.dimensionLeaderEndY === 'number' ? layoutOptions.dimensionLeaderEndY : 1015;
   const expertAnnotationY = typeof layoutOptions?.expertAnnotationY === 'number' ? layoutOptions.expertAnnotationY : 1054;
   const resourceMaxWidth = typeof layoutOptions?.resourceMaxWidth === 'number' ? layoutOptions.resourceMaxWidth : 780;
   const cx = 1016;
@@ -430,18 +431,18 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     sourceId: 'attention',
   });
   if (attentionData.family === 'mla' && attentionLabelStyle === 'mla-dsa') {
-    addComposedCenteredLine(builder, context, 'attention-mla-line-1', 973, attentionBoxY + 70, 32, [
+    addComposedCenteredLine(builder, context, 'attention-mla-line-1', 973, attentionBoxY + 70, 30, [
       { text: 'Multi-head ', fill: '#FFFFFF' },
       { text: 'latent', fill: '#FF968D' },
       { text: ' attention', fill: '#FFFFFF' },
     ]);
-    builder.text('attention-mla-line-2', 'attention-label', { x: 973, y: attentionBoxY + 106 }, '(MLA)', { size: 32, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
-    builder.text('attention-mla-line-3', 'attention-label', { x: 973, y: attentionBoxY + 142 }, '+', { size: 32, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
-    addComposedCenteredLine(builder, context, 'attention-mla-line-4', 973, attentionBoxY + 178, 32, [
+    builder.text('attention-mla-line-2', 'attention-label', { x: 973, y: attentionBoxY + 106 }, '(MLA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-mla-line-3', 'attention-label', { x: 973, y: attentionBoxY + 142 }, '+', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    addComposedCenteredLine(builder, context, 'attention-mla-line-4', 973, attentionBoxY + 178, 30, [
       { text: 'DeepSeek ', fill: '#FFFFFF' },
       { text: 'Sparse', fill: '#FF968D' },
     ]);
-    builder.text('attention-mla-line-5', 'attention-label', { x: 973, y: attentionBoxY + 214 }, 'Attention (DSA)', { size: 32, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-mla-line-5', 'attention-label', { x: 973, y: attentionBoxY + 214 }, 'Attention (DSA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   } else if (attentionData.family === 'mla') {
     builder.text('attention-first-line', 'attention-label', { x: 970, y: 1510 }, { spans: [{ text: 'Multi-head ', color: 'inverse' }, { text: 'latent', color: 'accent', emphasis: 'italic' }] }, { size: 40, align: 'center', sourceId: 'attention' });
     builder.text('attention-second-line', 'attention-label', { x: 970, y: 1565 }, 'attention', { size: 40, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
@@ -509,8 +510,8 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     ['context-leader', [{ x: 300, y: 1812 }, { x: 378, y: 1598 }]],
     ['attention-leader', [{ x: 1198, y: 1590 }, { x: 1600, y: 2340 }]],
     ['embedding-leader', [{ x: 1276, y: 2181 }, { x: 1352, y: 2545 }]],
-    ['ffn-leader', [{ x: 1955, y: 950 }, { x: 1810, y: 1601 }]],
-    ['dimension-leader', [{ x: 2215, y: 950 }, { x: 2272, y: 1015 }]],
+    ['ffn-leader', [{ x: 1955, y: 340 + ffnInsetHeight }, { x: 1810, y: 1601 }]],
+    ['dimension-leader', [{ x: 2215, y: 340 + ffnInsetHeight }, { x: 2272, y: dimensionLeaderEndY }]],
   ];
   leaderLines
     .filter(([id]) => (id === 'attention-leader' ? showHeadsAnnotation : true))
@@ -545,7 +546,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     content: resourceBullets.map((bullet) => ({ ...bullet, maxWidth: bullet.maxWidth ?? resourceMaxWidth })),
   });
   if (denseFirstLeader && annotationOf(spec, 'dense-first')) {
-    addFlow(builder, 'dense-first-leader', [{ x: 420, y: 2240 }, { x: 620, y: 1980 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
+    addFlow(builder, 'dense-first-leader', [{ x: 420, y: 2330 }, { x: 620, y: 1980 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
   }
   addAnnotation(builder, spec, 'dense-first', { x: 20, y: 2390 }, { size: 44 });
 

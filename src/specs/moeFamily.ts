@@ -116,7 +116,8 @@ function moeFamilySpec(input: MoeFamilyInput): FigureSpec {
           ffnInsetTitleX: 2305,
           moeInsetWidth: 1168,
           moeInsetTitleX: 2820,
-          lastBadgeX: 2810,
+          lastBadgeX: 2790,
+          dimensionLeaderEndY: 1031,
         } : {}),
       },
     },
@@ -130,7 +131,7 @@ export const gptOss20bSpec = moeFamilySpec({
   attention: { family: 'gqa', heads: 64, kvHeads: 8 }, hidden: 2880,
   experts: 32, activeExperts: 4, sharedExperts: 0,
   expertDimensions: [emphasized('Input expert size: ', '2,880'), emphasized('Intermediate projection size: ', '2,880')],
-  modelSize: '20B', activeParams: '3.6B', wideInsets: true,
+  modelSize: '20B', activeParams: '3.6B', expertAnnotationY: 1070, wideInsets: true,
 });
 
 export const qwen3235bSpec = moeFamilySpec({
@@ -140,7 +141,7 @@ export const qwen3235bSpec = moeFamilySpec({
   attention: { family: 'gqa', heads: 64, kvHeads: 4 }, hidden: 1536,
   experts: 128, activeExperts: 8, sharedExperts: 0,
   expertDimensions: [text('Intermediate hidden'), text('layer dimension of'), emphasized('', '1,536')],
-  modelSize: '235B', activeParams: '22B', showQKNorm: true, showHeadsAnnotation: false, expertAnnotationY: 1110, wideInsets: true,
+  modelSize: '235B', activeParams: '22B', showQKNorm: true, showHeadsAnnotation: false, expertAnnotationY: 1070, wideInsets: true,
 });
 
 export const intellect3Spec = moeFamilySpec({
@@ -153,7 +154,7 @@ export const intellect3Spec = moeFamilySpec({
   modelSize: '106B', activeParams: '12B', ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
   denseFirst: [text('First block uses'), text('dense FFN with'), emphasized('hidden size ', '10,944'), text('instead of MoE')],
   firstBadgeFill: '#5E5E5E', lastBadgeFill: '#000000', titleColor: '#000000',
-  activeExpertLabel: '8 experts + 1 shared expert', denseFirstLeader: true, expertAnnotationY: 1110, resourceMaxWidth: 900, wideInsets: true,
+  activeExpertLabel: '8 experts + 1 shared expert', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
 
 export const glm45AirSpec = moeFamilySpec({
@@ -165,7 +166,7 @@ export const glm45AirSpec = moeFamilySpec({
   expertDimensions: [emphasized('Input expert size: ', '4,096'), text('Intermediate projection size:'), emphasized('', '1,408')],
   modelSize: '106B', activeParams: '12B', ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
   denseFirst: [text('First block uses'), text('dense FFN with'), emphasized('hidden size ', '10,944'), text('instead of MoE')],
-  firstBadgeFill: '#5E5E5E', activeExpertLabel: '8 experts + 1 shared expert', denseFirstLeader: true, expertAnnotationY: 1110, resourceMaxWidth: 900, wideInsets: true,
+  firstBadgeFill: '#5E5E5E', activeExpertLabel: '8 experts + 1 shared expert', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
 
 export const glm45355bSpec = moeFamilySpec({
@@ -177,7 +178,7 @@ export const glm45355bSpec = moeFamilySpec({
   expertDimensions: [emphasized('Input expert size: ', '5,120'), text('Intermediate projection size:'), emphasized('', '1,536')],
   modelSize: '355B', activeParams: '32B', ropeLabel: 'Partial RoPE', showQKNorm: true, showHeadsAnnotation: false,
   denseFirst: [emphasized('First ', '3', ' blocks use'), text('dense FFN with'), emphasized('hidden size ', '12,288'), text('instead of MoE')],
-  firstBadgeFill: '#5E5E5E', activeExpertLabel: '8 experts + 1 shared expert', denseFirstLeader: true, expertAnnotationY: 1110, resourceMaxWidth: 900, wideInsets: true,
+  firstBadgeFill: '#5E5E5E', activeExpertLabel: '8 experts + 1 shared expert', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
 
 export const glm5744bSpec = moeFamilySpec({
@@ -190,5 +191,5 @@ export const glm5744bSpec = moeFamilySpec({
   modelSize: '744B', activeParams: '40B', ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
   denseFirst: [emphasized('First ', '3', ' blocks use'), text('dense FFN with'), emphasized('hidden size ', '12,288'), text('instead of MoE')],
   firstBadgeFill: '#5E5E5E', activeExpertLabel: '8 experts + 1 shared expert', denseFirstLeader: true,
-  attentionLabelStyle: 'mla-dsa', attentionBoxY: 1370, attentionBoxHeight: 260, expertAnnotationY: 1110, resourceMaxWidth: 900, wideInsets: true,
+  attentionLabelStyle: 'mla-dsa', attentionBoxY: 1370, attentionBoxHeight: 260, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
