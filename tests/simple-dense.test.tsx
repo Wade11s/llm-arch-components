@@ -116,6 +116,14 @@ describe('simple dense family', () => {
     expect(text).toContain('Input size: 4,096');
     expect(text).toContain('size = 11,008');
     expect(text).toContain('4,096 tokens');
+
+    const hiddenBaselines = result.scene.elements
+      .filter((element) => element.kind === 'text' && element.id.startsWith('hidden-dimension-'))
+      .flatMap((element) => element.kind === 'text' ? element.lines.map((line) => line.baseline) : []);
+    const headsBaselines = result.scene.elements
+      .filter((element) => element.kind === 'text' && element.id.startsWith('heads-'))
+      .flatMap((element) => element.kind === 'text' ? element.lines.map((line) => line.baseline) : []);
+    expect(Math.min(...headsBaselines)).toBeGreaterThan(Math.max(...hiddenBaselines) + 50);
   });
 
   test('keeps all text within canvas and produces no diagnostics', () => {

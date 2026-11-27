@@ -388,10 +388,10 @@ export const olmo2Spec = denseBackboneSpec({
   showPreNorms: false,
   attentionLabelStyle: 'mha',
   normStroke: '#F1539D',
-  headsAnnotationY: 1600,
+  headsAnnotationY: 1750,
   headsAnnotationX: 1700,
   headsLeaderEndX: 1680,
-  headsLeaderEndY: 1600,
+  headsLeaderEndY: 1750,
   hiddenAnnotationX: 1700,
   insetOffsetX: -40,
 });

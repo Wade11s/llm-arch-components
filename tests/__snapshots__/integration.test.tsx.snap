@@ -58076,7 +58076,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
         {
           "x": 1680,
-          "y": 1600,
+          "y": 1750,
         },
       ],
       "role": "leader",
@@ -58305,7 +58305,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1700,
-        "y": 1600,
+        "y": 1750,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-0",
@@ -58313,7 +58313,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1600,
+          "baseline": 1750,
           "spans": [
             {
               "fill": "#000000",
@@ -58350,7 +58350,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1700,
-        "y": 1665,
+        "y": 1815,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-1",
@@ -58358,7 +58358,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1665,
+          "baseline": 1815,
           "spans": [
             {
               "fill": "#000000",
@@ -58395,7 +58395,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "start",
       "at": {
         "x": 1700,
-        "y": 1730,
+        "y": 1880,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "heads-2",
@@ -58403,7 +58403,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1730,
+          "baseline": 1880,
           "spans": [
             {
               "fill": "#000000",
