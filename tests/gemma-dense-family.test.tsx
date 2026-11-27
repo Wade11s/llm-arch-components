@@ -27,6 +27,10 @@ describe('Gemma dense family', () => {
     expect(result.svg).toContain('>RoPE<');
     expect(result.svg).not.toContain('Partial RoPE');
     expect(result.scene.elements.some((element) => element.role === 'repeat-block')).toBe(true);
+    expect(result.scene.elements.find((element) => element.id === 'sample-input')).toMatchObject({
+      kind: 'text',
+      at: { y: 2638 },
+    });
     expect(result.diagnostics.filter((diagnostic) => diagnostic.code === 'text-overflow')).toEqual([]);
   });
 
@@ -44,7 +48,16 @@ describe('Gemma dense family', () => {
     expect(result.svg).toContain('Full RoPE (local)');
     expect(result.scene.elements.find((element) => element.id === 'rope-box')).toMatchObject({
       kind: 'box',
-      stroke: expect.objectContaining({ color: '#9ADCF5' }),
+      box: { y: 1527, height: 100 },
+      stroke: expect.objectContaining({ color: '#000000' }),
+    });
+    expect(result.scene.elements.find((element) => element.id === 'qk-norm-box')).toMatchObject({
+      kind: 'box',
+      stroke: expect.objectContaining({ color: '#56C1FF' }),
+    });
+    expect(result.scene.elements.find((element) => element.id === 'leader-attention')).toMatchObject({
+      kind: 'path',
+      points: expect.arrayContaining([{ x: 1760, y: 1889 }]),
     });
     expect(result.svg).toContain('262,144');
     expect(result.diagnostics.filter((diagnostic) => diagnostic.code === 'text-overflow')).toEqual([]);
@@ -64,7 +77,11 @@ describe('Gemma dense family', () => {
     expect(result.svg).toContain('Full RoPE (local)');
     expect(result.scene.elements.find((element) => element.id === 'qk-norm-box')).toMatchObject({
       kind: 'box',
-      stroke: expect.objectContaining({ color: '#9ADCF5' }),
+      stroke: expect.objectContaining({ color: '#56C1FF' }),
+    });
+    expect(result.scene.elements.find((element) => element.id === 'leader-attention')).toMatchObject({
+      kind: 'path',
+      points: expect.arrayContaining([{ x: 1760, y: 1889 }]),
     });
     expect(result.diagnostics.filter((diagnostic) => diagnostic.code === 'text-overflow')).toEqual([]);
   });

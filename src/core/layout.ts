@@ -215,24 +215,26 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   if (showPostNorms) addPill(builder, spec, 'post-rmsnorm-2', 'norm', { x: 852, y: 832, width: 348, height: 84 }, { spans: [{ text: 'Post-RMSNorm 2' }] }, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
-  const sidePillStroke = layoutOptions?.sidePillStroke;
+  const qkNormStroke = layoutOptions?.qkNormStroke;
+  const ropeStroke = layoutOptions?.ropeStroke;
   if (showQKNorm) addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, {
     size: 38,
-    stroke: typeof sidePillStroke === 'string' ? sidePillStroke : undefined,
+    stroke: typeof qkNormStroke === 'string' ? qkNormStroke : undefined,
   });
   const ropeLabel = layoutOptions?.ropeLabel;
   const ropeSecondaryLabel = layoutOptions?.ropeSecondaryLabel;
-  const hasTwoLineRope = typeof ropeLabel === 'string' && typeof ropeSecondaryLabel === 'string';
+  const hasCustomRope = typeof ropeLabel === 'string';
+  const hasTwoLineRope = hasCustomRope && typeof ropeSecondaryLabel === 'string';
   addPill(
     builder,
     spec,
     'rope',
     'side-pill',
-    hasTwoLineRope ? { x: 353, y: 1535, width: 360, height: 84 } : { x: 420, y: 1535, width: 293, height: 84 },
-    { spans: [{ text: hasTwoLineRope ? ropeLabel : 'RoPE' }] },
+    hasTwoLineRope ? { x: 353, y: 1527, width: 360, height: 100 } : { x: 420, y: 1535, width: 293, height: 84 },
+    { spans: [{ text: hasCustomRope ? ropeLabel : 'RoPE' }] },
     {
       size: hasTwoLineRope ? 32 : 38,
-      stroke: typeof sidePillStroke === 'string' ? sidePillStroke : undefined,
+      stroke: typeof ropeStroke === 'string' ? ropeStroke : undefined,
       secondaryText: hasTwoLineRope ? { spans: [{ text: ropeSecondaryLabel }] } : undefined,
     },
   );
@@ -240,7 +242,8 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
   addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
   addPill(builder, spec, 'tokenized-text', 'input', { x: 847, y: 2417, width: 350, height: 86 }, { spans: [{ text: 'Tokenized text' }] });
-  builder.text('sample-input', 'input-label', { x: cx, y: 2646 }, 'Sample input text', { size: 54, align: 'center' });
+  const sampleInputY = layoutOptions?.sampleInputY;
+  builder.text('sample-input', 'input-label', { x: cx, y: typeof sampleInputY === 'number' ? sampleInputY : 2646 }, 'Sample input text', { size: 54, align: 'center' });
 
   builder.text('repeat-count', 'repeat-marker', { x: 478, y: 1912 }, `${repeatCount}`, { size: 58, weight: 700, fill: spec.theme.accent });
   builder.text('repeat-x', 'repeat-marker', { x: 560, y: 1908 }, '×', { size: 44, weight: 700, fill: spec.theme.accent });
@@ -267,7 +270,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
 
   const leaders: Array<[string, Point[]]> = [
     ['leader-vocabulary', [{ x: 1218, y: 396 }, { x: 1350, y: 258 }]],
-    ['leader-attention', [{ x: 1237, y: 1639 }, { x: 1882, y: 1889 }]],
+    ['leader-attention', [{ x: 1237, y: 1639 }, {
+      x: typeof layoutOptions?.headsLeaderEndX === 'number' ? layoutOptions.headsLeaderEndX : 1882,
+      y: typeof layoutOptions?.headsLeaderEndY === 'number' ? layoutOptions.headsLeaderEndY : 1889,
+    }]],
     ['leader-ffn', [{ x: 1200, y: 1006 }, { x: 1772, y: 876 }]],
     ['leader-embedding', [{ x: 1290, y: 2132 }, { x: 1598, y: 2244 }]],
     ['leader-context', [{ x: 320, y: 1845 }, { x: 420, y: 1624 }]],

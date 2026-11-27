@@ -21,10 +21,13 @@ function denseGemmaSpec(input: {
   blockFill?: string;
   ropeLabels?: { primary: string; secondary: string };
   normStroke?: string;
-  sidePillStroke?: string;
+  qkNormStroke?: string;
   hiddenAnnotationX?: number;
   headsAnnotationX?: number;
   headsAnnotationY?: number;
+  headsLeaderEndX?: number;
+  headsLeaderEndY?: number;
+  sampleInputY?: number;
 }): FigureSpec {
   return {
     schemaVersion: 1,
@@ -68,10 +71,13 @@ function denseGemmaSpec(input: {
       options: {
         ...(input.ropeLabels ? { ropeLabel: input.ropeLabels.primary, ropeSecondaryLabel: input.ropeLabels.secondary } : {}),
         ...(input.normStroke ? { normStroke: input.normStroke } : {}),
-        ...(input.sidePillStroke ? { sidePillStroke: input.sidePillStroke } : {}),
+        ...(input.qkNormStroke ? { qkNormStroke: input.qkNormStroke } : {}),
         ...(input.hiddenAnnotationX !== undefined ? { hiddenAnnotationX: input.hiddenAnnotationX } : {}),
         ...(input.headsAnnotationX !== undefined ? { headsAnnotationX: input.headsAnnotationX } : {}),
         ...(input.headsAnnotationY !== undefined ? { headsAnnotationY: input.headsAnnotationY } : {}),
+        ...(input.headsLeaderEndX !== undefined ? { headsLeaderEndX: input.headsLeaderEndX } : {}),
+        ...(input.headsLeaderEndY !== undefined ? { headsLeaderEndY: input.headsLeaderEndY } : {}),
+        ...(input.sampleInputY !== undefined ? { sampleInputY: input.sampleInputY } : {}),
       },
     },
   };
@@ -102,6 +108,7 @@ export const gemma3SmallSpec = denseGemmaSpec({
   theme: { accent: '#F27200' },
   blockFill: '#DECBA3',
   hiddenAnnotationX: 1680,
+  sampleInputY: 2638,
 });
 
 export const gemma412bSpec = denseGemmaSpec({
@@ -131,8 +138,9 @@ export const gemma412bSpec = denseGemmaSpec({
   },
   blockFill: '#3B82F6',
   ropeLabels: { primary: 'Partial RoPE (global)', secondary: 'Full RoPE (local)' },
-  normStroke: '#9ADCF5',
-  sidePillStroke: '#9ADCF5',
+  normStroke: '#56C1FF',
+  qkNormStroke: '#56C1FF',
+  headsLeaderEndX: 1760,
   hiddenAnnotationX: 1876,
   headsAnnotationX: 1800,
   headsAnnotationY: 1700,
@@ -165,8 +173,9 @@ export const gemma431bSpec = denseGemmaSpec({
   },
   blockFill: '#3B82F6',
   ropeLabels: { primary: 'Partial RoPE (global)', secondary: 'Full RoPE (local)' },
-  normStroke: '#9ADCF5',
-  sidePillStroke: '#9ADCF5',
+  normStroke: '#56C1FF',
+  qkNormStroke: '#56C1FF',
+  headsLeaderEndX: 1760,
   hiddenAnnotationX: 1876,
   headsAnnotationX: 1800,
   headsAnnotationY: 1700,

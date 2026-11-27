@@ -4343,7 +4343,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 1022,
-        "y": 2646,
+        "y": 2638,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "sample-input",
@@ -4351,7 +4351,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 2646,
+          "baseline": 2638,
           "spans": [
             {
               "fill": "#000000",
@@ -8229,7 +8229,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "pre-rmsnorm-1",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -8280,7 +8280,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "post-rmsnorm-1",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -8331,7 +8331,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "pre-rmsnorm-2",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -8382,7 +8382,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "post-rmsnorm-2",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -8535,7 +8535,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "side-pill",
       "sourceId": "qk-norm",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -8570,10 +8570,10 @@ exports[`spec-driven integration surface all validated figures render through th
     },
     {
       "box": {
-        "height": 84,
+        "height": 100,
         "width": 360,
         "x": 353,
-        "y": 1535,
+        "y": 1527,
       },
       "fill": {
         "color": "#FFFFFF",
@@ -8586,7 +8586,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "side-pill",
       "sourceId": "rope",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#000000",
         "dash": undefined,
         "width": 5,
       },
@@ -9298,7 +9298,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1882,
+          "x": 1760,
           "y": 1889,
         },
       ],
@@ -10632,7 +10632,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "pre-rmsnorm-1",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -10683,7 +10683,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "post-rmsnorm-1",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -10734,7 +10734,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "pre-rmsnorm-2",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -10785,7 +10785,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "norm",
       "sourceId": "post-rmsnorm-2",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -10938,7 +10938,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "side-pill",
       "sourceId": "qk-norm",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#56C1FF",
         "dash": undefined,
         "width": 5,
       },
@@ -10973,10 +10973,10 @@ exports[`spec-driven integration surface all validated figures render through th
     },
     {
       "box": {
-        "height": 84,
+        "height": 100,
         "width": 360,
         "x": 353,
-        "y": 1535,
+        "y": 1527,
       },
       "fill": {
         "color": "#FFFFFF",
@@ -10989,7 +10989,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "role": "side-pill",
       "sourceId": "rope",
       "stroke": {
-        "color": "#9ADCF5",
+        "color": "#000000",
         "dash": undefined,
         "width": 5,
       },
@@ -11701,7 +11701,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1639,
         },
         {
-          "x": 1882,
+          "x": 1760,
           "y": 1889,
         },
       ],
