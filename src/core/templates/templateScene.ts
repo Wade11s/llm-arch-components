@@ -24,11 +24,11 @@ export function templateFailure(code: string, message: string, sourceIds?: Id[])
   throw new FigureLayoutError([{ severity: 'error', code, message, sourceIds }]);
 }
 
-export function requireSlot(spec: FigureSpec, name: string): Id {
-  if (spec.layout.mode !== 'template') templateFailure('wrong-layout', 'Template layout requires mode "template"');
+export function requireSlot(spec: FigureSpec, name: string, templateName = 'Template'): Id {
+  if (spec.layout.mode !== 'template') templateFailure('wrong-layout', `${templateName} requires template layout`);
   const value = spec.layout.slots[name];
   const id = Array.isArray(value) ? value[0] : value;
-  if (!id) templateFailure('missing-slot', `Template layout requires a "${name}" slot`, [name]);
+  if (!id) templateFailure('missing-slot', `${templateName} requires a "${name}" slot`, [name]);
   return id;
 }
 
@@ -59,11 +59,31 @@ export function annotationLines(spec: FigureSpec, id: Id): TextSpec[] {
   return 'bullets' in annotation.content ? annotation.content.bullets : [annotation.content];
 }
 
+export function createTemplateApi(templateName: string, failureCode: string) {
+  return {
+    fail: (message: string): never => templateFailure(failureCode, message),
+    slot: (spec: FigureSpec, name: string): Id => requireSlot(spec, name, templateName),
+    groupOf: requireGroup,
+    operation: (spec: FigureSpec, family: string) =>
+      requireOperation(spec, (candidate) => candidate.data.family === family, `${templateName} requires a ${family} operation`),
+  };
+}
+
 export class TemplateScene {
   private readonly builder: SceneBuilder;
+  private readonly pillRadius?: number;
+  private readonly pillSize?: number;
+  private readonly calloutLineGap?: number;
+  private readonly calloutSourceId?: Id | null;
+  private readonly calloutSize?: number;
 
-  constructor(theme: Theme, metrics: TextMetrics) {
+  constructor(theme: Theme, metrics: TextMetrics, options: { pillRadius?: number; pillSize?: number; calloutLineGap?: number; calloutSourceId?: Id | null; calloutSize?: number } = {}) {
     this.builder = new SceneBuilder(theme, metrics);
+    this.pillRadius = options.pillRadius;
+    this.pillSize = options.pillSize;
+    this.calloutLineGap = options.calloutLineGap;
+    this.calloutSourceId = options.calloutSourceId;
+    this.calloutSize = options.calloutSize;
   }
 
   solid(color: string) {
@@ -131,11 +151,11 @@ export class TemplateScene {
       sourceId?: Id;
     } = {},
   ): void {
-    const size = options.size ?? 34;
+    const size = options.size ?? this.pillSize ?? 34;
     this.box(`${id}-box`, role, box, {
       fill: this.solid(options.fill ?? '#FFFFFF'),
       stroke: this.stroke(options.stroke ?? '#000000', options.strokeWidth ?? 5),
-      radius: options.radius ?? 28,
+      radius: options.radius ?? this.pillRadius ?? 28,
       sourceId: options.sourceId,
       label: options.sourceId ? this.builder.labelOf(content) : undefined,
     });
@@ -159,13 +179,15 @@ export class TemplateScene {
     lines.forEach((line, index) => {
       this.text(`${id}-${index}`, options.role ?? `annotation-${id}`, {
         x: at.x,
-        y: at.y + index * (options.lineGap ?? Math.round((options.size ?? 36) * 1.42)),
+        y: at.y + index * (options.lineGap ?? this.calloutLineGap ?? Math.round((options.size ?? 36) * 1.42)),
       }, line, {
-        size: options.size ?? 36,
+        size: options.size ?? this.calloutSize ?? 36,
         weight: options.weight ?? 700,
         align: options.align ?? 'start',
         family: options.family,
-        sourceId: options.sourceId === null ? undefined : options.sourceId ?? annotation?.id,
+        sourceId: options.sourceId !== undefined
+          ? options.sourceId === null ? undefined : options.sourceId
+          : this.calloutSourceId === null ? undefined : this.calloutSourceId ?? annotation?.id,
       });
     });
   }
