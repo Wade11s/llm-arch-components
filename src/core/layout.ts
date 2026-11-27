@@ -2,6 +2,7 @@ import { FigureLayoutError } from './errors';
 import { systemTextMetrics } from './metrics';
 import { SceneBuilder } from './sceneBuilder';
 import { layoutQwenSparse } from './templates/qwenSparse';
+import { layoutMixingDetail } from './templates/mixingDetail';
 import { layoutGlmLayerSchedule } from './templates/glmLayerSchedule';
 import type {
   AnnotationSpec,
@@ -234,6 +235,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
   if (spec.layout.mode !== 'template' || spec.layout.template !== 'moe') {
     throw new FigureLayoutError([{ severity: 'error', code: 'wrong-template', message: 'moe layout requires template moe' }]);
   }
+  if (spec.layout.options?.variant === 'mixing-detail') return layoutMixingDetail(spec, context);
   const blockId = spec.layout.slots.block;
   const ffnInsetId = spec.layout.slots.ffn;
   const moeInsetId = spec.layout.slots.moe;

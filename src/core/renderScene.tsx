@@ -56,6 +56,10 @@ function Glyph({ element, idPrefix }: { element: Extract<SceneElement, { kind: '
       );
     case 'ellipsis':
       return <text id={`${idPrefix}-${element.id}`} x={x} y={y} fontSize={size} textAnchor="middle" fill="black">…</text>;
+    case 'sigmoid':
+      return <text id={`${idPrefix}-${element.id}`} x={x} y={y} fontSize={size} textAnchor="middle" fill="black">σ</text>;
+    case 'exp':
+      return <text id={`${idPrefix}-${element.id}`} x={x} y={y} fontSize={size} textAnchor="middle" fill="black">exp</text>;
     default:
       return <text id={`${idPrefix}-${element.id}`} x={x} y={y} fontSize={size} textAnchor="middle" fill="black">{element.glyph}</text>;
   }

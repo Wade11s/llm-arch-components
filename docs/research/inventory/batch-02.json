@@ -1006,8 +1006,8 @@
       "custom:lane-column-inset"
     ],
     "customTemplates": [],
-    "confidence": "medium",
-    "notes": "Two mixing insets share the right column and both use tall Q/K/V lane columns; the layer split is a single monospace line under the insets rather than a table."
+    "confidence": "high",
+    "notes": "Verified against the reference for the mixing-detail pilot: two mixing insets share the right column, MLA sits above KDA, both use Q/K/V lane columns, and the 20 KDA / 7 MLA split is a single monospace line under the insets rather than a table."
   },
   {
     "file": "kolibri-1-78b.webp",
