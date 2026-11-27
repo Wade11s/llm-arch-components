@@ -73,7 +73,7 @@ describe('review regressions', () => {
 
   test('unsupported template variants fail during validation', () => {
     const spec = structuredClone(figureSpecs.find((entry) => entry.slug === 'qwen3-next-80b-a3b')!.spec);
-    spec.layout = { mode: 'template', template: 'moe', slots: {}, options: { variant: 'typo-variant' } };
+    spec.layout = { mode: 'template', template: 'moe', variant: 'typo-variant' as never, slots: {} };
     expect(() => renderFigure(spec)).toThrow(FigureValidationError);
   });
 

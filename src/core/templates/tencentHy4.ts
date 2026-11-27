@@ -55,8 +55,8 @@ function templateLayout(spec: FigureSpec): TemplateLayout {
   if (spec.layout.mode !== 'template' || spec.layout.template !== 'attention-mask') {
     templateFailure('wrong-template', 'iHC pipeline is an attention-mask template variant');
   }
-  if (spec.layout.options?.variant !== VARIANT) {
-    templateFailure('wrong-variant', `attention-mask layout requires layout.options.variant = "${VARIANT}"`);
+  if (spec.layout.variant !== VARIANT) {
+    templateFailure('wrong-variant', `attention-mask layout requires layout.variant = "${VARIANT}"`);
   }
   return spec.layout;
 }

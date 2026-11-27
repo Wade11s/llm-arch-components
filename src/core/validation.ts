@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { FigureValidationError } from './errors';
-import type { Diagnostic, FigureSpec, Id } from './types';
+import { templateVariants, type Diagnostic, type FigureSpec, type Id, type TemplateId } from './types';
 
 const textSpanSchema = z.object({
   text: z.string(),
@@ -117,21 +117,13 @@ const annotationSchema = z.object({
   style: z.enum(['plain', 'boxed', 'leader', 'badge']).optional(),
 }).strict();
 
-const templateIdSchema = z.enum([
-  'backbone',
-  'residual-block',
-  'feed-forward',
-  'moe',
-  'layer-schedule',
-  'multi-stream-residual',
-  'multi-tower',
-  'attention-mask',
-]);
+const templateIdSchema = z.enum(Object.keys(templateVariants) as [TemplateId, ...TemplateId[]]);
 
 const layoutSchema = z.discriminatedUnion('mode', [
   z.object({
     mode: z.literal('template'),
     template: templateIdSchema,
+    variant: z.string().optional(),
     slots: z.record(z.string(), z.union([z.string(), z.array(z.string())])),
     options: z.record(z.string(), z.union([z.number(), z.string(), z.boolean()])).optional(),
   }).strict(),
@@ -168,13 +160,21 @@ function issue(code: string, message: string, path?: string, sourceIds?: Id[]): 
   return { severity: 'error', code, message, path, sourceIds };
 }
 
-const implementedTemplates = new Set(['backbone', 'moe', 'attention-mask', 'layer-schedule', 'multi-tower']);
-const implementedVariants: Record<string, Set<string>> = {
-  backbone: new Set(['recurrent-detail']),
-  moe: new Set(['mixing-detail', 'multi-stream-residual']),
-  'attention-mask': new Set(['ihc-pipeline']),
-  'layer-schedule': new Set(['layer-group', 'recurrent-pass']),
-};
+function legacyVariantIssue(input: unknown): Diagnostic | undefined {
+  if (!input || typeof input !== 'object') return undefined;
+  const layout = (input as { layout?: unknown }).layout;
+  if (!layout || typeof layout !== 'object') return undefined;
+  const templateLayout = layout as { mode?: unknown; options?: unknown };
+  if (templateLayout.mode !== 'template') return undefined;
+  const options = templateLayout.options;
+  if (!options || typeof options !== 'object' || !Object.hasOwn(options, 'variant')) return undefined;
+  return issue('legacy-variant-location', 'Move layout.options.variant to layout.variant', 'layout.options.variant');
+}
+
+const implementedTemplates = new Set<TemplateId>(['backbone', 'moe', 'attention-mask', 'layer-schedule', 'multi-tower']);
+const implementedVariants = Object.fromEntries(
+  Object.entries(templateVariants).map(([template, variants]) => [template, new Set<string>(variants)]),
+) as Record<TemplateId, Set<string>>;
 
 function semanticIssues(spec: FigureSpec): Diagnostic[] {
   const issues: Diagnostic[] = [];
@@ -232,11 +232,11 @@ function semanticIssues(spec: FigureSpec): Diagnostic[] {
     if (!implementedTemplates.has(spec.layout.template)) {
       issues.push(issue('unsupported-template', `Template "${spec.layout.template}" is not implemented`, 'layout.template'));
     }
-    const variant = spec.layout.options?.variant;
+    const variant = spec.layout.variant;
     if (variant !== undefined) {
       const allowed = implementedVariants[spec.layout.template];
-      if (typeof variant !== 'string' || !allowed?.has(variant)) {
-        issues.push(issue('unsupported-variant', `Template "${spec.layout.template}" does not support variant "${String(variant)}"`, 'layout.options.variant'));
+      if (!allowed.has(variant)) {
+        issues.push(issue('unsupported-variant', `Template "${spec.layout.template}" does not support variant "${variant}"`, 'layout.variant'));
       }
     }
     for (const [slot, value] of Object.entries(spec.layout.slots)) {
@@ -272,17 +272,22 @@ function semanticIssues(spec: FigureSpec): Diagnostic[] {
 }
 
 export function validateFigureSpec(input: unknown): FigureSpec {
+  const legacyVariant = legacyVariantIssue(input);
   const parsed = figureSpecSchema.safeParse(input);
   if (!parsed.success) {
-    const issues: Diagnostic[] = parsed.error.issues.map((zodIssue) => issue(
-      'schema',
-      zodIssue.message,
-      zodIssue.path.map((part) => String(part)).join('.'),
-    ));
+    const issues: Diagnostic[] = [
+      ...(legacyVariant ? [legacyVariant] : []),
+      ...parsed.error.issues.map((zodIssue) => issue(
+        'schema',
+        zodIssue.message,
+        zodIssue.path.map((part) => String(part)).join('.'),
+      )),
+    ];
     throw new FigureValidationError(issues);
   }
   const spec = parsed.data as FigureSpec;
   const issues = semanticIssues(spec);
+  if (legacyVariant) issues.unshift(legacyVariant);
   if (issues.length > 0) throw new FigureValidationError(issues);
   return spec;
 }

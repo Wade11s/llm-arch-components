@@ -70,6 +70,6 @@ export const lfm25Spec = {
     mode: 'template',
     template: 'layer-schedule',
     slots: { block: 'backbone', moe: 'moe-inset', gqa: 'gqa-inset' },
-    options: { variant: 'layer-group' },
+    variant: 'layer-group',
   },
 } satisfies FigureSpec;

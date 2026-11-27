@@ -163,8 +163,8 @@ export const tencentHy4Spec: FigureSpec = {
       write: 'ihc-write',
       maskNode: 'mask',
     },
+    variant: 'ihc-pipeline',
     options: {
-      variant: 'ihc-pipeline',
       indexerHeads: 32,
       dsaTopK: 2048,
     },

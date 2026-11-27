@@ -71,6 +71,6 @@ export const xlstmSpec = {
     mode: 'template',
     template: 'backbone',
     slots: { block: 'backbone', ffn: 'ffn-inset', mlstm: 'mlstm-inset' },
-    options: { variant: 'recurrent-detail' },
+    variant: 'recurrent-detail',
   },
 } satisfies FigureSpec;

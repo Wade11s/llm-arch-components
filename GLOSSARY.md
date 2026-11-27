@@ -16,6 +16,10 @@ _Avoid_: JSX, SVG document, drawing script
 A named, versioned arrangement grammar used to organize a **FigureSpec** without requiring the author to provide coordinates.
 _Avoid_: auto-layout, arbitrary template string
 
+**Layout Variant**:
+A named structural alternative within a **Layout Template**, distinct from visual tuning options for that template.
+_Avoid_: template option, visual style
+
 **Scene**:
 A positioned, serializable representation of a **Figure** produced from a normalized **FigureSpec**.
 _Avoid_: SVG, JSX, DOM tree

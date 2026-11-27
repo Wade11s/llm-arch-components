@@ -64,6 +64,6 @@ export const kimiLinearSpec = {
     mode: 'template',
     template: 'moe',
     slots: { block: 'backbone', attention: 'attention-inset', delta: 'delta-inset' },
-    options: { variant: 'mixing-detail' },
+    variant: 'mixing-detail',
   },
 } satisfies FigureSpec;
