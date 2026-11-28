@@ -33,12 +33,13 @@ type MoeFamilyInput = {
   titleColor?: string;
   activeExpertLabel?: string;
   denseFirstLeader?: boolean;
-  attentionLabelStyle?: 'mla-dsa';
+  attentionLabelStyle?: 'mla-dsa' | 'mla-dsa-plain' | 'gqa-swa' | 'gqa-sparse';
   attentionBoxY?: number;
   attentionBoxHeight?: number;
   expertAnnotationY?: number;
   resourceMaxWidth?: number;
   resourceLineGap?: number;
+  repeatBrace?: boolean;
   wideInsets?: boolean;
 };
 
@@ -113,6 +114,7 @@ function moeFamilySpec(input: MoeFamilyInput): FigureSpec {
         ...(input.expertAnnotationY !== undefined ? { expertAnnotationY: input.expertAnnotationY } : {}),
         ...(input.resourceMaxWidth !== undefined ? { resourceMaxWidth: input.resourceMaxWidth } : {}),
         ...(input.resourceLineGap !== undefined ? { resourceLineGap: input.resourceLineGap } : {}),
+        ...(input.repeatBrace === false ? { repeatBrace: false } : {}),
         ...(input.wideInsets ? {
           ffnInsetWidth: 856,
           ffnInsetHeight: 700,
@@ -257,6 +259,73 @@ export const mistralLarge3Spec = moeFamilySpec({
   modelSize: '671B', activeParams: '41B', ropeLabel: 'Partial RoPE',
   denseFirst: [emphasized('First ', '3', ' blocks use'), text('dense FFN with'), emphasized('hidden size ', '16,384'), text('instead of MoE')],
   firstBadgeFill: '#000000', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
+});
+
+export const kimiK25Spec = moeFamilySpec({
+  id: 'kimi-k2-5', title: 'Kimi K2.5 (1T)', canvas: { width: 2807, height: 2721 },
+  accent: '#2741B5', blockFill: '#7D8AC4', layers: 61, embedding: '7,168', vocabulary: '160k',
+  context: [text('YaRN context'), emphasized('', '256k', ' tokens'), emphasized('', '4k', ' RoPE base')],
+  attention: { family: 'mla', heads: 64, kvRank: 512 }, hidden: 2048,
+  experts: 384, activeExperts: 8, sharedExperts: 1,
+  expertDimensions: [emphasized('Input dim.: ', '7,168'), emphasized('Intermediate dim.: ', '2,048')],
+  modelSize: '1T', activeParams: '32B', ropeLabel: 'Partial RoPE',
+  denseFirst: [emphasized('First ', '1', ' block uses'), text('dense FFN with'), emphasized('hidden size ', '18,432'), text('instead of MoE')],
+  firstBadgeFill: '#000000', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
+});
+
+export const mistralSmall4Spec = moeFamilySpec({
+  id: 'mistral-small-4', title: 'Mistral Small 4 (119B-A6B)', canvas: { width: 2812, height: 2735 },
+  accent: '#F27200', blockFill: '#E4A166', layers: 36, embedding: '4,096', vocabulary: '131k',
+  context: [text('YaRN context'), emphasized('', '256k', ' tokens'), emphasized('', '8k', ' RoPE base')],
+  attention: { family: 'mla', heads: 32, kvRank: 512 }, hidden: 2048,
+  experts: 128, activeExperts: 4, sharedExperts: 1,
+  expertDimensions: [emphasized('Input dim.: ', '4,096'), emphasized('Intermediate dim.: ', '2,048')],
+  modelSize: '119B', activeParams: '6.63B', ropeLabel: 'Partial RoPE',
+  firstBadgeFill: '#000000', activeExpertLabel: '4 routed experts + 1 shared expert',
+  expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
+});
+
+export const minimaxM3Spec = moeFamilySpec({
+  id: 'minimax-m3-428b', title: 'MiniMax-M3 (428B)', canvas: { width: 2793, height: 2737 },
+  accent: '#EA4762', blockFill: '#EA5B69', layers: 60, embedding: '6,144', vocabulary: '200k',
+  context: [text('Native context'), emphasized('', '1M', ' tokens')],
+  attention: { family: 'gqa', heads: 64, kvHeads: 8 }, hidden: 3072,
+  experts: 128, activeExperts: 4, sharedExperts: 1,
+  expertDimensions: [emphasized('Input expert size: ', '6,144'), text('Intermediate projection size:'), emphasized('', '3,072')],
+  modelSize: '428B', activeParams: '23B',
+  activeParamsLine: { spans: [{ text: '' }, { text: 'per inference step (i.e., only ' }, { text: '5.37%', color: 'accent' }, { text: ' parameters active)' }] },
+  attentionLabelStyle: 'gqa-sparse', ropeLabel: 'Partial RoPE', showQKNorm: true, showHeadsAnnotation: false,
+  denseFirst: [emphasized('First ', '3', ' blocks use'), text('dense FFN with GQA'), emphasized('and hidden size ', '12,288'), text('instead of'), text('MiniMax Sparse Attention and MoE')],
+  firstBadgeFill: '#5E5E5E', activeExpertLabel: '4 experts + 1 shared expert', denseFirstLeader: true,
+  expertAnnotationY: 1070, resourceMaxWidth: 900, resourceLineGap: 58, wideInsets: true,
+});
+
+export const deepSeekV32Spec = moeFamilySpec({
+  id: 'deepseek-v3-2', title: 'DeepSeek-V3.2 (671B)', canvas: { width: 2786, height: 2725 },
+  accent: '#2795FF', blockFill: '#81ADEA', layers: 61, embedding: '7,168', vocabulary: '129k',
+  context: [text('YaRN context'), emphasized('', '128k', ' tokens'), emphasized('', '4k', ' RoPE base')],
+  attention: { family: 'mla', heads: 128, kvRank: 512 }, hidden: 2048,
+  experts: 256, activeExperts: 8, sharedExperts: 1,
+  expertDimensions: [text('Intermediate hidden'), text('layer dimension of'), emphasized('', '2,048')],
+  modelSize: '671B', activeParams: '37B', ropeLabel: 'Partial RoPE',
+  denseFirst: [emphasized('First ', '3', ' blocks use'), text('dense FFN with'), emphasized('hidden size ', '18,432'), text('instead of MoE')],
+  firstBadgeFill: '#000000', denseFirstLeader: true,
+  attentionLabelStyle: 'mla-dsa-plain', attentionBoxY: 1370, attentionBoxHeight: 260,
+  expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
+});
+
+export const xiaomiMimoV2FlashSpec = moeFamilySpec({
+  id: 'xiaomi-mimo-v2-flash-309b', title: 'Xiaomi MiMo-V2-Flash (309B)', canvas: { width: 2825, height: 2746 },
+  accent: '#EC6617', blockFill: '#E1996E', layers: 48, embedding: '4,096', vocabulary: '152k',
+  context: [text('Context length'), emphasized('', '32k', ' pretraining'), emphasized('', '256k', ' trained')],
+  attention: { family: 'gqa', heads: 64, kvHeads: 8 }, hidden: 2048,
+  experts: 256, activeExperts: 8, sharedExperts: 0,
+  expertDimensions: [text('Intermediate hidden'), text('layer dimension of'), emphasized('', '2,048')],
+  modelSize: '309B', activeParams: '15B',
+  attentionLabelStyle: 'gqa-swa', attentionBoxY: 1370, attentionBoxHeight: 260, ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
+  denseFirst: [text('First block uses'), text('dense FFN with'), emphasized('hidden size ', '16,384'), text('instead of MoE')],
+  firstBadgeFill: '#000000', activeExpertLabel: '8 routed experts', denseFirstLeader: true,
+  expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
 
 export const kimiK2Spec = moeFamilySpec({

@@ -10,6 +10,7 @@ const rendered = new Set(figureSpecs.map((entry) => entry.slug));
 // Verified rendering requires a completed 50% side-by-side review, not merely a registered Spec.
 const verified = new Set([
   'deepseek-r1',
+  'deepseek-v3-2',
   'deepseek-v3',
   'gemma-3-270m',
   'gemma-3-27b',
@@ -44,9 +45,13 @@ const verified = new Set([
   'qwen3-235b-a22b',
   'qwen3-coder-flash-30b-a3b',
   'kimi-k2',
+  'kimi-k2-5',
+  'minimax-m3-428b',
   'minimax-m2-230b',
   'minimax-m2-5-230b',
+  'mistral-small-4',
   'mistral-large-3',
+  'xiaomi-mimo-v2-flash-309b',
   'intellect-3',
   'glm-4-5-air',
   'glm-4-5-355b',
