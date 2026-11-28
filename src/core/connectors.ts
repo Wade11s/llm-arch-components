@@ -548,7 +548,8 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
   ): void => {
     if (budget?.open) {
       // An open endpoint is deliberately unattached, but it must not hide
-      // inside an unrelated node or sit on top of one.
+      // inside any box (including its own owner) and must stay clear of
+      // unrelated boxes.
       for (const box of input.boxes) {
         if (pointInside(point, box.box, 0.001)) {
           diagnostics.push(warning('edge-open-endpoint', `Path "${path.id}" open ${direction} is inside node "${box.owner}"`, edgeId ? [edgeId, path.id, box.owner] : [path.id, box.owner]));
