@@ -67558,11 +67558,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 2101,
+          "x": 2150,
           "y": 1184,
         },
         {
-          "x": 2101,
+          "x": 2150,
           "y": 1388,
         },
       ],

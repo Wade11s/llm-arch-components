@@ -99,7 +99,7 @@ describe('structure-expansion batch', () => {
     expect(result.scene.elements.some((element) => element.id === 'leader-window-size')).toBe(true);
     expect(result.scene.elements.find((element) => element.id === 'leader-hidden')).toMatchObject({
       kind: 'path',
-      points: [{ x: 2101, y: 1184 }, { x: 2101, y: 1388 }],
+      points: [{ x: 2150, y: 1184 }, { x: 2150, y: 1388 }],
     });
   });
 

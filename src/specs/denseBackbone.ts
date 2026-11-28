@@ -52,11 +52,13 @@ function denseBackboneSpec(input: {
   sampleInputY?: number;
 }): FigureSpec {
   const normDescription = input.showPostNorms ? 'Post-RMSNorm pairs' : input.normLabels === 'pre' ? 'Pre-RMSNorm pairs' : 'RMSNorm pairs';
-  const attentionDescription = input.attentionLabelStyle === 'mha-sliding'
-    ? input.showQKNorm ? 'QK-Norm sliding-window multi-head attention' : 'sliding-window multi-head attention'
-    : input.attentionLabelStyle === 'mha'
-      ? input.showQKNorm ? 'QK-Norm multi-head attention' : 'multi-head attention'
-      : input.showQKNorm ? 'QK-Norm grouped-query attention' : 'grouped-query attention';
+  let attentionDescription = input.showQKNorm ? 'QK-Norm grouped-query attention' : 'grouped-query attention';
+  if (input.attentionLabelStyle === 'mha') {
+    attentionDescription = input.showQKNorm ? 'QK-Norm multi-head attention' : 'multi-head attention';
+  }
+  if (input.attentionLabelStyle === 'mha-sliding') {
+    attentionDescription = input.showQKNorm ? 'QK-Norm sliding-window multi-head attention' : 'sliding-window multi-head attention';
+  }
   return {
     schemaVersion: 1,
     id: input.id,
@@ -453,7 +455,7 @@ export const olmo3Spec = denseBackboneSpec({
   headsLeaderEndX: 1680,
   headsLeaderEndY: 1750,
   hiddenAnnotationX: 1700,
-  hiddenLeaderX: 2101,
+  hiddenLeaderX: 2150,
   insetOffsetX: -40,
 });
 
