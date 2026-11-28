@@ -12,6 +12,22 @@ _Avoid_: image, picture
 A versioned, renderer-independent description of a **Figure** and its layout intent.
 _Avoid_: JSX, SVG document, drawing script
 
+**Node**:
+A single placeable element in a **Figure**, such as an operation, label, badge, or mask.
+_Avoid_: component, block, shape
+
+**Group**:
+A named container in a **Figure** that holds **Nodes** or other **Groups**, such as a model, repeat block, inset, or tower.
+_Avoid_: component, panel
+
+**Edge**:
+A semantic connection declared in a **FigureSpec**, from one **Anchor** to another.
+_Avoid_: line, arrow, connector
+
+**Anchor**:
+The endpoint of an **Edge**, naming a **Node** or **Group** and optionally the side it leaves from.
+_Avoid_: attachment point, component
+
 **Layout Template**:
 A named, versioned arrangement grammar used to organize a **FigureSpec** without requiring the author to provide coordinates.
 _Avoid_: auto-layout, arbitrary template string
@@ -23,6 +39,30 @@ _Avoid_: template option, visual style
 **Scene**:
 A positioned, serializable representation of a **Figure** produced from a normalized **FigureSpec**.
 _Avoid_: SVG, JSX, DOM tree
+
+**Path**:
+A drawn connector in a **Scene** that realizes one **Edge**, or an **Internal Wiring** segment.
+_Avoid_: line, connector
+
+**Port**:
+The boundary point and outward normal where a **Path** leaves or meets the **Node** or **Group** named by its **Anchor**.
+_Avoid_: offset, coordinate
+
+**Internal Wiring**:
+A **Path** inside an inset that connects parts of that inset and therefore has no **Edge** in the **FigureSpec**.
+_Avoid_: internal edge, decorative line
+
+**Attached Endpoint**:
+A **Path** endpoint that lies on the boundary of the **Node** or **Group** it belongs to.
+_Avoid_: anchored end, connected end
+
+**Adjacent Endpoint**:
+A **Path** endpoint that stops within a small gap of the text block it belongs to.
+_Avoid_: floating end, loose end
+
+**Open Endpoint**:
+A **Path** endpoint declared to terminate without belonging to a **Node**, **Group**, or text block, such as a model output arrow.
+_Avoid_: dangling end, unconnected line
 
 **LayoutEngine**:
 A deterministic transformation from a normalized **FigureSpec** to a **Scene** using a selected **Layout Template** or explicit placement.
