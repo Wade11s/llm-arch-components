@@ -14,7 +14,7 @@ function integerOption(value: string | undefined, name: string): number {
   return parsed;
 }
 
-function optionalIntegerOption(value: string | undefined, name: string): number | undefined {
+function positiveIntegerOption(value: string | undefined, name: string): number | undefined {
   if (value === undefined) return undefined;
   const parsed = integerOption(value, name);
   if (parsed <= 0) throw new Error(`--${name} must be positive`);
@@ -53,8 +53,8 @@ const height = integerOption(values.height, 'height');
 if (left < 0 || top < 0) throw new Error('--left and --top must be non-negative');
 if (width <= 0 || height <= 0) throw new Error('--width and --height must be positive');
 
-const resizeWidth = optionalIntegerOption(values['resize-width'], 'resize-width');
-const resizeHeight = optionalIntegerOption(values['resize-height'], 'resize-height');
+const resizeWidth = positiveIntegerOption(values['resize-width'], 'resize-width');
+const resizeHeight = positiveIntegerOption(values['resize-height'], 'resize-height');
 
 const image = await sharpFromFile(source);
 const metadata = await image.metadata();
@@ -65,7 +65,11 @@ if (left + width > metadata.width || top + height > metadata.height) {
 
 let pipeline = image.extract({ left, top, width, height });
 if (resizeWidth !== undefined || resizeHeight !== undefined) {
-  pipeline = pipeline.resize({ width: resizeWidth, height: resizeHeight });
+  pipeline = pipeline.resize(
+    resizeWidth !== undefined && resizeHeight !== undefined
+      ? { width: resizeWidth, height: resizeHeight, fit: 'fill' }
+      : { width: resizeWidth, height: resizeHeight },
+  );
 }
 
 await mkdir(dirname(out), { recursive: true });

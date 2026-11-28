@@ -2,6 +2,7 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { expect, test } from 'bun:test';
+import sharp from 'sharp';
 import { sharpFromFile } from '../scripts/lib/image';
 
 const reference = 'images/tencent-hy4-770b-a49b.webp';
@@ -43,6 +44,43 @@ test('image:crop creates a PNG crop without an ad-hoc Sharp script', async () =>
     const metadata = await (await sharpFromFile(output)).metadata();
     expect(metadata.width).toBe(700);
     expect(metadata.height).toBe(1556);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+}, 5_000);
+
+test('image:crop preserves all cropped pixels when both resize dimensions are set', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'llm-arch-crop-'));
+  const source = join(directory, 'source.png');
+  const output = join(directory, 'resized.png');
+  const svg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><rect width="10" height="50" fill="red"/><rect x="10" width="80" height="50" fill="green"/><rect x="90" width="10" height="50" fill="blue"/></svg>`);
+
+  try {
+    await sharp(svg).png().toFile(source);
+    const child = Bun.spawn([
+      process.execPath,
+      'scripts/crop-image.tsx',
+      '--source', source,
+      '--left', '0',
+      '--top', '0',
+      '--width', '100',
+      '--height', '50',
+      '--resize-width', '50',
+      '--resize-height', '50',
+      '--out', output,
+    ], { stdout: 'pipe', stderr: 'pipe' });
+    const [exitCode, stderr] = await Promise.all([
+      child.exited,
+      new Response(child.stderr).text(),
+    ]);
+    if (exitCode !== 0) throw new Error(stderr);
+
+    const { data, info } = await (await sharpFromFile(output)).raw().toBuffer({ resolveWithObject: true });
+    const pixel = (x: number, y: number) => data[(y * info.width + x) * info.channels];
+    expect(info.width).toBe(50);
+    expect(info.height).toBe(50);
+    expect(pixel(0, 25)).toBeGreaterThan(200);
+    expect(pixel(49, 25)).toBeLessThan(50);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

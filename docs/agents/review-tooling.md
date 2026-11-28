@@ -8,11 +8,11 @@ Use the project crop command instead of writing a temporary Sharp script:
 bun run image:crop -- \
   --source images/tencent-hy4-770b-a49b.webp \
   --left 1350 --top 450 --width 900 --height 2000 \
-  --resize-width 700 \
+  --resize-width 700 [--resize-height <px>] \
   --out /tmp/tencent-crop.png
 ```
 
-The command validates integer geometry, checks the crop against the source dimensions, creates the output directory, and writes PNG.
+The command validates integer geometry, checks the crop against the source dimensions, creates the output directory, and writes PNG. When both resize dimensions are set, it uses `fit: 'fill'` so no cropped pixels are discarded.
 
 ## Sharp input under Bun
 
@@ -36,13 +36,15 @@ bun run export:spec
 bun run review -- --figure tencent-hy4-770b-a49b
 ```
 
-`--figure` accepts the base slug for Spec-driven figures or the exact artifact slug (for example `tencent-hy4-770b-a49b-spec`). An unknown slug fails with an error.
+For the three golden hand-authored figures, export their SVGs with `bun run export` before selecting `deepseek-v3`, `gemma-3-27b`, or `gpt-oss-120b`.
 
-The selected artifacts are written under `artifacts/review/`:
+`--figure` accepts the base slug for Spec-driven figures or the exact artifact slug (for example `tencent-hy4-770b-a49b-spec`). An unknown slug fails with an error. Use `--out-dir <directory>` to isolate generated artifacts.
 
-- `<slug>-spec-render.png`
-- `<slug>-spec-comparison.svg`
-- `<slug>-spec-comparison.png`
+For the example above, the selected artifacts are written under `artifacts/review/`:
+
+- `tencent-hy4-770b-a49b-spec-render.png`
+- `tencent-hy4-770b-a49b-spec-comparison.svg`
+- `tencent-hy4-770b-a49b-spec-comparison.png`
 - `index.html` containing only the selected figure
 
 Use `bun run review` without `--figure` for the full review set.

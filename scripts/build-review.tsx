@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { relative } from 'node:path';
 import { parseArgs } from 'node:util';
 import { Resvg } from '@resvg/resvg-js';
 import { figureSpecs } from '../src/specs';
@@ -32,20 +33,22 @@ const figures: ReviewFigure[] = [
 const { values } = parseArgs({
   options: {
     figure: { type: 'string' },
+    'out-dir': { type: 'string' },
   },
   strict: true,
 });
 
 function selectFigures(requested: string | undefined): ReviewFigure[] {
   if (!requested) return figures;
-  const exact = figures.filter((figure) => figure.slug === requested);
-  if (exact.length > 0) return exact;
-  const specSlug = figures.filter((figure) => figure.slug === `${requested}-spec`);
-  if (specSlug.length > 0) return specSlug;
+  const exact = figures.find((figure) => figure.slug === requested);
+  if (exact) return [exact];
+  const specFigure = figures.find((figure) => figure.slug === `${requested}-spec`);
+  if (specFigure) return [specFigure];
   throw new Error(`Unknown review figure "${requested}"`);
 }
 
 const selectedFigures = selectFigures(values.figure);
+const outDir = values['out-dir'] ?? 'artifacts/review';
 
 function renderPng(svg: string, width: number): Buffer {
   return new Resvg(svg, {
@@ -59,16 +62,17 @@ function escapeXml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-await mkdir('artifacts/review', { recursive: true });
+await mkdir(outDir, { recursive: true });
 const rows: string[] = [];
 
 for (const figure of selectedFigures) {
-  const svg = await readFile(`artifacts/svg/${figure.slug}.svg`, 'utf8');
+  const svgPath = `artifacts/svg/${figure.slug}.svg`;
+  const svg = await readFile(svgPath, 'utf8');
   const reference = await (await sharpFromFile(figure.reference)).png().toBuffer();
   const width = Math.round(figure.width / 2);
   const height = Math.round(figure.height / 2);
   const generatedPng = renderPng(svg, width);
-  await writeFile(`artifacts/review/${figure.slug}-render.png`, generatedPng);
+  await writeFile(`${outDir}/${figure.slug}-render.png`, generatedPng);
 
   const comparisonSvg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${width * 2 + 72}" height="${height + 96}" viewBox="0 0 ${width * 2 + 72} ${height + 96}">
@@ -80,10 +84,11 @@ for (const figure of selectedFigures) {
   <image x="${width + 48}" y="84" width="${width}" height="${height}" href="data:image/png;base64,${generatedPng.toString('base64')}"/>
 </svg>
 `;
-  await writeFile(`artifacts/review/${figure.slug}-comparison.svg`, comparisonSvg);
+  await writeFile(`${outDir}/${figure.slug}-comparison.svg`, comparisonSvg);
   const comparisonPng = renderPng(comparisonSvg, width * 2 + 72);
-  await writeFile(`artifacts/review/${figure.slug}-comparison.png`, comparisonPng);
-  rows.push(`<tr><td>${figure.title}</td><td>${width} × ${height}</td><td><a href="${figure.slug}-comparison.svg">comparison SVG</a></td><td><a href="${figure.slug}-comparison.png">comparison PNG</a></td><td><a href="../svg/${figure.slug}.svg">standalone SVG</a></td></tr>`);
+  await writeFile(`${outDir}/${figure.slug}-comparison.png`, comparisonPng);
+  const standaloneLink = relative(outDir, svgPath).replaceAll('\\', '/');
+  rows.push(`<tr><td>${figure.title}</td><td>${width} × ${height}</td><td><a href="${figure.slug}-comparison.svg">comparison SVG</a></td><td><a href="${figure.slug}-comparison.png">comparison PNG</a></td><td><a href="${standaloneLink}">standalone SVG</a></td></tr>`);
 }
 
 const html = `<!doctype html>
@@ -91,5 +96,5 @@ const html = `<!doctype html>
 <head><meta charset="utf-8"><title>Issue #2 review</title><style>body{font-family:Arial,sans-serif;margin:40px;color:#172033}table{border-collapse:collapse}td,th{border:1px solid #d9e1ec;padding:10px 14px}th{text-align:left}</style></head>
 <body><h1>Issue #2 review artifacts</h1><p>Each comparison shows the reference image and the hand-authored React + SVG output at 50% width.</p><table><thead><tr><th>Figure</th><th>Size</th><th>Review</th><th>Raster</th><th>Export</th></tr></thead><tbody>${rows.join('')}</tbody></table></body></html>
 `;
-await writeFile('artifacts/review/index.html', html);
-console.log('Review artifacts written to artifacts/review/');
+await writeFile(`${outDir}/index.html`, html);
+console.log(`Review artifacts written to ${outDir}/`);
