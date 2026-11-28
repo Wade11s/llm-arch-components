@@ -63,7 +63,7 @@ describe('Tencent Hy4 connector flows', () => {
       edges: flowEdges,
       boxes: sceneBoxes(scene),
       endpointBudgets: {
-        'flow-sample-tokenized': { from: { gap: 8 }, to: { gap: 0 } },
+        'flow-sample-tokenized': { from: { gap: 6 }, to: { gap: 0 } },
       },
     });
     expect(diagnostics.filter((item) =>
@@ -90,6 +90,6 @@ describe('Tencent Hy4 connector flows', () => {
     const sampleBox = sceneBoxes(scene).find((box) => box.owner === 'sample-input');
     expect(sample).toBeDefined();
     expect(sampleBox).toBeDefined();
-    expect(sampleBox!.box.y - sample!.points[0].y).toBe(8);
+    expect(sampleBox!.box.y - sample!.points[0].y).toBe(6);
   });
 });

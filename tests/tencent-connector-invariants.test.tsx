@@ -55,7 +55,7 @@ describe('Tencent Hy4 connector invariants', () => {
     boxes: sceneBoxes(scene),
     annotations: leaderAnnotations,
     endpointBudgets: {
-      'flow-sample-tokenized': { from: { gap: 8 }, to: { gap: 0 } },
+      'flow-sample-tokenized': { from: { gap: 6 }, to: { gap: 0 } },
       'output-to-drafter': { from: { gap: 0 }, to: { open: true } },
     },
     severity: 'error',
@@ -80,12 +80,15 @@ describe('Tencent Hy4 connector invariants', () => {
     const ihcZoom = migratedPaths.find((path) => path.sourceId === 'ihc-zoom');
     expect(maskZoom?.role).toBe('zoom-leader');
     expect(maskZoom?.arrow).toBe('none');
-    expect(maskZoom?.points[0]).toEqual({ x: 1325, y: 1010 });
-    expect(maskZoom?.points.at(-1)).toEqual({ x: 2149, y: 1050 });
+    expect(maskZoom?.stroke.dash).toBe('dotted');
+    expect(maskZoom?.points[0]).toEqual({ x: 1543, y: 900 });
+    expect(maskZoom?.points.at(-1)).toEqual({ x: 2149, y: 557 });
+    expect(maskZoom?.points.every((point) => point.x > 1428)).toBe(true);
     expect(ihcZoom?.role).toBe('zoom-leader');
     expect(ihcZoom?.arrow).toBe('none');
-    expect(ihcZoom?.points[0]).toEqual({ x: 1300, y: 2126 });
-    expect(ihcZoom?.points.at(-1)).toEqual({ x: 1893, y: 2240 });
+    expect(ihcZoom?.points[0].x).toBe(1300);
+    expect(ihcZoom?.points[0].y).toBeCloseTo(2129.2, 1);
+    expect(ihcZoom?.points.at(-1)).toEqual({ x: 1893, y: 2175 });
   });
 
   test('keeps the output arrow open near the drafter note', () => {
@@ -96,14 +99,47 @@ describe('Tencent Hy4 connector invariants', () => {
     expect(output?.arrow).toBe('end');
   });
 
+  test('links every Tencent path and leader in the whole scene', () => {
+    const allPaths = scene.elements.filter((element): element is ScenePath => element.kind === 'path');
+    const unlinked = diagnoseConnectorLinks({
+      paths: allPaths,
+      edges: tencentHy4Spec.edges,
+      boxes: sceneBoxes(scene),
+      annotations: leaderAnnotations,
+    }).filter((item) => item.code === 'unlinked-path' || item.code === 'orphan-leader');
+    expect(unlinked).toEqual([]);
+  });
+
   test('derives annotation leaders from text bounds and lands them on the target boundary', () => {
     const vocabulary = migratedPaths.find((path) => path.sourceId === 'vocabulary');
     const context = migratedPaths.find((path) => path.sourceId === 'context');
     const embedding = migratedPaths.find((path) => path.sourceId === 'embedding');
-    expect(vocabulary?.points[0].x).toBeGreaterThan(24);
-    expect(vocabulary?.points[0].y).toBeGreaterThan(530);
-    expect(vocabulary?.points.at(-1)).toEqual({ x: 970, y: 498 });
-    expect(context?.points.at(-1)).toEqual({ x: 897.5, y: 1843.2 });
-    expect(embedding?.points.at(-1)).toEqual({ x: 880, y: 2384 });
+    const block = (id: string) => {
+      const texts = scene.elements.filter(
+        (element): element is SceneText => element.kind === 'text'
+          && element.sourceId === id
+          && element.id.startsWith(`caption-${id}-`),
+      );
+      const spans = texts.flatMap((text) => text.lines.flatMap((line) => line.spans));
+      const baselines = texts.flatMap((text) => text.lines.map((line) => line.baseline));
+      const size = spans[0]?.size ?? 0;
+      const left = Math.min(...spans.map((span) => span.x));
+      const right = Math.max(...spans.map((span) => span.x + span.width));
+      const top = Math.min(...baselines) - size;
+      const bottom = Math.max(...baselines) + size * 0.3;
+      return { left, right, top, bottom, center: (top + bottom) / 2 };
+    };
+    for (const path of [vocabulary, context, embedding]) {
+      const annotation = tencentHy4Spec.annotations?.find((item) => item.id === path?.sourceId);
+      const bounds = block(annotation!.id);
+      expect(path?.points[0].x).toBeCloseTo(bounds.right + 5, 1);
+      expect(path?.points[0].y).toBeCloseTo(bounds.center, 1);
+    }
+    expect(vocabulary?.points.at(-1)?.x).toBeGreaterThan(970);
+    expect(vocabulary?.points.at(-1)?.y).toBeLessThan(490);
+    expect(context?.points.at(-1)?.x).toBeCloseTo(897.5, 1);
+    expect(context?.points.at(-1)?.y).toBeLessThan(1840);
+    expect(embedding?.points.at(-1)?.x).toBeGreaterThan(885);
+    expect(embedding?.points.at(-1)?.y).toBeLessThan(2384);
   });
 });

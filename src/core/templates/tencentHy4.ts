@@ -135,6 +135,38 @@ function nearestPointOnBox(box: Box, from: Point): Point {
   };
 }
 
+function nearestPointOnRoundedBox(box: Box, radius: number, from: Point): Point {
+  const r = Math.max(0, Math.min(radius, box.width / 2, box.height / 2));
+  if (r === 0) return nearestPointOnBox(box, from);
+  const clamp = (value: number, min: number, max: number): number => Math.max(min, Math.min(max, value));
+  const candidates: Point[] = [
+    { x: clamp(from.x, box.x + r, box.x + box.width - r), y: box.y },
+    { x: clamp(from.x, box.x + r, box.x + box.width - r), y: box.y + box.height },
+    { x: box.x, y: clamp(from.y, box.y + r, box.y + box.height - r) },
+    { x: box.x + box.width, y: clamp(from.y, box.y + r, box.y + box.height - r) },
+  ];
+  const corners = [
+    { cx: box.x + r, cy: box.y + r, min: 180, max: 270 },
+    { cx: box.x + box.width - r, cy: box.y + r, min: 270, max: 360 },
+    { cx: box.x + box.width - r, cy: box.y + box.height - r, min: 0, max: 90 },
+    { cx: box.x + r, cy: box.y + box.height - r, min: 90, max: 180 },
+  ];
+  for (const corner of corners) {
+    const angle = (Math.atan2(from.y - corner.cy, from.x - corner.cx) * 180 / Math.PI + 360) % 360;
+    const clamped = clamp(angle, corner.min, corner.max);
+    const radians = clamped * Math.PI / 180;
+    candidates.push({
+      x: corner.cx + r * Math.cos(radians),
+      y: corner.cy + r * Math.sin(radians),
+    });
+  }
+  return candidates.reduce((best, candidate) => {
+    const bestDistance = (best.x - from.x) ** 2 + (best.y - from.y) ** 2;
+    const candidateDistance = (candidate.x - from.x) ** 2 + (candidate.y - from.y) ** 2;
+    return candidateDistance < bestDistance ? candidate : best;
+  }, candidates[0]);
+}
+
 function drawTitle(builder: TemplateScene, spec: FigureSpec): void {
   builder.text('figure-title', 'title', { x: 280, y: 150 }, spec.title, {
     size: 144,
@@ -196,7 +228,7 @@ function drawBackbone(
     box: { x: CENTER_X - sampleInputWidth / 2, y: 2680 - 38, width: sampleInputWidth, height: 38 },
     kind: 'text',
   };
-  builder.edge(edgeOf(spec, 'flow-sample-tokenized'), { fromBox: sampleInputBox, to: 'tokenized-text', fromGap: 8 });
+  builder.edge(edgeOf(spec, 'flow-sample-tokenized'), { fromBox: sampleInputBox, to: 'tokenized-text', fromGap: 6 });
   builder.edge(edgeOf(spec, 'flow-tokenized-embedding'), { from: 'tokenized-text', to: 'embedding-layer' });
   builder.edge(edgeOf(spec, 'flow-embedding-read'), { from: 'embedding-layer', to: 'ihc-read-low' });
   builder.edge(edgeOf(spec, 'flow-read-norm1'), { from: 'ihc-read-low', to: 'rmsnorm-1' });
@@ -342,7 +374,7 @@ function drawBackbone(
     align: 'center',
     label: '(RoPE + NoPE)',
   });
-  builder.flow('rope-flow', [{ x: 800, y: 1675 }, { x: 897.5, y: 1675 }]);
+  builder.flow('rope-flow', [{ x: 800, y: 1675 }, { x: 897.5, y: 1675 }], { sourceId: 'partial-rope' });
 
 }
 
@@ -439,7 +471,7 @@ function drawMask(builder: TemplateScene, spec: FigureSpec, inset: GroupSpec, ma
         stroke: COLORS.selection,
         width: 5,
         arrow: 'end',
-        sourceId: mask.id,
+        sourceId: 'mask-inset',
       });
     });
   }
@@ -563,10 +595,12 @@ function drawIhc(builder: TemplateScene, spec: FigureSpec, inset: GroupSpec, rea
   builder.flow('ihc-flow-1', [{ x: IHC.read.x + IHC.read.width, y: 2435 }, { x: IHC.sublayer.x, y: 2435 }], {
     role: 'ihc-flow',
     width: 6,
+    sourceId: 'ihc-inset',
   });
   builder.flow('ihc-flow-2', [{ x: IHC.sublayer.x + IHC.sublayer.width, y: 2435 }, { x: IHC.write.x, y: 2435 }], {
     role: 'ihc-flow',
     width: 6,
+    sourceId: 'ihc-inset',
   });
 
   [2355, 2392, 2429, 2466].forEach((y, index) => {
@@ -574,6 +608,7 @@ function drawIhc(builder: TemplateScene, spec: FigureSpec, inset: GroupSpec, rea
       role: 'ihc-branch',
       width: 5,
       arrow: 'none',
+      sourceId: 'ihc-inset',
     });
     builder.box(`ihc-branch-dot-in-${index + 1}`, 'ihc-branch-dot', {
       x: IHC.branchInX - 12,
@@ -584,11 +619,14 @@ function drawIhc(builder: TemplateScene, spec: FigureSpec, inset: GroupSpec, rea
       fill: builder.solid(spec.theme.ink),
       stroke: builder.stroke(spec.theme.ink, 0),
       radius: 12,
+      sourceId: 'ihc-inset',
+      connectorKind: 'glyph',
     });
     builder.flow(`ihc-branch-out-${index + 1}`, [{ x: IHC.write.x + IHC.write.width, y }, { x: IHC.branchOutX, y }], {
       role: 'ihc-branch',
       width: 5,
       arrow: 'none',
+      sourceId: 'ihc-inset',
     });
     builder.box(`ihc-branch-dot-out-${index + 1}`, 'ihc-branch-dot', {
       x: IHC.branchOutX - 12,
@@ -599,6 +637,8 @@ function drawIhc(builder: TemplateScene, spec: FigureSpec, inset: GroupSpec, rea
       fill: builder.solid(spec.theme.ink),
       stroke: builder.stroke(spec.theme.ink, 0),
       radius: 12,
+      sourceId: 'ihc-inset',
+      connectorKind: 'glyph',
     });
   });
 
@@ -747,19 +787,19 @@ function drawLeaders(builder: TemplateScene, spec: FigureSpec, metrics: TextMetr
       width: 5,
       dash: 'dotted',
       arrow: 'none',
-      sourceId: annotation?.id ?? node?.id,
+      sourceId: id === 'ffn' ? 'backbone' : annotation?.id ?? node?.id,
     });
   });
 
-  const annotationLeaders: Array<[Id, Point, number, number, Box]> = [
-    ['vocabulary', { x: 24, y: 530 }, 52, 62, OUTPUT_LAYER_BOX],
-    ['context', { x: 24, y: 1830 }, 48, 60, ATTENTION_BLOCK],
-    ['embedding', { x: 350, y: 2525 }, 46, 58, EMBEDDING_LAYER_BOX],
+  const annotationLeaders: Array<[Id, Point, number, number, Box, number]> = [
+    ['vocabulary', { x: 24, y: 530 }, 52, 62, OUTPUT_LAYER_BOX, 24],
+    ['context', { x: 24, y: 1830 }, 48, 60, ATTENTION_BLOCK, 28],
+    ['embedding', { x: 350, y: 2525 }, 46, 58, EMBEDDING_LAYER_BOX, 24],
   ];
-  for (const [id, at, size, lineGap, target] of annotationLeaders) {
+  for (const [id, at, size, lineGap, target, radius] of annotationLeaders) {
     const bounds = textBlockBounds(annotationLines(spec, id), at, size, lineGap, metrics, spec.theme.fontFamily);
-    const start = { x: bounds.x + bounds.width + 8, y: bounds.y + bounds.height / 2 };
-    const end = nearestPointOnBox(target, start);
+    const start = { x: bounds.x + bounds.width + 5, y: bounds.y + bounds.height / 2 };
+    const end = nearestPointOnRoundedBox(target, radius, start);
     builder.flow(`leader-${id}`, [start, end], {
       role: 'leader',
       width: 5,
@@ -769,7 +809,7 @@ function drawLeaders(builder: TemplateScene, spec: FigureSpec, metrics: TextMetr
     });
   }
 
-  builder.edge(edgeOf(spec, 'attention-mask'), { from: 'moe', to: 'mask-inset', dash: 'dotted', width: 6 });
+  builder.edge(edgeOf(spec, 'attention-mask'), { from: 'repeat-block', to: 'mask-inset', dash: 'dotted', width: 6 });
   builder.edge(edgeOf(spec, 'ihc-zoom'), { from: 'ihc-read-low', to: 'ihc-inset', dash: 'dotted', width: 6 });
 }
 

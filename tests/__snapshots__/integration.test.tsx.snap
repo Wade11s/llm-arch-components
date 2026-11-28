@@ -157989,7 +157989,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "flow-path",
-      "sourceId": undefined,
+      "sourceId": "partial-rope",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -159366,7 +159366,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "mask-selection-arc",
-      "sourceId": "mask",
+      "sourceId": "mask-inset",
       "stroke": {
         "color": "#C8241B",
         "dash": undefined,
@@ -159398,7 +159398,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "mask-selection-arc",
-      "sourceId": "mask",
+      "sourceId": "mask-inset",
       "stroke": {
         "color": "#C8241B",
         "dash": undefined,
@@ -159430,7 +159430,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "mask-selection-arc",
-      "sourceId": "mask",
+      "sourceId": "mask-inset",
       "stroke": {
         "color": "#C8241B",
         "dash": undefined,
@@ -159958,7 +159958,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-flow",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -159982,7 +159982,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-flow",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160006,7 +160006,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160029,7 +160029,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160053,7 +160053,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160076,7 +160076,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160100,7 +160100,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160123,7 +160123,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160147,7 +160147,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160170,7 +160170,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160194,7 +160194,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160217,7 +160217,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160241,7 +160241,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160264,7 +160264,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160288,7 +160288,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160311,7 +160311,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160335,7 +160335,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "ihc-branch",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -160358,7 +160358,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 12,
       "role": "ihc-branch-dot",
-      "sourceId": undefined,
+      "sourceId": "ihc-inset",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -161153,7 +161153,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "leader",
-      "sourceId": "ffn",
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": "dotted",
@@ -161168,12 +161168,12 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 500.8736000000001,
+          "x": 497.8736000000001,
           "y": 542.8,
         },
         {
-          "x": 970,
-          "y": 498,
+          "x": 970.2274909854829,
+          "y": 477.29663694614675,
         },
       ],
       "role": "leader",
@@ -161192,12 +161192,12 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 383.9360000000001,
+          "x": 380.9360000000001,
           "y": 1843.2,
         },
         {
-          "x": 897.5,
-          "y": 1843.2,
+          "x": 897.5039949641041,
+          "y": 1834.4729714897244,
         },
       ],
       "role": "leader",
@@ -161216,12 +161216,12 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 780.4272000000001,
+          "x": 777.4272000000001,
           "y": 2537.9,
         },
         {
-          "x": 880,
-          "y": 2384,
+          "x": 890.0866013999922,
+          "y": 2379.555493841816,
         },
       ],
       "role": "leader",
@@ -161241,7 +161241,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1150,
-          "y": 2634,
+          "y": 2636,
         },
         {
           "x": 1150,
@@ -161576,12 +161576,12 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1325,
-          "y": 1010,
+          "x": 1543,
+          "y": 900,
         },
         {
           "x": 2149,
-          "y": 1050,
+          "y": 557,
         },
       ],
       "role": "zoom-leader",
@@ -161601,11 +161601,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 1300,
-          "y": 2126,
+          "y": 2129.2,
         },
         {
           "x": 1893,
-          "y": 2240,
+          "y": 2175,
         },
       ],
       "role": "zoom-leader",
