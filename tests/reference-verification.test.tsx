@@ -18,7 +18,9 @@ test('verify:reference generates comparison, crops, metrics, Markdown, and a pen
     const files = await readdir(outDir);
     expect(files).toContain(`${slug}-spec-comparison.png`);
     expect(files).toContain(`${slug}-reference-verification.md`);
-    expect(files.filter((file) => file.includes('-crop-') && file.endsWith('.png')).length).toBeGreaterThanOrEqual(3);
+    expect(files.filter((file) => file.includes('-crop-') && file.endsWith('.png')).length).toBeGreaterThanOrEqual(2);
+    expect(files.some((file) => file.includes('-crop-attention.png'))).toBe(true);
+    expect(files.some((file) => file.includes('-crop-ffn-inset.png'))).toBe(true);
 
     const parsed = JSON.parse(await readFile(manifest, 'utf8'));
     expect(parsed.schemaVersion).toBe(1);
@@ -39,6 +41,11 @@ test('verify:reference generates comparison, crops, metrics, Markdown, and a pen
     expect(report).toContain('edgeDiffMean');
     expect(report).toContain('pending');
 
+    selected.baseline = {
+      referenceSha256: selected.reference.sha256,
+      svgSha256: selected.svg.sha256,
+      metrics: { pixelDiffMean: 0, edgeDiffMean: 0 },
+    };
     selected.metrics = { pixelDiffMean: 0, edgeDiffMean: 0 };
     await writeFile(manifest, JSON.stringify(parsed), 'utf8');
     await runScript('scripts/verify-reference.tsx', [slug, '--out-dir', outDir, '--manifest', manifest]);

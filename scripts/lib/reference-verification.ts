@@ -3,14 +3,32 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import sharp from 'sharp';
 import { figureSpecs } from '../../src/specs';
+import type { Scene, SceneBox, SceneGroup } from '../../src/core/types';
 import { sharpFromFile } from './image';
 
 export const referenceVerificationStatuses = ['pending', 'pass', 'accepted-difference', 'fail'] as const;
 export type ReferenceVerificationStatus = typeof referenceVerificationStatuses[number];
 
+export type ReferenceReviewChecklist = {
+  structure: boolean;
+  text: boolean;
+  connections: boolean;
+  insets: boolean;
+  visualHierarchy: boolean;
+  crops: boolean;
+};
+
 export type ReferenceVerificationEntry = {
   slug: string;
   status: ReferenceVerificationStatus;
+  issue?: number;
+  checklist?: ReferenceReviewChecklist;
+  checklistPath?: string;
+  baseline?: {
+    referenceSha256: string;
+    svgSha256: string;
+    metrics: { pixelDiffMean: number; edgeDiffMean: number };
+  };
   reference?: {
     path: string;
     sha256: string;
@@ -160,7 +178,7 @@ type CropRegion = {
   height: number;
 };
 
-export function referenceCropRegions(width: number, height: number): CropRegion[] {
+function gridCropRegions(width: number, height: number): CropRegion[] {
   const regions: CropRegion[] = [];
   const overlap = 40;
   for (let row = 0; row < 3; row += 1) {
@@ -181,16 +199,39 @@ export function referenceCropRegions(width: number, height: number): CropRegion[
   return regions;
 }
 
+export function targetedReferenceCropRegions(scene: Scene): CropRegion[] {
+  const padding = 100;
+  const targets = scene.elements.filter((element): element is SceneBox | SceneGroup => (
+    (element.kind === 'box' || element.kind === 'group')
+    && (element.role === 'attention-block' || element.role === 'inset' || element.role.endsWith('-inset'))
+  ));
+  if (targets.length === 0) return gridCropRegions(scene.canvas.width, scene.canvas.height);
+
+  return targets.map((element) => {
+    const box = element.box;
+    const left = Math.max(0, Math.floor(box.x - padding));
+    const top = Math.max(0, Math.floor(box.y - padding));
+    const right = Math.min(scene.canvas.width, Math.ceil(box.x + box.width + padding));
+    const bottom = Math.min(scene.canvas.height, Math.ceil(box.y + box.height + padding));
+    return {
+      name: element.role === 'attention-block' ? 'attention' : element.id,
+      left,
+      top,
+      width: right - left,
+      height: bottom - top,
+    };
+  });
+}
+
 export async function writeReferenceCrops(
   referencePath: string,
   renderPath: string,
   outDir: string,
   slug: string,
-  width: number,
-  height: number,
+  scene: Scene,
 ): Promise<string[]> {
   const paths: string[] = [];
-  for (const region of referenceCropRegions(width, height)) {
+  for (const region of targetedReferenceCropRegions(scene)) {
     const geometry = {
       left: region.left,
       top: region.top,
@@ -242,8 +283,8 @@ export function referenceVerificationReport(input: {
   driftWarnings?: string[];
 }): string {
   const { entry } = input;
-  const reviewed = entry.status === 'pass' || entry.status === 'accepted-difference';
-  const mark = (pass: boolean) => pass ? 'x' : ' ';
+  const checklist = entry.checklist;
+  const mark = (pass: boolean | undefined) => pass ? 'x' : ' ';
   const lines = [
     `# Reference Verification: ${input.name}`,
     '',
@@ -262,10 +303,12 @@ export function referenceVerificationReport(input: {
     '',
     '## Structured visual review',
     '',
-    `- [${mark(reviewed)}] 50% full-figure comparison reviewed`,
-    `- [${mark(reviewed)}] 100% crop review covers text, connectors, and insets`,
-    `- [${mark(reviewed)}] Structure and visual hierarchy match the reference`,
-    `- [${mark(reviewed)}] Text, connections, and callouts are free of clipping and collision`,
+    `- [${mark(checklist?.structure)}] Structure matches the reference`,
+    `- [${mark(checklist?.text)}] Text and labels match without clipping or collision`,
+    `- [${mark(checklist?.connections)}] Connections, paths, and callouts match without unintended crossings`,
+    `- [${mark(checklist?.insets)}] Insets and masks match the reference`,
+    `- [${mark(checklist?.visualHierarchy)}] Visual hierarchy and emphasis match the reference`,
+    `- [${mark(checklist?.crops)}] 50% comparison and targeted 100% crops reviewed`,
     '',
     '## Accepted differences',
     '',

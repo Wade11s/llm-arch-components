@@ -57,9 +57,9 @@ Use the unified Reference Verification command when a figure needs recorded evid
 bun run verify:reference -- tencent-hy4-770b-a49b
 ```
 
-The command exports the Spec SVG, generates a 50% comparison, six overlapping 100% crops, `pixelDiffMean` / `edgeDiffMean`, a Markdown report, and a manifest entry under `docs/verification/reference-verification.json`.
+The command exports the Spec SVG, generates a 50% comparison, targeted 100% crops derived from the Scene's attention and inset elements, `pixelDiffMean` / `edgeDiffMean`, a Markdown report, and a manifest entry under `docs/verification/reference-verification.json`.
 
-A reviewer can record a signed result after inspecting the artifacts:
+Before signing, create `docs/verification/checklists/<slug>.json` with explicit boolean outcomes for `structure`, `text`, `connections`, `insets`, `visualHierarchy`, and `crops`. A reviewer can then record a signed result after inspecting the artifacts:
 
 ```bash
 bun run verify:reference -- tencent-hy4-770b-a49b \
@@ -68,4 +68,6 @@ bun run verify:reference -- tencent-hy4-770b-a49b \
   --accepted-difference "Describe the accepted non-structural difference."
 ```
 
-Use `--out-dir <directory>` and `--manifest <file>` to isolate test or scratch output. `pixelDiffMean` and `edgeDiffMean` are advisory metrics; hard gates are structural, textual, connector, canvas, and crop-review checks. Reruns compare metrics with the figure's recorded baseline and emit `metric-drift` warnings instead of failing automatically.
+A signed baseline pins the reference hash, SVG hash, and metrics. If a later run changes the reference or SVG without an explicit signing status, the entry returns to `pending` instead of preserving a stale signature. A `fail` status requires `--issue <number>` linking to the fix issue.
+
+Use `--out-dir <directory>` and `--manifest <file>` to isolate test or scratch output, including the generated SVG. `pixelDiffMean` and `edgeDiffMean` are advisory metrics; hard gates are structural, textual, connector, canvas, and crop-review checks. Reruns compare metrics with the figure's signed baseline and emit `metric-drift` warnings instead of failing automatically.

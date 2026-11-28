@@ -1,0 +1,8 @@
+{
+  "structure": true,
+  "text": true,
+  "connections": true,
+  "insets": true,
+  "visualHierarchy": true,
+  "crops": true
+}
