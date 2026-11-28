@@ -30,6 +30,9 @@ const MASK_INSET: Box = { x: 2149, y: 517, width: 1632, height: 1560 };
 const IHC_INSET: Box = { x: 1893, y: 2135, width: 1913, height: 792 };
 const CENTER_X = 1150;
 const RESIDUAL_X = 1428;
+const OUTPUT_LAYER_BOX: Box = { x: 970, y: 418, width: 360, height: 80 };
+const ATTENTION_BLOCK: Box = { x: 897.5, y: 1612, width: 505, height: 250 };
+const EMBEDDING_LAYER_BOX: Box = { x: 880, y: 2296, width: 540, height: 88 };
 
 const MASK = {
   originX: 2534,
@@ -102,6 +105,36 @@ function streamsOf(node: OperationNode): number {
   return node.data.family === 'gated-residual' ? node.data.streams : 4;
 }
 
+function edgeOf(spec: FigureSpec, id: Id): EdgeSpec {
+  const edge = spec.edges.find((candidate) => candidate.id === id);
+  if (!edge) templateFailure('missing-edge', `Tencent Hy4 requires edge "${id}"`, [id]);
+  return edge;
+}
+
+function textBlockBounds(
+  lines: TextSpec[],
+  at: Point,
+  size: number,
+  lineGap: number,
+  metrics: TextMetrics,
+  family: string,
+): Box {
+  const width = Math.max(...lines.map((line) => line.spans.reduce(
+    (sum, span) => sum + metrics.measure(span, { size, weight: 700, family }),
+    0,
+  )));
+  const top = at.y - size;
+  const bottom = at.y + (lines.length - 1) * lineGap + size * 0.3;
+  return { x: at.x, y: top, width, height: bottom - top };
+}
+
+function nearestPointOnBox(box: Box, from: Point): Point {
+  return {
+    x: Math.max(box.x, Math.min(from.x, box.x + box.width)),
+    y: Math.max(box.y, Math.min(from.y, box.y + box.height)),
+  };
+}
+
 function drawTitle(builder: TemplateScene, spec: FigureSpec): void {
   builder.text('figure-title', 'title', { x: 280, y: 150 }, spec.title, {
     size: 144,
@@ -152,11 +185,6 @@ function drawBackbone(
     label: `${repeatCount}×`,
   });
 
-  const edgeOf = (id: Id): EdgeSpec => {
-    const edge = spec.edges.find((candidate) => candidate.id === id);
-    if (!edge) templateFailure('missing-edge', `Tencent Hy4 requires edge "${id}"`, [id]);
-    return edge;
-  };
   const sampleInputText = 'Sample input text';
   const sampleInputWidth = metrics.measure(
     { text: sampleInputText },
@@ -168,21 +196,21 @@ function drawBackbone(
     box: { x: CENTER_X - sampleInputWidth / 2, y: 2680 - 38, width: sampleInputWidth, height: 38 },
     kind: 'text',
   };
-  builder.edge(edgeOf('flow-sample-tokenized'), { fromBox: sampleInputBox, to: 'tokenized-text', fromGap: 8 });
-  builder.edge(edgeOf('flow-tokenized-embedding'), { from: 'tokenized-text', to: 'embedding-layer' });
-  builder.edge(edgeOf('flow-embedding-read'), { from: 'embedding-layer', to: 'ihc-read-low' });
-  builder.edge(edgeOf('flow-read-norm1'), { from: 'ihc-read-low', to: 'rmsnorm-1' });
-  builder.edge(edgeOf('flow-norm1-attention'), { from: 'rmsnorm-1', to: 'attention-block' });
-  builder.edge(edgeOf('flow-attention-write'), { from: 'attention-block', to: 'ihc-write-mid' });
-  builder.edge(edgeOf('flow-write-read'), { from: 'ihc-write-mid', to: 'ihc-read-top' });
-  builder.edge(edgeOf('flow-read-norm2'), { from: 'ihc-read-top', to: 'rmsnorm-2' });
-  builder.edge(edgeOf('flow-norm2-moe'), { from: 'rmsnorm-2', to: 'moe' });
-  builder.edge(edgeOf('flow-moe-write'), { from: 'moe', to: 'ihc-write-top' });
-  builder.edge(edgeOf('flow-write-head'), { from: 'ihc-write-top', to: 'final-ihc-head' });
-  builder.edge(edgeOf('flow-head-norm'), { from: 'final-ihc-head', to: 'final-rmsnorm' });
-  builder.edge(edgeOf('flow-norm-output'), { from: 'final-rmsnorm', to: 'output-layer' });
+  builder.edge(edgeOf(spec, 'flow-sample-tokenized'), { fromBox: sampleInputBox, to: 'tokenized-text', fromGap: 8 });
+  builder.edge(edgeOf(spec, 'flow-tokenized-embedding'), { from: 'tokenized-text', to: 'embedding-layer' });
+  builder.edge(edgeOf(spec, 'flow-embedding-read'), { from: 'embedding-layer', to: 'ihc-read-low' });
+  builder.edge(edgeOf(spec, 'flow-read-norm1'), { from: 'ihc-read-low', to: 'rmsnorm-1' });
+  builder.edge(edgeOf(spec, 'flow-norm1-attention'), { from: 'rmsnorm-1', to: 'attention-block' });
+  builder.edge(edgeOf(spec, 'flow-attention-write'), { from: 'attention-block', to: 'ihc-write-mid' });
+  builder.edge(edgeOf(spec, 'flow-write-read'), { from: 'ihc-write-mid', to: 'ihc-read-top' });
+  builder.edge(edgeOf(spec, 'flow-read-norm2'), { from: 'ihc-read-top', to: 'rmsnorm-2' });
+  builder.edge(edgeOf(spec, 'flow-norm2-moe'), { from: 'rmsnorm-2', to: 'moe' });
+  builder.edge(edgeOf(spec, 'flow-moe-write'), { from: 'moe', to: 'ihc-write-top' });
+  builder.edge(edgeOf(spec, 'flow-write-head'), { from: 'ihc-write-top', to: 'final-ihc-head' });
+  builder.edge(edgeOf(spec, 'flow-head-norm'), { from: 'final-ihc-head', to: 'final-rmsnorm' });
+  builder.edge(edgeOf(spec, 'flow-norm-output'), { from: 'final-rmsnorm', to: 'output-layer' });
 
-  builder.pill('output-layer', 'output-layer', { x: 970, y: 418, width: 360, height: 80 }, text('Linear output layer'), {
+  builder.pill('output-layer', 'output-layer', OUTPUT_LAYER_BOX, text('Linear output layer'), {
     fill: spec.theme.surface,
     size: 32,
   });
@@ -221,7 +249,7 @@ function drawBackbone(
     sourceId: write.id,
   });
 
-  builder.box('attention-block', 'attention-block', { x: 897.5, y: 1612, width: 505, height: 250 }, {
+  builder.box('attention-block', 'attention-block', ATTENTION_BLOCK, {
     fill: builder.solid(COLORS.attention),
     stroke: builder.stroke(spec.theme.ink, 6),
     radius: 28,
@@ -252,7 +280,7 @@ function drawBackbone(
     textFill: spec.theme.accent,
     sourceId: read.id,
   });
-  builder.pill('embedding-layer', 'embedding', { x: 880, y: 2296, width: 540, height: 88 }, text('Token embedding layer'), {
+  builder.pill('embedding-layer', 'embedding', EMBEDDING_LAYER_BOX, text('Token embedding layer'), {
     size: 32,
   });
   builder.pill('tokenized-text', 'input', { x: 980, y: 2445, width: 340, height: 88 }, text('Tokenized text'), {
@@ -705,14 +733,11 @@ function drawCaptions(
   if (embedding) drawAnnotation(builder, spec, embedding, { x: 350, y: 2525 }, { size: 46, lineGap: 58 });
 }
 
-function drawLeaders(builder: TemplateScene, spec: FigureSpec): void {
+function drawLeaders(builder: TemplateScene, spec: FigureSpec, metrics: TextMetrics): void {
   const leaders: Array<[Id, Point[]]> = [
-    ['vocabulary', [{ x: 530, y: 550 }, { x: 970, y: 500 }]],
     ['moe', [{ x: 380, y: 915 }, { x: 975, y: 1010 }]],
     ['attention', [{ x: 300, y: 1250 }, { x: 897.5, y: 1620 }]],
-    ['context', [{ x: 340, y: 1860 }, { x: 895, y: 1840 }]],
-    ['ffn', [{ x: 460, y: 2270 }, { x: 770, y: 2200 }]],
-    ['embedding', [{ x: 430, y: 2560 }, { x: 860, y: 2385 }]],
+    ['ffn', [{ x: 460, y: 2270 }, { x: 772, y: 2200 }]],
   ];
   leaders.forEach(([id, points]) => {
     const annotation = annotationOf(spec, id);
@@ -726,18 +751,26 @@ function drawLeaders(builder: TemplateScene, spec: FigureSpec): void {
     });
   });
 
-  builder.flow('mask-zoom-leader', [{ x: 1440, y: 900 }, { x: MASK_INSET.x, y: 1050 }], {
-    role: 'zoom-leader',
-    dash: 'dotted',
-    width: 6,
-    arrow: 'none',
-  });
-  builder.flow('ihc-zoom-leader', [{ x: 1440, y: 2130 }, { x: IHC_INSET.x, y: 2240 }], {
-    role: 'zoom-leader',
-    dash: 'dotted',
-    width: 6,
-    arrow: 'none',
-  });
+  const annotationLeaders: Array<[Id, Point, number, number, Box]> = [
+    ['vocabulary', { x: 24, y: 530 }, 52, 62, OUTPUT_LAYER_BOX],
+    ['context', { x: 24, y: 1830 }, 48, 60, ATTENTION_BLOCK],
+    ['embedding', { x: 350, y: 2525 }, 46, 58, EMBEDDING_LAYER_BOX],
+  ];
+  for (const [id, at, size, lineGap, target] of annotationLeaders) {
+    const bounds = textBlockBounds(annotationLines(spec, id), at, size, lineGap, metrics, spec.theme.fontFamily);
+    const start = { x: bounds.x + bounds.width + 8, y: bounds.y + bounds.height / 2 };
+    const end = nearestPointOnBox(target, start);
+    builder.flow(`leader-${id}`, [start, end], {
+      role: 'leader',
+      width: 5,
+      dash: 'dotted',
+      arrow: 'none',
+      sourceId: id,
+    });
+  }
+
+  builder.edge(edgeOf(spec, 'attention-mask'), { from: 'moe', to: 'mask-inset', dash: 'dotted', width: 6 });
+  builder.edge(edgeOf(spec, 'ihc-zoom'), { from: 'ihc-read-low', to: 'ihc-inset', dash: 'dotted', width: 6 });
 }
 
 export function layoutTencentHy4(spec: FigureSpec, context: LayoutContext): Scene {
@@ -756,11 +789,17 @@ export function layoutTencentHy4(spec: FigureSpec, context: LayoutContext): Scen
   const builder = new TemplateScene(spec.theme, context.metrics, { pillRadius: 24, pillSize: 28, pillSourceId: 'id', pillIdSuffix: false, pillTextLabel: true });
   drawTitle(builder, spec);
   drawBackbone(builder, spec, block, attention, moe, read, write, context.metrics);
-  builder.flow('output-to-drafter', [{ x: CENTER_X, y: 418 }, { x: CENTER_X, y: 300 }], { role: 'flow-path' });
+  const drafterLines = annotationLines(spec, 'drafter');
+  const drafterBottom = 225 + (drafterLines.length - 1) * 52 + 46 * 0.3;
+  builder.edge(edgeOf(spec, 'output-to-drafter'), {
+    from: 'output-layer',
+    to: 'model',
+    openTo: { x: CENTER_X, y: drafterBottom + 8 },
+  });
   drawMask(builder, spec, maskInset, maskNode);
   drawIhc(builder, spec, ihcInset, read, write);
   drawCaptions(builder, spec, block, attention, moe, ffn);
-  drawLeaders(builder, spec);
+  drawLeaders(builder, spec, context.metrics);
   return builder.scene(spec);
 }
 

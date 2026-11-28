@@ -612,8 +612,8 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
       checkEndpoint(path, start, edge.from.node, fromBoxes, budgets?.from, 'starts', edge.id);
       checkEndpoint(path, end, edge.to.node, toBoxes, budgets?.to, 'ends', edge.id);
       checkCrossing(path, fromAttached, toAttached, edge.id);
-      checkOwnerPenetration(path, fromAttached, edge.id);
-      checkOwnerPenetration(path, toAttached, edge.id);
+      if (!budgets?.from?.open) checkOwnerPenetration(path, fromAttached, edge.id);
+      if (!budgets?.to?.open) checkOwnerPenetration(path, toAttached, edge.id);
     }
   }
 
@@ -637,8 +637,8 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     checkEndpoint(path, start, fromOwner, fromBoxes, budgets?.from, 'starts');
     checkEndpoint(path, end, toOwner, toBoxes, budgets?.to, 'ends');
     checkCrossing(path, fromAttached, toAttached);
-    checkOwnerPenetration(path, fromAttached);
-    checkOwnerPenetration(path, toAttached);
+    if (!budgets?.from?.open) checkOwnerPenetration(path, fromAttached);
+    if (!budgets?.to?.open) checkOwnerPenetration(path, toAttached);
   }
 
   for (const annotation of input.annotations ?? []) {
