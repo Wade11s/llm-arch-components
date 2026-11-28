@@ -48,3 +48,24 @@ For the example above, the selected artifacts are written under `artifacts/revie
 - `index.html` containing only the selected figure
 
 Use `bun run review` without `--figure` for the full review set.
+
+## Reference Verification
+
+Use the unified Reference Verification command when a figure needs recorded evidence against its reference image:
+
+```bash
+bun run verify:reference -- tencent-hy4-770b-a49b
+```
+
+The command exports the Spec SVG, generates a 50% comparison, six overlapping 100% crops, `pixelDiffMean` / `edgeDiffMean`, a Markdown report, and a manifest entry under `docs/verification/reference-verification.json`.
+
+A reviewer can record a signed result after inspecting the artifacts:
+
+```bash
+bun run verify:reference -- tencent-hy4-770b-a49b \
+  --status accepted-difference \
+  --reviewer "agent-name (agent, not human approval)" \
+  --accepted-difference "Describe the accepted non-structural difference."
+```
+
+Use `--out-dir <directory>` and `--manifest <file>` to isolate test or scratch output. `pixelDiffMean` and `edgeDiffMean` are advisory metrics; hard gates are structural, textual, connector, canvas, and crop-review checks. Reruns compare metrics with the figure's recorded baseline and emit `metric-drift` warnings instead of failing automatically.

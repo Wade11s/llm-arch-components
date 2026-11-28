@@ -22,6 +22,7 @@
     "review": "bun scripts/build-review.tsx",
     "image:crop": "bun scripts/crop-image.tsx",
     "verify": "bun scripts/verify-exports.tsx",
+    "verify:reference": "bun scripts/verify-reference.tsx",
     "coverage": "bun scripts/build-rendering-coverage.ts"
   },
   "dependencies": {

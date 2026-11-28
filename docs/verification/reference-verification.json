@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "figures": [
+    {
+      "slug": "deepseek-v3-2",
+      "status": "pending"
+    },
+    {
+      "slug": "deepseek-v3",
+      "status": "pending"
+    },
+    {
+      "slug": "deepseek-r1",
+      "status": "pending"
+    },
+    {
+      "slug": "gemma-3-270m",
+      "status": "pending"
+    },
+    {
+      "slug": "gemma-3-27b",
+      "status": "accepted-difference",
+      "reference": {
+        "path": "../images/gemma-3-27b.webp",
+        "sha256": "4c1ba7b475a18c4dd3b2bb45242be50a11418107633f9016b7de328584ae0495",
+        "width": 2593,
+        "height": 2686
+      },
+      "svg": {
+        "path": "artifacts/svg/gemma-3-27b-spec.svg",
+        "sha256": "f1712c43bb07496467b03eda0311a92e8e430fdc42c3abfe42916dd69ab277fb"
+      },
+      "metrics": {
+        "pixelDiffMean": 0.044208,
+        "edgeDiffMean": 0.03711
+      },
+      "artifacts": {
+        "comparison": "artifacts/review/gemma-3-27b-reference/gemma-3-27b-spec-comparison.png",
+        "crops": [
+          "artifacts/review/gemma-3-27b-reference/gemma-3-27b-reference-crop-top-left.png",
+          "artifacts/review/gemma-3-27b-reference/gemma-3-27b-reference-crop-top-right.png",
+          "artifacts/review/gemma-3-27b-reference/gemma-3-27b-reference-crop-middle-left.png",
+          "artifacts/review/gemma-3-27b-reference/gemma-3-27b-reference-crop-middle-right.png",
+          "artifacts/review/gemma-3-27b-reference/gemma-3-27b-reference-crop-bottom-left.png",
+          "artifacts/review/gemma-3-27b-reference/gemma-3-27b-reference-crop-bottom-right.png"
+        ],
+        "report": "artifacts/review/gemma-3-27b-reference/gemma-3-27b-reference-verification.md"
+      },
+      "reviewer": "magpie/kimi-code-cn/k3.1-pro (agent, not human approval)",
+      "reviewedAt": "2026-11-28T12:34:20.015Z",
+      "acceptedDifferences": [
+        "System font metrics, antialiasing, dotted-line dash phase, and hand-drawn brace curves differ from the WebP reference; the faint source watermark is intentionally omitted.",
+        "Side-pill and callout text metrics differ slightly within bounds, without clipping or collision."
+      ]
+    },
+    {
+      "slug": "gemma-4-12b",
+      "status": "pending"
+    },
+    {
+      "slug": "gemma-4-31b",
+      "status": "pending"
+    },
+    {
+      "slug": "gemma-4-e2b",
+      "status": "pending"
+    },
+    {
+      "slug": "gemma-4-e4b",
+      "status": "pending"
+    },
+    {
+      "slug": "gpt-oss-20b",
+      "status": "pending"
+    },
+    {
+      "slug": "gpt-oss-120b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-8-flash-next-125b-a6b",
+      "status": "pending"
+    },
+    {
+      "slug": "glm-5-4",
+      "status": "pending"
+    },
+    {
+      "slug": "antares-1b",
+      "status": "pending"
+    },
+    {
+      "slug": "llama-3-2-1b",
+      "status": "pending"
+    },
+    {
+      "slug": "llama-3-2-3b",
+      "status": "pending"
+    },
+    {
+      "slug": "llama-3-8b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-0-6b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-4b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-8b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-32b",
+      "status": "pending"
+    },
+    {
+      "slug": "phi-4",
+      "status": "pending"
+    },
+    {
+      "slug": "vibethinker-3b",
+      "status": "pending"
+    },
+    {
+      "slug": "nanbeige-4-1-3b",
+      "status": "pending"
+    },
+    {
+      "slug": "nanbeige-4-2-3b",
+      "status": "pending"
+    },
+    {
+      "slug": "nanbeige-4-3-33b",
+      "status": "pending"
+    },
+    {
+      "slug": "mistral-small-3-1-24b",
+      "status": "pending"
+    },
+    {
+      "slug": "smollm3-3b",
+      "status": "pending"
+    },
+    {
+      "slug": "olmo-3-7b",
+      "status": "pending"
+    },
+    {
+      "slug": "olmo-2-7b",
+      "status": "pending"
+    },
+    {
+      "slug": "domyn-edge-3-93b",
+      "status": "pending"
+    },
+    {
+      "slug": "granite-4-1-30b",
+      "status": "pending"
+    },
+    {
+      "slug": "gpt-2-xl-1-5b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-30b-a3b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-235b-a22b",
+      "status": "pending"
+    },
+    {
+      "slug": "qwen3-coder-flash-30b-a3b",
+      "status": "pending"
+    },
+    {
+      "slug": "kimi-k2",
+      "status": "pending"
+    },
+    {
+      "slug": "kimi-k2-5",
+      "status": "pending"
+    },
+    {
+      "slug": "minimax-m3-428b",
+      "status": "pending"
+    },
+    {
+      "slug": "minimax-m2-230b",
+      "status": "pending"
+    },
+    {
+      "slug": "minimax-m2-5-230b",
+      "status": "pending"
+    },
+    {
+      "slug": "mistral-small-4",
+      "status": "pending"
+    },
+    {
+      "slug": "mistral-large-3",
+      "status": "pending"
+    },
+    {
+      "slug": "xiaomi-mimo-v2-flash-309b",
+      "status": "pending"
+    },
+    {
+      "slug": "intellect-3",
+      "status": "pending"
+    },
+    {
+      "slug": "glm-4-5-air",
+      "status": "pending"
+    },
+    {
+      "slug": "glm-4-5-355b",
+      "status": "pending"
+    },
+    {
+      "slug": "glm-4-7-355b",
+      "status": "pending"
+    },
+    {
+      "slug": "glm-5-1",
+      "status": "pending"
+    },
+    {
+      "slug": "glm-5-744b",
+      "status": "accepted-difference",
+      "reference": {
+        "path": "../images/glm-5-744b.webp",
+        "sha256": "6b164d6fb0e246a9f568f5ea9ac0602b315be30ddcf32f60171a4c5bb2c112d0",
+        "width": 2777,
+        "height": 2703
+      },
+      "svg": {
+        "path": "artifacts/svg/glm-5-744b-spec.svg",
+        "sha256": "3df55674578141096317545b1ddabef19fbade4918a8f7b06a2cecaf60c0e95a"
+      },
+      "metrics": {
+        "pixelDiffMean": 0.092924,
+        "edgeDiffMean": 0.06286
+      },
+      "artifacts": {
+        "comparison": "artifacts/review/glm-5-744b-reference/glm-5-744b-spec-comparison.png",
+        "crops": [
+          "artifacts/review/glm-5-744b-reference/glm-5-744b-reference-crop-top-left.png",
+          "artifacts/review/glm-5-744b-reference/glm-5-744b-reference-crop-top-right.png",
+          "artifacts/review/glm-5-744b-reference/glm-5-744b-reference-crop-middle-left.png",
+          "artifacts/review/glm-5-744b-reference/glm-5-744b-reference-crop-middle-right.png",
+          "artifacts/review/glm-5-744b-reference/glm-5-744b-reference-crop-bottom-left.png",
+          "artifacts/review/glm-5-744b-reference/glm-5-744b-reference-crop-bottom-right.png"
+        ],
+        "report": "artifacts/review/glm-5-744b-reference/glm-5-744b-reference-verification.md"
+      },
+      "reviewer": "magpie/kimi-code-cn/k3.1-pro (agent, not human approval)",
+      "reviewedAt": "2026-11-28T12:34:11.518Z",
+      "acceptedDifferences": [
+        "System font metrics, antialiasing, dotted-line dash phase, and hand-drawn brace curves differ from the WebP reference; the faint source watermark is intentionally omitted.",
+        "Title placement and resource-note wrapping differ slightly within bounds, without changing structure or facts."
+      ]
+    },
+    {
+      "slug": "qwen3-next-80b-a3b",
+      "status": "pending"
+    },
+    {
+      "slug": "kimi-linear-48b-a3b",
+      "status": "pending"
+    },
+    {
+      "slug": "xlstm-7b",
+      "status": "pending"
+    },
+    {
+      "slug": "lfm2-5-8b-a1b",
+      "status": "pending"
+    },
+    {
+      "slug": "inkling-2-mini",
+      "status": "pending"
+    },
+    {
+      "slug": "motif-3-beta",
+      "status": "pending"
+    },
+    {
+      "slug": "deepseek-v4-1-flash",
+      "status": "pending"
+    },
+    {
+      "slug": "tencent-hy4-770b-a49b",
+      "status": "accepted-difference",
+      "reference": {
+        "path": "../images/tencent-hy4-770b-a49b.webp",
+        "sha256": "0d5d474f17ec08e9434dfc1de20ca80bba6bd4555702c1dd319827a3acba6fda",
+        "width": 3834,
+        "height": 2949
+      },
+      "svg": {
+        "path": "artifacts/svg/tencent-hy4-770b-a49b-spec.svg",
+        "sha256": "2d9088ce2b5218b65bc24383dded6a6cf9b91c4202643645c0e6d2692f9a3181"
+      },
+      "metrics": {
+        "pixelDiffMean": 0.067082,
+        "edgeDiffMean": 0.05426
+      },
+      "artifacts": {
+        "comparison": "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-spec-comparison.png",
+        "crops": [
+          "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-reference-crop-top-left.png",
+          "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-reference-crop-top-right.png",
+          "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-reference-crop-middle-left.png",
+          "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-reference-crop-middle-right.png",
+          "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-reference-crop-bottom-left.png",
+          "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-reference-crop-bottom-right.png"
+        ],
+        "report": "artifacts/review/tencent-hy4-770b-a49b-reference/tencent-hy4-770b-a49b-reference-verification.md"
+      },
+      "reviewer": "magpie/kimi-code-cn/k3.1-pro (agent, not human approval)",
+      "reviewedAt": "2026-11-28T12:34:02.731Z",
+      "acceptedDifferences": [
+        "System font metrics, antialiasing, dotted-line dash phase, and hand-drawn brace curves differ from the WebP reference; the faint source watermark is intentionally omitted.",
+        "The DSA accent in the attention label differs from the reference, and zoom/callout anchor positions differ slightly while remaining attached and free of unintended crossings."
+      ]
+    }
+  ]
+}

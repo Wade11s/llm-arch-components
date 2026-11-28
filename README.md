@@ -28,6 +28,7 @@ bun run build     # strict TypeScript + production build
 bun run export    # standalone prototype SVGs into artifacts/svg/
 bun run export:spec  # Spec-driven SVGs into artifacts/svg/
 bun run verify    # deterministic/self-contained SVG + raster validation
+bun run verify:reference -- <slug>  # reference comparison, crops, metrics, and tracked evidence
 bun run review    # 50% comparison images into artifacts/review/; add -- --figure <slug> for one figure
 bun run image:crop -- --source <image> --left <px> --top <px> --width <px> --height <px> --out <file>
 bun run coverage  # regenerate docs/research/rendering-coverage.md
