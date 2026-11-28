@@ -133,6 +133,13 @@ function pointInside(point: Point, box: Box, pad = 0): boolean {
     && point.y < box.y + box.height - pad;
 }
 
+function boxContainsBox(outer: Box, inner: Box): boolean {
+  return outer.x <= inner.x
+    && outer.y <= inner.y
+    && outer.x + outer.width >= inner.x + inner.width
+    && outer.y + outer.height >= inner.y + inner.height;
+}
+
 function facing(from: ConnectorPort, to: ConnectorPort): boolean {
   return from.normal.x === -to.normal.x && from.normal.y === -to.normal.y;
 }
@@ -539,7 +546,23 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     direction: 'starts' | 'ends',
     edgeId?: Id,
   ): void => {
-    if (budget?.open) return;
+    if (budget?.open) {
+      // An open endpoint is deliberately unattached, but it must not hide
+      // inside any box (including its own owner) and must stay clear of
+      // unrelated boxes.
+      for (const box of input.boxes) {
+        if (pointInside(point, box.box, 0.001)) {
+          diagnostics.push(warning('edge-open-endpoint', `Path "${path.id}" open ${direction} is inside node "${box.owner}"`, edgeId ? [edgeId, path.id, box.owner] : [path.id, box.owner]));
+          return;
+        }
+        if (box.owner === owner) continue;
+        if (distanceToBox(point, box.box) < DEFAULT_CLEARANCE) {
+          diagnostics.push(warning('edge-open-endpoint', `Path "${path.id}" open ${direction} is within ${DEFAULT_CLEARANCE}px of node "${box.owner}"`, edgeId ? [edgeId, path.id, box.owner] : [path.id, box.owner]));
+          return;
+        }
+      }
+      return;
+    }
     if (boxes.length === 0) return;
     const gap = budget?.gap ?? 0;
     const distance = Math.min(...boxes.map((box) => distanceToBoundary(point, box.box)));
@@ -559,12 +582,13 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     toBox: ConnectorBox,
     edgeId?: Id,
   ): void => {
-    const start = path.points[0];
-    const end = path.points[path.points.length - 1];
     for (let index = 0; index < path.points.length - 1; index += 1) {
       for (const obstacle of input.boxes) {
         if (obstacle.id === fromBox.id || obstacle.id === toBox.id) continue;
-        if (pointInside(start, obstacle.box, 0.001) || pointInside(end, obstacle.box, 0.001)) continue;
+        // Crossing a container of the endpoint's own box is intended (the
+        // port sits inside the group being left); a foreign box that merely
+        // happens to contain the start/end point must still be checked.
+        if (boxContainsBox(obstacle.box, fromBox.box) || boxContainsBox(obstacle.box, toBox.box)) continue;
         if (segmentCrossesBox(path.points[index], path.points[index + 1], obstacle.box)) {
           diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" crosses node "${obstacle.owner}"`, edgeId ? [edgeId, path.id, obstacle.owner] : [path.id, obstacle.owner]));
           return;
@@ -612,8 +636,8 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
       checkEndpoint(path, start, edge.from.node, fromBoxes, budgets?.from, 'starts', edge.id);
       checkEndpoint(path, end, edge.to.node, toBoxes, budgets?.to, 'ends', edge.id);
       checkCrossing(path, fromAttached, toAttached, edge.id);
-      checkOwnerPenetration(path, fromAttached, edge.id);
-      checkOwnerPenetration(path, toAttached, edge.id);
+      if (!budgets?.from?.open) checkOwnerPenetration(path, fromAttached, edge.id);
+      if (!budgets?.to?.open) checkOwnerPenetration(path, toAttached, edge.id);
     }
   }
 
@@ -637,8 +661,8 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     checkEndpoint(path, start, fromOwner, fromBoxes, budgets?.from, 'starts');
     checkEndpoint(path, end, toOwner, toBoxes, budgets?.to, 'ends');
     checkCrossing(path, fromAttached, toAttached);
-    checkOwnerPenetration(path, fromAttached);
-    checkOwnerPenetration(path, toAttached);
+    if (!budgets?.from?.open) checkOwnerPenetration(path, fromAttached);
+    if (!budgets?.to?.open) checkOwnerPenetration(path, toAttached);
   }
 
   for (const annotation of input.annotations ?? []) {

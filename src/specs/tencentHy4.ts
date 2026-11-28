@@ -137,8 +137,12 @@ export const tencentHy4Spec: FigureSpec = {
     { id: 'flow-write-head', kind: 'flow', from: { node: 'ihc-write' }, to: { node: 'final-ihc-head' } },
     { id: 'flow-head-norm', kind: 'flow', from: { node: 'final-ihc-head' }, to: { node: 'final-rmsnorm' } },
     { id: 'flow-norm-output', kind: 'flow', from: { node: 'final-rmsnorm' }, to: { node: 'output-layer' } },
-    { id: 'attention-mask', kind: 'zoom', from: { node: 'attention' }, to: { node: 'mask' } },
-    { id: 'ihc-zoom', kind: 'zoom', from: { node: 'ihc-read' }, to: { node: 'ihc-inset' } },
+    // Zoom anchors name the semantic owner; the template selects the exact box
+    // (backbone -> repeat-block, ihc-read -> iHC Read low). Offsets are pixels
+    // from the side midpoint and the resolver clamps them to the corner inset.
+    { id: 'attention-mask', kind: 'zoom', from: { node: 'backbone', side: 'right', offset: -631 }, to: { node: 'mask-inset', side: 'left', offset: -647 } },
+    { id: 'ihc-zoom', kind: 'zoom', from: { node: 'ihc-read', side: 'right', offset: 22 }, to: { node: 'ihc-inset', side: 'left', offset: -390 } },
+    { id: 'output-to-drafter', kind: 'flow', from: { node: 'output-layer', side: 'top' }, to: { node: 'model' } },
   ],
   annotations: [
     {
@@ -149,20 +153,23 @@ export const tencentHy4Spec: FigureSpec = {
     },
     {
       id: 'vocabulary',
-      target: 'model',
+      target: 'output-layer',
       placement: 'left',
+      style: 'leader',
       content: { bullets: [text('Vocabulary size of'), accent('121k')] },
     },
     {
       id: 'context',
-      target: 'backbone',
+      target: 'attention',
       placement: 'left',
+      style: 'leader',
       content: { bullets: [text('Native context'), accent('1M tokens')] },
     },
     {
       id: 'embedding',
-      target: 'model',
+      target: 'embedding-layer',
       placement: 'bottom',
+      style: 'leader',
       content: { bullets: [text('Embedding'), accented('dimension of\u00A0', '6,144')] },
     },
   ],
