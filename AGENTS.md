@@ -17,3 +17,7 @@ Uses the five canonical default labels: `needs-triage`, `needs-info`, `ready-for
 ### Domain docs
 
 Single-context layout: root `GLOSSARY.md` and `docs/adr/`. See `docs/agents/domain.md`.
+
+### Review tooling
+
+For reference-image crops and single-figure visual checks, use `docs/agents/review-tooling.md`.
