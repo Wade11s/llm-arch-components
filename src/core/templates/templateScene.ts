@@ -147,7 +147,7 @@ export class TemplateScene {
     id: Id,
     role: string,
     box: Box,
-    options: Parameters<SceneBuilder['box']>[3] & { connectorKind?: ConnectorBox['kind'] } = {},
+    options: Parameters<SceneBuilder['box']>[3] & { connectorKind?: 'glyph' } = {},
   ) {
     const { connectorKind, ...boxOptions } = options;
     this.builder.box(id, role, box, boxOptions);
@@ -156,8 +156,8 @@ export class TemplateScene {
       owner: boxOptions.sourceId ?? id,
       box,
       radius: boxOptions.radius ?? 26,
-      kind: connectorKind ?? 'node',
-    });
+      kind: 'node',
+    }, connectorKind !== 'glyph');
   }
 
   group(
@@ -171,7 +171,7 @@ export class TemplateScene {
     this.registerBox({ id, owner: options.sourceId ?? id, box, radius: 32, kind: 'group' });
   }
 
-  private registerBox(box: ConnectorBox): void {
+  private registerBox(box: ConnectorBox, ownerLookup = true): void {
     const previous = this.boxes.get(box.id);
     if (previous) {
       const previousOwnerBoxes = this.boxesByOwner.get(previous.owner) ?? [];
@@ -180,7 +180,7 @@ export class TemplateScene {
       if (previousOwnerBoxes.length === 0) this.boxesByOwner.delete(previous.owner);
     }
     this.boxes.set(box.id, box);
-    if (box.kind === 'glyph') return;
+    if (!ownerLookup) return;
     const ownerBoxes = this.boxesByOwner.get(box.owner) ?? [];
     const ownerIndex = ownerBoxes.findIndex((candidate) => candidate.id === box.id);
     if (ownerIndex >= 0) ownerBoxes[ownerIndex] = box;

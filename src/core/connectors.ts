@@ -8,7 +8,7 @@ export type ConnectorBox = {
   owner: Id;
   box: Box;
   radius?: number;
-  kind?: 'node' | 'group' | 'text' | 'glyph';
+  kind?: 'node' | 'group' | 'text';
 };
 
 export type ConnectorRequest = {

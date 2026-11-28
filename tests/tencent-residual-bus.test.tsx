@@ -3,7 +3,6 @@ import { renderFigure } from '../src/core/renderFigure';
 import type { Box, SceneBox, ScenePath } from '../src/core/types';
 import { tencentHy4Spec } from '../src/specs/tencentHy4';
 
-const BUS_Y = [872, 1328, 1520, 2126];
 
 function segmentHitsBox(a: { x: number; y: number }, b: { x: number; y: number }, box: Box): boolean {
   const minX = Math.min(a.x, b.x);
@@ -59,19 +58,24 @@ describe('Tencent Hy4 residual bus', () => {
     expect(branches).toHaveLength(streams);
 
     const pills = ['ihc-write-top', 'ihc-read-top', 'ihc-write-mid', 'ihc-read-low'];
-    const branchX = branches[0]?.points[1]?.x;
-    expect(trunk?.points).toEqual([
-      { x: branchX, y: BUS_Y[0] },
-      { x: branchX, y: BUS_Y[3] },
-    ]);
-    for (const [index, y] of BUS_Y.entries()) {
+    const pillBoxes = pills.map((id) => {
       const pill = scene.elements.find(
-        (element): element is SceneBox => element.kind === 'box' && element.id === pills[index],
+        (element): element is SceneBox => element.kind === 'box' && element.id === id,
       );
       expect(pill).toBeDefined();
-      const branch = branches.find((candidate) => candidate.points[0]?.y === y);
+      return pill!;
+    });
+    const ys = pillBoxes.map((pill) => pill.box.y + pill.box.height / 2);
+    const branchX = branches[0]?.points[1]?.x;
+    expect(branchX).toBe(1428);
+    expect(trunk?.points).toEqual([
+      { x: branchX, y: ys[0] },
+      { x: branchX, y: ys[3] },
+    ]);
+    for (const [index, y] of ys.entries()) {
+      const branch = branches.find((candidate) => Math.abs(candidate.points[0]?.y - y) < 0.01);
       expect(branch?.points).toEqual([
-        { x: pill!.box.x + pill!.box.width, y },
+        { x: pillBoxes[index].box.x + pillBoxes[index].box.width, y },
         { x: branchX, y },
       ]);
       const dot = dots.find((candidate) => candidate.box.y === y - 11);
