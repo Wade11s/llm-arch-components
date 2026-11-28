@@ -187,6 +187,7 @@ export const gemma431bSpec = denseGemmaSpec({
 export const gemma4E2bSpec = denseGemmaSpec({
   id: 'gemma-4-e2b',
   title: 'Gemma 4 E2B',
+  canvas: { width: 2759, height: 2686 },
   layers: 35,
   hidden: 12288,
   hiddenAnnotation: { bullets: [
@@ -225,6 +226,7 @@ export const gemma4E2bSpec = denseGemmaSpec({
 export const gemma4E4bSpec = denseGemmaSpec({
   id: 'gemma-4-e4b',
   title: 'Gemma 4 E4B',
+  canvas: { width: 2580, height: 2686 },
   layers: 42,
   hidden: 10240,
   hiddenAnnotation: { bullets: [

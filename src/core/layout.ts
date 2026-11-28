@@ -321,7 +321,7 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     const repeatLoopSecondaryLabel = typeof layoutOptions?.repeatLoopSecondaryLabel === 'string'
       ? layoutOptions.repeatLoopSecondaryLabel
       : undefined;
-    addFlow(builder, 'repeat-loop', [{ x: 1210, y: 480 }, { x: 1560, y: 480 }, { x: 1560, y: 1480 }, { x: 1210, y: 1480 }], { role: 'repeat-loop', stroke: spec.theme.accent });
+    addFlow(builder, 'repeat-loop', [{ x: 1210, y: 480 }, { x: 1500, y: 480 }, { x: 1500, y: 1900 }, { x: 1419, y: 1900 }], { role: 'repeat-loop', stroke: spec.theme.accent });
     addPill(builder, spec, 'repeat-loop-label', 'repeat-loop-label', { x: 1260, y: 410, width: 560, height: 100 }, { spans: [{ text: repeatLoopLabel }] }, { stroke: spec.theme.accent, radius: 26, secondaryText: repeatLoopSecondaryLabel ? { spans: [{ text: repeatLoopSecondaryLabel }] } : undefined });
   }
 

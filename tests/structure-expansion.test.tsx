@@ -99,7 +99,7 @@ describe('structure-expansion batch', () => {
     expect(result.scene.elements.some((element) => element.id === 'leader-window-size')).toBe(true);
     expect(result.scene.elements.find((element) => element.id === 'leader-hidden')).toMatchObject({
       kind: 'path',
-      points: [{ x: 1600, y: 1184 }, { x: 1600, y: 1388 }],
+      points: [{ x: 2101, y: 1184 }, { x: 2101, y: 1388 }],
     });
   });
 
@@ -116,7 +116,10 @@ describe('structure-expansion batch', () => {
     expect(text).toContain('head dim 128');
     expect(text).toContain('size of 10,752');
     expect(text).toContain('22');
-    expect(result.scene.elements.some((element) => element.id === 'repeat-loop')).toBe(true);
+    expect(result.scene.elements.find((element) => element.id === 'repeat-loop')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 1210, y: 480 }, { x: 1500, y: 480 }, { x: 1500, y: 1900 }, { x: 1419, y: 1900 }],
+    });
     expect(result.scene.elements.some((element) => element.id === 'repeat-loop-label-box')).toBe(true);
   });
 
