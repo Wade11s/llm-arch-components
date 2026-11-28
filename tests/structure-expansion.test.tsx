@@ -34,6 +34,9 @@ describe('structure-expansion batch', () => {
     expect(text).toContain('8 attention heads');
     expect(text).toContain('1 key & value heads');
     expect(text).toContain('35');
+    const perLayerIndex = result.scene.elements.findIndex((element) => element.id === 'per-layer-embeddings-box');
+    const outputFlowIndex = result.scene.elements.findIndex((element) => element.id === 'flow-output');
+    expect(perLayerIndex).toBeGreaterThan(outputFlowIndex);
     expect(result.scene.elements.some((element) => element.id === 'per-layer-embeddings-box')).toBe(true);
   });
 
@@ -67,6 +70,14 @@ describe('structure-expansion batch', () => {
     expect(text).toContain('dimension of 11,008');
     expect(text).toContain('128k');
     expect(result.scene.elements.some((element) => element.id === 'nope-box')).toBe(true);
+    expect(result.scene.elements.find((element) => element.id === 'leader-nope')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 250, y: 960 }, { x: 260, y: 1535 }],
+    });
+    expect(result.scene.elements.find((element) => element.id === 'leader-context')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 320, y: 1845 }, { x: 740, y: 1624 }],
+    });
   });
 
   test('renders Olmo 3 (7B) with sliding-window MHA and a window-size callout', () => {
@@ -86,6 +97,10 @@ describe('structure-expansion batch', () => {
     expect(text).toContain('32 key & value heads');
     expect(text).toContain('(regular multi-head attention)');
     expect(result.scene.elements.some((element) => element.id === 'leader-window-size')).toBe(true);
+    expect(result.scene.elements.find((element) => element.id === 'leader-hidden')).toMatchObject({
+      kind: 'path',
+      points: [{ x: 1600, y: 1184 }, { x: 1600, y: 1388 }],
+    });
   });
 
   test('renders Nanbeige4.2 (3B) with repeat-once weight sharing and distinct/total layer note', () => {
@@ -93,7 +108,8 @@ describe('structure-expansion batch', () => {
     const text = sceneText(result.scene);
 
     expect(text).toContain('Nanbeige4.2 (3B)');
-    expect(text).toContain('Repeat once with same 22-layer weights');
+    expect(text).toContain('Repeat once with same');
+    expect(text).toContain('22-layer weights');
     expect(text).toContain('22× distinct layers;');
     expect(text).toContain('44× total layers');
     expect(text).toContain('48 Q heads, 8 KV heads (group size 6)');

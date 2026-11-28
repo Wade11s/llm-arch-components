@@ -198,10 +198,6 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     sourceId: block.id,
   });
 
-  if (perLayerEmbeddingsNode) {
-    addPill(builder, spec, 'per-layer-embeddings', 'per-layer-embeddings', { x: 752, y: 650, width: 540, height: 70 }, textOf(perLayerEmbeddingsNode), { stroke: normStroke, radius: 26 });
-  }
-
   addFlow(builder, 'residual-attention', [{ x: cx, y: 1848 }, { x: 1265, y: 1848 }, { x: 1265, y: 1326 }, { x: 1054, y: 1326 }], { role: 'residual-path', junction: 'plus' });
   addFlow(builder, 'residual-ffn', [{ x: cx, y: 1260 }, { x: 1265, y: 1260 }, { x: 1265, y: 769 }, { x: 1054, y: 769 }], { role: 'residual-path', junction: 'plus' });
 
@@ -250,6 +246,9 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-ffn', 'dropout', { x: 852, y: 832, width: 348, height: 84 }, dropoutLabel, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: normLabels === 'layernorm' ? 'Final LayerNorm' : 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
+  if (perLayerEmbeddingsNode) {
+    addPill(builder, spec, 'per-layer-embeddings', 'per-layer-embeddings', { x: 752, y: 650, width: 540, height: 70 }, textOf(perLayerEmbeddingsNode), { stroke: normStroke, radius: 26 });
+  }
   const qkNormStroke = layoutOptions?.qkNormStroke;
   const ropeStroke = layoutOptions?.ropeStroke;
   if (showQKNorm) addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, {
@@ -319,12 +318,15 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     const repeatLoopLabel = typeof layoutOptions?.repeatLoopLabel === 'string'
       ? layoutOptions.repeatLoopLabel
       : 'Repeat once with same weights';
+    const repeatLoopSecondaryLabel = typeof layoutOptions?.repeatLoopSecondaryLabel === 'string'
+      ? layoutOptions.repeatLoopSecondaryLabel
+      : undefined;
     addFlow(builder, 'repeat-loop', [{ x: 1210, y: 480 }, { x: 1560, y: 480 }, { x: 1560, y: 1480 }, { x: 1210, y: 1480 }], { role: 'repeat-loop', stroke: spec.theme.accent });
-    addPill(builder, spec, 'repeat-loop-label', 'repeat-loop-label', { x: 1260, y: 410, width: 560, height: 84 }, { spans: [{ text: repeatLoopLabel }] }, { stroke: spec.theme.accent, radius: 26 });
+    addPill(builder, spec, 'repeat-loop-label', 'repeat-loop-label', { x: 1260, y: 410, width: 560, height: 100 }, { spans: [{ text: repeatLoopLabel }] }, { stroke: spec.theme.accent, radius: 26, secondaryText: repeatLoopSecondaryLabel ? { spans: [{ text: repeatLoopSecondaryLabel }] } : undefined });
   }
 
   if (annotationOf(spec, 'nope')) {
-    addFlow(builder, 'leader-nope', [{ x: 200, y: 960 }, { x: 260, y: 1535 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
+    addFlow(builder, 'leader-nope', [{ x: 250, y: 960 }, { x: 260, y: 1535 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
     addAnnotation(builder, spec, 'nope', { x: 25, y: 920 });
   }
   if (annotationOf(spec, 'window-size')) {
@@ -363,7 +365,13 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
       x: typeof layoutOptions?.contextLeaderEndX === 'number' ? layoutOptions.contextLeaderEndX : 420,
       y: typeof layoutOptions?.contextLeaderEndY === 'number' ? layoutOptions.contextLeaderEndY : 1624,
     }]],
-    ['leader-hidden', [{ x: 2010, y: 1184 }, { x: 2010, y: 1388 }]],
+    ['leader-hidden', [{
+      x: typeof layoutOptions?.hiddenLeaderX === 'number' ? layoutOptions.hiddenLeaderX : 2010,
+      y: 1184,
+    }, {
+      x: typeof layoutOptions?.hiddenLeaderX === 'number' ? layoutOptions.hiddenLeaderX : 2010,
+      y: 1388,
+    }]],
   ];
   leaders
     .filter(([id]) => (id === 'leader-attention' ? Boolean(annotationOf(spec, 'heads')) : true))

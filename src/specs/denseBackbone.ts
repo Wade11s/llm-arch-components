@@ -39,7 +39,11 @@ function denseBackboneSpec(input: {
   windowSizeAnnotation?: AnnotationContent;
   repeatOnceWithSameWeights?: boolean;
   repeatLoopLabel?: string;
+  repeatLoopSecondaryLabel?: string;
   repeatNote?: AnnotationContent;
+  hiddenLeaderX?: number;
+  contextLeaderEndX?: number;
+  contextLeaderEndY?: number;
   hiddenAnnotationX?: number;
   headsAnnotationX?: number;
   headsAnnotationY?: number;
@@ -107,6 +111,10 @@ function denseBackboneSpec(input: {
         ...(input.nopeLabel ? { nopeLabel: input.nopeLabel } : {}),
         ...(input.repeatOnceWithSameWeights ? { repeatOnceWithSameWeights: true } : {}),
         ...(input.repeatLoopLabel ? { repeatLoopLabel: input.repeatLoopLabel } : {}),
+        ...(input.repeatLoopSecondaryLabel ? { repeatLoopSecondaryLabel: input.repeatLoopSecondaryLabel } : {}),
+        ...(input.hiddenLeaderX !== undefined ? { hiddenLeaderX: input.hiddenLeaderX } : {}),
+        ...(input.contextLeaderEndX !== undefined ? { contextLeaderEndX: input.contextLeaderEndX } : {}),
+        ...(input.contextLeaderEndY !== undefined ? { contextLeaderEndY: input.contextLeaderEndY } : {}),
         ...(input.hiddenAnnotationX !== undefined ? { hiddenAnnotationX: input.hiddenAnnotationX } : {}),
         ...(input.headsAnnotationX !== undefined ? { headsAnnotationX: input.headsAnnotationX } : {}),
         ...(input.headsAnnotationY !== undefined ? { headsAnnotationY: input.headsAnnotationY } : {}),
@@ -409,6 +417,8 @@ export const smollm3Spec = denseBackboneSpec({
   headsLeaderEndX: 1740,
   headsLeaderEndY: 1750,
   hiddenAnnotationX: 1700,
+  contextLeaderEndX: 740,
+  contextLeaderEndY: 1624,
   sampleInputY: 2636,
   insetOffsetX: -40,
 });
@@ -441,6 +451,7 @@ export const olmo3Spec = denseBackboneSpec({
   headsLeaderEndX: 1680,
   headsLeaderEndY: 1750,
   hiddenAnnotationX: 1700,
+  hiddenLeaderX: 1600,
   insetOffsetX: -40,
 });
 
@@ -464,7 +475,8 @@ export const nanbeige42Spec = denseBackboneSpec({
   normLabels: 'rmsnorm',
   showQKNorm: false,
   repeatOnceWithSameWeights: true,
-  repeatLoopLabel: 'Repeat once with same 22-layer weights',
+  repeatLoopLabel: 'Repeat once with same',
+  repeatLoopSecondaryLabel: '22-layer weights',
   repeatNote: { bullets: [emphasized('22×', ' distinct layers;'), emphasized('44×', ' total layers')] },
   headsAnnotationY: 1750,
   headsAnnotationX: 1600,

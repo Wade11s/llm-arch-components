@@ -15609,57 +15609,6 @@ exports[`spec-driven integration surface all validated figures render through th
       },
     },
     {
-      "box": {
-        "height": 70,
-        "width": 540,
-        "x": 752,
-        "y": 650,
-      },
-      "fill": {
-        "color": "#FFFFFF",
-        "kind": "solid",
-      },
-      "id": "per-layer-embeddings-box",
-      "kind": "box",
-      "label": undefined,
-      "radius": 26,
-      "role": "per-layer-embeddings",
-      "sourceId": "per-layer-embeddings",
-      "stroke": {
-        "color": "#56C1FF",
-        "dash": undefined,
-        "width": 5,
-      },
-    },
-    {
-      "align": "center",
-      "at": {
-        "x": 1022,
-        "y": 699,
-      },
-      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      "id": "per-layer-embeddings-label",
-      "kind": "text",
-      "label": undefined,
-      "lines": [
-        {
-          "baseline": 699,
-          "spans": [
-            {
-              "fill": "#000000",
-              "size": 40,
-              "text": "Per-Layer Embeddings",
-              "weight": 500,
-              "width": 431.2,
-              "x": 806.4,
-            },
-          ],
-        },
-      ],
-      "role": "per-layer-embeddings-label",
-      "sourceId": "per-layer-embeddings",
-    },
-    {
       "arrow": "end",
       "id": "residual-attention",
       "junction": "plus",
@@ -16508,6 +16457,57 @@ exports[`spec-driven integration surface all validated figures render through th
       ],
       "role": "output-layer-label",
       "sourceId": "output-layer",
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 540,
+        "x": 752,
+        "y": 650,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "per-layer-embeddings-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "per-layer-embeddings",
+      "sourceId": "per-layer-embeddings",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 699,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "per-layer-embeddings-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 699,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Per-Layer Embeddings",
+              "weight": 500,
+              "width": 431.2,
+              "x": 806.4,
+            },
+          ],
+        },
+      ],
+      "role": "per-layer-embeddings-label",
+      "sourceId": "per-layer-embeddings",
     },
     {
       "box": {
@@ -18126,57 +18126,6 @@ exports[`spec-driven integration surface all validated figures render through th
       },
     },
     {
-      "box": {
-        "height": 70,
-        "width": 540,
-        "x": 752,
-        "y": 650,
-      },
-      "fill": {
-        "color": "#FFFFFF",
-        "kind": "solid",
-      },
-      "id": "per-layer-embeddings-box",
-      "kind": "box",
-      "label": undefined,
-      "radius": 26,
-      "role": "per-layer-embeddings",
-      "sourceId": "per-layer-embeddings",
-      "stroke": {
-        "color": "#56C1FF",
-        "dash": undefined,
-        "width": 5,
-      },
-    },
-    {
-      "align": "center",
-      "at": {
-        "x": 1022,
-        "y": 699,
-      },
-      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      "id": "per-layer-embeddings-label",
-      "kind": "text",
-      "label": undefined,
-      "lines": [
-        {
-          "baseline": 699,
-          "spans": [
-            {
-              "fill": "#000000",
-              "size": 40,
-              "text": "Per-Layer Embeddings",
-              "weight": 500,
-              "width": 431.2,
-              "x": 806.4,
-            },
-          ],
-        },
-      ],
-      "role": "per-layer-embeddings-label",
-      "sourceId": "per-layer-embeddings",
-    },
-    {
       "arrow": "end",
       "id": "residual-attention",
       "junction": "plus",
@@ -19025,6 +18974,57 @@ exports[`spec-driven integration surface all validated figures render through th
       ],
       "role": "output-layer-label",
       "sourceId": "output-layer",
+    },
+    {
+      "box": {
+        "height": 70,
+        "width": 540,
+        "x": 752,
+        "y": 650,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "per-layer-embeddings-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 26,
+      "role": "per-layer-embeddings",
+      "sourceId": "per-layer-embeddings",
+      "stroke": {
+        "color": "#56C1FF",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1022,
+        "y": 699,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "per-layer-embeddings-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 699,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "Per-Layer Embeddings",
+              "weight": 500,
+              "width": 431.2,
+              "x": 806.4,
+            },
+          ],
+        },
+      ],
+      "role": "per-layer-embeddings-label",
+      "sourceId": "per-layer-embeddings",
     },
     {
       "box": {
@@ -59150,7 +59150,7 @@ exports[`spec-driven integration surface all validated figures render through th
     },
     {
       "box": {
-        "height": 84,
+        "height": 100,
         "width": 560,
         "x": 1260,
         "y": 410,
@@ -59175,23 +59175,51 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 1540,
-        "y": 466,
+        "y": 456,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      "id": "repeat-loop-label-label",
+      "id": "repeat-loop-label-label-1",
       "kind": "text",
       "label": undefined,
       "lines": [
         {
-          "baseline": 466,
+          "baseline": 456,
           "spans": [
             {
               "fill": "#000000",
               "size": 40,
-              "text": "Repeat once with same 22-layer weights",
+              "text": "Repeat once with same",
               "weight": 500,
-              "width": 765.6,
-              "x": 1157.2,
+              "width": 433.6,
+              "x": 1323.2,
+            },
+          ],
+        },
+      ],
+      "role": "repeat-loop-label-label",
+      "sourceId": "repeat-loop-label",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 1540,
+        "y": 504,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "repeat-loop-label-label-2",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 504,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 40,
+              "text": "22-layer weights",
+              "weight": 500,
+              "width": 320.8000000000001,
+              "x": 1379.6,
             },
           ],
         },
@@ -65170,7 +65198,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 200,
+          "x": 250,
           "y": 960,
         },
         {
@@ -65350,7 +65378,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1845,
         },
         {
-          "x": 420,
+          "x": 740,
           "y": 1624,
         },
       ],
@@ -67530,11 +67558,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 2010,
+          "x": 1600,
           "y": 1184,
         },
         {
-          "x": 2010,
+          "x": 1600,
           "y": 1388,
         },
       ],
