@@ -147,10 +147,17 @@ export class TemplateScene {
     id: Id,
     role: string,
     box: Box,
-    options: Parameters<SceneBuilder['box']>[3] = {},
+    options: Parameters<SceneBuilder['box']>[3] & { connectorKind?: ConnectorBox['kind'] } = {},
   ) {
-    this.builder.box(id, role, box, options);
-    this.registerBox({ id, owner: options.sourceId ?? id, box, radius: options.radius ?? 26, kind: 'node' });
+    const { connectorKind, ...boxOptions } = options;
+    this.builder.box(id, role, box, boxOptions);
+    this.registerBox({
+      id,
+      owner: boxOptions.sourceId ?? id,
+      box,
+      radius: boxOptions.radius ?? 26,
+      kind: connectorKind ?? 'node',
+    });
   }
 
   group(
@@ -173,6 +180,7 @@ export class TemplateScene {
       if (previousOwnerBoxes.length === 0) this.boxesByOwner.delete(previous.owner);
     }
     this.boxes.set(box.id, box);
+    if (box.kind === 'glyph') return;
     const ownerBoxes = this.boxesByOwner.get(box.owner) ?? [];
     const ownerIndex = ownerBoxes.findIndex((candidate) => candidate.id === box.id);
     if (ownerIndex >= 0) ownerBoxes[ownerIndex] = box;

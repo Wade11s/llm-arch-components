@@ -49,7 +49,7 @@ The boundary point and outward normal where a **Path** leaves or meets the **Nod
 _Avoid_: offset, coordinate
 
 **Internal Wiring**:
-A **Path** inside an inset that connects parts of that inset and therefore has no **Edge** in the **FigureSpec**.
+A **Path** inside a **Group** or inset that connects parts of that group and therefore has no **Edge** in the **FigureSpec**.
 _Avoid_: internal edge, decorative line
 
 **Attached Endpoint**:

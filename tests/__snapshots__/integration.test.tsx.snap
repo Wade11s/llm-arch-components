@@ -157600,7 +157600,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 2126,
         },
       ],
-      "role": "residual-path",
+      "role": "residual-bus-trunk",
       "sourceId": "backbone",
       "stroke": {
         "color": "#000000",

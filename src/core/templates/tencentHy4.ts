@@ -266,7 +266,7 @@ function drawBackbone(
   });
 
   builder.flow('residual-trunk', [{ x: RESIDUAL_X, y: 872 }, { x: RESIDUAL_X, y: 2126 }], {
-    role: 'residual-path',
+    role: 'residual-bus-trunk',
     width: 5,
     arrow: 'none',
     sourceId: 'backbone',
@@ -283,6 +283,7 @@ function drawBackbone(
       stroke: builder.stroke(spec.theme.ink, 0),
       radius: 11,
       sourceId: 'backbone',
+      connectorKind: 'glyph',
     });
   });
   builder.text('residual-label', 'residual-label', { x: 1440, y: 1584 }, '4× residual branches', {

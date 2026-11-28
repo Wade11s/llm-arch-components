@@ -2,7 +2,7 @@
 
 Status: accepted
 
-Connector geometry is produced from an **Edge** contract rather than hand-authored coordinates. A semantic **Edge** resolves one-to-one to a **Path**: both endpoints are **Ports** on the boundary of the **Node** or **Group** named by the **Anchor**, with a gap budget, and any arrow sits on the `to` end. Templates may keep `waypoints`, but only as middle points; they cannot override the endpoints. **Internal Wiring** inside an inset is exempt from an `EdgeSpec` and still uses the same resolver with explicit **Node** or **Group** endpoints.
+Connector geometry is produced from an **Edge** contract rather than hand-authored coordinates. A semantic **Edge** resolves one-to-one to a **Path**: both endpoints are **Ports** on the boundary of the **Node** or **Group** named by the **Anchor**, with a gap budget, and any arrow sits on the `to` end. Templates may keep `waypoints`, but only as middle points; they cannot override the endpoints. **Internal Wiring** inside a group or inset is exempt from an `EdgeSpec`; it must carry a **Node** or **Group** `sourceId`, and a hand-drawn bus that terminates on another internal **Path** at a junction is covered by a local bus invariant instead of the Edge endpoint check.
 
 We chose this over a generic orthogonal router because a router would rewrite the geometry of all 58 figures and flatten hand-tuned routing that matches the reference images. We also rejected a point fix of the Tencent Hy4 figure because it leaves the same defect class for every other template.
 
