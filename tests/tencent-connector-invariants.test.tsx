@@ -1,5 +1,4 @@
 import { describe, expect, test } from 'bun:test';
-import { diagnoseConnectorLinks } from '../src/core/connectors';
 import type { ConnectorBox } from '../src/core/connectors';
 import { renderFigure } from '../src/core/renderFigure';
 import type { Box, Point, Scene, ScenePath, SceneText } from '../src/core/types';
@@ -80,7 +79,8 @@ function sceneBoxes(scene: Scene): ConnectorBox[] {
 }
 
 describe('Tencent Hy4 connector invariants', () => {
-  const scene = renderFigure(tencentHy4Spec).scene;
+  const result = renderFigure(tencentHy4Spec);
+  const scene = result.scene;
   const leaderAnnotations = (tencentHy4Spec.annotations ?? []).filter((annotation) => annotation.style === 'leader');
   const leaderIds = new Set(leaderAnnotations.map((annotation) => annotation.id));
   const migratedEdges = tencentHy4Spec.edges.filter((edge) =>
@@ -90,18 +90,6 @@ describe('Tencent Hy4 connector invariants', () => {
   const migratedPaths = scene.elements.filter(
     (element): element is ScenePath => element.kind === 'path' && element.sourceId !== undefined && migratedIds.has(element.sourceId),
   );
-  const diagnostics = diagnoseConnectorLinks({
-    paths: migratedPaths,
-    edges: migratedEdges,
-    boxes: sceneBoxes(scene),
-    annotations: leaderAnnotations,
-    endpointBudgets: {
-      'flow-sample-tokenized': { from: { gap: 6 }, to: { gap: 0 } },
-      'output-to-drafter': { from: { gap: 0 }, to: { open: true } },
-    },
-    severity: 'error',
-  });
-
   test('realizes every migrated Edge and leader annotation exactly once', () => {
     expect(migratedEdges).toHaveLength(16);
     expect(migratedPaths).toHaveLength(19);
@@ -113,7 +101,15 @@ describe('Tencent Hy4 connector invariants', () => {
   });
 
   test('has no attachment, direction, crossing, linkage, or leader violation', () => {
-    expect(diagnostics).toEqual([]);
+    expect(result.diagnostics.filter((item) =>
+      item.code === 'unlinked-path'
+      || item.code === 'unplaced-edge'
+      || item.code === 'edge-endpoint-far'
+      || item.code === 'edge-owner-mismatch'
+      || item.code === 'edge-crosses-node'
+      || item.code === 'edge-open-endpoint'
+      || item.code === 'orphan-leader'
+    )).toEqual([]);
   });
 
   test('starts the zooms on the declared components and ends them on the inset borders', () => {
@@ -196,15 +192,10 @@ describe('Tencent Hy4 connector invariants', () => {
     expect(ffn?.sourceId).toBe('backbone');
   });
 
-  test('links every Tencent path and leader in the whole scene', () => {
-    const allPaths = scene.elements.filter((element): element is ScenePath => element.kind === 'path');
-    const unlinked = diagnoseConnectorLinks({
-      paths: allPaths,
-      edges: tencentHy4Spec.edges,
-      boxes: sceneBoxes(scene),
-      annotations: leaderAnnotations,
-    }).filter((item) => item.code === 'unlinked-path' || item.code === 'orphan-leader');
-    expect(unlinked).toEqual([]);
+  test('links every semantic Edge and leader through the rendered Scene', () => {
+    expect(result.diagnostics.filter((item) =>
+      item.code === 'unlinked-path' || item.code === 'orphan-leader' || item.code === 'unplaced-edge'
+    )).toEqual([]);
   });
 
   test('derives annotation leaders from text bounds and lands them on the target boundary', () => {

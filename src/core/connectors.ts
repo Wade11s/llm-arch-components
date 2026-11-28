@@ -398,6 +398,7 @@ export type ConnectorPathLike = {
   sourceId?: Id;
   role: string;
   points: Point[];
+  arrow?: 'none' | 'end' | 'both';
   /** Optional endpoint owners for internal wiring; falls back to sourceId. */
   attach?: { from: Id; to: Id };
 };
@@ -633,6 +634,10 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
       if (!start || !end) continue;
       const fromAttached = fromBoxes.reduce((nearest, box) => distanceToBox(start, box.box) < distanceToBox(start, nearest.box) ? box : nearest, fromBoxes[0]);
       const toAttached = toBoxes.reduce((nearest, box) => distanceToBox(end, box.box) < distanceToBox(end, nearest.box) ? box : nearest, toBoxes[0]);
+      const expectedArrow = arrowFor(edge);
+      if (path.arrow !== undefined && path.arrow !== expectedArrow) {
+        diagnostics.push(warning('edge-direction', `Path "${path.id}" has arrow "${path.arrow}" but Edge "${edge.id}" expects "${expectedArrow}"`, [edge.id, path.id]));
+      }
       checkEndpoint(path, start, edge.from.node, fromBoxes, budgets?.from, 'starts', edge.id);
       checkEndpoint(path, end, edge.to.node, toBoxes, budgets?.to, 'ends', edge.id);
       checkCrossing(path, fromAttached, toAttached, edge.id);

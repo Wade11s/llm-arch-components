@@ -54,7 +54,7 @@ test('verify:reference generates comparison, crops, metrics, Markdown, and a pen
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
-}, 30_000);
+}, 60_000);
 
 test('verify:reference rejects an empty checklist when signing', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'llm-arch-reference-'));

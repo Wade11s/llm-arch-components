@@ -1,5 +1,5 @@
-import { resolveConnectors } from '../connectors';
-import type { ConnectorBox } from '../connectors';
+import { diagnoseConnectorLinks, endpointBudgetsOf, resolveConnectors } from '../connectors';
+import type { ConnectorBox, ResolvedConnector } from '../connectors';
 import { FigureLayoutError } from '../errors';
 import { SceneBuilder } from '../sceneBuilder';
 import type {
@@ -12,6 +12,7 @@ import type {
   NodeSpec,
   Point,
   Scene,
+  ScenePath,
   TextSpec,
   Theme,
 } from '../types';
@@ -105,9 +106,11 @@ export class TemplateScene {
   private readonly pillSourceId?: 'id' | 'none';
   private readonly pillIdSuffix?: boolean;
   private readonly pillTextLabel?: boolean;
+  private readonly connectorContract: boolean;
 
-  constructor(theme: Theme, metrics: TextMetrics, options: { pillRadius?: number; pillSize?: number; calloutLineGap?: number; calloutSourceId?: Id | null; calloutSize?: number; calloutIdStyle?: 'plain' | 'line'; pillSourceId?: 'id' | 'none'; pillIdSuffix?: boolean; pillTextLabel?: boolean } = {}) {
+  constructor(theme: Theme, metrics: TextMetrics, options: { pillRadius?: number; pillSize?: number; calloutLineGap?: number; calloutSourceId?: Id | null; calloutSize?: number; calloutIdStyle?: 'plain' | 'line'; pillSourceId?: 'id' | 'none'; pillIdSuffix?: boolean; pillTextLabel?: boolean; connectorContract?: boolean } = {}) {
     this.builder = new SceneBuilder(theme, metrics);
+    this.connectorContract = options.connectorContract ?? false;
     this.pillRadius = options.pillRadius;
     this.pillSize = options.pillSize;
     this.calloutLineGap = options.calloutLineGap;
@@ -359,19 +362,20 @@ export class TemplateScene {
     this.text(`${id}-title`, `${role}-title`, { x: box.x, y: box.y - 60 }, titleText, { size: 46, weight: 800 });
   }
 
-  scene(spec: Parameters<SceneBuilder['scene']>[0]): Scene {
-    if (this.queuedConnectors.length > 0) {
-      const requests = this.queuedConnectors.map((queued) => ({
-        edge: queued.edge,
-        from: this.resolveBox(queued.from, queued.edge, 'from', queued.fromBox),
-        to: this.resolveBox(queued.to, queued.edge, 'to', queued.toBox),
-        waypoints: queued.waypoints,
-        fromGap: queued.fromGap,
-        toGap: queued.toGap,
-        openFrom: queued.openFrom,
-        openTo: queued.openTo,
-      }));
-      const resolved = resolveConnectors(requests);
+  scene(spec: Parameters<SceneBuilder['scene']>[0] & { edges?: EdgeSpec[]; annotations?: FigureSpec['annotations'] }): Scene {
+    const requests = this.queuedConnectors.map((queued) => ({
+      edge: queued.edge,
+      from: this.resolveBox(queued.from, queued.edge, 'from', queued.fromBox),
+      to: this.resolveBox(queued.to, queued.edge, 'to', queued.toBox),
+      waypoints: queued.waypoints,
+      fromGap: queued.fromGap,
+      toGap: queued.toGap,
+      openFrom: queued.openFrom,
+      openTo: queued.openTo,
+    }));
+    let resolved: ResolvedConnector[] = [];
+    if (requests.length > 0) {
+      resolved = resolveConnectors(requests);
       resolved.forEach((connector, index) => {
         const queued = this.queuedConnectors[index];
         this.builder.path(connector.edgeId, queued.role ?? connector.role, connector.points, {
@@ -383,6 +387,32 @@ export class TemplateScene {
       });
       this.queuedConnectors.length = 0;
     }
+
+    if (this.connectorContract) {
+      const edges = spec.edges ?? [];
+      const edgeIds = new Set(edges.map((edge) => edge.id));
+      const leaderAnnotations = (spec.annotations ?? []).filter((annotation) => annotation.style === 'leader');
+      const leaderIds = new Set(leaderAnnotations.map((annotation) => annotation.id));
+      const paths = this.builder.elements.filter((element): element is ScenePath => (
+        element.kind === 'path'
+        && element.sourceId !== undefined
+        && (edgeIds.has(element.sourceId) || leaderIds.has(element.sourceId))
+      ));
+      const surfaces = requests.flatMap((request) => [request.from, request.to]);
+      const auditBoxes = [
+        ...this.boxes.values(),
+        ...surfaces.filter((surface) => !this.boxes.has(surface.id)),
+      ];
+      this.builder.diagnostics.push(...diagnoseConnectorLinks({
+        paths,
+        edges,
+        boxes: auditBoxes,
+        annotations: leaderAnnotations,
+        endpointBudgets: endpointBudgetsOf(resolved),
+        severity: 'error',
+      }));
+    }
+
     return this.builder.scene(spec);
   }
 }

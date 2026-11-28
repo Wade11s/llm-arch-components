@@ -1,42 +1,7 @@
 import { describe, expect, test } from 'bun:test';
-import { diagnoseConnectorLinks } from '../src/core/connectors';
-import type { ConnectorBox } from '../src/core/connectors';
 import { renderFigure } from '../src/core/renderFigure';
 import type { Scene, ScenePath, SceneText } from '../src/core/types';
 import { tencentHy4Spec } from '../src/specs/tencentHy4';
-
-function sceneBoxes(scene: Scene): ConnectorBox[] {
-  const boxes: ConnectorBox[] = [];
-  for (const element of scene.elements) {
-    if (element.kind === 'box') {
-      boxes.push({
-        id: element.id,
-        owner: element.sourceId ?? element.id,
-        box: element.box,
-        radius: element.radius,
-        kind: element.role === 'repeat-block' || element.role === 'model-container' ? 'group' : 'node',
-      });
-    } else if (element.kind === 'group') {
-      boxes.push({ id: element.id, owner: element.sourceId ?? element.id, box: element.box, kind: 'group' });
-    }
-  }
-  const sample = scene.elements.find(
-    (element): element is SceneText => element.kind === 'text' && element.id === 'sample-input',
-  );
-  if (sample) {
-    const minX = Math.min(...sample.lines.flatMap((line) => line.spans.map((span) => span.x)));
-    const maxX = Math.max(...sample.lines.flatMap((line) => line.spans.map((span) => span.x + span.width)));
-    const minY = Math.min(...sample.lines.map((line) => line.baseline - (line.spans[0]?.size ?? 38)));
-    const maxY = Math.max(...sample.lines.map((line) => line.baseline));
-    boxes.push({
-      id: 'sample-input-box',
-      owner: 'sample-input',
-      box: { x: minX, y: minY, width: maxX - minX, height: maxY - minY },
-      kind: 'text',
-    });
-  }
-  return boxes;
-}
 
 function pathsFor(scene: Scene, ids: Set<string>): ScenePath[] {
   return scene.elements.filter(
@@ -58,15 +23,7 @@ describe('Tencent Hy4 connector flows', () => {
   });
 
   test('keeps every flow on its declared owners without crossing another node', () => {
-    const diagnostics = diagnoseConnectorLinks({
-      paths: flowPaths,
-      edges: flowEdges,
-      boxes: sceneBoxes(scene),
-      endpointBudgets: {
-        'flow-sample-tokenized': { from: { gap: 6 }, to: { gap: 0 } },
-      },
-    });
-    expect(diagnostics.filter((item) =>
+    expect(result.diagnostics.filter((item) =>
       item.code === 'edge-endpoint-far'
       || item.code === 'edge-owner-mismatch'
       || item.code === 'edge-crosses-node'
@@ -87,9 +44,11 @@ describe('Tencent Hy4 connector flows', () => {
       expect(start.y).toBeGreaterThan(end.y);
     }
     const sample = flowPaths.find((path) => path.sourceId === 'flow-sample-tokenized');
-    const sampleBox = sceneBoxes(scene).find((box) => box.owner === 'sample-input');
+    const sampleText = scene.elements.find(
+      (element): element is SceneText => element.kind === 'text' && element.id === 'sample-input',
+    );
     expect(sample).toBeDefined();
-    expect(sampleBox).toBeDefined();
-    expect(sampleBox!.box.y - sample!.points[0].y).toBe(6);
+    expect(sampleText).toBeDefined();
+    expect(sampleText!.lines[0].baseline - 38 - sample!.points[0].y).toBe(6);
   });
 });
