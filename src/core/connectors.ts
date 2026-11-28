@@ -126,11 +126,20 @@ function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
 
-function pointInside(point: Point, box: Box, pad = 0): boolean {
-  return point.x > box.x + pad
-    && point.x < box.x + box.width - pad
-    && point.y > box.y + pad
-    && point.y < box.y + box.height - pad;
+function roundedCornerCenter(point: Point, box: Box, radius: number): Point | undefined {
+  if (radius <= 0) return undefined;
+  if (point.x <= box.x + radius && point.y <= box.y + radius) return { x: box.x + radius, y: box.y + radius };
+  if (point.x >= box.x + box.width - radius && point.y <= box.y + radius) return { x: box.x + box.width - radius, y: box.y + radius };
+  if (point.x >= box.x + box.width - radius && point.y >= box.y + box.height - radius) return { x: box.x + box.width - radius, y: box.y + box.height - radius };
+  if (point.x <= box.x + radius && point.y >= box.y + box.height - radius) return { x: box.x + radius, y: box.y + box.height - radius };
+  return undefined;
+}
+
+function pointInsideRounded(point: Point, box: Box, radius: number): boolean {
+  if (point.x < box.x || point.x > box.x + box.width || point.y < box.y || point.y > box.y + box.height) return false;
+  const corner = roundedCornerCenter(point, box, radius);
+  if (!corner) return true;
+  return Math.hypot(point.x - corner.x, point.y - corner.y) <= radius + 0.001;
 }
 
 function boxContainsBox(outer: Box, inner: Box): boolean {
@@ -154,7 +163,7 @@ function mixedCorner(
     { x: fromOut.x, y: toOut.y },
     { x: toOut.x, y: fromOut.y },
   ];
-  return candidates.find((candidate) => !pointInside(candidate, fromBox) && !pointInside(candidate, toBox))
+  return candidates.find((candidate) => !pointInsideRounded(candidate, fromBox, 0) && !pointInsideRounded(candidate, toBox, 0))
     ?? candidates[0];
 }
 
@@ -419,17 +428,25 @@ export type ConnectorDiagnosticInput = {
   boxes: ConnectorBox[];
   annotations?: ConnectorAnnotation[];
   endpointBudgets?: Record<Id, { from?: ConnectorEndpointBudget; to?: ConnectorEndpointBudget }>;
+  auditInternalWiring?: boolean;
   severity?: 'warning' | 'error';
 };
 
-function distanceToBox(point: Point, box: Box): number {
+function distanceToBox(point: Point, box: Box, radius = 0): number {
+  if (pointInsideRounded(point, box, radius)) return 0;
+  const corner = roundedCornerCenter(point, box, radius);
+  if (corner) {
+    return Math.max(0, Math.hypot(point.x - corner.x, point.y - corner.y) - radius);
+  }
   const dx = Math.max(box.x - point.x, 0, point.x - (box.x + box.width));
   const dy = Math.max(box.y - point.y, 0, point.y - (box.y + box.height));
   return Math.hypot(dx, dy);
 }
 
-function distanceToBoundary(point: Point, box: Box): number {
-  if (pointInside(point, box, 0.001)) {
+function distanceToBoundary(point: Point, box: Box, radius = 0): number {
+  if (pointInsideRounded(point, box, radius)) {
+    const corner = roundedCornerCenter(point, box, radius);
+    if (corner) return Math.abs(Math.hypot(point.x - corner.x, point.y - corner.y) - radius);
     return Math.min(
       Math.abs(point.x - box.x),
       Math.abs(point.x - (box.x + box.width)),
@@ -437,14 +454,14 @@ function distanceToBoundary(point: Point, box: Box): number {
       Math.abs(point.y - (box.y + box.height)),
     );
   }
-  return distanceToBox(point, box);
+  return distanceToBox(point, box, radius);
 }
 
 function nearestBox(point: Point, boxes: ConnectorBox[]): ConnectorBox | undefined {
   let nearest: ConnectorBox | undefined;
   let best = Number.POSITIVE_INFINITY;
   for (const candidate of boxes) {
-    const distance = distanceToBox(point, candidate.box);
+    const distance = distanceToBox(point, candidate.box, candidate.radius ?? 0);
     if (distance < best) {
       best = distance;
       nearest = candidate;
@@ -466,8 +483,8 @@ function segmentsIntersect(a: Point, b: Point, c: Point, d: Point): boolean {
     && ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0));
 }
 
-function segmentCrossesBox(a: Point, b: Point, box: Box): boolean {
-  if (pointInside(a, box, 0.001) || pointInside(b, box, 0.001)) return true;
+function segmentCrossesBox(a: Point, b: Point, box: Box, radius = 0): boolean {
+  if (pointInsideRounded(a, box, radius) || pointInsideRounded(b, box, radius)) return true;
   const corners = [
     { x: box.x, y: box.y },
     { x: box.x + box.width, y: box.y },
@@ -483,7 +500,7 @@ function segmentCrossesBox(a: Point, b: Point, box: Box): boolean {
   return crossings >= 2;
 }
 
-function segmentEntersBox(a: Point, b: Point, box: Box): boolean {
+function segmentEntersBox(a: Point, b: Point, box: Box, radius = 0): boolean {
   let t0 = 0;
   let t1 = 1;
   const dx = b.x - a.x;
@@ -506,7 +523,7 @@ function segmentEntersBox(a: Point, b: Point, box: Box): boolean {
   if (!clip(dy, box.y + box.height - a.y)) return false;
   if (t1 - t0 < 0.001) return false;
   const mid = { x: a.x + dx * (t0 + t1) / 2, y: a.y + dy * (t0 + t1) / 2 };
-  return pointInside(mid, box, 0.001);
+  return pointInsideRounded(mid, box, radius);
 }
 
 export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnostic[] {
@@ -552,12 +569,12 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
       // inside any box (including its own owner) and must stay clear of
       // unrelated boxes.
       for (const box of input.boxes) {
-        if (pointInside(point, box.box, 0.001)) {
+        if (pointInsideRounded(point, box.box, box.radius ?? 0)) {
           diagnostics.push(warning('edge-open-endpoint', `Path "${path.id}" open ${direction} is inside node "${box.owner}"`, edgeId ? [edgeId, path.id, box.owner] : [path.id, box.owner]));
           return;
         }
         if (box.owner === owner) continue;
-        if (distanceToBox(point, box.box) < DEFAULT_CLEARANCE) {
+        if (distanceToBox(point, box.box, box.radius ?? 0) < DEFAULT_CLEARANCE) {
           diagnostics.push(warning('edge-open-endpoint', `Path "${path.id}" open ${direction} is within ${DEFAULT_CLEARANCE}px of node "${box.owner}"`, edgeId ? [edgeId, path.id, box.owner] : [path.id, box.owner]));
           return;
         }
@@ -566,13 +583,13 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     }
     if (boxes.length === 0) return;
     const gap = budget?.gap ?? 0;
-    const distance = Math.min(...boxes.map((box) => distanceToBoundary(point, box.box)));
+    const distance = Math.min(...boxes.map((box) => distanceToBoundary(point, box.box, box.radius ?? 0)));
     if (distance > gap + ENDPOINT_TOLERANCE) {
       diagnostics.push(warning('edge-endpoint-far', `Path "${path.id}" ${direction} ${Math.round(distance)}px from its owner`, edgeId ? [edgeId, path.id] : [path.id]));
     }
-    const ownerDistance = Math.min(...boxes.map((box) => distanceToBox(point, box.box)));
+    const ownerDistance = Math.min(...boxes.map((box) => distanceToBox(point, box.box, box.radius ?? 0)));
     const nearest = nearestBox(point, input.boxes);
-    if (nearest && nearest.owner !== owner && distanceToBox(point, nearest.box) < ownerDistance - 1) {
+    if (nearest && nearest.owner !== owner && distanceToBox(point, nearest.box, nearest.radius ?? 0) < ownerDistance - 1) {
       diagnostics.push(warning('edge-owner-mismatch', `Path "${path.id}" ${direction} closer to "${nearest.owner}" than "${owner}"`, edgeId ? [edgeId, path.id] : [path.id]));
     }
   };
@@ -590,7 +607,7 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
         // port sits inside the group being left); a foreign box that merely
         // happens to contain the start/end point must still be checked.
         if (boxContainsBox(obstacle.box, fromBox.box) || boxContainsBox(obstacle.box, toBox.box)) continue;
-        if (segmentCrossesBox(path.points[index], path.points[index + 1], obstacle.box)) {
+        if (segmentCrossesBox(path.points[index], path.points[index + 1], obstacle.box, obstacle.radius ?? 0)) {
           diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" crosses node "${obstacle.owner}"`, edgeId ? [edgeId, path.id, obstacle.owner] : [path.id, obstacle.owner]));
           return;
         }
@@ -608,7 +625,7 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     if (ownerPenetrationSeen.has(key)) return;
     ownerPenetrationSeen.add(key);
     for (let index = 0; index < path.points.length - 1; index += 1) {
-      if (segmentEntersBox(path.points[index], path.points[index + 1], box.box)) {
+      if (segmentEntersBox(path.points[index], path.points[index + 1], box.box, box.radius ?? 0)) {
         diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" re-enters its owner "${box.owner}"`, edgeId ? [edgeId, path.id, box.owner] : [path.id, box.owner]));
         return;
       }
@@ -632,8 +649,8 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
       const start = path.points[0];
       const end = path.points[path.points.length - 1];
       if (!start || !end) continue;
-      const fromAttached = fromBoxes.reduce((nearest, box) => distanceToBox(start, box.box) < distanceToBox(start, nearest.box) ? box : nearest, fromBoxes[0]);
-      const toAttached = toBoxes.reduce((nearest, box) => distanceToBox(end, box.box) < distanceToBox(end, nearest.box) ? box : nearest, toBoxes[0]);
+      const fromAttached = fromBoxes.reduce((nearest, box) => distanceToBox(start, box.box, box.radius ?? 0) < distanceToBox(start, nearest.box, nearest.radius ?? 0) ? box : nearest, fromBoxes[0]);
+      const toAttached = toBoxes.reduce((nearest, box) => distanceToBox(end, box.box, box.radius ?? 0) < distanceToBox(end, nearest.box, nearest.radius ?? 0) ? box : nearest, toBoxes[0]);
       const expectedArrow = arrowFor(edge);
       if (path.arrow !== undefined && path.arrow !== expectedArrow) {
         diagnostics.push(warning('edge-direction', `Path "${path.id}" has arrow "${path.arrow}" but Edge "${edge.id}" expects "${expectedArrow}"`, [edge.id, path.id]));
@@ -648,7 +665,11 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
 
   for (const path of input.paths) {
     if (edgePathIds.has(path.id)) continue;
-    if (!path.sourceId || !boxIds.has(path.sourceId)) continue;
+    if (!path.sourceId) continue;
+    const isAnnotationLeader = annotationIds.has(path.sourceId);
+    const isRegisteredOwner = boxIds.has(path.sourceId);
+    if (!isAnnotationLeader && !isRegisteredOwner) continue;
+    if (!isAnnotationLeader && !path.attach && !input.auditInternalWiring) continue;
     const fromOwner = path.attach?.from ?? path.sourceId;
     const toOwner = path.attach?.to ?? path.sourceId;
     const fromBoxes = input.boxes.filter((box) => box.owner === fromOwner);
@@ -661,8 +682,8 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     const start = path.points[0];
     const end = path.points[path.points.length - 1];
     if (!start || !end) continue;
-    const fromAttached = fromBoxes.reduce((nearest, box) => distanceToBox(start, box.box) < distanceToBox(start, nearest.box) ? box : nearest, fromBoxes[0]);
-    const toAttached = toBoxes.reduce((nearest, box) => distanceToBox(end, box.box) < distanceToBox(end, nearest.box) ? box : nearest, toBoxes[0]);
+    const fromAttached = fromBoxes.reduce((nearest, box) => distanceToBox(start, box.box, box.radius ?? 0) < distanceToBox(start, nearest.box, nearest.radius ?? 0) ? box : nearest, fromBoxes[0]);
+    const toAttached = toBoxes.reduce((nearest, box) => distanceToBox(end, box.box, box.radius ?? 0) < distanceToBox(end, nearest.box, nearest.radius ?? 0) ? box : nearest, toBoxes[0]);
     checkEndpoint(path, start, fromOwner, fromBoxes, budgets?.from, 'starts');
     checkEndpoint(path, end, toOwner, toBoxes, budgets?.to, 'ends');
     checkCrossing(path, fromAttached, toAttached);
@@ -677,4 +698,11 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
   }
 
   return diagnostics;
+}
+
+export type ConnectorContractInput = Omit<ConnectorDiagnosticInput, 'auditInternalWiring'>;
+
+/** Audits semantic Edges and leader annotations; Internal Wiring is linkage-only unless it declares attach owners. */
+export function auditConnectorContract(input: ConnectorContractInput): Diagnostic[] {
+  return diagnoseConnectorLinks(input);
 }

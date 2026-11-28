@@ -40,12 +40,24 @@ function contractBuilder(): TemplateScene {
   return new TemplateScene(tencentHy4Spec.theme, {
     measure: () => 100,
     lineHeight: () => 40,
-  }, { connectorContract: true });
+  }, { enforceConnectorContract: true });
 }
 
 function registerBox(builder: TemplateScene, id: string, x: number, y: number): void {
   builder.box(id, 'node', { x, y, width: 200, height: 80 }, { sourceId: id });
 }
+
+test('TemplateScene reports an unlinked path when the contract audit is enabled', () => {
+  const builder = contractBuilder();
+  builder.flow('ghost-path', [{ x: 10, y: 10 }, { x: 100, y: 100 }], { sourceId: 'ghost-node' });
+
+  const scene = builder.scene(auditSpec([]));
+  expect(scene.diagnostics).toContainEqual(expect.objectContaining({
+    severity: 'error',
+    code: 'unlinked-path',
+    sourceIds: ['ghost-path'],
+  }));
+});
 
 test('TemplateScene uses resolved endpoint budgets for gap and open endpoints', () => {
   const builder = contractBuilder();
@@ -114,7 +126,7 @@ test('TemplateScene reports an unplaced Edge when the contract audit is enabled'
   const builder = new TemplateScene(tencentHy4Spec.theme, {
     measure: () => 100,
     lineHeight: () => 40,
-  }, { connectorContract: true });
+  }, { enforceConnectorContract: true });
   const scene = builder.scene(auditSpec([flow]));
 
   expect(scene.diagnostics).toContainEqual(expect.objectContaining({
