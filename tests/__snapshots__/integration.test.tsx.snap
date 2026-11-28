@@ -156788,294 +156788,6 @@ exports[`spec-driven integration surface all validated figures render through th
       },
     },
     {
-      "arrow": "end",
-      "id": "flow-final-head-output",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 656,
-        },
-        {
-          "x": 1150,
-          "y": 498,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-final-head-write",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 736,
-        },
-        {
-          "x": 1150,
-          "y": 844,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-write-moe",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 900,
-        },
-        {
-          "x": 1150,
-          "y": 973,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-moe-norm2",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 1047,
-        },
-        {
-          "x": 1150,
-          "y": 1120,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-norm2-read",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 1194,
-        },
-        {
-          "x": 1150,
-          "y": 1300,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-read-write",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 1356,
-        },
-        {
-          "x": 1150,
-          "y": 1492,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-write-attention",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 1548,
-        },
-        {
-          "x": 1150,
-          "y": 1612,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-attention-norm1",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 1862,
-        },
-        {
-          "x": 1150,
-          "y": 1961,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-norm1-read",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 2035,
-        },
-        {
-          "x": 1150,
-          "y": 2098,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-read-embedding",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 2154,
-        },
-        {
-          "x": 1150,
-          "y": 2296,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-embedding-tokenized",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 2384,
-        },
-        {
-          "x": 1150,
-          "y": 2445,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
-      "arrow": "end",
-      "id": "flow-tokenized-input",
-      "junction": undefined,
-      "kind": "path",
-      "label": undefined,
-      "points": [
-        {
-          "x": 1150,
-          "y": 2533,
-        },
-        {
-          "x": 1150,
-          "y": 2620,
-        },
-      ],
-      "role": "flow-path",
-      "sourceId": undefined,
-      "stroke": {
-        "color": "#000000",
-        "dash": undefined,
-        "width": 6,
-      },
-    },
-    {
       "box": {
         "height": 80,
         "width": 360,
@@ -161589,6 +161301,318 @@ exports[`spec-driven integration surface all validated figures render through th
       "stroke": {
         "color": "#000000",
         "dash": "dotted",
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-sample-tokenized",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 2634,
+        },
+        {
+          "x": 1150,
+          "y": 2533,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-sample-tokenized",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-tokenized-embedding",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 2445,
+        },
+        {
+          "x": 1150,
+          "y": 2384,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-tokenized-embedding",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-embedding-read",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 2296,
+        },
+        {
+          "x": 1150,
+          "y": 2154,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-embedding-read",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-read-norm1",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 2098,
+        },
+        {
+          "x": 1150,
+          "y": 2035,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-read-norm1",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-norm1-attention",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 1961,
+        },
+        {
+          "x": 1147.5,
+          "y": 1862,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-norm1-attention",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-attention-write",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1147.5,
+          "y": 1612,
+        },
+        {
+          "x": 1150,
+          "y": 1548,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-attention-write",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-write-read",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 1492,
+        },
+        {
+          "x": 1150,
+          "y": 1356,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-write-read",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-read-norm2",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 1300,
+        },
+        {
+          "x": 1150,
+          "y": 1194,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-read-norm2",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-norm2-moe",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 1120,
+        },
+        {
+          "x": 1150,
+          "y": 1047,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-norm2-moe",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-moe-write",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 973,
+        },
+        {
+          "x": 1150,
+          "y": 900,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-moe-write",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-write-head",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 844,
+        },
+        {
+          "x": 1150,
+          "y": 736,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-write-head",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-head-norm",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 656,
+        },
+        {
+          "x": 1150,
+          "y": 614,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-head-norm",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 6,
+      },
+    },
+    {
+      "arrow": "end",
+      "id": "flow-norm-output",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 1150,
+          "y": 534,
+        },
+        {
+          "x": 1150,
+          "y": 498,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": "flow-norm-output",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
         "width": 6,
       },
     },

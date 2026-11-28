@@ -1,6 +1,8 @@
 import { TemplateScene, templateText as text, createTemplateApi, annotationOf, annotationLines, templateFailure } from './templateScene';
+import type { ConnectorBox } from '../connectors';
 import type {
   Box,
+  EdgeSpec,
   FigureSpec,
   GroupSpec,
   Id,
@@ -9,6 +11,7 @@ import type {
   NodeSpec,
   Point,
   Scene,
+  TextMetrics,
   TextSpec,
 } from '../types';
 
@@ -131,6 +134,7 @@ function drawBackbone(
   moe: OperationNode,
   read: OperationNode,
   write: OperationNode,
+  metrics: TextMetrics,
 ): void {
   const repeatCount = block.repeat?.count ?? 0;
   const blockFill = block.style?.fill?.kind === 'solid' ? block.style.fill.color : spec.theme.accent;
@@ -148,21 +152,35 @@ function drawBackbone(
     label: `${repeatCount}×`,
   });
 
-  const flows: Array<[Id, number, number]> = [
-    ['flow-final-head-output', 656, 498],
-    ['flow-final-head-write', 736, 844],
-    ['flow-write-moe', 900, 973],
-    ['flow-moe-norm2', 1047, 1120],
-    ['flow-norm2-read', 1194, 1300],
-    ['flow-read-write', 1356, 1492],
-    ['flow-write-attention', 1548, 1612],
-    ['flow-attention-norm1', 1862, 1961],
-    ['flow-norm1-read', 2035, 2098],
-    ['flow-read-embedding', 2154, 2296],
-    ['flow-embedding-tokenized', 2384, 2445],
-    ['flow-tokenized-input', 2533, 2620],
-  ];
-  flows.forEach(([id, from, to]) => builder.flow(id, [{ x: CENTER_X, y: from }, { x: CENTER_X, y: to }]));
+  const edgeOf = (id: Id): EdgeSpec => {
+    const edge = spec.edges.find((candidate) => candidate.id === id);
+    if (!edge) templateFailure('missing-edge', `Tencent Hy4 requires edge "${id}"`, [id]);
+    return edge;
+  };
+  const sampleInputText = 'Sample input text';
+  const sampleInputWidth = metrics.measure(
+    { text: sampleInputText },
+    { size: 38, weight: 400, family: spec.theme.monospaceFamily ?? 'monospace' },
+  );
+  const sampleInputBox: ConnectorBox = {
+    id: 'sample-input-box',
+    owner: 'sample-input',
+    box: { x: CENTER_X - sampleInputWidth / 2, y: 2680 - 38, width: sampleInputWidth, height: 38 },
+    kind: 'text',
+  };
+  builder.edge(edgeOf('flow-sample-tokenized'), { fromBox: sampleInputBox, to: 'tokenized-text', fromGap: 8 });
+  builder.edge(edgeOf('flow-tokenized-embedding'), { from: 'tokenized-text', to: 'embedding-layer' });
+  builder.edge(edgeOf('flow-embedding-read'), { from: 'embedding-layer', to: 'ihc-read-low' });
+  builder.edge(edgeOf('flow-read-norm1'), { from: 'ihc-read-low', to: 'rmsnorm-1' });
+  builder.edge(edgeOf('flow-norm1-attention'), { from: 'rmsnorm-1', to: 'attention-block' });
+  builder.edge(edgeOf('flow-attention-write'), { from: 'attention-block', to: 'ihc-write-mid' });
+  builder.edge(edgeOf('flow-write-read'), { from: 'ihc-write-mid', to: 'ihc-read-top' });
+  builder.edge(edgeOf('flow-read-norm2'), { from: 'ihc-read-top', to: 'rmsnorm-2' });
+  builder.edge(edgeOf('flow-norm2-moe'), { from: 'rmsnorm-2', to: 'moe' });
+  builder.edge(edgeOf('flow-moe-write'), { from: 'moe', to: 'ihc-write-top' });
+  builder.edge(edgeOf('flow-write-head'), { from: 'ihc-write-top', to: 'final-ihc-head' });
+  builder.edge(edgeOf('flow-head-norm'), { from: 'final-ihc-head', to: 'final-rmsnorm' });
+  builder.edge(edgeOf('flow-norm-output'), { from: 'final-rmsnorm', to: 'output-layer' });
 
   builder.pill('output-layer', 'output-layer', { x: 970, y: 418, width: 360, height: 80 }, text('Linear output layer'), {
     fill: spec.theme.surface,
@@ -733,7 +751,7 @@ export function layoutTencentHy4(spec: FigureSpec, context: LayoutContext): Scen
 
   const builder = new TemplateScene(spec.theme, context.metrics, { pillRadius: 24, pillSize: 28, pillSourceId: 'id', pillIdSuffix: false, pillTextLabel: true });
   drawTitle(builder, spec);
-  drawBackbone(builder, spec, block, attention, moe, read, write);
+  drawBackbone(builder, spec, block, attention, moe, read, write, context.metrics);
   builder.flow('output-to-drafter', [{ x: CENTER_X, y: 418 }, { x: CENTER_X, y: 300 }], { role: 'flow-path' });
   drawMask(builder, spec, maskInset, maskNode);
   drawIhc(builder, spec, ihcInset, read, write);
