@@ -831,7 +831,7 @@ export function layoutTencentHy4(spec: FigureSpec, context: LayoutContext): Scen
   const maskNode = nodeOf(spec, slot(spec, 'maskNode'));
   if (maskNode.kind !== 'mask') templateFailure('wrong-node-kind', `Node "${maskNode.id}" must be a mask node`, [maskNode.id]);
 
-  const builder = new TemplateScene(spec.theme, context.metrics, { pillRadius: 24, pillSize: 28, pillSourceId: 'id', pillIdSuffix: false, pillTextLabel: true });
+  const builder = new TemplateScene(spec.theme, context.metrics, { pillRadius: 24, pillSize: 28, pillSourceId: 'id', pillIdSuffix: false, pillTextLabel: true, enforceConnectorContract: true });
   drawTitle(builder, spec);
   drawBackbone(builder, spec, block, attention, moe, read, write, context.metrics);
   const drafterLines = annotationLines(spec, 'drafter');

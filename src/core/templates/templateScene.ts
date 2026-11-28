@@ -1,5 +1,5 @@
-import { resolveConnectors } from '../connectors';
-import type { ConnectorBox } from '../connectors';
+import { auditConnectorContract, endpointBudgetsOf, resolveConnectors } from '../connectors';
+import type { ConnectorBox, ConnectorPathLike, ResolvedConnector } from '../connectors';
 import { FigureLayoutError } from '../errors';
 import { SceneBuilder } from '../sceneBuilder';
 import type {
@@ -12,6 +12,8 @@ import type {
   NodeSpec,
   Point,
   Scene,
+  ScenePath,
+  SceneText,
   TextSpec,
   Theme,
 } from '../types';
@@ -105,9 +107,11 @@ export class TemplateScene {
   private readonly pillSourceId?: 'id' | 'none';
   private readonly pillIdSuffix?: boolean;
   private readonly pillTextLabel?: boolean;
+  private readonly enforceConnectorContract: boolean;
 
-  constructor(theme: Theme, metrics: TextMetrics, options: { pillRadius?: number; pillSize?: number; calloutLineGap?: number; calloutSourceId?: Id | null; calloutSize?: number; calloutIdStyle?: 'plain' | 'line'; pillSourceId?: 'id' | 'none'; pillIdSuffix?: boolean; pillTextLabel?: boolean } = {}) {
+  constructor(theme: Theme, metrics: TextMetrics, options: { pillRadius?: number; pillSize?: number; calloutLineGap?: number; calloutSourceId?: Id | null; calloutSize?: number; calloutIdStyle?: 'plain' | 'line'; pillSourceId?: 'id' | 'none'; pillIdSuffix?: boolean; pillTextLabel?: boolean; enforceConnectorContract?: boolean } = {}) {
     this.builder = new SceneBuilder(theme, metrics);
+    this.enforceConnectorContract = options.enforceConnectorContract ?? false;
     this.pillRadius = options.pillRadius;
     this.pillSize = options.pillSize;
     this.calloutLineGap = options.calloutLineGap;
@@ -359,19 +363,39 @@ export class TemplateScene {
     this.text(`${id}-title`, `${role}-title`, { x: box.x, y: box.y - 60 }, titleText, { size: 46, weight: 800 });
   }
 
-  scene(spec: Parameters<SceneBuilder['scene']>[0]): Scene {
-    if (this.queuedConnectors.length > 0) {
-      const requests = this.queuedConnectors.map((queued) => ({
-        edge: queued.edge,
-        from: this.resolveBox(queued.from, queued.edge, 'from', queued.fromBox),
-        to: this.resolveBox(queued.to, queued.edge, 'to', queued.toBox),
-        waypoints: queued.waypoints,
-        fromGap: queued.fromGap,
-        toGap: queued.toGap,
-        openFrom: queued.openFrom,
-        openTo: queued.openTo,
-      }));
-      const resolved = resolveConnectors(requests);
+  private textSurface(owner: Id): ConnectorBox | undefined {
+    const texts = this.builder.elements.filter(
+      (element): element is SceneText => element.kind === 'text' && element.sourceId === owner,
+    );
+    if (texts.length === 0) return undefined;
+    const spans = texts.flatMap((text) => text.lines.flatMap((line) => line.spans));
+    if (spans.length === 0) return undefined;
+    const left = Math.min(...spans.map((span) => span.x));
+    const right = Math.max(...spans.map((span) => span.x + span.width));
+    const top = Math.min(...texts.flatMap((text) => text.lines.map((line) => line.baseline - (line.spans[0]?.size ?? 0))));
+    const bottom = Math.max(...texts.flatMap((text) => text.lines.map((line) => line.baseline)));
+    return {
+      id: `${owner}-text-surface`,
+      owner,
+      box: { x: left, y: top, width: right - left, height: bottom - top },
+      kind: 'text',
+    };
+  }
+
+  scene(spec: FigureSpec): Scene {
+    const requests = this.queuedConnectors.map((queued) => ({
+      edge: queued.edge,
+      from: this.resolveBox(queued.from, queued.edge, 'from', queued.fromBox),
+      to: this.resolveBox(queued.to, queued.edge, 'to', queued.toBox),
+      waypoints: queued.waypoints,
+      fromGap: queued.fromGap,
+      toGap: queued.toGap,
+      openFrom: queued.openFrom,
+      openTo: queued.openTo,
+    }));
+    let resolved: ResolvedConnector[] = [];
+    if (requests.length > 0) {
+      resolved = resolveConnectors(requests);
       resolved.forEach((connector, index) => {
         const queued = this.queuedConnectors[index];
         this.builder.path(connector.edgeId, queued.role ?? connector.role, connector.points, {
@@ -383,6 +407,46 @@ export class TemplateScene {
       });
       this.queuedConnectors.length = 0;
     }
+
+    if (this.enforceConnectorContract) {
+      const leaderAnnotations = (spec.annotations ?? []).filter((annotation) => annotation.style === 'leader');
+      const leaderById = new Map(leaderAnnotations.map((annotation) => [annotation.id, annotation]));
+      const paths: ConnectorPathLike[] = this.builder.elements
+        .filter((element): element is ScenePath => element.kind === 'path')
+        .map((path) => {
+          const annotation = path.sourceId ? leaderById.get(path.sourceId) : undefined;
+          return annotation
+            ? { ...path, attach: { from: annotation.id, to: annotation.target } }
+            : path;
+        });
+      const explicitBoxes = requests.flatMap((request) => [request.from, request.to]);
+      const textSurfaces = leaderAnnotations.flatMap((annotation) => {
+        const surface = this.textSurface(annotation.id);
+        return surface ? [surface] : [];
+      });
+      const auditBoxes = [
+        ...this.boxes.values(),
+        ...explicitBoxes.filter((box) => !this.boxes.has(box.id)),
+        ...textSurfaces,
+      ];
+      const leaderBudgets = Object.fromEntries(this.builder.elements
+        .filter((element): element is ScenePath => (
+          element.kind === 'path' && element.sourceId !== undefined && leaderById.has(element.sourceId)
+        ))
+        .map((path) => [path.id, { from: { gap: Math.min(8, Math.max(4, path.stroke.width)) }, to: { gap: 0 } }]));
+      this.builder.diagnostics.push(...auditConnectorContract({
+        paths,
+        edges: spec.edges,
+        boxes: auditBoxes,
+        annotations: leaderAnnotations,
+        endpointBudgets: {
+          ...endpointBudgetsOf(resolved),
+          ...leaderBudgets,
+        },
+        severity: 'error',
+      }));
+    }
+
     return this.builder.scene(spec);
   }
 }
