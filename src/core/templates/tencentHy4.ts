@@ -269,17 +269,20 @@ function drawBackbone(
     role: 'residual-path',
     width: 5,
     arrow: 'none',
+    sourceId: 'backbone',
   });
   [872, 1328, 1520, 2126].forEach((y, index) => {
     builder.flow(`residual-branch-${index + 1}`, [{ x: 1300, y }, { x: RESIDUAL_X, y }], {
       role: 'residual-branch',
       width: 5,
       arrow: 'none',
+      sourceId: 'backbone',
     });
     builder.box(`residual-dot-${index + 1}`, 'residual-dot', { x: RESIDUAL_X - 11, y: y - 11, width: 22, height: 22 }, {
       fill: builder.solid(spec.theme.ink),
       stroke: builder.stroke(spec.theme.ink, 0),
       radius: 11,
+      sourceId: 'backbone',
     });
   });
   builder.text('residual-label', 'residual-label', { x: 1440, y: 1584 }, '4× residual branches', {
