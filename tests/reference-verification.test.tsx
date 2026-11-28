@@ -56,6 +56,26 @@ test('verify:reference generates comparison, crops, metrics, Markdown, and a pen
   }
 }, 30_000);
 
+test('verify:reference rejects an empty checklist when signing', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'llm-arch-reference-'));
+  const checklist = join(directory, 'checklist.json');
+
+  try {
+    await writeFile(checklist, '{}', 'utf8');
+    await expect(runScript('scripts/verify-reference.tsx', [
+      slug,
+      '--out-dir', join(directory, 'review'),
+      '--manifest', join(directory, 'reference-verification.json'),
+      '--status', 'accepted-difference',
+      '--reviewer', 'test-agent',
+      '--accepted-difference', 'test',
+      '--checklist', checklist,
+    ])).rejects.toThrow('must mark structure, text, connections, insets, visualHierarchy, crops');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+}, 5_000);
+
 test('verify:reference requires a reviewer before recording a pass', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'llm-arch-reference-'));
 

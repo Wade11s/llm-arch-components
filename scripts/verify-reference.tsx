@@ -56,6 +56,23 @@ const entry = figureSpecs.find((figure) => figure.slug === requestedSlug)
   ?? figureSpecs.find((figure) => `${figure.slug}-spec` === requestedSlug);
 if (!entry) throw new Error(`Unknown figure "${requestedSlug}"`);
 const slug = entry.slug;
+const checklistKeys = ['structure', 'text', 'connections', 'insets', 'visualHierarchy', 'crops'] as const;
+let signingChecklist: ReferenceReviewChecklist | undefined;
+if (signing) {
+  const signingChecklistPath = values.checklist ?? `docs/verification/checklists/${slug}.json`;
+  try {
+    const parsed = JSON.parse(await readFile(signingChecklistPath, 'utf8')) as Partial<ReferenceReviewChecklist>;
+    if (!checklistKeys.every((key) => parsed[key] === true)) {
+      throw new Error(`Checklist ${signingChecklistPath} must mark ${checklistKeys.join(', ')} as true`);
+    }
+    signingChecklist = parsed as ReferenceReviewChecklist;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      throw new Error(`A completed --checklist is required when signing; expected ${signingChecklistPath}`);
+    }
+    throw error;
+  }
+}
 const outDir = values['out-dir'] ?? `artifacts/review/${slug}-reference`;
 const manifestPath = values.manifest ?? 'docs/verification/reference-verification.json';
 const svgDir = values['out-dir'] ? `${outDir}/svg` : 'artifacts/svg';
@@ -114,21 +131,7 @@ if (!existing) throw new Error(`Manifest is missing figure "${slug}"`);
 const checklistPath = values.checklist
   ?? existing.checklistPath
   ?? `docs/verification/checklists/${slug}.json`;
-let checklist = existing.checklist;
-if (signing) {
-  try {
-    checklist = JSON.parse(await readFile(checklistPath, 'utf8')) as ReferenceReviewChecklist;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-      throw new Error(`A completed --checklist is required when signing; expected ${checklistPath}`);
-    }
-    throw error;
-  }
-}
-const checklistComplete = checklist && Object.values(checklist).every((value) => value === true);
-if (signing && !checklistComplete) {
-  throw new Error(`Checklist ${checklistPath} must mark structure, text, connections, insets, visualHierarchy, and crops`);
-}
+const checklist = signing ? signingChecklist : existing.checklist;
 
 const referenceSha256 = sha256(await readFile(referencePath));
 const svgSha256 = sha256(first.svg);
