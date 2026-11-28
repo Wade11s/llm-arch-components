@@ -349,6 +349,16 @@ describe('Connector diagnostics', () => {
     expect(diagnostics.some((item) => item.code === 'edge-open-endpoint')).toBe(true);
   });
 
+  test('reports an open endpoint that lands inside its own owner', () => {
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'flow-a-b', [{ x: 50, y: 120 }, { x: 50, y: 40 }])],
+      edges: [edgeSpec],
+      boxes: [a, b],
+      endpointBudgets: { 'flow-a-b': { from: { open: true }, to: { gap: 0 } } },
+    });
+    expect(diagnostics.some((item) => item.code === 'edge-open-endpoint')).toBe(true);
+  });
+
   test('checks internal wiring endpoints using attach owners', () => {
     const diagnostics = diagnoseConnectorLinks({
       paths: [path('p', 'a', [{ x: 50, y: 60 }, { x: 50, y: 40 }], { attach: { from: 'a', to: 'b' } })],
