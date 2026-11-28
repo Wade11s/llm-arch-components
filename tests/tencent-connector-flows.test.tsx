@@ -81,11 +81,15 @@ describe('Tencent Hy4 connector flows', () => {
   });
 
   test('renders bottom-up from the tokenized input to the output layer', () => {
-    const centerX = (id: string): number | undefined => {
-      const path = flowPaths.find((candidate) => candidate.sourceId === id);
-      return path?.points[0]?.x;
-    };
-    expect(centerX('flow-tokenized-embedding')).toBe(1150);
-    expect(centerX('flow-norm-output')).toBe(1150);
+    for (const path of flowPaths) {
+      const start = path.points[0];
+      const end = path.points[path.points.length - 1];
+      expect(start.y).toBeGreaterThan(end.y);
+    }
+    const sample = flowPaths.find((path) => path.sourceId === 'flow-sample-tokenized');
+    const sampleBox = sceneBoxes(scene).find((box) => box.owner === 'sample-input');
+    expect(sample).toBeDefined();
+    expect(sampleBox).toBeDefined();
+    expect(sampleBox!.box.y - sample!.points[0].y).toBe(8);
   });
 });

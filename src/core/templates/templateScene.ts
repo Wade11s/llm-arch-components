@@ -165,9 +165,18 @@ export class TemplateScene {
   }
 
   private registerBox(box: ConnectorBox): void {
+    const previous = this.boxes.get(box.id);
+    if (previous) {
+      const previousOwnerBoxes = this.boxesByOwner.get(previous.owner) ?? [];
+      const previousIndex = previousOwnerBoxes.findIndex((candidate) => candidate.id === box.id);
+      if (previousIndex >= 0) previousOwnerBoxes.splice(previousIndex, 1);
+      if (previousOwnerBoxes.length === 0) this.boxesByOwner.delete(previous.owner);
+    }
     this.boxes.set(box.id, box);
     const ownerBoxes = this.boxesByOwner.get(box.owner) ?? [];
-    if (!ownerBoxes.some((candidate) => candidate.id === box.id)) ownerBoxes.push(box);
+    const ownerIndex = ownerBoxes.findIndex((candidate) => candidate.id === box.id);
+    if (ownerIndex >= 0) ownerBoxes[ownerIndex] = box;
+    else ownerBoxes.push(box);
     this.boxesByOwner.set(box.owner, ownerBoxes);
   }
 
@@ -181,6 +190,9 @@ export class TemplateScene {
     const owner = edge[end].node;
     const boxes = this.boxesByOwner.get(owner) ?? [];
     if (boxes.length === 1) return boxes[0];
+    if (boxes.length === 0) {
+      templateFailure('unplaced-edge', `Edge "${edge.id}" ${end} owner "${owner}" has no box`, [edge.id, owner]);
+    }
     templateFailure('unplaced-edge', `Edge "${edge.id}" ${end} is ambiguous; pass an explicit box id`, [edge.id, owner]);
   }
 
@@ -361,6 +373,7 @@ export class TemplateScene {
           sourceId: connector.edgeId,
         });
       });
+      this.queuedConnectors.length = 0;
     }
     return this.builder.scene(spec);
   }

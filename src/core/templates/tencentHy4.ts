@@ -221,7 +221,7 @@ function drawBackbone(
     sourceId: write.id,
   });
 
-  builder.box('attention-block', 'attention-block', { x: 895, y: 1612, width: 505, height: 250 }, {
+  builder.box('attention-block', 'attention-block', { x: 897.5, y: 1612, width: 505, height: 250 }, {
     fill: builder.solid(COLORS.attention),
     stroke: builder.stroke(spec.theme.ink, 6),
     radius: 28,
@@ -234,7 +234,7 @@ function drawBackbone(
     { spans: [{ text: 'Attention\u00A0', color: 'inverse' }, { text: '(DSA)', color: 'accent' }] },
   ];
   attentionLines.forEach((line, index) => {
-    builder.text(`attention-line-${index + 1}`, 'attention-label', { x: 1147, y: 1670 + index * 40 }, line, {
+    builder.text(`attention-line-${index + 1}`, 'attention-label', { x: 1150, y: 1670 + index * 40 }, line, {
       size: 29,
       align: 'center',
       sourceId: attention.id,
@@ -310,7 +310,7 @@ function drawBackbone(
     align: 'center',
     label: '(RoPE + NoPE)',
   });
-  builder.flow('rope-flow', [{ x: 800, y: 1675 }, { x: 895, y: 1675 }]);
+  builder.flow('rope-flow', [{ x: 800, y: 1675 }, { x: 897.5, y: 1675 }]);
 
 }
 
@@ -705,7 +705,7 @@ function drawLeaders(builder: TemplateScene, spec: FigureSpec): void {
   const leaders: Array<[Id, Point[]]> = [
     ['vocabulary', [{ x: 530, y: 550 }, { x: 970, y: 500 }]],
     ['moe', [{ x: 380, y: 915 }, { x: 975, y: 1010 }]],
-    ['attention', [{ x: 300, y: 1250 }, { x: 895, y: 1620 }]],
+    ['attention', [{ x: 300, y: 1250 }, { x: 897.5, y: 1620 }]],
     ['context', [{ x: 340, y: 1860 }, { x: 895, y: 1840 }]],
     ['ffn', [{ x: 460, y: 2270 }, { x: 770, y: 2200 }]],
     ['embedding', [{ x: 430, y: 2560 }, { x: 860, y: 2385 }]],

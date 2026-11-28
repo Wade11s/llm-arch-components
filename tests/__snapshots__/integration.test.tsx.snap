@@ -157199,7 +157199,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "box": {
         "height": 250,
         "width": 505,
-        "x": 895,
+        "x": 897.5,
         "y": 1612,
       },
       "fill": {
@@ -157221,7 +157221,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1147,
+        "x": 1150,
         "y": 1670,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -157239,7 +157239,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Gated multi-head latent",
               "weight": 400,
               "width": 329.43999999999994,
-              "x": 982.28,
+              "x": 985.28,
             },
           ],
         },
@@ -157250,7 +157250,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1147,
+        "x": 1150,
         "y": 1710,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -157268,7 +157268,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "attention ",
               "weight": 400,
               "width": 146.45000000000005,
-              "x": 1027.375,
+              "x": 1030.375,
             },
             {
               "color": "accent",
@@ -157277,7 +157277,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "(MLA)",
               "weight": 400,
               "width": 92.80000000000001,
-              "x": 1173.825,
+              "x": 1176.825,
             },
           ],
         },
@@ -157288,7 +157288,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1147,
+        "x": 1150,
         "y": 1750,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -157306,7 +157306,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "with DeepSeek Sparse",
               "weight": 400,
               "width": 305.37,
-              "x": 994.315,
+              "x": 997.315,
             },
           ],
         },
@@ -157317,7 +157317,7 @@ exports[`spec-driven integration surface all validated figures render through th
     {
       "align": "center",
       "at": {
-        "x": 1147,
+        "x": 1150,
         "y": 1790,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -157335,7 +157335,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "Attention ",
               "weight": 400,
               "width": 150.22000000000006,
-              "x": 1027.81,
+              "x": 1030.81,
             },
             {
               "color": "accent",
@@ -157344,7 +157344,7 @@ exports[`spec-driven integration surface all validated figures render through th
               "text": "(DSA)",
               "weight": 400,
               "width": 88.16,
-              "x": 1178.03,
+              "x": 1181.03,
             },
           ],
         },
@@ -157984,7 +157984,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1675,
         },
         {
-          "x": 895,
+          "x": 897.5,
           "y": 1675,
         },
       ],
@@ -161172,7 +161172,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1250,
         },
         {
-          "x": 895,
+          "x": 897.5,
           "y": 1620,
         },
       ],
@@ -161412,7 +161412,7 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 1961,
         },
         {
-          "x": 1147.5,
+          "x": 1150,
           "y": 1862,
         },
       ],
@@ -161432,7 +161432,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "points": [
         {
-          "x": 1147.5,
+          "x": 1150,
           "y": 1612,
         },
         {
