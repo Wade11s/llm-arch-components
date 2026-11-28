@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { expect, test } from 'bun:test';
 import sharp from 'sharp';
 import { sharpFromFile } from '../scripts/lib/image';
+import { runScript } from './helpers/runScript';
 
 const reference = 'images/tencent-hy4-770b-a49b.webp';
 
@@ -20,9 +21,7 @@ test('image:crop creates a PNG crop without an ad-hoc Sharp script', async () =>
   const output = join(directory, 'tencent-crop.png');
 
   try {
-    const child = Bun.spawn([
-      process.execPath,
-      'scripts/crop-image.tsx',
+    await runScript('scripts/crop-image.tsx', [
       '--source', reference,
       '--left', '1350',
       '--top', '450',
@@ -30,13 +29,7 @@ test('image:crop creates a PNG crop without an ad-hoc Sharp script', async () =>
       '--height', '2000',
       '--resize-width', '700',
       '--out', output,
-    ], { stdout: 'pipe', stderr: 'pipe' });
-    const [exitCode, stderr] = await Promise.all([
-      child.exited,
-      new Response(child.stderr).text(),
     ]);
-
-    if (exitCode !== 0) throw new Error(stderr);
 
     const png = await readFile(output);
     expect([...png.subarray(0, 8)]).toEqual([137, 80, 78, 71, 13, 10, 26, 10]);
@@ -57,9 +50,7 @@ test('image:crop preserves all cropped pixels when both resize dimensions are se
 
   try {
     await sharp(svg).png().toFile(source);
-    const child = Bun.spawn([
-      process.execPath,
-      'scripts/crop-image.tsx',
+    await runScript('scripts/crop-image.tsx', [
       '--source', source,
       '--left', '0',
       '--top', '0',
@@ -68,12 +59,7 @@ test('image:crop preserves all cropped pixels when both resize dimensions are se
       '--resize-width', '50',
       '--resize-height', '50',
       '--out', output,
-    ], { stdout: 'pipe', stderr: 'pipe' });
-    const [exitCode, stderr] = await Promise.all([
-      child.exited,
-      new Response(child.stderr).text(),
     ]);
-    if (exitCode !== 0) throw new Error(stderr);
 
     const { data, info } = await (await sharpFromFile(output)).raw().toBuffer({ resolveWithObject: true });
     const pixel = (x: number, y: number) => data[(y * info.width + x) * info.channels];

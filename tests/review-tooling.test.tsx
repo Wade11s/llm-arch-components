@@ -2,24 +2,16 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { expect, test } from 'bun:test';
+import { runScript } from './helpers/runScript';
 
 const slug = 'tencent-hy4-770b-a49b';
-
-async function run(script: string, args: string[] = []): Promise<void> {
-  const child = Bun.spawn([process.execPath, script, ...args], { stdout: 'pipe', stderr: 'pipe' });
-  const [exitCode, stderr] = await Promise.all([
-    child.exited,
-    new Response(child.stderr).text(),
-  ]);
-  if (exitCode !== 0) throw new Error(stderr);
-}
 
 test('review --figure generates only the selected figure artifacts', async () => {
   const outDir = await mkdtemp(join(tmpdir(), 'llm-arch-review-'));
 
   try {
-    await run('scripts/export-spec-figures.tsx');
-    await run('scripts/build-review.tsx', ['--figure', slug, '--out-dir', outDir]);
+    await runScript('scripts/export-spec-figures.tsx');
+    await runScript('scripts/build-review.tsx', ['--figure', slug, '--out-dir', outDir]);
 
     const selectedComparison = join(outDir, `${slug}-spec-comparison.png`);
     const otherComparison = join(outDir, 'deepseek-v3-spec-comparison.png');

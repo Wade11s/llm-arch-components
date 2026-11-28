@@ -8,11 +8,11 @@ Use the project crop command instead of writing a temporary Sharp script:
 bun run image:crop -- \
   --source images/tencent-hy4-770b-a49b.webp \
   --left 1350 --top 450 --width 900 --height 2000 \
-  --resize-width 700 [--resize-height <px>] \
+  --resize-width 700 \
   --out /tmp/tencent-crop.png
 ```
 
-The command validates integer geometry, checks the crop against the source dimensions, creates the output directory, and writes PNG. When both resize dimensions are set, it uses `fit: 'fill'` so no cropped pixels are discarded.
+The command validates integer geometry, checks the crop against the source dimensions, creates the output directory, and writes PNG. Add `--resize-height <px>` when both output dimensions must be explicit. When both resize dimensions are set, it uses `fit: 'fill'` so no cropped pixels are discarded; this scales axes independently and can change proportions.
 
 ## Sharp input under Bun
 
