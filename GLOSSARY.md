@@ -41,7 +41,7 @@ A positioned, serializable representation of a **Figure** produced from a normal
 _Avoid_: SVG, JSX, DOM tree
 
 **Path**:
-A drawn connector in a **Scene** that realizes one **Edge**, or an **Internal Wiring** segment.
+A drawn connector in a **Scene** that realizes one **Edge**, an **Internal Wiring** segment, or a leader callout.
 _Avoid_: line, connector
 
 **Port**:
