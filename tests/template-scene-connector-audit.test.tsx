@@ -59,6 +59,18 @@ test('TemplateScene reports an unlinked path when the contract audit is enabled'
   }));
 });
 
+test('TemplateScene reports a path without any Edge or owner link', () => {
+  const builder = contractBuilder();
+  builder.flow('anonymous-path', [{ x: 10, y: 10 }, { x: 100, y: 100 }]);
+
+  const scene = builder.scene(auditSpec([]));
+  expect(scene.diagnostics).toContainEqual(expect.objectContaining({
+    severity: 'error',
+    code: 'unlinked-path',
+    sourceIds: ['anonymous-path'],
+  }));
+});
+
 test('TemplateScene uses resolved endpoint budgets for gap and open endpoints', () => {
   const builder = contractBuilder();
   registerBox(builder, 'a', 100, 100);

@@ -428,7 +428,6 @@ export type ConnectorDiagnosticInput = {
   boxes: ConnectorBox[];
   annotations?: ConnectorAnnotation[];
   endpointBudgets?: Record<Id, { from?: ConnectorEndpointBudget; to?: ConnectorEndpointBudget }>;
-  auditInternalWiring?: boolean;
   severity?: 'warning' | 'error';
 };
 
@@ -669,7 +668,7 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     const isAnnotationLeader = annotationIds.has(path.sourceId);
     const isRegisteredOwner = boxIds.has(path.sourceId);
     if (!isAnnotationLeader && !isRegisteredOwner) continue;
-    if (!isAnnotationLeader && !path.attach && !input.auditInternalWiring) continue;
+    if (!isAnnotationLeader && !path.attach) continue;
     const fromOwner = path.attach?.from ?? path.sourceId;
     const toOwner = path.attach?.to ?? path.sourceId;
     const fromBoxes = input.boxes.filter((box) => box.owner === fromOwner);
@@ -700,7 +699,7 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
   return diagnostics;
 }
 
-export type ConnectorContractInput = Omit<ConnectorDiagnosticInput, 'auditInternalWiring'>;
+export type ConnectorContractInput = ConnectorDiagnosticInput;
 
 /** Audits semantic Edges and leader annotations; Internal Wiring is linkage-only unless it declares attach owners. */
 export function auditConnectorContract(input: ConnectorContractInput): Diagnostic[] {

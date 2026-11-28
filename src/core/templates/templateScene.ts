@@ -429,9 +429,11 @@ export class TemplateScene {
         ...explicitBoxes.filter((box) => !this.boxes.has(box.id)),
         ...textSurfaces,
       ];
-      const leaderBudgets = Object.fromEntries(paths
-        .filter((path) => path.sourceId && leaderById.has(path.sourceId))
-        .map((path) => [path.id, { from: { gap: 5 }, to: { gap: 0 } }]));
+      const leaderBudgets = Object.fromEntries(this.builder.elements
+        .filter((element): element is ScenePath => (
+          element.kind === 'path' && element.sourceId !== undefined && leaderById.has(element.sourceId)
+        ))
+        .map((path) => [path.id, { from: { gap: Math.min(8, Math.max(4, path.stroke.width)) }, to: { gap: 0 } }]));
       this.builder.diagnostics.push(...auditConnectorContract({
         paths,
         edges: spec.edges,
