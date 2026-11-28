@@ -8,7 +8,7 @@ import { glm54Spec } from './glm54';
 import { llama3Spec } from './llama3';
 import { antares1bSpec, llama321bSpec, llama323bSpec, mistralSmall31Spec, nanbeige41Spec, nanbeige42Spec, nanbeige43Spec, olmo2Spec, olmo3Spec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, smollm3Spec, vibeThinker3bSpec } from './denseBackbone';
 import { domynEdgeSpec, granite41Spec, gpt2xlSpec } from './edgeBackbone';
-import { deepSeekR1Spec, glm45355bSpec, glm45AirSpec, glm47Spec, glm51Spec, glm5744bSpec, gptOss20bSpec, intellect3Spec, kimiK2Spec, minimaxM25Spec, mistralLarge3Spec, qwen3235bSpec, qwen3CoderFlashSpec } from './moeFamily';
+import { deepSeekR1Spec, deepSeekV32Spec, glm45355bSpec, glm45AirSpec, glm47Spec, glm51Spec, glm5744bSpec, gptOss20bSpec, intellect3Spec, kimiK25Spec, kimiK2Spec, minimaxM25Spec, minimaxM3Spec, mistralLarge3Spec, mistralSmall4Spec, qwen3235bSpec, qwen3CoderFlashSpec, xiaomiMimoV2FlashSpec } from './moeFamily';
 import { qwen3Spec } from './qwen3';
 import { qwen3MoeSpec } from './qwen3Moe';
 import { minimaxM2Spec } from './minimaxM2';
@@ -31,6 +31,7 @@ export type FigureSpecEntry = {
 };
 
 export const figureSpecs: FigureSpecEntry[] = [
+  { slug: 'deepseek-v3-2', name: 'DeepSeek-V3.2 (671B)', reference: '../images/deepseek-v3-2.webp', width: 2786, height: 2725, spec: deepSeekV32Spec },
   { slug: 'deepseek-v3', name: 'DeepSeek-V3 (671B)', reference: '../images/deepseek-v3.webp', width: 2786, height: 2725, spec: deepSeekV3Spec },
   { slug: 'deepseek-r1', name: 'DeepSeek-R1 (671B)', reference: '../images/deepseek-r1.webp', width: 2786, height: 2725, spec: deepSeekR1Spec },
   { slug: 'gemma-3-270m', name: 'Gemma 3 (270M)', reference: '../images/gemma-3-270m.webp', width: 2678, height: 2652, spec: gemma3SmallSpec },
@@ -67,9 +68,13 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'qwen3-235b-a22b', name: 'Qwen3 (235B-A22B)', reference: '../images/qwen3-235b-a22b.webp', width: 2766, height: 2715, spec: qwen3235bSpec },
   { slug: 'qwen3-coder-flash-30b-a3b', name: 'Qwen3-Coder-Flash (30B-A3B)', reference: '../images/qwen3-coder-flash-30b-a3b.webp', width: 2830, height: 2739, spec: qwen3CoderFlashSpec },
   { slug: 'kimi-k2', name: 'Kimi K2 (1T)', reference: '../images/kimi-k2.webp', width: 2807, height: 2689, spec: kimiK2Spec },
+  { slug: 'kimi-k2-5', name: 'Kimi K2.5 (1T)', reference: '../images/kimi-k2-5.webp', width: 2807, height: 2689, spec: kimiK25Spec },
+  { slug: 'minimax-m3-428b', name: 'MiniMax-M3 (428B)', reference: '../images/minimax-m3-428b.webp', width: 2747, height: 2727, spec: minimaxM3Spec },
   { slug: 'minimax-m2-230b', name: 'MiniMax-M2 (230B)', reference: '../images/minimax-m2-230b.webp', width: 2751, height: 2709, spec: minimaxM2Spec },
   { slug: 'minimax-m2-5-230b', name: 'MiniMax-M2.5 (230B)', reference: '../images/minimax-m2-5-230b.webp', width: 2747, height: 2727, spec: minimaxM25Spec },
+  { slug: 'mistral-small-4', name: 'Mistral Small 4 (119B-A6B)', reference: '../images/mistral-small-4.webp', width: 2812, height: 2735, spec: mistralSmall4Spec },
   { slug: 'mistral-large-3', name: 'Mistral Large 3 (673B)', reference: '../images/mistral-large-3.webp', width: 2786, height: 2735, spec: mistralLarge3Spec },
+  { slug: 'xiaomi-mimo-v2-flash-309b', name: 'Xiaomi MiMo-V2-Flash (309B)', reference: '../images/xiaomi-mimo-v2-flash-309b.webp', width: 2807, height: 2689, spec: xiaomiMimoV2FlashSpec },
   { slug: 'intellect-3', name: 'INTELLECT-3 (106B)', reference: '../images/intellect-3.webp', width: 2778, height: 2709, spec: intellect3Spec },
   { slug: 'glm-4-5-air', name: 'GLM-4.5-Air (106B)', reference: '../images/glm-4-5-air.webp', width: 2778, height: 2709, spec: glm45AirSpec },
   { slug: 'glm-4-5-355b', name: 'GLM-4.5 (355B)', reference: '../images/glm-4-5-355b.webp', width: 2778, height: 2709, spec: glm45355bSpec },
@@ -86,4 +91,4 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'tencent-hy4-770b-a49b', name: 'Tencent Hy4 (770B-A49B)', reference: '../images/tencent-hy4-770b-a49b.webp', width: 3834, height: 2949, spec: tencentHy4Spec },
 ];
 
-export { antares1bSpec, deepSeekR1Spec, deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gemma4E2bSpec, gemma4E4bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, vibeThinker3bSpec, nanbeige41Spec, nanbeige42Spec, nanbeige43Spec, mistralSmall31Spec, olmo2Spec, olmo3Spec, smollm3Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, qwen3CoderFlashSpec, minimaxM2Spec, minimaxM25Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm47Spec, glm51Spec, glm5744bSpec, mistralLarge3Spec, kimiK2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };
+export { antares1bSpec, deepSeekR1Spec, deepSeekV3Spec, deepSeekV32Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gemma4E2bSpec, gemma4E4bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, vibeThinker3bSpec, nanbeige41Spec, nanbeige42Spec, nanbeige43Spec, mistralSmall31Spec, olmo2Spec, olmo3Spec, smollm3Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, qwen3CoderFlashSpec, minimaxM2Spec, minimaxM25Spec, minimaxM3Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm47Spec, glm51Spec, glm5744bSpec, mistralLarge3Spec, mistralSmall4Spec, kimiK25Spec, kimiK2Spec, xiaomiMimoV2FlashSpec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };

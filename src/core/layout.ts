@@ -484,7 +484,16 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     radius: 30,
     sourceId: 'attention',
   });
-  if (attentionData.family === 'mla' && attentionLabelStyle === 'mla-dsa') {
+  if (attentionData.family === 'mla' && attentionLabelStyle === 'mla-dsa-plain') {
+    builder.text('attention-mla-line-1', 'attention-label', { x: 973, y: attentionBoxY + 70 }, 'Multi-head attention', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-mla-line-2', 'attention-label', { x: 973, y: attentionBoxY + 106 }, '(MLA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-mla-line-3', 'attention-label', { x: 973, y: attentionBoxY + 142 }, '+', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    addComposedCenteredLine(builder, context, 'attention-mla-line-4', 973, attentionBoxY + 178, 30, [
+      { text: 'DeepSeek ', fill: '#FFFFFF' },
+      { text: 'Sparse', fill: '#FF968D' },
+    ]);
+    builder.text('attention-mla-line-5', 'attention-label', { x: 973, y: attentionBoxY + 214 }, 'Attention (DSA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  } else if (attentionData.family === 'mla' && attentionLabelStyle === 'mla-dsa') {
     addComposedCenteredLine(builder, context, 'attention-mla-line-1', 973, attentionBoxY + 70, 30, [
       { text: 'Multi-head ', fill: '#FFFFFF' },
       { text: 'latent', fill: '#FF968D' },
@@ -497,6 +506,14 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
       { text: 'Sparse', fill: '#FF968D' },
     ]);
     builder.text('attention-mla-line-5', 'attention-label', { x: 973, y: attentionBoxY + 214 }, 'Attention (DSA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  } else if (attentionLabelStyle === 'gqa-swa') {
+    builder.text('attention-line-1', 'attention-label', { x: 973, y: 1460 }, 'Grouped-query', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-2', 'attention-label', { x: 973, y: 1500 }, 'attention (GQA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-3', 'attention-label', { x: 973, y: 1540 }, '+', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-4', 'attention-label', { x: 973, y: 1580 }, { spans: [{ text: 'Sliding window attention', color: 'inverse' }, { text: ' (SWA)', color: 'accent' }] }, { size: 30, align: 'center', sourceId: 'attention' });
+  } else if (attentionLabelStyle === 'gqa-sparse') {
+    builder.text('attention-line-1', 'attention-label', { x: 973, y: 1510 }, 'GQA / MiniMax Sparse', { size: 36, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-2', 'attention-label', { x: 973, y: 1565 }, 'Attention', { size: 36, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   } else if (attentionData.family === 'mla') {
     builder.text('attention-first-line', 'attention-label', { x: 970, y: 1510 }, { spans: [{ text: 'Multi-head ', color: 'inverse' }, { text: 'latent', color: 'accent', emphasis: 'italic' }] }, { size: 40, align: 'center', sourceId: 'attention' });
     builder.text('attention-second-line', 'attention-label', { x: 970, y: 1565 }, 'attention', { size: 40, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
@@ -518,7 +535,7 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
 
   builder.text('repeat-count', 'repeat-marker', { x: 468, y: 1908 }, `${repeatCount}`, { size: 60, weight: 700, fill: spec.theme.accent });
   builder.text('repeat-x', 'repeat-marker', { x: 558, y: 1908 }, '×', { size: 60, weight: 700, fill: spec.theme.accent });
-  builder.glyph('repeat-brace', 'repeat-marker', { x: 665, y: 1870 }, 'brace', 150);
+  if (layoutOptions?.repeatBrace !== false) builder.glyph('repeat-brace', 'repeat-marker', { x: 665, y: 1870 }, 'brace', 150);
 
   builder.box('ffn-inset', 'ffn-inset', { x: 1877, y: 340, width: ffnInsetWidth, height: ffnInsetHeight }, {
     fill: builder.solid(spec.theme.surface),

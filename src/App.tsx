@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import deepseekV3Ref from '../images/deepseek-v3.webp';
 import deepseekR1Ref from '../images/deepseek-r1.webp';
+import deepseekV32Ref from '../images/deepseek-v3-2.webp';
 import gemma3SmallRef from '../images/gemma-3-270m.webp';
 import gemma3Ref from '../images/gemma-3-27b.webp';
 import gemma412bRef from '../images/gemma-4-12b.webp';
@@ -35,10 +36,14 @@ import qwen3MoeRef from '../images/qwen3-30b-a3b.webp';
 import qwen3235bRef from '../images/qwen3-235b-a22b.webp';
 import qwen3CoderFlashRef from '../images/qwen3-coder-flash-30b-a3b.webp';
 import kimiK2Ref from '../images/kimi-k2.webp';
+import kimiK25Ref from '../images/kimi-k2-5.webp';
 import minimaxM2Ref from '../images/minimax-m2-230b.webp';
+import minimaxM3Ref from '../images/minimax-m3-428b.webp';
 import minimaxM25Ref from '../images/minimax-m2-5-230b.webp';
 import mistralLarge3Ref from '../images/mistral-large-3.webp';
+import mistralSmall4Ref from '../images/mistral-small-4.webp';
 import intellect3Ref from '../images/intellect-3.webp';
+import xiaomiMimoV2FlashRef from '../images/xiaomi-mimo-v2-flash-309b.webp';
 import glm45AirRef from '../images/glm-4-5-air.webp';
 import glm45355bRef from '../images/glm-4-5-355b.webp';
 import glm47Ref from '../images/glm-4-7-355b.webp';
@@ -57,6 +62,7 @@ import { figureSpecs } from './specs';
 
 const references: Record<string, string> = {
   'deepseek-v3': deepseekV3Ref,
+  'deepseek-v3-2': deepseekV32Ref,
   'deepseek-r1': deepseekR1Ref,
   'gemma-3-270m': gemma3SmallRef,
   'gemma-3-27b': gemma3Ref,
@@ -92,9 +98,13 @@ const references: Record<string, string> = {
   'qwen3-235b-a22b': qwen3235bRef,
   'qwen3-coder-flash-30b-a3b': qwen3CoderFlashRef,
   'kimi-k2': kimiK2Ref,
+  'kimi-k2-5': kimiK25Ref,
+  'minimax-m3-428b': minimaxM3Ref,
   'minimax-m2-230b': minimaxM2Ref,
   'minimax-m2-5-230b': minimaxM25Ref,
+  'mistral-small-4': mistralSmall4Ref,
   'mistral-large-3': mistralLarge3Ref,
+  'xiaomi-mimo-v2-flash-309b': xiaomiMimoV2FlashRef,
   'intellect-3': intellect3Ref,
   'glm-4-5-air': glm45AirRef,
   'glm-4-5-355b': glm45355bRef,
