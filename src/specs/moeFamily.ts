@@ -262,7 +262,7 @@ export const mistralLarge3Spec = moeFamilySpec({
 });
 
 export const kimiK25Spec = moeFamilySpec({
-  id: 'kimi-k2-5', title: 'Kimi K2.5 (1T)', canvas: { width: 2807, height: 2689 },
+  id: 'kimi-k2-5', title: 'Kimi K2.5 (1T)', canvas: { width: 2807, height: 2721 },
   accent: '#2741B5', blockFill: '#7D8AC4', layers: 61, embedding: '7,168', vocabulary: '160k',
   context: [text('YaRN context'), emphasized('', '256k', ' tokens'), emphasized('', '4k', ' RoPE base')],
   attention: { family: 'mla', heads: 64, kvRank: 512 }, hidden: 2048,
@@ -286,7 +286,7 @@ export const mistralSmall4Spec = moeFamilySpec({
 });
 
 export const minimaxM3Spec = moeFamilySpec({
-  id: 'minimax-m3-428b', title: 'MiniMax-M3 (428B)', canvas: { width: 2747, height: 2727 },
+  id: 'minimax-m3-428b', title: 'MiniMax-M3 (428B)', canvas: { width: 2793, height: 2737 },
   accent: '#EA4762', blockFill: '#EA5B69', layers: 60, embedding: '6,144', vocabulary: '200k',
   context: [text('Native context'), emphasized('', '1M', ' tokens')],
   attention: { family: 'gqa', heads: 64, kvHeads: 8 }, hidden: 3072,
@@ -315,14 +315,14 @@ export const deepSeekV32Spec = moeFamilySpec({
 });
 
 export const xiaomiMimoV2FlashSpec = moeFamilySpec({
-  id: 'xiaomi-mimo-v2-flash-309b', title: 'Xiaomi MiMo-V2-Flash (309B)', canvas: { width: 2807, height: 2689 },
+  id: 'xiaomi-mimo-v2-flash-309b', title: 'Xiaomi MiMo-V2-Flash (309B)', canvas: { width: 2825, height: 2746 },
   accent: '#EC6617', blockFill: '#E1996E', layers: 48, embedding: '4,096', vocabulary: '152k',
   context: [text('Context length'), emphasized('', '32k', ' pretraining'), emphasized('', '256k', ' trained')],
   attention: { family: 'gqa', heads: 64, kvHeads: 8 }, hidden: 2048,
   experts: 256, activeExperts: 8, sharedExperts: 0,
   expertDimensions: [text('Intermediate hidden'), text('layer dimension of'), emphasized('', '2,048')],
   modelSize: '309B', activeParams: '15B',
-  attentionLabelStyle: 'gqa-swa', ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
+  attentionLabelStyle: 'gqa-swa', attentionBoxY: 1370, attentionBoxHeight: 260, ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
   denseFirst: [text('First block uses'), text('dense FFN with'), emphasized('hidden size ', '16,384'), text('instead of MoE')],
   firstBadgeFill: '#000000', activeExpertLabel: '8 routed experts', denseFirstLeader: true,
   expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
