@@ -1,7 +1,10 @@
+import { resolveConnectors } from '../connectors';
+import type { ConnectorBox } from '../connectors';
 import { FigureLayoutError } from '../errors';
 import { SceneBuilder } from '../sceneBuilder';
 import type {
   Box,
+  EdgeSpec,
   FigureSpec,
   Fill,
   GroupSpec,
@@ -70,8 +73,29 @@ export function createTemplateApi(templateName: string, failureCode: string) {
   };
 }
 
+type QueuedConnector = {
+  edge: EdgeSpec;
+  from?: Id;
+  to?: Id;
+  fromBox?: ConnectorBox;
+  toBox?: ConnectorBox;
+  waypoints?: Point[];
+  fromGap?: number;
+  toGap?: number;
+  openFrom?: Point;
+  openTo?: Point;
+  stroke?: string;
+  width?: number;
+  dash?: 'solid' | 'dashed' | 'dotted';
+  role?: string;
+  arrow?: 'none' | 'end' | 'both';
+};
+
 export class TemplateScene {
   private readonly builder: SceneBuilder;
+  private readonly boxes = new Map<Id, ConnectorBox>();
+  private readonly boxesByOwner = new Map<Id, ConnectorBox[]>();
+  private readonly queuedConnectors: QueuedConnector[] = [];
   private readonly pillRadius?: number;
   private readonly pillSize?: number;
   private readonly calloutLineGap?: number;
@@ -119,12 +143,79 @@ export class TemplateScene {
     this.builder.text(...args);
   }
 
-  box(...args: Parameters<SceneBuilder['box']>) {
-    this.builder.box(...args);
+  box(
+    id: Id,
+    role: string,
+    box: Box,
+    options: Parameters<SceneBuilder['box']>[3] = {},
+  ) {
+    this.builder.box(id, role, box, options);
+    this.registerBox({ id, owner: options.sourceId ?? id, box, radius: options.radius ?? 26, kind: 'node' });
   }
 
-  group(...args: Parameters<SceneBuilder['group']>) {
-    this.builder.group(...args);
+  group(
+    id: Id,
+    role: string,
+    box: Box,
+    children: Id[],
+    options: Parameters<SceneBuilder['group']>[4] = {},
+  ) {
+    this.builder.group(id, role, box, children, options);
+    this.registerBox({ id, owner: options.sourceId ?? id, box, radius: 32, kind: 'group' });
+  }
+
+  private registerBox(box: ConnectorBox): void {
+    const previous = this.boxes.get(box.id);
+    if (previous) {
+      const previousOwnerBoxes = this.boxesByOwner.get(previous.owner) ?? [];
+      const previousIndex = previousOwnerBoxes.findIndex((candidate) => candidate.id === box.id);
+      if (previousIndex >= 0) previousOwnerBoxes.splice(previousIndex, 1);
+      if (previousOwnerBoxes.length === 0) this.boxesByOwner.delete(previous.owner);
+    }
+    this.boxes.set(box.id, box);
+    const ownerBoxes = this.boxesByOwner.get(box.owner) ?? [];
+    const ownerIndex = ownerBoxes.findIndex((candidate) => candidate.id === box.id);
+    if (ownerIndex >= 0) ownerBoxes[ownerIndex] = box;
+    else ownerBoxes.push(box);
+    this.boxesByOwner.set(box.owner, ownerBoxes);
+  }
+
+  private resolveBox(id: Id | undefined, edge: EdgeSpec, end: 'from' | 'to', explicit?: ConnectorBox): ConnectorBox {
+    if (explicit) return explicit;
+    if (id) {
+      const box = this.boxes.get(id);
+      if (!box) templateFailure('unplaced-edge', `Edge "${edge.id}" cannot find ${end} box "${id}"`, [edge.id, id]);
+      return box;
+    }
+    const owner = edge[end].node;
+    const boxes = this.boxesByOwner.get(owner) ?? [];
+    if (boxes.length === 1) return boxes[0];
+    if (boxes.length === 0) {
+      templateFailure('unplaced-edge', `Edge "${edge.id}" ${end} owner "${owner}" has no box`, [edge.id, owner]);
+    }
+    templateFailure('unplaced-edge', `Edge "${edge.id}" ${end} is ambiguous; pass an explicit box id`, [edge.id, owner]);
+  }
+
+  edge(
+    edge: EdgeSpec,
+    options: {
+      from?: Id;
+      to?: Id;
+      fromBox?: ConnectorBox;
+      toBox?: ConnectorBox;
+      waypoints?: Point[];
+      fromGap?: number;
+      toGap?: number;
+      openFrom?: Point;
+      openTo?: Point;
+      stroke?: string;
+      width?: number;
+      dash?: 'solid' | 'dashed' | 'dotted';
+      role?: string;
+      arrow?: 'none' | 'end' | 'both';
+    } = {},
+  ): void {
+    this.queuedConnectors.push({ edge, ...options });
   }
 
   path(...args: Parameters<SceneBuilder['path']>) {
@@ -261,6 +352,29 @@ export class TemplateScene {
   }
 
   scene(spec: Parameters<SceneBuilder['scene']>[0]): Scene {
+    if (this.queuedConnectors.length > 0) {
+      const requests = this.queuedConnectors.map((queued) => ({
+        edge: queued.edge,
+        from: this.resolveBox(queued.from, queued.edge, 'from', queued.fromBox),
+        to: this.resolveBox(queued.to, queued.edge, 'to', queued.toBox),
+        waypoints: queued.waypoints,
+        fromGap: queued.fromGap,
+        toGap: queued.toGap,
+        openFrom: queued.openFrom,
+        openTo: queued.openTo,
+      }));
+      const resolved = resolveConnectors(requests);
+      resolved.forEach((connector, index) => {
+        const queued = this.queuedConnectors[index];
+        this.builder.path(connector.edgeId, queued.role ?? connector.role, connector.points, {
+          stroke: this.stroke(queued.stroke ?? '#000000', queued.width ?? 6, queued.dash),
+          arrow: queued.arrow ?? connector.arrow,
+          junction: connector.junction?.kind,
+          sourceId: connector.edgeId,
+        });
+      });
+      this.queuedConnectors.length = 0;
+    }
     return this.builder.scene(spec);
   }
 }
