@@ -270,7 +270,7 @@ export const kimiK25Spec = moeFamilySpec({
   expertDimensions: [emphasized('Input dim.: ', '7,168'), emphasized('Intermediate dim.: ', '2,048')],
   modelSize: '1T', activeParams: '32B', ropeLabel: 'Partial RoPE',
   denseFirst: [emphasized('First ', '1', ' block uses'), text('dense FFN with'), emphasized('hidden size ', '18,432'), text('instead of MoE')],
-  firstBadgeFill: '#000000', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, repeatBrace: false, wideInsets: true,
+  firstBadgeFill: '#000000', denseFirstLeader: true, expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });
 
 export const mistralSmall4Spec = moeFamilySpec({
@@ -294,7 +294,7 @@ export const minimaxM3Spec = moeFamilySpec({
   expertDimensions: [emphasized('Input expert size: ', '6,144'), text('Intermediate projection size:'), emphasized('', '3,072')],
   modelSize: '428B', activeParams: '23B',
   activeParamsLine: { spans: [{ text: '' }, { text: 'per inference step (i.e., only ' }, { text: '5.37%', color: 'accent' }, { text: ' parameters active)' }] },
-  attentionLabelStyle: 'gqa-sparse', ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
+  attentionLabelStyle: 'gqa-sparse', ropeLabel: 'Partial RoPE', showQKNorm: true, showHeadsAnnotation: false,
   denseFirst: [emphasized('First ', '3', ' blocks use'), text('dense FFN with GQA'), emphasized('and hidden size ', '12,288'), text('instead of'), text('MiniMax Sparse Attention and MoE')],
   firstBadgeFill: '#5E5E5E', activeExpertLabel: '4 experts + 1 shared expert', denseFirstLeader: true,
   expertAnnotationY: 1070, resourceMaxWidth: 900, resourceLineGap: 58, wideInsets: true,
@@ -322,8 +322,8 @@ export const xiaomiMimoV2FlashSpec = moeFamilySpec({
   experts: 256, activeExperts: 8, sharedExperts: 0,
   expertDimensions: [text('Intermediate hidden'), text('layer dimension of'), emphasized('', '2,048')],
   modelSize: '309B', activeParams: '15B',
-  attentionLabelStyle: 'gqa-swa', ropeLabel: 'RoPE', showHeadsAnnotation: false,
-  denseFirst: [emphasized('First ', '1', ' block uses'), text('dense FFN with'), emphasized('hidden size ', '16,384'), text('instead of MoE')],
+  attentionLabelStyle: 'gqa-swa', ropeLabel: 'Partial RoPE', showHeadsAnnotation: false,
+  denseFirst: [text('First block uses'), text('dense FFN with'), emphasized('hidden size ', '16,384'), text('instead of MoE')],
   firstBadgeFill: '#000000', activeExpertLabel: '8 routed experts', denseFirstLeader: true,
   expertAnnotationY: 1070, resourceMaxWidth: 900, wideInsets: true,
 });

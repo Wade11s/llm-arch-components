@@ -18,7 +18,7 @@ function sceneText(scene: Scene): string {
 }
 
 describe('large MoE / MLA family', () => {
-  test('renders Kimi K2.5 (1T) with 61x and no repeat brace', () => {
+  test('renders Kimi K2.5 (1T) with 61x and a repeat brace', () => {
     const result = renderFigure(kimiK25Spec);
     const text = sceneText(result.scene);
 
@@ -32,7 +32,7 @@ describe('large MoE / MLA family', () => {
     expect(text).toContain('Model size is 1T');
     expect(text).toContain('32B');
     expect(text).toContain('256k tokens');
-    expect(result.scene.elements.some((element) => element.id === 'repeat-brace')).toBe(false);
+    expect(result.scene.elements.some((element) => element.id === 'repeat-brace')).toBe(true);
   });
 
   test('renders Mistral Small 4 (119B-A6B) with 4 routed experts', () => {
@@ -68,6 +68,7 @@ describe('large MoE / MLA family', () => {
     expect(text).toContain('23B');
     expect(text).toContain('5.37%');
     expect(text).toContain('1M tokens');
+    expect(text).toContain('QK-Norm');
     expect(text).toContain('Input expert size: 6,144');
     expect(text).toContain('3,072');
   });
@@ -104,6 +105,8 @@ describe('large MoE / MLA family', () => {
     expect(text).toContain('8 routed experts');
     expect(text).toContain('Model size is 309B');
     expect(text).toContain('15B');
+    expect(text).toContain('(SWA)');
+    expect(text).toContain('First block uses');
     expect(text).toContain('hidden size 16,384');
   });
 

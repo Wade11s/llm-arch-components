@@ -507,10 +507,11 @@ function layoutMoe(spec: FigureSpec, context: LayoutContext): Scene {
     ]);
     builder.text('attention-mla-line-5', 'attention-label', { x: 973, y: attentionBoxY + 214 }, 'Attention (DSA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
   } else if (attentionLabelStyle === 'gqa-swa') {
-    builder.text('attention-line-1', 'attention-label', { x: 973, y: 1460 }, 'Grouped-query', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
-    builder.text('attention-line-2', 'attention-label', { x: 973, y: 1500 }, 'attention (GQA)', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
-    builder.text('attention-line-3', 'attention-label', { x: 973, y: 1540 }, '+', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
-    builder.text('attention-line-4', 'attention-label', { x: 973, y: 1580 }, { spans: [{ text: 'Sliding window attention', color: 'inverse' }, { text: ' (SWA)', color: 'accent' }] }, { size: 30, align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-1', 'attention-label', { x: 973, y: 1450 }, 'Grouped-query', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-2', 'attention-label', { x: 973, y: 1490 }, { spans: [{ text: 'attention ', color: 'inverse' }, { text: '(GQA)', color: 'accent' }] }, { size: 30, align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-3', 'attention-label', { x: 973, y: 1530 }, '+', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-4', 'attention-label', { x: 973, y: 1570 }, 'Sliding window attention', { size: 30, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-5', 'attention-label', { x: 973, y: 1610 }, { spans: [{ text: '(SWA)', color: 'accent' }] }, { size: 30, align: 'center', sourceId: 'attention' });
   } else if (attentionLabelStyle === 'gqa-sparse') {
     builder.text('attention-line-1', 'attention-label', { x: 973, y: 1510 }, 'GQA / MiniMax Sparse', { size: 36, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
     builder.text('attention-line-2', 'attention-label', { x: 973, y: 1565 }, 'Attention', { size: 36, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });

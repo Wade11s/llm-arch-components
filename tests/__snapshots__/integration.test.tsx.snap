@@ -92387,6 +92387,19 @@ exports[`spec-driven integration surface all validated figures render through th
       "sourceId": undefined,
     },
     {
+      "at": {
+        "x": 642.7875344352617,
+        "y": 1863.0715079659133,
+      },
+      "glyph": "brace",
+      "id": "repeat-brace",
+      "kind": "glyph",
+      "label": undefined,
+      "role": "repeat-marker",
+      "size": 144.9896694214876,
+      "sourceId": undefined,
+    },
+    {
       "box": {
         "height": 697.40644683216,
         "width": 827.4077134986226,
@@ -95360,7 +95373,82 @@ exports[`spec-driven integration surface all validated figures render through th
         "height": 84.87143386439422,
         "width": 283.78099173553716,
         "x": 351.8884297520661,
-        "y": 1470.0944794368284,
+        "y": 1382.19192293442,
+      },
+      "fill": {
+        "color": "#FFFFFF",
+        "kind": "solid",
+      },
+      "id": "qk-norm-box",
+      "kind": "box",
+      "label": undefined,
+      "radius": 30,
+      "role": "side-pill",
+      "sourceId": "qk-norm",
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5,
+      },
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 493.7789256198347,
+        "y": 1438.7728788440163,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "qk-norm-label",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1438.7728788440163,
+          "spans": [
+            {
+              "fill": "#000000",
+              "size": 37.83746556473829,
+              "text": "QK-Norm",
+              "weight": 500,
+              "width": 166.10647382920112,
+              "x": 410.7256887052341,
+            },
+          ],
+        },
+      ],
+      "role": "side-pill-label",
+      "sourceId": "qk-norm",
+    },
+    {
+      "arrow": "end",
+      "id": "qk-norm-flow",
+      "junction": undefined,
+      "kind": "path",
+      "label": undefined,
+      "points": [
+        {
+          "x": 635.6694214876032,
+          "y": 1424.6276398666173,
+        },
+        {
+          "x": 717.0199724517906,
+          "y": 1487.2708410522416,
+        },
+      ],
+      "role": "flow-path",
+      "sourceId": undefined,
+      "stroke": {
+        "color": "#000000",
+        "dash": undefined,
+        "width": 5.675619834710743,
+      },
+    },
+    {
+      "box": {
+        "height": 84.87143386439422,
+        "width": 283.78099173553716,
+        "x": 351.8884297520661,
+        "y": 1525.6650611337532,
       },
       "fill": {
         "color": "#FFFFFF",
@@ -95382,7 +95470,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 493.7789256198347,
-        "y": 1526.6754353464246,
+        "y": 1582.2460170433494,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "rope-label",
@@ -95390,7 +95478,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1526.6754353464246,
+          "baseline": 1582.2460170433494,
           "spans": [
             {
               "fill": "#000000",
@@ -95415,11 +95503,11 @@ exports[`spec-driven integration surface all validated figures render through th
       "points": [
         {
           "x": 635.6694214876032,
-          "y": 1512.5301963690256,
+          "y": 1568.1007780659504,
         },
         {
           "x": 717.0199724517906,
-          "y": 1512.5301963690256,
+          "y": 1568.1007780659504,
         },
       ],
       "role": "flow-path",
@@ -110438,7 +110526,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 940.499655647383,
-        "y": 1454.5905891070765,
+        "y": 1444.627639866617,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "attention-line-1",
@@ -110446,7 +110534,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1454.5905891070765,
+          "baseline": 1444.627639866617,
           "spans": [
             {
               "fill": "#FFFFFF",
@@ -110466,7 +110554,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 940.499655647383,
-        "y": 1494.4423860689144,
+        "y": 1484.479436828455,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "attention-line-2",
@@ -110474,15 +110562,25 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1494.4423860689144,
+          "baseline": 1484.479436828455,
           "spans": [
             {
+              "color": "inverse",
               "fill": "#FFFFFF",
               "size": 28.99793388429752,
-              "text": "attention (GQA)",
+              "text": "attention ",
               "weight": 400,
-              "width": 227.34380165289264,
+              "width": 139.19008264462815,
               "x": 826.8277548209367,
+            },
+            {
+              "color": "accent",
+              "fill": "#EC6617",
+              "size": 28.99793388429752,
+              "text": "(GQA)",
+              "weight": 400,
+              "width": 88.15371900826446,
+              "x": 966.0178374655649,
             },
           ],
         },
@@ -110494,7 +110592,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 940.499655647383,
-        "y": 1534.294183030752,
+        "y": 1524.3312337902926,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "attention-line-3",
@@ -110502,7 +110600,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1534.294183030752,
+          "baseline": 1524.3312337902926,
           "spans": [
             {
               "fill": "#FFFFFF",
@@ -110522,7 +110620,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "align": "center",
       "at": {
         "x": 940.499655647383,
-        "y": 1574.1459799925897,
+        "y": 1564.1830307521304,
       },
       "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
       "id": "attention-line-4",
@@ -110530,25 +110628,44 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "lines": [
         {
-          "baseline": 1574.1459799925897,
+          "baseline": 1564.1830307521304,
           "spans": [
             {
-              "color": "inverse",
               "fill": "#FFFFFF",
               "size": 28.99793388429752,
               "text": "Sliding window attention",
               "weight": 400,
               "width": 338.69586776859495,
-              "x": 720.6953168044078,
+              "x": 771.1517217630854,
             },
+          ],
+        },
+      ],
+      "role": "attention-label",
+      "sourceId": "attention",
+    },
+    {
+      "align": "center",
+      "at": {
+        "x": 940.499655647383,
+        "y": 1604.034827713968,
+      },
+      "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "id": "attention-line-5",
+      "kind": "text",
+      "label": undefined,
+      "lines": [
+        {
+          "baseline": 1604.034827713968,
+          "spans": [
             {
               "color": "accent",
               "fill": "#EC6617",
               "size": 28.99793388429752,
-              "text": " (SWA)",
+              "text": "(SWA)",
               "weight": 400,
-              "width": 100.91280991735537,
-              "x": 1059.3911845730029,
+              "width": 92.79338842975207,
+              "x": 894.1029614325068,
             },
           ],
         },
@@ -110777,10 +110894,10 @@ exports[`spec-driven integration surface all validated figures render through th
             {
               "fill": "#000000",
               "size": 38.66391184573003,
-              "text": "RoPE",
+              "text": "Partial RoPE",
               "weight": 500,
-              "width": 97.04641873278237,
-              "x": 456.0408402203857,
+              "width": 237.00977961432514,
+              "x": 386.05915977961433,
             },
           ],
         },
@@ -112752,27 +112869,10 @@ exports[`spec-driven integration surface all validated figures render through th
             {
               "fill": "#000000",
               "size": 42.53030303030303,
-              "text": "First ",
+              "text": "First block uses",
               "weight": 700,
-              "width": 124.2905575757576,
+              "width": 336.60183030303045,
               "x": 19.331955922865014,
-            },
-            {
-              "color": "accent",
-              "fill": "#EC6617",
-              "size": 42.53030303030303,
-              "text": "1",
-              "weight": 700,
-              "width": 23.442703030303033,
-              "x": 143.62251349862262,
-            },
-            {
-              "fill": "#000000",
-              "size": 42.53030303030303,
-              "text": " block uses",
-              "weight": 700,
-              "width": 224.6960969696971,
-              "x": 167.06521652892565,
             },
           ],
         },
