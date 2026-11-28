@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { diagnoseConnectorLinks, resolveConnectors } from '../src/core/connectors';
+import { diagnoseConnectorLinks, endpointBudgetsOf, resolveConnectors } from '../src/core/connectors';
 import type { ConnectorBox, ConnectorPathLike, ConnectorRequest } from '../src/core/connectors';
 import type { EdgeSpec } from '../src/core/types';
 
@@ -81,6 +81,7 @@ describe('ConnectorResolver', () => {
     expect(right.fromPort.point.x).toBeGreaterThanOrEqual(12);
     expect(right.fromPort.point.x).toBeLessThanOrEqual(28);
     expect(left.fromPort.point.x).not.toBe(right.fromPort.point.x);
+    expect(right.fromPort.point.x - left.fromPort.point.x).toBeGreaterThanOrEqual(8);
   });
 
   test('keeps attached endpoints on the boundary and applies the gap budget', () => {
@@ -107,6 +108,18 @@ describe('ConnectorResolver', () => {
     expect(resolved.openTo).toBe(true);
     expect(resolved.fromGap).toBe(0);
     expect(resolved.toGap).toBe(0);
+  });
+
+  test('keeps route roles and both-ended arrows', () => {
+    const [resolved] = resolveConnectors([request({ edge: edge({ id: 'route', kind: 'route', arrow: 'both' }) })]);
+    expect(resolved.role).toBe('route-path');
+    expect(resolved.arrow).toBe('both');
+  });
+
+  test('treats an open point at the origin as declared open', () => {
+    const [resolved] = resolveConnectors([request({ openFrom: { x: 0, y: 0 } })]);
+    expect(resolved.openFrom).toBe(true);
+    expect(resolved.points[0]).toEqual({ x: 0, y: 0 });
   });
 
   test('leaves zoom and leader paths unarrowed', () => {
@@ -155,6 +168,12 @@ describe('ConnectorResolver', () => {
     expect(resolved.toPort.side).toBe('right');
     expect(resolved.points.length).toBe(6);
     expect(resolved.points.every((point) => point.x >= 100)).toBe(true);
+    expect(resolved.points.at(-1)).toEqual(resolved.junction?.point);
+    for (let index = 0; index < resolved.points.length - 1; index += 1) {
+      const start = resolved.points[index];
+      const end = resolved.points[index + 1];
+      expect(start.x === end.x || start.y === end.y).toBe(true);
+    }
   });
 
   test('keeps a mixed-orientation corner outside both boxes', () => {
@@ -242,6 +261,14 @@ describe('Connector diagnostics', () => {
       boxes: [a, b, container],
     });
     expect(contained.some((item) => item.code === 'edge-crosses-node')).toBe(false);
+
+    const untaggedContainer = box('model', 0, 0, 200, 200);
+    const untagged = diagnoseConnectorLinks({
+      paths: [path('p', 'flow-a-b', [{ x: 50, y: 100 }, { x: 50, y: 40 }])],
+      edges: [edgeSpec],
+      boxes: [a, b, untaggedContainer],
+    });
+    expect(untagged.some((item) => item.code === 'edge-crosses-node')).toBe(false);
   });
 
   test('reports a path whose sourceId matches neither an edge nor a box', () => {
@@ -312,6 +339,45 @@ describe('Connector diagnostics', () => {
     });
     expect(diagnostics.some((item) => item.code === 'unplaced-edge')).toBe(false);
     expect(diagnostics.some((item) => item.code === 'edge-endpoint-far')).toBe(false);
+  });
+
+  test('reports an internal path with an unregistered attach owner', () => {
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'a', [{ x: 50, y: 100 }, { x: 50, y: 40 }], { attach: { from: 'a', to: 'typo' } })],
+      edges: [],
+      boxes: [a, b],
+    });
+    expect(diagnostics.some((item) => item.code === 'unlinked-path')).toBe(true);
+  });
+
+  test('derives endpoint budgets from resolved connectors so junctions do not false-positive', () => {
+    const resEdge = edge({
+      id: 'res',
+      kind: 'residual',
+      from: { node: 'a', side: 'right' },
+      to: { node: 'b', side: 'right' },
+      junction: 'plus',
+    });
+    const [resolved] = resolveConnectors([request({ edge: resEdge })]);
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'res', resolved.points)],
+      edges: [resEdge],
+      boxes: [a, b],
+      endpointBudgets: endpointBudgetsOf([resolved]),
+    });
+    expect(diagnostics.some((item) => item.code === 'edge-endpoint-far')).toBe(false);
+  });
+
+  test('reports a path that re-enters its own source box', () => {
+    const source = box('a', 0, 0);
+    const target = box('b', 0, 200);
+    const fromTop = edge({ id: 'bad-top', from: { node: 'a', side: 'top' }, to: { node: 'b' } });
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'bad-top', [{ x: 50, y: 0 }, { x: 50, y: 200 }])],
+      edges: [fromTop],
+      boxes: [source, target],
+    });
+    expect(diagnostics.some((item) => item.code === 'edge-crosses-node')).toBe(true);
   });
 
   test('honours the requested severity', () => {
