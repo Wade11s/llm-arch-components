@@ -1,14 +1,14 @@
 import type { FigureSpec } from '../core/types';
 import { deepSeekV3Spec } from './deepSeekV3';
 import { gemma3Spec } from './gemma3';
-import { gemma3SmallSpec, gemma412bSpec, gemma431bSpec } from './gemmaDense';
+import { gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gemma4E2bSpec, gemma4E4bSpec } from './gemmaDense';
 import { gptOss120bSpec } from './gptOss120b';
 import { qwen38FlashNextSpec } from './qwen38FlashNext';
 import { glm54Spec } from './glm54';
 import { llama3Spec } from './llama3';
-import { antares1bSpec, llama321bSpec, llama323bSpec, mistralSmall31Spec, nanbeige41Spec, nanbeige43Spec, olmo2Spec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, vibeThinker3bSpec } from './denseBackbone';
+import { antares1bSpec, llama321bSpec, llama323bSpec, mistralSmall31Spec, nanbeige41Spec, nanbeige42Spec, nanbeige43Spec, olmo2Spec, olmo3Spec, phi4Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, smollm3Spec, vibeThinker3bSpec } from './denseBackbone';
 import { domynEdgeSpec, granite41Spec, gpt2xlSpec } from './edgeBackbone';
-import { deepSeekR1Spec, glm45355bSpec, glm45AirSpec, glm47Spec, glm51Spec, glm5744bSpec, gptOss20bSpec, intellect3Spec, minimaxM25Spec, mistralLarge3Spec, qwen3235bSpec, qwen3CoderFlashSpec } from './moeFamily';
+import { deepSeekR1Spec, glm45355bSpec, glm45AirSpec, glm47Spec, glm51Spec, glm5744bSpec, gptOss20bSpec, intellect3Spec, kimiK2Spec, minimaxM25Spec, mistralLarge3Spec, qwen3235bSpec, qwen3CoderFlashSpec } from './moeFamily';
 import { qwen3Spec } from './qwen3';
 import { qwen3MoeSpec } from './qwen3Moe';
 import { minimaxM2Spec } from './minimaxM2';
@@ -37,6 +37,8 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'gemma-3-27b', name: 'Gemma 3 (27B)', reference: '../images/gemma-3-27b.webp', width: 2593, height: 2686, spec: gemma3Spec },
   { slug: 'gemma-4-12b', name: 'Gemma 4 (12B)', reference: '../images/gemma-4-12b.webp', width: 2582, height: 2686, spec: gemma412bSpec },
   { slug: 'gemma-4-31b', name: 'Gemma 4 (31B)', reference: '../images/gemma-4-31b.webp', width: 2582, height: 2686, spec: gemma431bSpec },
+  { slug: 'gemma-4-e2b', name: 'Gemma 4 E2B', reference: '../images/gemma-4-e2b.webp', width: 2759, height: 2686, spec: gemma4E2bSpec },
+  { slug: 'gemma-4-e4b', name: 'Gemma 4 E4B', reference: '../images/gemma-4-e4b.webp', width: 2580, height: 2686, spec: gemma4E4bSpec },
   { slug: 'gpt-oss-20b', name: 'gpt-oss (20B)', reference: '../images/gpt-oss-20b.webp', width: 2873, height: 2699, spec: gptOss20bSpec },
   { slug: 'gpt-oss-120b', name: 'gpt-oss (120B)', reference: '../images/gpt-oss-120b.webp', width: 2904, height: 2699, spec: gptOss120bSpec },
   { slug: 'qwen3-8-flash-next-125b-a6b', name: 'Qwen3.8-Flash-Next (125B-A6B)', reference: '../images/qwen3-8-flash-next-125b-a6b.webp', width: 4078, height: 3391, spec: qwen38FlashNextSpec },
@@ -52,8 +54,11 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'phi-4', name: 'Phi-4 (14B)', reference: '../images/phi-4.webp', width: 2563, height: 2671, spec: phi4Spec },
   { slug: 'vibethinker-3b', name: 'VibeThinker-3B', reference: '../images/vibethinker-3b.webp', width: 2555, height: 2652, spec: vibeThinker3bSpec },
   { slug: 'nanbeige-4-1-3b', name: 'Nanbeige4.1 (3B)', reference: '../images/nanbeige-4-1-3b.webp', width: 2649, height: 2664, spec: nanbeige41Spec },
+  { slug: 'nanbeige-4-2-3b', name: 'Nanbeige4.2 (3B)', reference: '../images/nanbeige-4-2-3b.webp', width: 2683, height: 2664, spec: nanbeige42Spec },
   { slug: 'nanbeige-4-3-33b', name: 'Nanbeige4.3 (33B)', reference: '../images/nanbeige-4-3-33b.webp', width: 2599, height: 2664, spec: nanbeige43Spec },
   { slug: 'mistral-small-3-1-24b', name: 'Mistral Small 3.1 (24B)', reference: '../images/mistral-small-3-1-24b.webp', width: 2554, height: 2686, spec: mistralSmall31Spec },
+  { slug: 'smollm3-3b', name: 'SmolLM3 (3B)', reference: '../images/smollm3-3b.webp', width: 2571, height: 2642, spec: smollm3Spec },
+  { slug: 'olmo-3-7b', name: 'Olmo 3 (7B)', reference: '../images/olmo-3-7b.webp', width: 2596, height: 2684, spec: olmo3Spec },
   { slug: 'olmo-2-7b', name: 'OLMo 2 (7B)', reference: '../images/olmo-2-7b.webp', width: 2595, height: 2679, spec: olmo2Spec },
   { slug: 'domyn-edge-3-93b', name: 'Domyn Edge (3.93B)', reference: '../images/domyn-edge-3-93b.webp', width: 2494, height: 2663, spec: domynEdgeSpec },
   { slug: 'granite-4-1-30b', name: 'Granite 4.1 (30B)', reference: '../images/granite-4-1-30b.webp', width: 2530, height: 2634, spec: granite41Spec },
@@ -61,6 +66,7 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'qwen3-30b-a3b', name: 'Qwen3 (30B-A3B)', reference: '../images/qwen3-30b-a3b.webp', width: 2829, height: 2715, spec: qwen3MoeSpec },
   { slug: 'qwen3-235b-a22b', name: 'Qwen3 (235B-A22B)', reference: '../images/qwen3-235b-a22b.webp', width: 2766, height: 2715, spec: qwen3235bSpec },
   { slug: 'qwen3-coder-flash-30b-a3b', name: 'Qwen3-Coder-Flash (30B-A3B)', reference: '../images/qwen3-coder-flash-30b-a3b.webp', width: 2830, height: 2739, spec: qwen3CoderFlashSpec },
+  { slug: 'kimi-k2', name: 'Kimi K2 (1T)', reference: '../images/kimi-k2.webp', width: 2807, height: 2689, spec: kimiK2Spec },
   { slug: 'minimax-m2-230b', name: 'MiniMax-M2 (230B)', reference: '../images/minimax-m2-230b.webp', width: 2751, height: 2709, spec: minimaxM2Spec },
   { slug: 'minimax-m2-5-230b', name: 'MiniMax-M2.5 (230B)', reference: '../images/minimax-m2-5-230b.webp', width: 2747, height: 2727, spec: minimaxM25Spec },
   { slug: 'mistral-large-3', name: 'Mistral Large 3 (673B)', reference: '../images/mistral-large-3.webp', width: 2786, height: 2735, spec: mistralLarge3Spec },
@@ -80,4 +86,4 @@ export const figureSpecs: FigureSpecEntry[] = [
   { slug: 'tencent-hy4-770b-a49b', name: 'Tencent Hy4 (770B-A49B)', reference: '../images/tencent-hy4-770b-a49b.webp', width: 3834, height: 2949, spec: tencentHy4Spec },
 ];
 
-export { antares1bSpec, deepSeekR1Spec, deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, vibeThinker3bSpec, nanbeige41Spec, nanbeige43Spec, mistralSmall31Spec, olmo2Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, qwen3CoderFlashSpec, minimaxM2Spec, minimaxM25Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm47Spec, glm51Spec, glm5744bSpec, mistralLarge3Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };
+export { antares1bSpec, deepSeekR1Spec, deepSeekV3Spec, gemma3Spec, gemma3SmallSpec, gemma412bSpec, gemma431bSpec, gemma4E2bSpec, gemma4E4bSpec, gptOss120bSpec, gptOss20bSpec, qwen38FlashNextSpec, glm54Spec, llama3Spec, llama321bSpec, llama323bSpec, qwen3Spec, qwen306bSpec, qwen34bSpec, qwen332bSpec, phi4Spec, vibeThinker3bSpec, nanbeige41Spec, nanbeige42Spec, nanbeige43Spec, mistralSmall31Spec, olmo2Spec, olmo3Spec, smollm3Spec, domynEdgeSpec, granite41Spec, gpt2xlSpec, qwen3MoeSpec, qwen3235bSpec, qwen3CoderFlashSpec, minimaxM2Spec, minimaxM25Spec, intellect3Spec, glm45AirSpec, glm45355bSpec, glm47Spec, glm51Spec, glm5744bSpec, mistralLarge3Spec, kimiK2Spec, qwen3NextSpec, kimiLinearSpec, xlstmSpec, lfm25Spec, inkling2MiniSpec, motif3BetaSpec, deepSeekV41FlashSpec, tencentHy4Spec };

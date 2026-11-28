@@ -148,8 +148,10 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   const inset = insetId ? groupOf(spec, insetId) : undefined;
   const positionalId = Array.isArray(spec.layout.slots.positional) ? spec.layout.slots.positional[0] : spec.layout.slots.positional;
   const dropoutId = Array.isArray(spec.layout.slots.dropout) ? spec.layout.slots.dropout[0] : spec.layout.slots.dropout;
+  const perLayerEmbeddingsId = Array.isArray(spec.layout.slots.perLayerEmbeddings) ? spec.layout.slots.perLayerEmbeddings[0] : spec.layout.slots.perLayerEmbeddings;
   const positionalNode = positionalId ? spec.nodes.find((node) => node.id === positionalId) : undefined;
   const dropoutNode = dropoutId ? spec.nodes.find((node) => node.id === dropoutId) : undefined;
+  const perLayerEmbeddingsNode = perLayerEmbeddingsId ? spec.nodes.find((node) => node.id === perLayerEmbeddingsId) : undefined;
   const operations = spec.nodes.filter(isOperation);
   const gqa = operations.find((node) => node.data.family === 'gqa');
   const ffn = operations.find((node) => node.data.family === 'ffn');
@@ -212,7 +214,11 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     radius: 30,
     sourceId: 'attention',
   });
-  if (gqaData.ratio) {
+  if (gqaData.ratio && layoutOptions?.attentionLabelStyle === 'mha-sliding') {
+    builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, { spans: [{ text: `${gqaData.ratio} (local:global) ` }, { text: 'sliding', color: 'accent' }] }, { size: 34, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: [{ text: 'window', color: 'accent' }, { text: ' multi-head', color: 'inverse' }] }, { size: 34, align: 'center', sourceId: 'attention' });
+    builder.text('attention-line-3', 'attention-label', { x: cx, y: 1642 }, 'attention', { size: 34, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
+  } else if (gqaData.ratio) {
     builder.text('attention-line-1', 'attention-label', { x: cx, y: 1558 }, `${gqaData.ratio} (local:global)`, { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
     builder.text('attention-line-2', 'attention-label', { x: cx, y: 1600 }, { spans: [{ text: 'sliding window', color: 'accent' }, { text: ' and', color: 'inverse' }] }, { size: 42, align: 'center', sourceId: 'attention' });
     builder.text('attention-line-3', 'attention-label', { x: cx, y: 1642 }, 'GQA', { size: 42, fill: '#FFFFFF', align: 'center', sourceId: 'attention' });
@@ -240,6 +246,9 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   if (!showPostNorms && dropoutNode) addPill(builder, spec, 'dropout-ffn', 'dropout', { x: 852, y: 832, width: 348, height: 84 }, dropoutLabel, { stroke: normStroke, radius: 26 });
   addPill(builder, spec, 'final-rmsnorm', 'norm', { x: 852, y: 527, width: 348, height: 84 }, { spans: [{ text: normLabels === 'layernorm' ? 'Final LayerNorm' : 'Final RMSNorm' }] });
   addPill(builder, spec, 'output-layer', 'output-layer', { x: 840, y: 385, width: 372, height: 84 }, { spans: [{ text: 'Linear output layer' }] });
+  if (perLayerEmbeddingsNode) {
+    addPill(builder, spec, 'per-layer-embeddings', 'per-layer-embeddings', { x: 752, y: 650, width: 540, height: 70 }, textOf(perLayerEmbeddingsNode), { stroke: normStroke, radius: 26 });
+  }
   const qkNormStroke = layoutOptions?.qkNormStroke;
   const ropeStroke = layoutOptions?.ropeStroke;
   if (showQKNorm) addPill(builder, spec, 'qk-norm', 'side-pill', { x: 400, y: 1368, width: 356, height: 80 }, { spans: [{ text: 'QK-Norm' }] }, {
@@ -248,9 +257,14 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
   });
   const ropeLabel = layoutOptions?.ropeLabel;
   const ropeSecondaryLabel = layoutOptions?.ropeSecondaryLabel;
+  const nopeLabel = layoutOptions?.nopeLabel;
   const hasCustomRope = typeof ropeLabel === 'string';
   const hasTwoLineRope = hasCustomRope && typeof ropeSecondaryLabel === 'string';
-  if (showRoPE) {
+  if (showRoPE && typeof nopeLabel === 'string') {
+    addPill(builder, spec, 'nope', 'side-pill', { x: 220, y: 1535, width: 170, height: 84 }, { spans: [{ text: nopeLabel }] });
+    builder.text('nope-plus', 'operator', { x: 430, y: 1580 }, '+', { size: 44, align: 'center', sourceId: 'attention' });
+    addPill(builder, spec, 'rope', 'side-pill', { x: 480, y: 1535, width: 260, height: 84 }, { spans: [{ text: hasCustomRope ? ropeLabel : 'RoPE' }] });
+  } else if (showRoPE) {
     addPill(
       builder,
       spec,
@@ -266,7 +280,7 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     );
   }
   if (showQKNorm) addFlow(builder, 'qk-norm-flow', [{ x: 756, y: 1428 }, { x: 829, y: 1488 }]);
-  if (showRoPE) addFlow(builder, 'rope-flow', [{ x: 713, y: 1577 }, { x: 799, y: 1577 }]);
+  if (showRoPE) addFlow(builder, 'rope-flow', [{ x: typeof nopeLabel === 'string' ? 740 : 713, y: 1577 }, { x: 799, y: 1577 }]);
   addPill(builder, spec, 'embedding-layer', 'embedding', { x: 754, y: positionalNode ? 2240 : 2084, width: 536, height: 92 }, { spans: [{ text: 'Token embedding layer' }] });
   if (positionalNode) addPill(builder, spec, 'positional-embedding', 'embedding', { x: 754, y: 2084, width: 536, height: 92 }, textOf(positionalNode), { stroke: normStroke });
   if (dropoutNode) addPill(builder, spec, 'dropout-input', 'dropout', { x: 754, y: 1900, width: 536, height: 92 }, dropoutLabel, { stroke: normStroke });
@@ -300,6 +314,30 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
     builder.glyph('ffn-multiply', 'operator', { x: ix(2183), y: 780 }, 'multiply', 54);
   }
 
+  if (layoutOptions?.repeatOnceWithSameWeights) {
+    const repeatLoopLabel = typeof layoutOptions?.repeatLoopLabel === 'string'
+      ? layoutOptions.repeatLoopLabel
+      : 'Repeat once with same weights';
+    const repeatLoopSecondaryLabel = typeof layoutOptions?.repeatLoopSecondaryLabel === 'string'
+      ? layoutOptions.repeatLoopSecondaryLabel
+      : undefined;
+    addFlow(builder, 'repeat-loop', [{ x: 1210, y: 480 }, { x: 1500, y: 480 }, { x: 1500, y: 1900 }, { x: 1419, y: 1900 }], { role: 'repeat-loop', stroke: spec.theme.accent });
+    addPill(builder, spec, 'repeat-loop-label', 'repeat-loop-label', { x: 1260, y: 410, width: 560, height: 100 }, { spans: [{ text: repeatLoopLabel }] }, { stroke: spec.theme.accent, radius: 26, secondaryText: repeatLoopSecondaryLabel ? { spans: [{ text: repeatLoopSecondaryLabel }] } : undefined });
+  }
+
+  if (annotationOf(spec, 'nope')) {
+    addFlow(builder, 'leader-nope', [{ x: 250, y: 960 }, { x: 260, y: 1535 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
+    addAnnotation(builder, spec, 'nope', { x: 25, y: 920 });
+  }
+  if (annotationOf(spec, 'window-size')) {
+    addFlow(builder, 'leader-window-size', [{ x: 1237, y: 1639 }, { x: 1760, y: 1280 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
+    addAnnotation(builder, spec, 'window-size', { x: 1760, y: 1280 });
+  }
+  if (annotationOf(spec, 'repeat-note')) {
+    addFlow(builder, 'leader-repeat-note', [{ x: 420, y: 2240 }, { x: 620, y: 1980 }], { role: 'leader', dash: 'dotted', arrow: 'none' });
+    addAnnotation(builder, spec, 'repeat-note', { x: 20, y: 2300 });
+  }
+
   if (annotationOf(spec, 'positions')) {
     const positionsX = layoutOptions?.positionsAnnotationX;
     const positionsY = layoutOptions?.positionsAnnotationY;
@@ -327,7 +365,13 @@ function layoutBackbone(spec: FigureSpec, context: LayoutContext): Scene {
       x: typeof layoutOptions?.contextLeaderEndX === 'number' ? layoutOptions.contextLeaderEndX : 420,
       y: typeof layoutOptions?.contextLeaderEndY === 'number' ? layoutOptions.contextLeaderEndY : 1624,
     }]],
-    ['leader-hidden', [{ x: 2010, y: 1184 }, { x: 2010, y: 1388 }]],
+    ['leader-hidden', [{
+      x: typeof layoutOptions?.hiddenLeaderX === 'number' ? layoutOptions.hiddenLeaderX : 2010,
+      y: 1184,
+    }, {
+      x: typeof layoutOptions?.hiddenLeaderX === 'number' ? layoutOptions.hiddenLeaderX : 2010,
+      y: 1388,
+    }]],
   ];
   leaders
     .filter(([id]) => (id === 'leader-attention' ? Boolean(annotationOf(spec, 'heads')) : true))
