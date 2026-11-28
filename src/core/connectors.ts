@@ -373,6 +373,7 @@ export function resolveConnectors(requests: ConnectorRequest[]): ResolvedConnect
   });
 }
 
+/** Builds diagnostic budgets keyed by Edge id. Internal wiring must key by its Scene path id. */
 export function endpointBudgetsOf(
   connectors: ResolvedConnector[],
 ): ConnectorDiagnosticInput['endpointBudgets'] {
@@ -474,6 +475,32 @@ function segmentCrossesBox(a: Point, b: Point, box: Box): boolean {
   return crossings >= 2;
 }
 
+function segmentEntersBox(a: Point, b: Point, box: Box): boolean {
+  let t0 = 0;
+  let t1 = 1;
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const clip = (p: number, q: number): boolean => {
+    if (p === 0) return q >= 0;
+    const r = q / p;
+    if (p < 0) {
+      if (r > t1) return false;
+      if (r > t0) t0 = r;
+    } else {
+      if (r < t0) return false;
+      if (r < t1) t1 = r;
+    }
+    return true;
+  };
+  if (!clip(-dx, a.x - box.x)) return false;
+  if (!clip(dx, box.x + box.width - a.x)) return false;
+  if (!clip(-dy, a.y - box.y)) return false;
+  if (!clip(dy, box.y + box.height - a.y)) return false;
+  if (t1 - t0 < 0.001) return false;
+  const mid = { x: a.x + dx * (t0 + t1) / 2, y: a.y + dy * (t0 + t1) / 2 };
+  return pointInside(mid, box, 0.001);
+}
+
 export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
   const severity = input.severity ?? 'warning';
@@ -528,17 +555,16 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
 
   const checkCrossing = (
     path: ConnectorPathLike,
-    fromOwner: Id,
-    toOwner: Id,
-    start: Point,
-    end: Point,
+    fromBox: ConnectorBox,
+    toBox: ConnectorBox,
     edgeId?: Id,
   ): void => {
+    const start = path.points[0];
+    const end = path.points[path.points.length - 1];
     for (let index = 0; index < path.points.length - 1; index += 1) {
       for (const obstacle of input.boxes) {
-        if (obstacle.owner === fromOwner || obstacle.owner === toOwner) continue;
-        if (pointInside(start, obstacle.box) && pointInside(end, obstacle.box)) continue;
-        if (obstacle.kind === 'group' && (pointInside(start, obstacle.box) || pointInside(end, obstacle.box))) continue;
+        if (obstacle.id === fromBox.id || obstacle.id === toBox.id) continue;
+        if (pointInside(start, obstacle.box, 0.001) || pointInside(end, obstacle.box, 0.001)) continue;
         if (segmentCrossesBox(path.points[index], path.points[index + 1], obstacle.box)) {
           diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" crosses node "${obstacle.owner}"`, edgeId ? [edgeId, path.id, obstacle.owner] : [path.id, obstacle.owner]));
           return;
@@ -547,26 +573,19 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     }
   };
 
+  const ownerPenetrationSeen = new Set<string>();
   const checkOwnerPenetration = (
     path: ConnectorPathLike,
-    owner: Id,
-    boxes: ConnectorBox[],
+    box: ConnectorBox,
     edgeId?: Id,
   ): void => {
-    for (const box of boxes) {
-      for (let index = 0; index < path.points.length - 1; index += 1) {
-        const start = path.points[index];
-        const end = path.points[index + 1];
-        for (const t of [0.01, 0.1, 0.5, 0.9, 0.99]) {
-          const point = {
-            x: start.x + (end.x - start.x) * t,
-            y: start.y + (end.y - start.y) * t,
-          };
-          if (pointInside(point, box.box, 0.001)) {
-            diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" re-enters its owner "${owner}"`, edgeId ? [edgeId, path.id, owner] : [path.id, owner]));
-            return;
-          }
-        }
+    const key = `${path.id}:${box.id}`;
+    if (ownerPenetrationSeen.has(key)) return;
+    ownerPenetrationSeen.add(key);
+    for (let index = 0; index < path.points.length - 1; index += 1) {
+      if (segmentEntersBox(path.points[index], path.points[index + 1], box.box)) {
+        diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" re-enters its owner "${box.owner}"`, edgeId ? [edgeId, path.id, box.owner] : [path.id, box.owner]));
+        return;
       }
     }
   };
@@ -588,11 +607,13 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
       const start = path.points[0];
       const end = path.points[path.points.length - 1];
       if (!start || !end) continue;
+      const fromAttached = fromBoxes.reduce((nearest, box) => distanceToBox(start, box.box) < distanceToBox(start, nearest.box) ? box : nearest, fromBoxes[0]);
+      const toAttached = toBoxes.reduce((nearest, box) => distanceToBox(end, box.box) < distanceToBox(end, nearest.box) ? box : nearest, toBoxes[0]);
       checkEndpoint(path, start, edge.from.node, fromBoxes, budgets?.from, 'starts', edge.id);
       checkEndpoint(path, end, edge.to.node, toBoxes, budgets?.to, 'ends', edge.id);
-      checkCrossing(path, edge.from.node, edge.to.node, start, end, edge.id);
-      checkOwnerPenetration(path, edge.from.node, fromBoxes, edge.id);
-      checkOwnerPenetration(path, edge.to.node, toBoxes, edge.id);
+      checkCrossing(path, fromAttached, toAttached, edge.id);
+      checkOwnerPenetration(path, fromAttached, edge.id);
+      checkOwnerPenetration(path, toAttached, edge.id);
     }
   }
 
@@ -611,11 +632,13 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     const start = path.points[0];
     const end = path.points[path.points.length - 1];
     if (!start || !end) continue;
+    const fromAttached = fromBoxes.reduce((nearest, box) => distanceToBox(start, box.box) < distanceToBox(start, nearest.box) ? box : nearest, fromBoxes[0]);
+    const toAttached = toBoxes.reduce((nearest, box) => distanceToBox(end, box.box) < distanceToBox(end, nearest.box) ? box : nearest, toBoxes[0]);
     checkEndpoint(path, start, fromOwner, fromBoxes, budgets?.from, 'starts');
     checkEndpoint(path, end, toOwner, toBoxes, budgets?.to, 'ends');
-    checkCrossing(path, fromOwner, toOwner, start, end);
-    checkOwnerPenetration(path, fromOwner, fromBoxes);
-    checkOwnerPenetration(path, toOwner, toBoxes);
+    checkCrossing(path, fromAttached, toAttached);
+    checkOwnerPenetration(path, fromAttached);
+    checkOwnerPenetration(path, toAttached);
   }
 
   for (const annotation of input.annotations ?? []) {

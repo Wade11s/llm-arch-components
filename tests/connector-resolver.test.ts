@@ -269,6 +269,14 @@ describe('Connector diagnostics', () => {
       boxes: [a, b, untaggedContainer],
     });
     expect(untagged.some((item) => item.code === 'edge-crosses-node')).toBe(false);
+
+    const sourceContainer = box('model', 0, 90, 200, 80);
+    const sourceContained = diagnoseConnectorLinks({
+      paths: [path('p', 'flow-a-b', [{ x: 50, y: 100 }, { x: 50, y: 40 }])],
+      edges: [edgeSpec],
+      boxes: [a, b, sourceContainer],
+    });
+    expect(sourceContained.some((item) => item.code === 'edge-crosses-node')).toBe(false);
   });
 
   test('reports a path whose sourceId matches neither an edge nor a box', () => {
@@ -378,6 +386,44 @@ describe('Connector diagnostics', () => {
       boxes: [source, target],
     });
     expect(diagnostics.some((item) => item.code === 'edge-crosses-node')).toBe(true);
+  });
+
+  test('detects owner re-entry on a long segment that misses the old sample points', () => {
+    const source = box('a', 0, 0);
+    const target = box('b', 1000, 200);
+    const longEdge = edge({ id: 'long', from: { node: 'a' }, to: { node: 'b' } });
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'long', [{ x: 50, y: 0 }, { x: -1000, y: 0 }, { x: 3000, y: 20 }])],
+      edges: [longEdge],
+      boxes: [source, target],
+    });
+    expect(diagnostics.some((item) => item.code === 'edge-crosses-node' && item.message.includes('re-enters'))).toBe(true);
+  });
+
+  test('deduplicates owner re-entry for a self-loop', () => {
+    const source = box('a', 0, 100);
+    const loopEdge = edge({ id: 'loop', from: { node: 'a' }, to: { node: 'a' } });
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'loop', [{ x: 50, y: 100 }, { x: 50, y: 220 }, { x: 50, y: 60 }])],
+      edges: [loopEdge],
+      boxes: [source],
+    });
+    const reentries = diagnostics.filter((item) => item.code === 'edge-crosses-node' && item.message.includes('re-enters'));
+    expect(reentries).toHaveLength(1);
+  });
+
+  test('does not treat a sibling label box as owner re-entry', () => {
+    const pill = box('card', 0, 0, 100, 60);
+    const label = { ...box('card-label', 10, 70, 80, 20), owner: 'card', kind: 'text' as const };
+    const target = box('b', 0, 200);
+    const cardEdge = edge({ id: 'card-out', from: { node: 'card' }, to: { node: 'b' } });
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'card-out', [{ x: 50, y: 60 }, { x: 50, y: 200 }])],
+      edges: [cardEdge],
+      boxes: [pill, label, target],
+    });
+    expect(diagnostics.some((item) => item.code === 'edge-crosses-node' && item.message.includes('re-enters'))).toBe(false);
+    expect(diagnostics.some((item) => item.code === 'edge-crosses-node' && item.message.includes('card'))).toBe(true);
   });
 
   test('honours the requested severity', () => {
