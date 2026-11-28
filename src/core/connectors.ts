@@ -4,6 +4,7 @@ export type ConnectorSide = 'top' | 'right' | 'bottom' | 'left';
 
 export type ConnectorBox = {
   id: Id;
+  /** The Node/Group id this box represents for Anchor lookup; not its containing group. */
   owner: Id;
   box: Box;
   radius?: number;
@@ -14,6 +15,7 @@ export type ConnectorRequest = {
   edge: EdgeSpec;
   from: ConnectorBox;
   to: ConnectorBox;
+  /** Middle points only; the endpoints always come from the resolved Ports. */
   waypoints?: Point[];
   fromGap?: number;
   toGap?: number;
@@ -34,14 +36,28 @@ export type ResolvedConnector = {
   points: Point[];
   fromPort: ConnectorPort;
   toPort: ConnectorPort;
+  fromGap: number;
+  toGap: number;
+  openFrom: boolean;
+  openTo: boolean;
   arrow: 'none' | 'end' | 'both';
   junction?: { point: Point; kind: 'plus' | 'multiply' | 'gate' };
 };
 
 const DEFAULT_CLEARANCE = 8;
+const STUB = 16;
+const TRUNK_OFFSET = 24;
+const LOOP_DEPTH = 24;
+const JUNCTION_OFFSET = 20;
+const ENDPOINT_TOLERANCE = 2;
+const RADIUS_SIDE_RATIO = 0.3;
 
 function center(box: Box): Point {
   return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+}
+
+function add(point: Point, vector: Point, scale = 1): Point {
+  return { x: point.x + vector.x * scale, y: point.y + vector.y * scale };
 }
 
 function normalFor(side: ConnectorSide): Point {
@@ -63,15 +79,6 @@ function sideFor(from: Box, to: Box, preferred: EdgeSpec['from']['side']): Conne
   return dy >= 0 ? 'bottom' : 'top';
 }
 
-function opposite(side: ConnectorSide): ConnectorSide {
-  switch (side) {
-    case 'top': return 'bottom';
-    case 'right': return 'left';
-    case 'bottom': return 'top';
-    case 'left': return 'right';
-  }
-}
-
 function pointOnSide(box: Box, side: ConnectorSide, t: number): Point {
   switch (side) {
     case 'top': return { x: box.x + box.width * t, y: box.y };
@@ -90,50 +97,6 @@ function roleFor(edge: EdgeSpec): string {
     case 'route': return 'route-path';
     default: return 'flow-path';
   }
-}
-
-function routePoints(
-  request: ConnectorRequest,
-  start: Point,
-  end: Point,
-  fromPort: ConnectorPort,
-  toPort: ConnectorPort,
-): Point[] {
-  if (request.waypoints && request.waypoints.length > 0) {
-    return [start, ...request.waypoints, end];
-  }
-  if (request.edge.kind !== 'residual' && request.edge.kind !== 'feedback') {
-    return [start, end];
-  }
-  const stub = 16;
-  const fromOut = { x: start.x + fromPort.normal.x * stub, y: start.y + fromPort.normal.y * stub };
-  const toOut = { x: end.x + toPort.normal.x * stub, y: end.y + toPort.normal.y * stub };
-  if (request.from.id === request.to.id) {
-    const depth = 24;
-    return [
-      start,
-      fromOut,
-      { x: fromOut.x + fromPort.normal.x * depth, y: fromOut.y + fromPort.normal.y * depth },
-      { x: toOut.x + toPort.normal.x * depth, y: toOut.y + toPort.normal.y * depth },
-      toOut,
-      end,
-    ];
-  }
-  const fromHorizontal = fromPort.side === 'left' || fromPort.side === 'right';
-  const toHorizontal = toPort.side === 'left' || toPort.side === 'right';
-  if (fromHorizontal && toHorizontal) {
-    const trunk = fromPort.normal.x > 0
-      ? Math.max(fromOut.x, toOut.x) + 24
-      : Math.min(fromOut.x, toOut.x) - 24;
-    return [start, fromOut, { x: trunk, y: fromOut.y }, { x: trunk, y: toOut.y }, toOut, end];
-  }
-  if (!fromHorizontal && !toHorizontal) {
-    const trunk = fromPort.normal.y > 0
-      ? Math.max(fromOut.y, toOut.y) + 24
-      : Math.min(fromOut.y, toOut.y) - 24;
-    return [start, fromOut, { x: fromOut.x, y: trunk }, { x: toOut.x, y: trunk }, toOut, end];
-  }
-  return [start, fromOut, { x: toOut.x, y: fromOut.y }, toOut, end];
 }
 
 function arrowFor(edge: EdgeSpec): 'none' | 'end' | 'both' {
@@ -162,15 +125,152 @@ function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
 
+function pointInside(point: Point, box: Box, pad = 0): boolean {
+  return point.x > box.x + pad
+    && point.x < box.x + box.width - pad
+    && point.y > box.y + pad
+    && point.y < box.y + box.height - pad;
+}
+
+function facing(from: ConnectorPort, to: ConnectorPort): boolean {
+  return from.normal.x === -to.normal.x && from.normal.y === -to.normal.y;
+}
+
+function mixedCorner(
+  fromOut: Point,
+  toOut: Point,
+  fromBox: Box,
+  toBox: Box,
+): Point {
+  const candidates = [
+    { x: fromOut.x, y: toOut.y },
+    { x: toOut.x, y: fromOut.y },
+  ];
+  return candidates.find((candidate) => !pointInside(candidate, fromBox) && !pointInside(candidate, toBox))
+    ?? candidates[0];
+}
+
+function selfLoopPerimeter(
+  box: Box,
+  fromPort: ConnectorPort,
+  toPort: ConnectorPort,
+  start: Point,
+  end: Point,
+): Point[] {
+  const margin = STUB + LOOP_DEPTH;
+  const outer = {
+    left: box.x - margin,
+    right: box.x + box.width + margin,
+    top: box.y - margin,
+    bottom: box.y + box.height + margin,
+  };
+  const onSide = (side: ConnectorSide, point: Point): Point => {
+    switch (side) {
+      case 'top': return { x: point.x, y: outer.top };
+      case 'right': return { x: outer.right, y: point.y };
+      case 'bottom': return { x: point.x, y: outer.bottom };
+      case 'left': return { x: outer.left, y: point.y };
+    }
+  };
+  const cornerAfter = (side: ConnectorSide): Point => {
+    switch (side) {
+      case 'top': return { x: outer.right, y: outer.top };
+      case 'right': return { x: outer.right, y: outer.bottom };
+      case 'bottom': return { x: outer.left, y: outer.bottom };
+      case 'left': return { x: outer.left, y: outer.top };
+    }
+  };
+  const cornerBefore = (side: ConnectorSide): Point => {
+    switch (side) {
+      case 'top': return { x: outer.left, y: outer.top };
+      case 'right': return { x: outer.right, y: outer.top };
+      case 'bottom': return { x: outer.right, y: outer.bottom };
+      case 'left': return { x: outer.left, y: outer.bottom };
+    }
+  };
+  const order: ConnectorSide[] = ['top', 'right', 'bottom', 'left'];
+  const fromIndex = order.indexOf(fromPort.side);
+  const toIndex = order.indexOf(toPort.side);
+  const clockwiseSteps = (toIndex - fromIndex + 4) % 4;
+  const counterClockwiseSteps = (fromIndex - toIndex + 4) % 4;
+  const corners: Point[] = [];
+  if (clockwiseSteps <= counterClockwiseSteps) {
+    for (let step = 0; step < clockwiseSteps; step += 1) {
+      corners.push(cornerAfter(order[(fromIndex + step) % 4]));
+    }
+  } else {
+    for (let step = 0; step < counterClockwiseSteps; step += 1) {
+      corners.push(cornerBefore(order[(fromIndex - step + 4) % 4]));
+    }
+  }
+  return [start, onSide(fromPort.side, start), ...corners, onSide(toPort.side, end), end];
+}
+
+function routePoints(
+  request: ConnectorRequest,
+  start: Point,
+  end: Point,
+  fromPort: ConnectorPort,
+  toPort: ConnectorPort,
+): Point[] {
+  if (request.waypoints && request.waypoints.length > 0) {
+    return [start, ...request.waypoints, end];
+  }
+  if (request.edge.kind !== 'residual' && request.edge.kind !== 'feedback') {
+    return [start, end];
+  }
+  const fromOut = add(start, fromPort.normal, STUB);
+  const toOut = add(end, toPort.normal, STUB);
+  if (request.from.id === request.to.id) {
+    if (fromPort.side === toPort.side) {
+      const first = add(fromOut, fromPort.normal, LOOP_DEPTH);
+      const second = add(toOut, toPort.normal, LOOP_DEPTH);
+      return [start, fromOut, first, second, toOut, end];
+    }
+    return selfLoopPerimeter(request.from.box, fromPort, toPort, start, end);
+  }
+  if (facing(fromPort, toPort)) {
+    const vertical = fromPort.side === 'top' || fromPort.side === 'bottom';
+    const aligned = vertical
+      ? Math.abs(fromOut.x - toOut.x) < 1
+      : Math.abs(fromOut.y - toOut.y) < 1;
+    if (aligned) return [start, end];
+    if (vertical) {
+      const trunk = (fromOut.y + toOut.y) / 2;
+      return [start, fromOut, { x: fromOut.x, y: trunk }, { x: toOut.x, y: trunk }, toOut, end];
+    }
+    const trunk = (fromOut.x + toOut.x) / 2;
+    return [start, fromOut, { x: trunk, y: fromOut.y }, { x: trunk, y: toOut.y }, toOut, end];
+  }
+  const fromHorizontal = fromPort.side === 'left' || fromPort.side === 'right';
+  const toHorizontal = toPort.side === 'left' || toPort.side === 'right';
+  if (fromHorizontal && toHorizontal) {
+    const trunk = fromPort.normal.x > 0
+      ? Math.max(fromOut.x, toOut.x) + TRUNK_OFFSET
+      : Math.min(fromOut.x, toOut.x) - TRUNK_OFFSET;
+    return [start, fromOut, { x: trunk, y: fromOut.y }, { x: trunk, y: toOut.y }, toOut, end];
+  }
+  if (!fromHorizontal && !toHorizontal) {
+    const trunk = fromPort.normal.y > 0
+      ? Math.max(fromOut.y, toOut.y) + TRUNK_OFFSET
+      : Math.min(fromOut.y, toOut.y) - TRUNK_OFFSET;
+    return [start, fromOut, { x: fromOut.x, y: trunk }, { x: toOut.x, y: trunk }, toOut, end];
+  }
+  return [start, fromOut, mixedCorner(fromOut, toOut, request.from.box, request.to.box), toOut, end];
+}
+
 export function resolveConnectors(requests: ConnectorRequest[]): ResolvedConnector[] {
   const endpoints: Endpoint[] = [];
   const sides: Array<{ from: ConnectorSide; to: ConnectorSide }> = [];
 
   requests.forEach((request, requestIndex) => {
+    const isSelfLoop = request.edge.from.node === request.edge.to.node || request.from.id === request.to.id;
     const fromSide = sideFor(request.from.box, request.to.box, request.edge.from.side);
     const toSide = request.edge.to.side && request.edge.to.side !== 'center'
       ? request.edge.to.side
-      : opposite(fromSide);
+      : isSelfLoop
+        ? fromSide
+        : sideFor(request.to.box, request.from.box, undefined);
     sides[requestIndex] = { from: fromSide, to: toSide };
     endpoints.push({
       requestIndex,
@@ -203,8 +303,12 @@ export function resolveConnectors(requests: ConnectorRequest[]): ResolvedConnect
     group.sort((a, b) => a.sort - b.sort || a.requestIndex - b.requestIndex);
     group.forEach((endpoint, index) => {
       const length = sideLength(endpoint.box.box, endpoint.side);
+      const effectiveRadius = length > 0
+        ? Math.min(endpoint.box.radius ?? 0, length * RADIUS_SIDE_RATIO)
+        : 0;
+      const maxInset = group.length > 1 ? 0.5 - 0.5 / group.length : 0.45;
       const inset = length > 0
-        ? Math.min(0.4, ((endpoint.box.radius ?? 0) + DEFAULT_CLEARANCE) / length)
+        ? Math.min(maxInset, (effectiveRadius + DEFAULT_CLEARANCE) / length)
         : 0.5;
       let t = group.length === 1
         ? 0.5
@@ -225,28 +329,35 @@ export function resolveConnectors(requests: ConnectorRequest[]): ResolvedConnect
     const toPoint = pointOnSide(request.to.box, toSide, toT);
     const fromNormal = normalFor(fromSide);
     const toNormal = normalFor(toSide);
-    const start = request.openFrom ?? {
-      x: fromPoint.x + fromNormal.x * (request.fromGap ?? 0),
-      y: fromPoint.y + fromNormal.y * (request.fromGap ?? 0),
-    };
-    const end = request.openTo ?? {
-      x: toPoint.x + toNormal.x * (request.toGap ?? 0),
-      y: toPoint.y + toNormal.y * (request.toGap ?? 0),
-    };
+    const fromGap = request.openFrom ? 0 : request.fromGap ?? 0;
+    const openFrom = request.openFrom !== undefined;
+    const openTo = request.openTo !== undefined;
     const junctionKind = request.edge.junction === 'plus'
       || request.edge.junction === 'multiply'
       || request.edge.junction === 'gate'
       ? request.edge.junction
       : undefined;
+    const junctionPoint = junctionKind && !openTo
+      ? add(toPoint, toNormal, (request.toGap ?? 0) + JUNCTION_OFFSET)
+      : undefined;
+    const toGap = openTo
+      ? 0
+      : (request.toGap ?? 0) + (junctionKind ? JUNCTION_OFFSET : 0);
+    const start = request.openFrom ?? add(fromPoint, fromNormal, fromGap);
+    const end = request.openTo ?? junctionPoint ?? add(toPoint, toNormal, request.toGap ?? 0);
     return {
       edgeId: request.edge.id,
       role: roleFor(request.edge),
       points: routePoints(request, start, end, { side: fromSide, t: fromT, point: fromPoint, normal: fromNormal }, { side: toSide, t: toT, point: toPoint, normal: toNormal }),
       fromPort: { side: fromSide, t: fromT, point: fromPoint, normal: fromNormal },
       toPort: { side: toSide, t: toT, point: toPoint, normal: toNormal },
+      fromGap,
+      toGap,
+      openFrom,
+      openTo,
       arrow: arrowFor(request.edge),
-      junction: junctionKind
-        ? { point: { x: end.x + toNormal.x * 20, y: end.y + toNormal.y * 20 }, kind: junctionKind }
+      junction: junctionPoint && junctionKind
+        ? { point: junctionPoint, kind: junctionKind }
         : undefined,
     };
   });
@@ -257,6 +368,8 @@ export type ConnectorPathLike = {
   sourceId?: Id;
   role: string;
   points: Point[];
+  /** Optional endpoint owners for internal wiring; falls back to sourceId. */
+  attach?: { from: Id; to: Id };
 };
 
 export type ConnectorAnnotation = {
@@ -264,24 +377,19 @@ export type ConnectorAnnotation = {
   style?: string;
 };
 
+export type ConnectorEndpointBudget = {
+  gap?: number;
+  open?: boolean;
+};
+
 export type ConnectorDiagnosticInput = {
   paths: ConnectorPathLike[];
   edges: EdgeSpec[];
   boxes: ConnectorBox[];
   annotations?: ConnectorAnnotation[];
-  gapBudgets?: Record<Id, number>;
+  endpointBudgets?: Record<Id, { from?: ConnectorEndpointBudget; to?: ConnectorEndpointBudget }>;
+  severity?: 'warning' | 'error';
 };
-
-function warning(code: string, message: string, sourceIds: Id[]): Diagnostic {
-  return { severity: 'warning', code, message, sourceIds };
-}
-
-function pointInside(point: Point, box: Box, pad = 0.001): boolean {
-  return point.x > box.x + pad
-    && point.x < box.x + box.width - pad
-    && point.y > box.y + pad
-    && point.y < box.y + box.height - pad;
-}
 
 function distanceToBox(point: Point, box: Box): number {
   const dx = Math.max(box.x - point.x, 0, point.x - (box.x + box.width));
@@ -290,7 +398,7 @@ function distanceToBox(point: Point, box: Box): number {
 }
 
 function distanceToBoundary(point: Point, box: Box): number {
-  if (pointInside(point, box)) {
+  if (pointInside(point, box, 0.001)) {
     return Math.min(
       Math.abs(point.x - box.x),
       Math.abs(point.x - (box.x + box.width)),
@@ -328,7 +436,7 @@ function segmentsIntersect(a: Point, b: Point, c: Point, d: Point): boolean {
 }
 
 function segmentCrossesBox(a: Point, b: Point, box: Box): boolean {
-  if (pointInside(a, box) || pointInside(b, box)) return false;
+  if (pointInside(a, box, 0.001) || pointInside(b, box, 0.001)) return true;
   const corners = [
     { x: box.x, y: box.y },
     { x: box.x + box.width, y: box.y },
@@ -346,10 +454,18 @@ function segmentCrossesBox(a: Point, b: Point, box: Box): boolean {
 
 export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
+  const severity = input.severity ?? 'warning';
+  const warning = (code: string, message: string, sourceIds: Id[]): Diagnostic => ({
+    severity,
+    code,
+    message,
+    sourceIds,
+  });
   const edgeIds = new Set(input.edges.map((edge) => edge.id));
   const boxIds = new Set(input.boxes.flatMap((box) => [box.id, box.owner]));
   const annotationIds = new Set((input.annotations ?? []).map((annotation) => annotation.id));
   const pathsBySource = new Map<Id, ConnectorPathLike[]>();
+  const edgePathIds = new Set<Id>();
 
   for (const path of input.paths) {
     if (!path.sourceId) {
@@ -362,7 +478,51 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
     const group = pathsBySource.get(path.sourceId) ?? [];
     group.push(path);
     pathsBySource.set(path.sourceId, group);
+    if (edgeIds.has(path.sourceId)) edgePathIds.add(path.id);
   }
+
+  const checkEndpoint = (
+    path: ConnectorPathLike,
+    point: Point,
+    owner: Id,
+    boxes: ConnectorBox[],
+    budget: ConnectorEndpointBudget | undefined,
+    direction: 'starts' | 'ends',
+    edgeId?: Id,
+  ): void => {
+    if (budget?.open) return;
+    if (boxes.length === 0) return;
+    const gap = budget?.gap ?? 0;
+    const distance = Math.min(...boxes.map((box) => distanceToBoundary(point, box.box)));
+    if (distance > gap + ENDPOINT_TOLERANCE) {
+      diagnostics.push(warning('edge-endpoint-far', `Path "${path.id}" ${direction} ${Math.round(distance)}px from its owner`, edgeId ? [edgeId, path.id] : [path.id]));
+    }
+    const ownerDistance = Math.min(...boxes.map((box) => distanceToBox(point, box.box)));
+    const nearest = nearestBox(point, input.boxes);
+    if (nearest && nearest.owner !== owner && distanceToBox(point, nearest.box) < ownerDistance - 1) {
+      diagnostics.push(warning('edge-owner-mismatch', `Path "${path.id}" ${direction} closer to "${nearest.owner}" than "${owner}"`, edgeId ? [edgeId, path.id] : [path.id]));
+    }
+  };
+
+  const checkCrossing = (
+    path: ConnectorPathLike,
+    fromOwner: Id,
+    toOwner: Id,
+    start: Point,
+    end: Point,
+    edgeId?: Id,
+  ): void => {
+    for (let index = 0; index < path.points.length - 1; index += 1) {
+      for (const obstacle of input.boxes) {
+        if (obstacle.owner === fromOwner || obstacle.owner === toOwner) continue;
+        if (obstacle.kind === 'group' && (pointInside(start, obstacle.box) || pointInside(end, obstacle.box))) continue;
+        if (segmentCrossesBox(path.points[index], path.points[index + 1], obstacle.box)) {
+          diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" crosses node "${obstacle.owner}"`, edgeId ? [edgeId, path.id, obstacle.owner] : [path.id, obstacle.owner]));
+          return;
+        }
+      }
+    }
+  };
 
   for (const edge of input.edges) {
     const realizing = pathsBySource.get(edge.id) ?? [];
@@ -376,55 +536,36 @@ export function diagnoseConnectorLinks(input: ConnectorDiagnosticInput): Diagnos
       diagnostics.push(warning('unplaced-edge', `Edge "${edge.id}" references an unregistered owner`, [edge.id]));
       continue;
     }
-    const gap = input.gapBudgets?.[edge.id] ?? 0;
+    const budgets = input.endpointBudgets?.[edge.id];
     for (const path of realizing) {
       const start = path.points[0];
       const end = path.points[path.points.length - 1];
       if (!start || !end) continue;
-
-      const startDistance = Math.min(...fromBoxes.map((box) => distanceToBoundary(start, box.box)));
-      const endDistance = Math.min(...toBoxes.map((box) => distanceToBoundary(end, box.box)));
-      if (startDistance > gap + 2) {
-        diagnostics.push(warning('edge-endpoint-far', `Path "${path.id}" starts ${Math.round(startDistance)}px from its owner`, [edge.id, path.id]));
-      }
-      if (endDistance > gap + 2) {
-        diagnostics.push(warning('edge-endpoint-far', `Path "${path.id}" ends ${Math.round(endDistance)}px from its owner`, [edge.id, path.id]));
-      }
-
-      const nearestStart = nearestBox(start, input.boxes);
-      const ownerStartDistance = Math.min(...fromBoxes.map((box) => distanceToBox(start, box.box)));
-      if (nearestStart && nearestStart.owner !== edge.from.node && distanceToBox(start, nearestStart.box) < ownerStartDistance - 1) {
-        diagnostics.push(warning('edge-owner-mismatch', `Path "${path.id}" starts closer to "${nearestStart.owner}" than "${edge.from.node}"`, [edge.id, path.id]));
-      }
-      const nearestEnd = nearestBox(end, input.boxes);
-      const ownerEndDistance = Math.min(...toBoxes.map((box) => distanceToBox(end, box.box)));
-      if (nearestEnd && nearestEnd.owner !== edge.to.node && distanceToBox(end, nearestEnd.box) < ownerEndDistance - 1) {
-        diagnostics.push(warning('edge-owner-mismatch', `Path "${path.id}" ends closer to "${nearestEnd.owner}" than "${edge.to.node}"`, [edge.id, path.id]));
-      }
-
-      let crosses = false;
-      for (let index = 0; index < path.points.length - 1 && !crosses; index += 1) {
-        for (const obstacle of input.boxes) {
-          if (obstacle.kind === 'group') continue;
-          if (obstacle.owner === edge.from.node || obstacle.owner === edge.to.node) continue;
-          if (segmentCrossesBox(path.points[index], path.points[index + 1], obstacle.box)) {
-            diagnostics.push(warning('edge-crosses-node', `Path "${path.id}" crosses node "${obstacle.owner}"`, [edge.id, path.id, obstacle.owner]));
-            crosses = true;
-            break;
-          }
-        }
-      }
+      checkEndpoint(path, start, edge.from.node, fromBoxes, budgets?.from, 'starts', edge.id);
+      checkEndpoint(path, end, edge.to.node, toBoxes, budgets?.to, 'ends', edge.id);
+      checkCrossing(path, edge.from.node, edge.to.node, start, end, edge.id);
     }
+  }
+
+  for (const path of input.paths) {
+    if (edgePathIds.has(path.id)) continue;
+    if (!path.sourceId || !boxIds.has(path.sourceId)) continue;
+    const fromOwner = path.attach?.from ?? path.sourceId;
+    const toOwner = path.attach?.to ?? path.sourceId;
+    const fromBoxes = input.boxes.filter((box) => box.owner === fromOwner);
+    const toBoxes = input.boxes.filter((box) => box.owner === toOwner);
+    const budgets = input.endpointBudgets?.[path.id];
+    const start = path.points[0];
+    const end = path.points[path.points.length - 1];
+    if (!start || !end) continue;
+    checkEndpoint(path, start, fromOwner, fromBoxes, budgets?.from, 'starts');
+    checkEndpoint(path, end, toOwner, toBoxes, budgets?.to, 'ends');
+    checkCrossing(path, fromOwner, toOwner, start, end);
   }
 
   for (const annotation of input.annotations ?? []) {
     if (annotation.style === 'leader' && !pathsBySource.has(annotation.id)) {
       diagnostics.push(warning('orphan-leader', `Leader annotation "${annotation.id}" has no Path`, [annotation.id]));
-    }
-  }
-  for (const path of input.paths) {
-    if (path.role === 'leader' && (!path.sourceId || !annotationIds.has(path.sourceId))) {
-      diagnostics.push(warning('orphan-leader', `Leader Path "${path.id}" has no Annotation`, [path.id]));
     }
   }
 
