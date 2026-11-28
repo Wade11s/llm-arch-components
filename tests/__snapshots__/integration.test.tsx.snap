@@ -157600,8 +157600,8 @@ exports[`spec-driven integration surface all validated figures render through th
           "y": 2126,
         },
       ],
-      "role": "residual-path",
-      "sourceId": undefined,
+      "role": "residual-bus-trunk",
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157625,7 +157625,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "residual-branch",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157648,7 +157648,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 11,
       "role": "residual-dot",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157672,7 +157672,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "residual-branch",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157695,7 +157695,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 11,
       "role": "residual-dot",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157719,7 +157719,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "residual-branch",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157742,7 +157742,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 11,
       "role": "residual-dot",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157766,7 +157766,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
       ],
       "role": "residual-branch",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,
@@ -157789,7 +157789,7 @@ exports[`spec-driven integration surface all validated figures render through th
       "label": undefined,
       "radius": 11,
       "role": "residual-dot",
-      "sourceId": undefined,
+      "sourceId": "backbone",
       "stroke": {
         "color": "#000000",
         "dash": undefined,

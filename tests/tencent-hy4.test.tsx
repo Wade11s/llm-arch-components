@@ -81,7 +81,7 @@ describe('Tencent Hy4 (770B-A49B) attention-mask / iHC figure', () => {
     expect(withRole(result, 'moe-block')).toHaveLength(1);
     expect(withRole(result, 'ihc-read-pill')).toHaveLength(2);
     expect(withRole(result, 'ihc-write-pill')).toHaveLength(2);
-    expect(withRole(result, 'residual-path')).toHaveLength(1);
+    expect(withRole(result, 'residual-bus-trunk')).toHaveLength(1);
     expect(withRole(result, 'residual-branch')).toHaveLength(4);
     expect(withRole(result, 'residual-dot')).toHaveLength(4);
     expect(withRole(result, 'repeat-marker').map((element) => element.label)).toEqual(expect.arrayContaining(['78', '×']));

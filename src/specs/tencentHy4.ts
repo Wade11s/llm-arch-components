@@ -139,7 +139,6 @@ export const tencentHy4Spec: FigureSpec = {
     { id: 'flow-norm-output', kind: 'flow', from: { node: 'final-rmsnorm' }, to: { node: 'output-layer' } },
     { id: 'attention-mask', kind: 'zoom', from: { node: 'attention' }, to: { node: 'mask' } },
     { id: 'ihc-zoom', kind: 'zoom', from: { node: 'ihc-read' }, to: { node: 'ihc-inset' } },
-    { id: 'ihc-residual', kind: 'residual', from: { node: 'ihc-write' }, to: { node: 'attention' }, junction: 'plus' },
   ],
   annotations: [
     {
