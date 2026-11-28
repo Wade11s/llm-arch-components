@@ -2,8 +2,49 @@ import { describe, expect, test } from 'bun:test';
 import { diagnoseConnectorLinks } from '../src/core/connectors';
 import type { ConnectorBox } from '../src/core/connectors';
 import { renderFigure } from '../src/core/renderFigure';
-import type { Scene, ScenePath, SceneText } from '../src/core/types';
+import type { Box, Point, Scene, ScenePath, SceneText } from '../src/core/types';
 import { tencentHy4Spec } from '../src/specs/tencentHy4';
+
+function pointInsideBox(point: Point, box: Box, pad = 0): boolean {
+  return point.x > box.x + pad
+    && point.x < box.x + box.width - pad
+    && point.y > box.y + pad
+    && point.y < box.y + box.height - pad;
+}
+
+function distanceToBox(point: Point, box: Box): number {
+  const dx = Math.max(box.x - point.x, 0, point.x - (box.x + box.width));
+  const dy = Math.max(box.y - point.y, 0, point.y - (box.y + box.height));
+  return Math.hypot(dx, dy);
+}
+
+function orientation(a: Point, b: Point, c: Point): number {
+  return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+
+function segmentsIntersect(a: Point, b: Point, c: Point, d: Point): boolean {
+  const d1 = orientation(c, d, a);
+  const d2 = orientation(c, d, b);
+  const d3 = orientation(a, b, c);
+  const d4 = orientation(a, b, d);
+  return ((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0))
+    && ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0));
+}
+
+function segmentCrossesBox(a: Point, b: Point, box: Box): boolean {
+  if (pointInsideBox(a, box, 0.001) || pointInsideBox(b, box, 0.001)) return true;
+  const corners = [
+    { x: box.x, y: box.y },
+    { x: box.x + box.width, y: box.y },
+    { x: box.x + box.width, y: box.y + box.height },
+    { x: box.x, y: box.y + box.height },
+  ];
+  let crossings = 0;
+  for (let index = 0; index < corners.length; index += 1) {
+    if (segmentsIntersect(a, b, corners[index], corners[(index + 1) % corners.length])) crossings += 1;
+  }
+  return crossings % 2 === 1;
+}
 
 function sceneBoxes(scene: Scene): ConnectorBox[] {
   const boxes: ConnectorBox[] = [];
@@ -98,6 +139,61 @@ describe('Tencent Hy4 connector invariants', () => {
     expect(output?.points.at(-1)?.x).toBe(1150);
     expect(output?.points.at(-1)?.y).toBeCloseTo(246.8, 1);
     expect(output?.arrow).toBe('end');
+  });
+
+  test('keeps the open output tip outside every box and clear of the model', () => {
+    const output = migratedPaths.find((path) => path.sourceId === 'output-to-drafter');
+    const tip = output!.points.at(-1)!;
+    for (const box of sceneBoxes(scene)) {
+      expect(pointInsideBox(tip, box.box)).toBe(false);
+      expect(distanceToBox(tip, box.box)).toBeGreaterThanOrEqual(8 - 0.001);
+    }
+  });
+
+  test('crosses only the owner containers on the two zoom leaders', () => {
+    const allowedBySource: Record<string, Set<string>> = {
+      'attention-mask': new Set(['backbone', 'model', 'mask-inset']),
+      'ihc-zoom': new Set(['ihc-read', 'backbone', 'model', 'ihc-inset']),
+    };
+    const zoomPaths = scene.elements.filter(
+      (element): element is ScenePath => element.kind === 'path' && element.role === 'zoom-leader',
+    );
+    expect(zoomPaths.map((path) => path.sourceId).sort()).toEqual(['attention-mask', 'ihc-zoom']);
+    for (const path of zoomPaths) {
+      const allowed = allowedBySource[path.sourceId!];
+      if (!allowed) throw new Error(`Unexpected zoom path ${path.id}`);
+      for (let index = 0; index < path.points.length - 1; index += 1) {
+        for (const box of sceneBoxes(scene)) {
+          if (allowed.has(box.owner)) continue;
+          expect(segmentCrossesBox(path.points[index], path.points[index + 1], box.box)).toBe(false);
+        }
+      }
+    }
+  });
+
+  test('links all six leader callouts to a declared node, group, or annotation', () => {
+    const leaders = scene.elements.filter(
+      (element): element is ScenePath => element.kind === 'path' && element.role === 'leader',
+    );
+    expect(leaders.map((path) => path.id).sort()).toEqual([
+      'leader-attention',
+      'leader-context',
+      'leader-embedding',
+      'leader-ffn',
+      'leader-moe',
+      'leader-vocabulary',
+    ]);
+    const known = new Set([
+      ...tencentHy4Spec.nodes.map((node) => node.id),
+      ...tencentHy4Spec.groups.map((group) => group.id),
+      ...(tencentHy4Spec.annotations ?? []).map((annotation) => annotation.id),
+    ]);
+    for (const leader of leaders) {
+      expect(leader.sourceId).toBeDefined();
+      expect(known.has(leader.sourceId!)).toBe(true);
+    }
+    const ffn = leaders.find((path) => path.id === 'leader-ffn');
+    expect(ffn?.sourceId).toBe('backbone');
   });
 
   test('links every Tencent path and leader in the whole scene', () => {

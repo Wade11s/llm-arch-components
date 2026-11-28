@@ -118,9 +118,10 @@ function textBlockBounds(
   lineGap: number,
   metrics: TextMetrics,
   family: string,
+  weight = 700,
 ): Box {
   const width = Math.max(...lines.map((line) => line.spans.reduce(
-    (sum, span) => sum + metrics.measure(span, { size, weight: 700, family }),
+    (sum, span) => sum + metrics.measure(span, { size, weight, family }),
     0,
   )));
   const top = at.y - size;
@@ -787,6 +788,8 @@ function drawLeaders(builder: TemplateScene, spec: FigureSpec, metrics: TextMetr
       width: 5,
       dash: 'dotted',
       arrow: 'none',
+      // The dense-FFN callout is anchored on the repeat block in the
+      // reference; the ffn node has no placed box of its own.
       sourceId: id === 'ffn' ? 'backbone' : annotation?.id ?? node?.id,
     });
   });
@@ -797,7 +800,7 @@ function drawLeaders(builder: TemplateScene, spec: FigureSpec, metrics: TextMetr
     ['embedding', { x: 350, y: 2525 }, 46, 58, EMBEDDING_LAYER_BOX, 24],
   ];
   for (const [id, at, size, lineGap, target, radius] of annotationLeaders) {
-    const bounds = textBlockBounds(annotationLines(spec, id), at, size, lineGap, metrics, spec.theme.fontFamily);
+    const bounds = textBlockBounds(annotationLines(spec, id), at, size, lineGap, metrics, spec.theme.fontFamily, 700);
     const start = { x: bounds.x + bounds.width + 5, y: bounds.y + bounds.height / 2 };
     const end = nearestPointOnRoundedBox(target, radius, start);
     builder.flow(`leader-${id}`, [start, end], {
@@ -809,6 +812,8 @@ function drawLeaders(builder: TemplateScene, spec: FigureSpec, metrics: TextMetr
     });
   }
 
+  // `backbone` and `ihc-read` each resolve to several boxes; these explicit
+  // choices keep the zoom on the repeat-block edge and the low Read pill.
   builder.edge(edgeOf(spec, 'attention-mask'), { from: 'repeat-block', to: 'mask-inset', dash: 'dotted', width: 6 });
   builder.edge(edgeOf(spec, 'ihc-zoom'), { from: 'ihc-read-low', to: 'ihc-inset', dash: 'dotted', width: 6 });
 }

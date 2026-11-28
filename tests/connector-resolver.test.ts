@@ -279,6 +279,16 @@ describe('Connector diagnostics', () => {
     expect(sourceContained.some((item) => item.code === 'edge-crosses-node')).toBe(false);
   });
 
+  test('does not let a foreign box containing the start hide a crossing', () => {
+    const startContainer = { ...box('foreign', 20, 90, 60, 30), kind: 'group' as const };
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'flow-a-b', [{ x: 50, y: 100 }, { x: 50, y: 40 }])],
+      edges: [edgeSpec],
+      boxes: [a, b, startContainer],
+    });
+    expect(diagnostics.some((item) => item.code === 'edge-crosses-node')).toBe(true);
+  });
+
   test('reports a path whose sourceId matches neither an edge nor a box', () => {
     const diagnostics = diagnoseConnectorLinks({
       paths: [path('p', 'missing', [{ x: 50, y: 100 }, { x: 50, y: 40 }])],
@@ -325,6 +335,18 @@ describe('Connector diagnostics', () => {
       endpointBudgets: { 'flow-a-b': { from: { open: true }, to: { gap: 8 } } },
     });
     expect(diagnostics.some((item) => item.code === 'edge-endpoint-far')).toBe(false);
+    expect(diagnostics.some((item) => item.code === 'edge-open-endpoint')).toBe(false);
+  });
+
+  test('reports an open endpoint that lands inside an unrelated node', () => {
+    const foreign = box('foreign', 40, 180, 40, 40);
+    const diagnostics = diagnoseConnectorLinks({
+      paths: [path('p', 'flow-a-b', [{ x: 50, y: 200 }, { x: 50, y: 40 }])],
+      edges: [edgeSpec],
+      boxes: [a, b, foreign],
+      endpointBudgets: { 'flow-a-b': { from: { open: true }, to: { gap: 0 } } },
+    });
+    expect(diagnostics.some((item) => item.code === 'edge-open-endpoint')).toBe(true);
   });
 
   test('checks internal wiring endpoints using attach owners', () => {
