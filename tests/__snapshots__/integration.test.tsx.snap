@@ -161581,7 +161581,7 @@ exports[`spec-driven integration surface all validated figures render through th
         },
         {
           "x": 2149,
-          "y": 557,
+          "y": 650,
         },
       ],
       "role": "zoom-leader",

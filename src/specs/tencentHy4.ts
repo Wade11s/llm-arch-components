@@ -137,7 +137,7 @@ export const tencentHy4Spec: FigureSpec = {
     { id: 'flow-write-head', kind: 'flow', from: { node: 'ihc-write' }, to: { node: 'final-ihc-head' } },
     { id: 'flow-head-norm', kind: 'flow', from: { node: 'final-ihc-head' }, to: { node: 'final-rmsnorm' } },
     { id: 'flow-norm-output', kind: 'flow', from: { node: 'final-rmsnorm' }, to: { node: 'output-layer' } },
-    { id: 'attention-mask', kind: 'zoom', from: { node: 'backbone', side: 'right', offset: -631 }, to: { node: 'mask-inset', side: 'left', offset: -747 } },
+    { id: 'attention-mask', kind: 'zoom', from: { node: 'backbone', side: 'right', offset: -631 }, to: { node: 'mask-inset', side: 'left', offset: -647 } },
     { id: 'ihc-zoom', kind: 'zoom', from: { node: 'ihc-read', side: 'right', offset: 22 }, to: { node: 'ihc-inset', side: 'left', offset: -390 } },
     { id: 'output-to-drafter', kind: 'flow', from: { node: 'output-layer', side: 'top' }, to: { node: 'model' } },
   ],

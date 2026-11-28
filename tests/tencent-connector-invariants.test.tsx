@@ -82,10 +82,11 @@ describe('Tencent Hy4 connector invariants', () => {
     expect(maskZoom?.arrow).toBe('none');
     expect(maskZoom?.stroke.dash).toBe('dotted');
     expect(maskZoom?.points[0]).toEqual({ x: 1543, y: 900 });
-    expect(maskZoom?.points.at(-1)).toEqual({ x: 2149, y: 557 });
+    expect(maskZoom?.points.at(-1)).toEqual({ x: 2149, y: 650 });
     expect(maskZoom?.points.every((point) => point.x > 1428)).toBe(true);
     expect(ihcZoom?.role).toBe('zoom-leader');
     expect(ihcZoom?.arrow).toBe('none');
+    expect(ihcZoom?.stroke.dash).toBe('dotted');
     expect(ihcZoom?.points[0].x).toBe(1300);
     expect(ihcZoom?.points[0].y).toBeCloseTo(2129.2, 1);
     expect(ihcZoom?.points.at(-1)).toEqual({ x: 1893, y: 2175 });
@@ -135,11 +136,11 @@ describe('Tencent Hy4 connector invariants', () => {
       expect(path?.points[0].x).toBeCloseTo(bounds.right + 5, 1);
       expect(path?.points[0].y).toBeCloseTo(bounds.center, 1);
     }
-    expect(vocabulary?.points.at(-1)?.x).toBeGreaterThan(970);
-    expect(vocabulary?.points.at(-1)?.y).toBeLessThan(490);
+    expect(vocabulary?.points.at(-1)?.x).toBeCloseTo(970.2, 0);
+    expect(vocabulary?.points.at(-1)?.y).toBeCloseTo(477.3, 0);
     expect(context?.points.at(-1)?.x).toBeCloseTo(897.5, 1);
-    expect(context?.points.at(-1)?.y).toBeLessThan(1840);
-    expect(embedding?.points.at(-1)?.x).toBeGreaterThan(885);
-    expect(embedding?.points.at(-1)?.y).toBeLessThan(2384);
+    expect(context?.points.at(-1)?.y).toBeCloseTo(1834.5, 0);
+    expect(embedding?.points.at(-1)?.x).toBeCloseTo(890.1, 0);
+    expect(embedding?.points.at(-1)?.y).toBeCloseTo(2379.6, 0);
   });
 });
