@@ -76,6 +76,10 @@ _Avoid_: default authoring mode, arbitrary coordinate dump
 A **Figure** whose valid **FigureSpec** produces a deterministic, self-contained SVG and passes a side-by-side visual review against its reference image.
 _Avoid_: structural coverage, Spec coverage, pixel parity
 
+**Reference Verification**:
+Recorded evidence that a **Figure** matches its reference image in structure, text, connections, and visual hierarchy, without requiring pixel parity.
+_Avoid_: pixel parity, raw image comparison
+
 **TemplateScene**:
 An internal wrapper around **Scene** construction that gives **Layout Template** adapters shared domain methods for pills, flows, callouts, repeat frames, and insets without becoming part of the public export surface.
 _Avoid_: public component, base class, universal rendering interface

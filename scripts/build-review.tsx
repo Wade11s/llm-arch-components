@@ -34,6 +34,7 @@ const { values } = parseArgs({
   options: {
     figure: { type: 'string' },
     'out-dir': { type: 'string' },
+    'svg-dir': { type: 'string' },
   },
   strict: true,
 });
@@ -49,6 +50,7 @@ function selectFigures(requested: string | undefined): ReviewFigure[] {
 
 const selectedFigures = selectFigures(values.figure);
 const outDir = values['out-dir'] ?? 'artifacts/review';
+const svgDir = values['svg-dir'] ?? 'artifacts/svg';
 
 function renderPng(svg: string, width: number): Buffer {
   return new Resvg(svg, {
@@ -66,7 +68,7 @@ await mkdir(outDir, { recursive: true });
 const rows: string[] = [];
 
 for (const figure of selectedFigures) {
-  const svgPath = `artifacts/svg/${figure.slug}.svg`;
+  const svgPath = `${svgDir}/${figure.slug}.svg`;
   const svg = await readFile(svgPath, 'utf8');
   const reference = await (await sharpFromFile(figure.reference)).png().toBuffer();
   const width = Math.round(figure.width / 2);

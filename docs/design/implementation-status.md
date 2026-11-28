@@ -2,7 +2,7 @@
 
 **Status:** accepted after issues #10–#19  
 **Design:** `figure-rendering-interface.md`  
-**ADRs:** `../adr/0001-figure-rendering-interface.md`, `../adr/0002-typed-layout-variants.md`
+**ADRs:** `../adr/0001-figure-rendering-interface.md`, `../adr/0002-typed-layout-variants.md`, `../adr/0003-connector-contract.md`, `../adr/0004-reference-verification.md`
 
 ## Public surface
 
