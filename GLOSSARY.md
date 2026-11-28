@@ -77,7 +77,7 @@ A **Figure** whose valid **FigureSpec** produces a deterministic, self-contained
 _Avoid_: structural coverage, Spec coverage, pixel parity
 
 **Reference Verification**:
-Recorded evidence that a **Figure** matches its reference image in structure, text, connectors, and visual hierarchy, without requiring pixel parity.
+Recorded evidence that a **Figure** matches its reference image in structure, text, connections, and visual hierarchy, without requiring pixel parity.
 _Avoid_: pixel parity, raw image comparison
 
 **TemplateScene**:
