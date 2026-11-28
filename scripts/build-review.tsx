@@ -1,7 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { parseArgs } from 'node:util';
 import { Resvg } from '@resvg/resvg-js';
-import sharp from 'sharp';
 import { figureSpecs } from '../src/specs';
+import { sharpFromFile } from './lib/image';
 
 type ReviewFigure = {
   slug: string;
@@ -28,6 +29,24 @@ const figures: ReviewFigure[] = [
   })),
 ];
 
+const { values } = parseArgs({
+  options: {
+    figure: { type: 'string' },
+  },
+  strict: true,
+});
+
+function selectFigures(requested: string | undefined): ReviewFigure[] {
+  if (!requested) return figures;
+  const exact = figures.filter((figure) => figure.slug === requested);
+  if (exact.length > 0) return exact;
+  const specSlug = figures.filter((figure) => figure.slug === `${requested}-spec`);
+  if (specSlug.length > 0) return specSlug;
+  throw new Error(`Unknown review figure "${requested}"`);
+}
+
+const selectedFigures = selectFigures(values.figure);
+
 function renderPng(svg: string, width: number): Buffer {
   return new Resvg(svg, {
     fitTo: { mode: 'width', value: width },
@@ -43,9 +62,9 @@ function escapeXml(value: string): string {
 await mkdir('artifacts/review', { recursive: true });
 const rows: string[] = [];
 
-for (const figure of figures) {
+for (const figure of selectedFigures) {
   const svg = await readFile(`artifacts/svg/${figure.slug}.svg`, 'utf8');
-  const reference = await sharp(await readFile(figure.reference)).png().toBuffer();
+  const reference = await (await sharpFromFile(figure.reference)).png().toBuffer();
   const width = Math.round(figure.width / 2);
   const height = Math.round(figure.height / 2);
   const generatedPng = renderPng(svg, width);

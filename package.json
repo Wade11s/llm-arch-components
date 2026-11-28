@@ -20,6 +20,7 @@
     "export:spec": "bun scripts/export-spec-figures.tsx",
     "render:spec": "bun scripts/render-spec.tsx",
     "review": "bun scripts/build-review.tsx",
+    "image:crop": "bun scripts/crop-image.tsx",
     "verify": "bun scripts/verify-exports.tsx",
     "coverage": "bun scripts/build-rendering-coverage.ts"
   },
